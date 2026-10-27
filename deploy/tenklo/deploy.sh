@@ -16,6 +16,12 @@ required=(
 missing=()
 for name in "${required[@]}"; do
     [ -n "${!name:-}" ] || missing+=("$name")
+    case "${!name:-}" in
+        *"'"*)
+            echo "::error::$name contains a single quote, which the .env can't hold"
+            exit 1
+            ;;
+    esac
 done
 if [ ${#missing[@]} -gt 0 ]; then
     echo "::error::Missing configuration: ${missing[*]}"
@@ -38,7 +44,8 @@ cp deploy/tenklo/docker-compose.yml "$DEPLOY_DIR/docker-compose.yml"
         echo "TENKLO_IMAGE_TAG=$SHA"
         for name in "${required[@]}" NPM_NETWORK; do
             if [ -n "${!name:-}" ]; then
-                printf '%s=%s\n' "$name" "${!name}"
+                # Single quotes keep compose from interpolating a `$` in a password.
+                printf "%s='%s'\n" "$name" "${!name}"
             fi
         done
     } > "$DEPLOY_DIR/.env.next"
