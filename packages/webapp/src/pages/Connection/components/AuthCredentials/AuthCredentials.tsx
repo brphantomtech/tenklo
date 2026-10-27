@@ -11,6 +11,7 @@ import { OAuth2CredentialsComponent } from './OAuth2Credentials';
 import { SignatureCredentialsComponent } from './SignatureCredentials';
 import { TbaCredentialsComponent } from './TbaCredentials';
 import { TwoStepCredentialsComponent } from './TwoStepCredentials';
+import { WhatsAppQrCredentialsComponent } from './WhatsAppQrCredentials';
 
 import type { ApiConnectionFull, BasicApiCredentials } from '@nangohq/types';
 
@@ -78,6 +79,8 @@ export const AuthCredentials: React.FC<AuthCredentialsProps> = ({ connection, pr
                     canRead={canReadConnectionCredentials}
                 />
             )}
+
+            {credentials.type === 'WHATSAPP_QR' && <WhatsAppQrCredentialsComponent credentials={credentials} canRead={canReadConnectionCredentials} />}
 
             {/* Custom and CombinedOauth2AppCredentials */}
             {credentials.type === 'CUSTOM' && (

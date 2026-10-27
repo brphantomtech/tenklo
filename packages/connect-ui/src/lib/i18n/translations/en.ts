@@ -40,6 +40,19 @@ const en = {
         invalidCredentials: '{provider} did not validate your credentials. Please check the values and try again.',
         resourceCapped: 'You have reached the maximum number of connections allowed. Please reach out to the admin.',
         invalidPreconfigured: 'A pre-configured field set by the administrator is invalid, please reach out to support.'
+    },
+    whatsapp: {
+        title: 'Scan the QR code with WhatsApp',
+        step1: 'Open WhatsApp on your phone.',
+        step2: 'Go to Settings → Linked devices → Link a device.',
+        step3: 'Point your phone at this screen to scan the code.',
+        generating: 'Generating QR code...',
+        linking: 'Linking your number...',
+        refreshes: 'The code refreshes automatically.',
+        qrTimeout: 'The QR code was not scanned in time. Please try again.',
+        banned: 'WhatsApp blocked this number.',
+        failed: 'The number could not be linked. Please try again.',
+        unavailable: 'WhatsApp is not available right now. Please try again later.'
     }
 };
 

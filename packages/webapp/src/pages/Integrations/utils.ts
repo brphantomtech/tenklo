@@ -17,7 +17,8 @@ const displayNames: Record<AuthModeType, string> = {
     JWT: 'JWT',
     BILL: 'Bill',
     INSTALL_PLUGIN: 'Install Plugin',
-    AWS_SIGV4: 'AWS SigV4'
+    AWS_SIGV4: 'AWS SigV4',
+    WHATSAPP_QR: 'WhatsApp QR code'
 };
 
 /**

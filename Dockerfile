@@ -52,6 +52,7 @@ COPY packages/metering/package.json ./packages/metering/package.json
 COPY packages/audit/package.json ./packages/audit/package.json
 COPY packages/hosted-telemetry/package.json ./packages/hosted-telemetry/package.json
 COPY packages/migrations/package.json ./packages/migrations/package.json
+COPY packages/whatsapp-gateway/package.json ./packages/whatsapp-gateway/package.json
 COPY package*.json  ./
 
 # Install every dependencies
@@ -82,8 +83,13 @@ RUN true \
   && rm -rf packages/*/public
 
 # Clean dev dependencies
+# sharp ships its native binaries as optional dependencies (only the build platform's are installed), and the
+# whatsapp-gateway needs them for media thumbnails, so they are kept aside while optional dependencies are pruned.
 RUN true \
-  && npm prune --omit=dev --omit=optional
+  && mkdir -p /tmp/keep && cp -r node_modules/@img /tmp/keep/ \
+  && npm prune --omit=dev --omit=optional \
+  && cp -r /tmp/keep/@img node_modules/ \
+  && rm -rf /tmp/keep
 
 # ---- Web ----
 # Resulting new, minimal image

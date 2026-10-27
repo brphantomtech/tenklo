@@ -1,0 +1,38 @@
+{
+    "name": "@nangohq/whatsapp-gateway",
+    "version": "1.0.0",
+    "description": "Holds unofficial WhatsApp (WhatsApp Web, via Baileys) sessions for the whatsapp-web integration",
+    "type": "module",
+    "main": "dist/app.js",
+    "private": true,
+    "scripts": {
+        "dev": "tsx watch -r dotenv/config lib/app.ts dotenv_config_path=./../../.env"
+    },
+    "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brphantomtech/tenklo.git",
+        "directory": "packages/whatsapp-gateway"
+    },
+    "dependencies": {
+        "@aws-sdk/client-s3": "3.993.0",
+        "@nangohq/database": "file:../database",
+        "@nangohq/migrations": "file:../migrations",
+        "@nangohq/utils": "file:../utils",
+        "ajv": "8.20.0",
+        "ajv-formats": "3.0.1",
+        "baileys": "7.0.0-rc14",
+        "express": "5.1.0",
+        "ioredis": "5.8.2",
+        "knex": "3.1.0",
+        "pino": "10.3.1",
+        "sharp": "0.35.5",
+        "zod": "4.3.6"
+    },
+    "devDependencies": {
+        "vitest": "4.1.11"
+    },
+    "engines": {
+        "node": ">=22.0.0"
+    }
+}

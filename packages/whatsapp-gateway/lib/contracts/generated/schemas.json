@@ -1,0 +1,914 @@
+[
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/command.json",
+        "title": "Command",
+        "description": "Qualquer comando do core para um worker.",
+        "oneOf": [
+            {
+                "$ref": "commands/message.send.json"
+            },
+            {
+                "$ref": "commands/channel.connect.json"
+            },
+            {
+                "$ref": "commands/channel.disconnect.json"
+            },
+            {
+                "$ref": "commands/groups.sync.json"
+            }
+        ]
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/commands/channel.connect.json",
+        "title": "ChannelConnectCommand",
+        "description": "Abre a sessão do canal. Sem sessão salva, o worker publica channel.qr até o pareamento. Fila: queue_<canal>.control.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "commandId", "correlationId", "tenantId", "channelId", "type", "payload", "createdAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "commandId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Chave de idempotência: o worker ignora um commandId já executado."
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Repetido em todos os eventos causados por este comando."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "type": {
+                "type": "string",
+                "const": "channel.connect"
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {}
+            },
+            "createdAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/commands/channel.disconnect.json",
+        "title": "ChannelDisconnectCommand",
+        "description": "Fecha a sessão. Com clearSession, desloga o aparelho e apaga a sessão salva. Fila: queue_<canal>.control.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "commandId", "correlationId", "tenantId", "channelId", "type", "payload", "createdAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "commandId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Chave de idempotência: o worker ignora um commandId já executado."
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Repetido em todos os eventos causados por este comando."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "type": {
+                "type": "string",
+                "const": "channel.disconnect"
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["clearSession"],
+                "properties": {
+                    "clearSession": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "createdAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/commands/groups.sync.json",
+        "title": "GroupsSyncCommand",
+        "description": "Pede a lista de grupos de que o número participa. O resultado volta como groups.synced. Fila: queue_<canal>.control.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "commandId", "correlationId", "tenantId", "channelId", "type", "payload", "createdAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "commandId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Chave de idempotência: o worker ignora um commandId já executado."
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Repetido em todos os eventos causados por este comando."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "type": {
+                "type": "string",
+                "const": "groups.sync"
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {}
+            },
+            "createdAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/commands/message.send.json",
+        "title": "MessageSendCommand",
+        "description": "Envia uma mensagem. Fila: queue_<canal>.send. O resultado volta como message.status.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "commandId", "correlationId", "tenantId", "channelId", "type", "payload", "createdAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "commandId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Chave de idempotência: o worker ignora um commandId já executado."
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "Repetido em todos os eventos causados por este comando."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "type": {
+                "type": "string",
+                "const": "message.send"
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["messageId", "to", "content"],
+                "properties": {
+                    "messageId": {
+                        "$ref": "../common.json#/$defs/Uuid",
+                        "description": "Id da mensagem no core, devolvido em message.status."
+                    },
+                    "to": {
+                        "$ref": "../common.json#/$defs/Recipient"
+                    },
+                    "content": {
+                        "$ref": "../common.json#/$defs/MessageContent"
+                    }
+                }
+            },
+            "createdAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/common.json",
+        "title": "Common",
+        "description": "Definições compartilhadas pelos envelopes de comando e evento.",
+        "$defs": {
+            "Uuid": {
+                "type": "string",
+                "format": "uuid"
+            },
+            "DateTime": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "ChannelType": {
+                "title": "ChannelType",
+                "type": "string",
+                "enum": ["WHATSAPP_LIB", "WHATSAPP_OFC", "TELEGRAM", "INSTAGRAM"]
+            },
+            "Recipient": {
+                "type": "object",
+                "description": "Destino da mensagem. Em contato, externalId aceita o JID ou só os dígitos do telefone com DDI (o worker resolve o JID real). Em grupo, é o JID do grupo (@g.us).",
+                "additionalProperties": false,
+                "required": ["kind", "externalId"],
+                "properties": {
+                    "kind": {
+                        "type": "string",
+                        "enum": ["contact", "group"]
+                    },
+                    "externalId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128
+                    }
+                }
+            },
+            "MediaRef": {
+                "type": "object",
+                "description": "Arquivo no bucket de mídia do RustFS. O worker lê direto do bucket.",
+                "additionalProperties": false,
+                "required": ["objectKey", "mimeType"],
+                "properties": {
+                    "objectKey": {
+                        "type": "string",
+                        "pattern": "^tenants/[0-9a-fA-F-]{36}/media/.+$",
+                        "maxLength": 512
+                    },
+                    "mimeType": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 255
+                    },
+                    "fileName": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    },
+                    "sizeBytes": {
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            },
+            "TextContent": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "text"],
+                "properties": {
+                    "kind": {
+                        "type": "string",
+                        "const": "text"
+                    },
+                    "text": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 65536
+                    }
+                }
+            },
+            "MediaContent": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "media"],
+                "properties": {
+                    "kind": {
+                        "type": "string",
+                        "enum": ["image", "video", "audio", "document"]
+                    },
+                    "media": {
+                        "$ref": "#/$defs/MediaRef"
+                    },
+                    "caption": {
+                        "type": "string",
+                        "maxLength": 1024
+                    }
+                }
+            },
+            "MessageContent": {
+                "title": "MessageContent",
+                "oneOf": [
+                    {
+                        "$ref": "#/$defs/TextContent"
+                    },
+                    {
+                        "$ref": "#/$defs/MediaContent"
+                    }
+                ]
+            },
+            "ErrorCode": {
+                "title": "ErrorCode",
+                "type": "string",
+                "description": "Motivo de uma falha definitiva. O worker já esgotou as retentativas antes de reportar.",
+                "enum": [
+                    "CHANNEL_NOT_CONNECTED",
+                    "CHANNEL_SEND_RESTRICTED",
+                    "NOT_ON_WHATSAPP",
+                    "INVALID_RECIPIENT",
+                    "GROUP_SEND_FORBIDDEN",
+                    "MEDIA_NOT_FOUND",
+                    "MEDIA_TOO_LARGE",
+                    "UNSUPPORTED_CONTENT",
+                    "INVALID_COMMAND",
+                    "TIMEOUT",
+                    "PROVIDER_ERROR"
+                ]
+            },
+            "ChannelStatus": {
+                "title": "ChannelStatus",
+                "type": "string",
+                "enum": ["CONNECTING", "QR_PENDING", "CONNECTED", "RECONNECTING", "DISCONNECTED", "BANNED"]
+            },
+            "ChannelStatusReason": {
+                "title": "ChannelStatusReason",
+                "type": "string",
+                "enum": [
+                    "REQUESTED",
+                    "LOGGED_OUT",
+                    "QR_TIMEOUT",
+                    "CONNECTION_REPLACED",
+                    "SESSION_INVALID",
+                    "BANNED",
+                    "LOCK_LOST",
+                    "SHUTDOWN",
+                    "CONNECTION_LOST",
+                    "UNKNOWN"
+                ]
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/event.json",
+        "title": "Event",
+        "description": "Qualquer evento de um worker para o core.",
+        "oneOf": [
+            {
+                "$ref": "events/channel.qr.json"
+            },
+            {
+                "$ref": "events/channel.status.json"
+            },
+            {
+                "$ref": "events/message.status.json"
+            },
+            {
+                "$ref": "events/message.received.json"
+            },
+            {
+                "$ref": "events/groups.synced.json"
+            },
+            {
+                "$ref": "events/command.failed.json"
+            }
+        ]
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/events/channel.qr.json",
+        "title": "ChannelQrEvent",
+        "description": "Novo QR Code para parear o aparelho. O core repassa à tela e não grava. Nunca registrar o conteúdo em log.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "eventId", "correlationId", "tenantId", "channelId", "channelType", "type", "providerEventId", "payload", "occurredAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "eventId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "O do comando que causou o evento; um novo quando o evento é espontâneo."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelType": {
+                "$ref": "../common.json#/$defs/ChannelType"
+            },
+            "type": {
+                "type": "string",
+                "const": "channel.qr"
+            },
+            "providerEventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "description": "Chave de deduplicação no core: (channelId, providerEventId) é único."
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["qr", "attempt"],
+                "properties": {
+                    "qr": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Conteúdo a ser desenhado como QR Code."
+                    },
+                    "attempt": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Número do QR nesta tentativa de conexão."
+                    },
+                    "expiresAt": {
+                        "$ref": "../common.json#/$defs/DateTime"
+                    }
+                }
+            },
+            "occurredAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/events/channel.status.json",
+        "title": "ChannelStatusEvent",
+        "description": "Mudança de estado da conexão do canal.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "eventId", "correlationId", "tenantId", "channelId", "channelType", "type", "providerEventId", "payload", "occurredAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "eventId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "O do comando que causou o evento; um novo quando o evento é espontâneo."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelType": {
+                "$ref": "../common.json#/$defs/ChannelType"
+            },
+            "type": {
+                "type": "string",
+                "const": "channel.status"
+            },
+            "providerEventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "description": "Chave de deduplicação no core: (channelId, providerEventId) é único."
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["status"],
+                "properties": {
+                    "status": {
+                        "$ref": "../common.json#/$defs/ChannelStatus"
+                    },
+                    "reason": {
+                        "$ref": "../common.json#/$defs/ChannelStatusReason"
+                    },
+                    "account": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["externalId"],
+                        "properties": {
+                            "externalId": {
+                                "type": "string",
+                                "description": "JID do número conectado."
+                            },
+                            "phone": {
+                                "type": "string",
+                                "pattern": "^[0-9]{8,15}$"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "sendRestriction": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["active"],
+                        "properties": {
+                            "active": {
+                                "type": "boolean",
+                                "description": "O WhatsApp está bloqueando envios para quem não é contato (reachout timelock)."
+                            },
+                            "until": {
+                                "$ref": "../common.json#/$defs/DateTime"
+                            },
+                            "enforcementType": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "occurredAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/events/command.failed.json",
+        "title": "CommandFailedEvent",
+        "description": "Um comando de controle (connect, disconnect, groups.sync) falhou de forma definitiva. Falhas de message.send voltam como message.status FAILED.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "eventId", "correlationId", "tenantId", "channelId", "channelType", "type", "providerEventId", "payload", "occurredAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "eventId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "O do comando que causou o evento; um novo quando o evento é espontâneo."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelType": {
+                "$ref": "../common.json#/$defs/ChannelType"
+            },
+            "type": {
+                "type": "string",
+                "const": "command.failed"
+            },
+            "providerEventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "description": "Chave de deduplicação no core: (channelId, providerEventId) é único."
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["commandId", "commandType", "errorCode"],
+                "properties": {
+                    "commandId": {
+                        "$ref": "../common.json#/$defs/Uuid"
+                    },
+                    "commandType": {
+                        "type": "string"
+                    },
+                    "errorCode": {
+                        "$ref": "../common.json#/$defs/ErrorCode"
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "maxLength": 500
+                    }
+                }
+            },
+            "occurredAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/events/groups.synced.json",
+        "title": "GroupsSyncedEvent",
+        "description": "Foto completa dos grupos de que o número participa. Substitui a lista anterior do canal.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "eventId", "correlationId", "tenantId", "channelId", "channelType", "type", "providerEventId", "payload", "occurredAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "eventId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "O do comando que causou o evento; um novo quando o evento é espontâneo."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelType": {
+                "$ref": "../common.json#/$defs/ChannelType"
+            },
+            "type": {
+                "type": "string",
+                "const": "groups.synced"
+            },
+            "providerEventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "description": "Chave de deduplicação no core: (channelId, providerEventId) é único."
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["groups"],
+                "properties": {
+                    "groups": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["externalId", "name", "participantsCount", "isAdmin", "announce", "canSend"],
+                            "properties": {
+                                "externalId": {
+                                    "type": "string",
+                                    "pattern": "@g.us$"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "participantsCount": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "isAdmin": {
+                                    "type": "boolean"
+                                },
+                                "announce": {
+                                    "type": "boolean",
+                                    "description": "Só administradores enviam mensagens."
+                                },
+                                "canSend": {
+                                    "type": "boolean",
+                                    "description": "O número conectado pode enviar no grupo."
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "occurredAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/events/message.received.json",
+        "title": "MessageReceivedEvent",
+        "description": "Mensagem de uma conversa do número conectado: recebida de um contato ou num grupo, ou enviada pelo próprio número em outro aparelho (fromMe, só em conversa individual). Não inclui as enviadas por este worker (voltam em message.status), status e broadcasts, canais (@newsletter) nem mensagens de protocolo ou sistema. providerEventId = received:<providerMessageId>.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "eventId", "correlationId", "tenantId", "channelId", "channelType", "type", "providerEventId", "payload", "occurredAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "eventId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "O do comando que causou o evento; um novo quando o evento é espontâneo."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelType": {
+                "$ref": "../common.json#/$defs/ChannelType"
+            },
+            "type": {
+                "type": "string",
+                "const": "message.received"
+            },
+            "providerEventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "pattern": "^received:.+$",
+                "description": "Chave de deduplicação no core: (channelId, providerEventId) é único. Sempre received:<providerMessageId>."
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["providerMessageId", "chat", "from", "sentAt", "content", "quotedProviderMessageId"],
+                "properties": {
+                    "providerMessageId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "description": "Id da mensagem no WhatsApp."
+                    },
+                    "chat": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "Conversa onde a mensagem chegou: o contato (conversa individual) ou o grupo.",
+                        "required": ["type", "externalId"],
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["contact", "group"]
+                            },
+                            "externalId": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "description": "JID da conversa: o do contato (@s.whatsapp.net ou @lid) ou o do grupo (@g.us)."
+                            }
+                        }
+                    },
+                    "from": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "Quem enviou. Em conversa individual, o próprio contato; em grupo, o participante; com fromMe, o número conectado.",
+                        "required": ["externalId", "phone", "name"],
+                        "properties": {
+                            "externalId": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "description": "JID do remetente (@s.whatsapp.net ou @lid)."
+                            },
+                            "phone": {
+                                "type": ["string", "null"],
+                                "pattern": "^[0-9]{8,15}$",
+                                "description": "Dígitos do telefone com DDI, quando o worker consegue resolver (inclusive a partir de um @lid); null quando não."
+                            },
+                            "name": {
+                                "type": ["string", "null"],
+                                "maxLength": 256,
+                                "description": "Nome de exibição do remetente no WhatsApp (pushName), quando disponível."
+                            }
+                        }
+                    },
+                    "sentAt": {
+                        "$ref": "../common.json#/$defs/DateTime",
+                        "description": "Horário da mensagem segundo o WhatsApp."
+                    },
+                    "content": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["kind", "text"],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": ["text", "image", "video", "audio", "document", "sticker", "location", "contact", "reaction", "other"]
+                            },
+                            "text": {
+                                "type": ["string", "null"],
+                                "maxLength": 4096,
+                                "description": "Texto da mensagem ou legenda da mídia, truncado em 4096 caracteres; em reação, o emoji; null quando não há texto."
+                            }
+                        }
+                    },
+                    "quotedProviderMessageId": {
+                        "type": ["string", "null"],
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "description": "providerMessageId da mensagem respondida (resposta com citação) ou, em reação, da mensagem reagida; null quando não há."
+                    },
+                    "fromMe": {
+                        "type": "boolean",
+                        "description": "true: enviada pelo próprio número em outro aparelho (celular, WhatsApp Web), nunca por este worker. Só em conversa individual; chat é o contato. Ausente equivale a false."
+                    },
+                    "media": {
+                        "type": ["object", "null"],
+                        "additionalProperties": false,
+                        "description": "Arquivo da mensagem (imagem, vídeo, áudio, documento, figurinha), já gravado pelo worker no bucket de mídia. null quando a mensagem não tem arquivo, ou quando ele não pôde ser baixado ou passa do limite. Ausente: worker sem suporte a mídia recebida.",
+                        "required": ["objectKey", "contentType", "fileName", "sizeBytes"],
+                        "properties": {
+                            "objectKey": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 512,
+                                "pattern": "^tenants/[0-9a-f-]{36}/inbox/[0-9a-f-]{36}/.+$",
+                                "description": "Chave no bucket de mídia: tenants/<tenantId>/inbox/<channelId>/<providerMessageId>."
+                            },
+                            "contentType": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 127
+                            },
+                            "fileName": {
+                                "type": ["string", "null"],
+                                "maxLength": 255,
+                                "description": "Nome original (documentos); null quando não há."
+                            },
+                            "sizeBytes": {
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    }
+                }
+            },
+            "occurredAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    },
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://contracts.stackchat.dev/v1/events/message.status.json",
+        "title": "MessageStatusEvent",
+        "description": "Situação de uma mensagem enviada. Em grupos, só SENT e FAILED.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "eventId", "correlationId", "tenantId", "channelId", "channelType", "type", "providerEventId", "payload", "occurredAt"],
+        "properties": {
+            "version": {
+                "type": "integer",
+                "const": 1
+            },
+            "eventId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "correlationId": {
+                "$ref": "../common.json#/$defs/Uuid",
+                "description": "O do comando que causou o evento; um novo quando o evento é espontâneo."
+            },
+            "tenantId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelId": {
+                "$ref": "../common.json#/$defs/Uuid"
+            },
+            "channelType": {
+                "$ref": "../common.json#/$defs/ChannelType"
+            },
+            "type": {
+                "type": "string",
+                "const": "message.status"
+            },
+            "providerEventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "description": "Chave de deduplicação no core: (channelId, providerEventId) é único."
+            },
+            "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["messageId", "status"],
+                "properties": {
+                    "messageId": {
+                        "$ref": "../common.json#/$defs/Uuid"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["SENT", "DELIVERED", "READ", "FAILED"]
+                    },
+                    "providerMessageId": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "recipientExternalId": {
+                        "type": "string",
+                        "description": "JID efetivo do destino, resolvido pelo worker (ex.: telefone com ou sem o nono dígito)."
+                    },
+                    "errorCode": {
+                        "$ref": "../common.json#/$defs/ErrorCode"
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "maxLength": 500,
+                        "description": "Texto técnico, sem conteúdo da mensagem."
+                    }
+                }
+            },
+            "occurredAt": {
+                "$ref": "../common.json#/$defs/DateTime"
+            }
+        }
+    }
+]

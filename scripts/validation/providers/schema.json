@@ -140,7 +140,8 @@
                         "MCP_OAUTH2",
                         "MCP_OAUTH2_GENERIC",
                         "INSTALL_PLUGIN",
-                        "AWS_SIGV4"
+                        "AWS_SIGV4",
+                        "WHATSAPP_QR"
                     ]
                 },
                 "auth_type": {

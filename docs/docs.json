@@ -2055,6 +2055,7 @@
               "api-integrations/weflow",
               "api-integrations/wejam",
               "api-integrations/whatsapp-business",
+              "api-integrations/whatsapp-web",
               "integrations/all/whoop",
               "integrations/all/wildix-pbx",
               "api-integrations/wise-api-key",

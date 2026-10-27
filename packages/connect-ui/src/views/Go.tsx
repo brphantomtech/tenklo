@@ -13,6 +13,7 @@ import { CustomSelect } from '@/components/CustomSelect';
 import { HeaderButtons } from '@/components/HeaderButtons';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { WhatsAppQr } from '@/components/WhatsAppQr';
 import { triggerClose, triggerConnection, triggerError } from '@/lib/events';
 import { useI18n } from '@/lib/i18n';
 import { useNango } from '@/lib/nango';
@@ -73,7 +74,9 @@ const formSchema: Record<AuthModeType, z.ZodObject> = {
     CUSTOM: z.object({}),
     MCP_OAUTH2: z.object({}),
     MCP_OAUTH2_GENERIC: z.object({}),
-    INSTALL_PLUGIN: z.object({})
+    INSTALL_PLUGIN: z.object({}),
+    // The QR pairing has no form: see WhatsAppQr
+    WHATSAPP_QR: z.object({})
 };
 
 const defaultConfiguration: Record<string, { secret: boolean; title: string; example: string }> = {
@@ -585,6 +588,38 @@ export const Go: React.FC = () => {
                         </p>
                     </footer>
                 )}
+            </div>
+        );
+    }
+
+    if (provider.auth_mode === 'WHATSAPP_QR') {
+        return (
+            <div className="flex-1 flex flex-col justify-center gap-5">
+                <HeaderButtons backLink={!isSingleIntegration ? '/integrations' : undefined} isAuthLink={isAuthLink} />
+                <main className="flex-1 flex flex-col gap-7 px-4 justify-center">
+                    <div className="flex flex-col gap-7 items-center">
+                        <div className="w-16 h-16 p-2 rounded-sm bg-white border border-subtle">
+                            <img alt={`${integration.display_name} logo`} src={integration.logo} />
+                        </div>
+                        <h1 className="font-semibold text-center text-lg text-text-primary" id="connect-ui-title">
+                            {t('go.linkAccount', { provider: displayName })}
+                        </h1>
+                    </div>
+                    <WhatsAppQr
+                        isPreview={isPreview}
+                        nango={nango}
+                        providerConfigKey={integration.unique_key}
+                        onError={(type, message) => {
+                            setConnectionFailed(true);
+                            setError(message);
+                            triggerError(type, message);
+                        }}
+                        onSuccess={(res) => {
+                            setResult(res);
+                            triggerConnection(res);
+                        }}
+                    />
+                </main>
             </div>
         );
     }

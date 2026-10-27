@@ -10,6 +10,8 @@ export type AuthErrorType =
     | 'missing_connect_session_token'
     | 'connection_validation_failed'
     | 'resource_capped'
+    | 'whatsapp_gateway_unavailable'
+    | 'whatsapp_pairing_failed'
     | 'unknown_error';
 
 export type AuthResult = ConnectionResponseSuccess;
@@ -131,3 +133,21 @@ export interface ConnectUIEventSettingsChanged {
 }
 
 export type ConnectUIEvent = ConnectUIEventReady | ConnectUIEventClose | ConnectUIEventConnect | ConnectUIEventError | ConnectUIEventSettingsChanged;
+
+/** A WhatsApp QR pairing in progress (WHATSAPP_QR integrations). */
+export interface WhatsAppQrPairing {
+    session_id: string;
+    /** starting: the session is opening. qr: waiting for the scan. connected: the connection exists. */
+    status: 'starting' | 'qr' | 'connected' | 'failed';
+    /** The QR payload to render, while status is qr. */
+    qr: string | null;
+    qr_expires_at: string | null;
+    /** Why the pairing failed, while status is failed. */
+    error: string | null;
+}
+
+export interface WhatsAppQrPairingStatus extends WhatsAppQrPairing {
+    providerConfigKey: string;
+    /** Set once the QR is scanned and the connection is created. */
+    connectionId: string | null;
+}

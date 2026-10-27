@@ -16914,6 +16914,7 @@ Use these slugs to construct provider-specific docs URLs only when needed.
 | `weflow` | Weflow | API_KEY | [docs](https://tenklo.dev/docs/api-integrations/weflow.md) | [connect](https://tenklo.dev/docs/api-integrations/weflow/connect.md) |  | communication, crm, video |
 | `wejam` | WeJam AI | API_KEY | [docs](https://tenklo.dev/docs/api-integrations/wejam.md) | [connect](https://tenklo.dev/docs/api-integrations/wejam/connect.md) |  | productivity |
 | `whatsapp-business` | WhatsApp Business | API_KEY | [docs](https://tenklo.dev/docs/api-integrations/whatsapp-business.md) |  | [setup](https://tenklo.dev/docs/api-integrations/whatsapp-business/how-to-register-your-own-whatsapp-business-api-oauth-app.md) | communication, marketing |
+| `whatsapp-web` | WhatsApp (QR code) | WHATSAPP_QR | [docs](https://tenklo.dev/docs/api-integrations/whatsapp-web.md) |  |  | communication |
 | `whoop` | Whoop | OAUTH2 | [docs](https://tenklo.dev/docs/integrations/all/whoop.md) |  |  | sports |
 | `wildix-pbx` | Wildix PBX | OAUTH2 | [docs](https://tenklo.dev/docs/integrations/all/wildix-pbx.md) |  |  | communication |
 | `wise-api-key` | Wise (API Key) | API_KEY | [docs](https://tenklo.dev/docs/api-integrations/wise-api-key.md) | [connect](https://tenklo.dev/docs/api-integrations/wise-api-key/connect.md) |  | banking, payment |

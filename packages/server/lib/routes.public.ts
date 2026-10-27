@@ -13,6 +13,7 @@ import { deleteAgentSession } from './controllers/agent/deleteSession.js';
 import { getAgentSessionMcp, postAgentSessionMcp } from './controllers/agent/mcp/sessionMcp.js';
 import { postAgentSessions } from './controllers/agent/postSessions.js';
 import appAuthController from './controllers/appAuth.controller.js';
+import { getPublicWhatsAppQrAuthorization } from './controllers/auth/getWhatsAppQr.js';
 import { postPublicApiKeyAuthorization } from './controllers/auth/postApiKey.js';
 import { postPublicAwsSigV4Authorization } from './controllers/auth/postAwsSigV4.js';
 import { postPublicBasicAuthorization } from './controllers/auth/postBasic.js';
@@ -23,6 +24,7 @@ import { postPublicSignatureAuthorization } from './controllers/auth/postSignatu
 import { postPublicTbaAuthorization } from './controllers/auth/postTba.js';
 import { postPublicTwoStepAuthorization } from './controllers/auth/postTwoStep.js';
 import { postPublicUnauthenticated } from './controllers/auth/postUnauthenticated.js';
+import { postPublicWhatsAppQrAuthorization } from './controllers/auth/postWhatsAppQr.js';
 import { postCliTelemetry } from './controllers/cli/postTelemetry.js';
 import { getClientMetadata } from './controllers/clientMetadata/environmentUuid/getClientMetadata.js';
 import configController from './controllers/config.controller.js';
@@ -110,6 +112,7 @@ import {
     auditFunctionVariantCreated,
     auditFunctionVariantDeleted,
     auditFunctionVariantUpdated,
+    auditPolledConnectionCreated,
     auditPublicApiKeyCreated,
     auditPublicApiKeyDeleted,
     auditPublicApiKeyUpdated,
@@ -266,6 +269,10 @@ publicAPI.route('/auth/two-step/:providerConfigKey').post(connectSessionOrPublic
 publicAPI.route('/auth/jwt/:providerConfigKey').post(connectSessionOrPublicAuth, auditConnectionCreated, postPublicJwtAuthorization);
 publicAPI.route('/auth/bill/:providerConfigKey').post(connectSessionOrPublicAuth, auditConnectionCreated, postPublicBillAuthorization);
 publicAPI.route('/auth/aws-sigv4/:providerConfigKey').post(connectSessionOrPublicAuth, auditConnectionCreated, postPublicAwsSigV4Authorization);
+publicAPI.route('/auth/whatsapp-qr/:providerConfigKey').post(connectSessionOrPublicAuth, postPublicWhatsAppQrAuthorization);
+publicAPI
+    .route('/auth/whatsapp-qr/:providerConfigKey/:sessionId')
+    .get(connectSessionOrPublicAuth, auditPolledConnectionCreated, getPublicWhatsAppQrAuthorization);
 publicAPI.route('/auth/signature/:providerConfigKey').post(connectSessionOrPublicAuth, auditConnectionCreated, postPublicSignatureAuthorization);
 publicAPI.route('/auth/unauthenticated/:providerConfigKey').post(connectSessionOrPublicAuth, auditConnectionCreated, postPublicUnauthenticated);
 

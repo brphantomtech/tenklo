@@ -835,6 +835,11 @@ const ENVS_SHAPE = z.object({
     // Internal API
     NANGO_INTERNAL_API_KEY: z.string().optional(),
 
+    // WhatsApp gateway (packages/whatsapp-gateway), for the whatsapp-web integration. Unset disables it.
+    WHATSAPP_GATEWAY_URL: z.url().optional(),
+    // Shared with the gateway: authenticates the commands sent to it and the events it sends back.
+    WHATSAPP_GATEWAY_SECRET: z.string().min(32).optional(),
+
     // Internal service auth (orchestrator / jobs). All optional so a default image is a no-op.
     NANGO_INTERNAL_AUTH_TOKEN: z.string().optional(),
     NANGO_INTERNAL_AUTH_SIGNING_KEY: z.string().optional(),

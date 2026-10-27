@@ -42,6 +42,19 @@ const es: Translation = {
         invalidCredentials: '{provider} no validó tus credenciales. Por favor verifica los valores e inténtalo de nuevo.',
         resourceCapped: 'Has alcanzado el número máximo de conexiones permitidas. Por favor contacta al administrador.',
         invalidPreconfigured: 'Un campo preconfigurado establecido por el administrador es inválido, por favor contacta al soporte'
+    },
+    whatsapp: {
+        title: 'Escanea el código QR con WhatsApp',
+        step1: 'Abre WhatsApp en tu teléfono.',
+        step2: 'Ve a Ajustes → Dispositivos vinculados → Vincular un dispositivo.',
+        step3: 'Apunta tu teléfono a esta pantalla para escanear el código.',
+        generating: 'Generando el código QR...',
+        linking: 'Vinculando tu número...',
+        refreshes: 'El código se actualiza automáticamente.',
+        qrTimeout: 'El código QR no se escaneó a tiempo. Inténtalo de nuevo.',
+        banned: 'WhatsApp bloqueó este número.',
+        failed: 'No se pudo vincular el número. Inténtalo de nuevo.',
+        unavailable: 'WhatsApp no está disponible en este momento. Inténtalo más tarde.'
     }
 };
 

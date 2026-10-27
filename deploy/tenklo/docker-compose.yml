@@ -1,0 +1,114 @@
+# Tenklo production stack. Deployed by .github/workflows/deploy-tenklo.yml, which writes the .env next to this file
+# from the GitHub environment's secrets and variables. Nothing here is secret.
+name: tenklo
+services:
+    tenklo-db:
+        image: postgres:16.0-alpine
+        container_name: tenklo-db
+        restart: always
+        environment:
+            POSTGRES_USER: tenklo
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: tenklo
+        volumes:
+            - tenklo-db-data:/var/lib/postgresql/data
+        healthcheck:
+            test: [CMD-SHELL, pg_isready -U tenklo -d tenklo]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+        networks: [tenklo]
+
+    tenklo-redis:
+        image: redis:7.2.4
+        container_name: tenklo-redis
+        restart: always
+        networks: [tenklo]
+
+    tenklo-server:
+        image: tenklo/server:${TENKLO_IMAGE_TAG}
+        container_name: tenklo-server
+        restart: always
+        depends_on:
+            tenklo-db:
+                condition: service_healthy
+        environment:
+            - NANGO_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+            - NANGO_DB_USER=tenklo
+            - NANGO_DB_PASSWORD=${DB_PASSWORD}
+            - NANGO_DB_HOST=tenklo-db
+            - NANGO_DB_NAME=tenklo
+            - NANGO_DB_SSL=false
+            - RECORDS_DATABASE_URL=postgresql://tenklo:${DB_PASSWORD}@tenklo-db:5432/tenklo
+            - NANGO_REDIS_URL=redis://tenklo-redis:6379
+            - SERVER_PORT=3003
+            - NANGO_SERVER_URL=${TENKLO_API_URL}
+            - NANGO_PUBLIC_SERVER_URL=${TENKLO_APP_URL}
+            - NANGO_DASHBOARD_API_URL=/
+            - NANGO_PUBLIC_CONNECT_URL=${TENKLO_CONNECT_URL}
+            - FLAG_SERVE_CONNECT_UI=true
+            - NANGO_CONNECT_UI_PORT=3009
+            - FLAG_AUTH_ENABLED=false
+            - AUTH_ALLOW_SIGNUP=false
+            - NANGO_DASHBOARD_USERNAME=${DASHBOARD_USERNAME}
+            - NANGO_DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
+            - NANGO_LOGS_ENABLED=false
+            - CSP_REPORT_ONLY=true
+            - LOG_LEVEL=info
+            - WHATSAPP_GATEWAY_URL=http://tenklo-whatsapp:3010
+            - WHATSAPP_GATEWAY_SECRET=${WHATSAPP_GATEWAY_SECRET}
+        # npm: the Nginx Proxy Manager network, which publishes the api, app and connect hosts.
+        networks: [tenklo, npm]
+
+    # S3-compatible storage for the WhatsApp media. Internal only.
+    tenklo-s3:
+        image: rustfs/rustfs:1.0.3
+        container_name: tenklo-s3
+        restart: always
+        environment:
+            - RUSTFS_ACCESS_KEY=${WHATSAPP_S3_ACCESS_KEY}
+            - RUSTFS_SECRET_KEY=${WHATSAPP_S3_SECRET_KEY}
+            - RUSTFS_ADDRESS=:9000
+            - RUSTFS_CONSOLE_ENABLE=false
+        volumes:
+            - tenklo-s3-rustfs-data:/data
+        networks: [tenklo]
+
+    # Holds the WhatsApp Web sessions of the whatsapp-web integration. Internal only: the server calls it.
+    tenklo-whatsapp:
+        image: tenklo/server:${TENKLO_IMAGE_TAG}
+        container_name: tenklo-whatsapp
+        restart: always
+        command: ['node', 'packages/whatsapp-gateway/dist/app.js']
+        depends_on:
+            tenklo-db:
+                condition: service_healthy
+            tenklo-s3:
+                condition: service_started
+        environment:
+            - NANGO_DB_USER=tenklo
+            - NANGO_DB_PASSWORD=${DB_PASSWORD}
+            - NANGO_DB_HOST=tenklo-db
+            - NANGO_DB_NAME=tenklo
+            - NANGO_DB_SSL=false
+            - NANGO_REDIS_URL=redis://tenklo-redis:6379
+            - WHATSAPP_GATEWAY_PORT=3010
+            - WHATSAPP_GATEWAY_SECRET=${WHATSAPP_GATEWAY_SECRET}
+            - WHATSAPP_GATEWAY_EVENTS_URL=http://tenklo-server:3003/internal/whatsapp/events
+            - WHATSAPP_SESSION_ENCRYPTION_KEY=${WHATSAPP_SESSION_ENCRYPTION_KEY}
+            - WHATSAPP_S3_ENDPOINT=http://tenklo-s3:9000
+            - WHATSAPP_S3_ACCESS_KEY=${WHATSAPP_S3_ACCESS_KEY}
+            - WHATSAPP_S3_SECRET_KEY=${WHATSAPP_S3_SECRET_KEY}
+            - WHATSAPP_S3_BUCKET=whatsapp-media
+            - LOG_LEVEL=info
+        networks: [tenklo]
+
+volumes:
+    tenklo-db-data:
+    tenklo-s3-rustfs-data:
+
+networks:
+    tenklo:
+    npm:
+        external: true
+        name: ${NPM_NETWORK:-nginx-proxy-manager_default}

@@ -42,6 +42,19 @@ const ja: Translation = {
         invalidCredentials: '{provider} が認証情報を検証できませんでした。入力内容を確認して、もう一度お試しください。',
         resourceCapped: '許可されている接続数の上限に達しました。管理者にお問い合わせください。',
         invalidPreconfigured: '管理者が事前設定したフィールドが無効です。サポートまでお問い合わせください。'
+    },
+    whatsapp: {
+        title: 'WhatsAppでQRコードをスキャン',
+        step1: 'スマートフォンでWhatsAppを開きます。',
+        step2: '設定 → リンク済みデバイス → デバイスをリンク に進みます。',
+        step3: 'スマートフォンをこの画面に向けてコードをスキャンします。',
+        generating: 'QRコードを生成しています...',
+        linking: '番号をリンクしています...',
+        refreshes: 'コードは自動的に更新されます。',
+        qrTimeout: 'QRコードが時間内にスキャンされませんでした。もう一度お試しください。',
+        banned: 'WhatsAppはこの番号をブロックしました。',
+        failed: '番号をリンクできませんでした。もう一度お試しください。',
+        unavailable: '現在WhatsAppを利用できません。しばらくしてからもう一度お試しください。'
     }
 };
 

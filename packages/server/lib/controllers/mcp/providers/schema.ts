@@ -29,7 +29,8 @@ const authModeSchema = z.enum([
     'MCP_OAUTH2',
     'MCP_OAUTH2_GENERIC',
     'INSTALL_PLUGIN',
-    'AWS_SIGV4'
+    'AWS_SIGV4',
+    'WHATSAPP_QR'
 ] satisfies AuthModeType[]);
 
 const jsonSchemaSchema = z.looseObject({}) as z.ZodType<JSONSchema7>;
