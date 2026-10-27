@@ -49,7 +49,16 @@ docker compose config -q
 echo "::endgroup::"
 
 echo "::group::Roll out"
+# The shell's value would win over the .env one, so a stale export can't pin the old image.
+export TENKLO_IMAGE_TAG=$SHA
 docker compose up -d --remove-orphans
+for container in tenklo-server tenklo-whatsapp; do
+    running=$(docker inspect --format '{{.Config.Image}}' "$container")
+    if [ "$running" != "tenklo/server:$SHA" ]; then
+        echo "::error::$container runs $running, not tenklo/server:$SHA"
+        exit 1
+    fi
+done
 echo "::endgroup::"
 
 echo "::group::Health"
