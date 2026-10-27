@@ -23,9 +23,10 @@ import type {
  * A re-authorization is skipped: it upserts through the same endpoints and answers the same 200.
  * `connection.reauthorized` exists in the vocabulary if we ever want it, and it belongs here.
  */
-export const auditConnectionCreated = maybeAuditable<Endpoint<any> & { Audit: AuditPolicy<'connection', 'created', 'environment'> }>({
+type ConnectionCreatedEndpoint = Endpoint<any> & { Audit: AuditPolicy<'connection', 'created', 'environment'> };
+
+const connectionCreatedSpec = {
     policy: Audit.auditable({ resource: 'connection', action: 'created', scope: 'environment' }),
-    skipWhen: (req) => req.audit?.connectionUpsert?.operation === 'override',
     subject: (req, locals) => {
         const upsert = req.audit?.connectionUpsert;
         if (upsert) {
@@ -48,6 +49,20 @@ export const auditConnectionCreated = maybeAuditable<Endpoint<any> & { Audit: Au
             metadata: providerConfigKeyMeta(providerConfigKey)
         };
     }
+} satisfies Omit<Parameters<typeof maybeAuditable<ConnectionCreatedEndpoint>>[0], 'skipWhen'>;
+
+export const auditConnectionCreated = maybeAuditable<ConnectionCreatedEndpoint>({
+    ...connectionCreatedSpec,
+    skipWhen: (req) => req.audit?.connectionUpsert?.operation === 'override'
+});
+
+/**
+ * `connection.created` for a route polled until it creates the connection (WhatsApp QR pairing): only the poll
+ * that created it is recorded, not every poll before it.
+ */
+export const auditPolledConnectionCreated = maybeAuditable<ConnectionCreatedEndpoint>({
+    ...connectionCreatedSpec,
+    skipWhen: (req) => !req.audit?.connectionUpsert || req.audit.connectionUpsert.operation === 'override'
 });
 
 export const auditConnectionUpdated = auditable<PatchConnection>({

@@ -271,6 +271,10 @@ export interface ProviderAwsSigV4 extends BaseProvider {
     auth_mode: 'AWS_SIGV4';
 }
 
+export interface ProviderWhatsAppQr extends BaseProvider {
+    auth_mode: 'WHATSAPP_QR';
+}
+
 export interface ProviderApiKey extends BaseProvider {
     auth_mode: 'API_KEY';
 }
@@ -294,7 +298,8 @@ export type Provider =
     | ProviderCustom
     | ProviderMcpOAUTH2
     | ProviderMcpOAuth2Generic
-    | ProviderInstallPlugin;
+    | ProviderInstallPlugin
+    | ProviderWhatsAppQr;
 
 export type RefreshableProvider = ProviderTwoStep | ProviderJwt | ProviderSignature | ProviderOAuth2 | ProviderMcpOAuth2Generic | ProviderAwsSigV4; // TODO: fix this type
 export type TestableProvider = ProviderApiKey; // TODO: fix this type

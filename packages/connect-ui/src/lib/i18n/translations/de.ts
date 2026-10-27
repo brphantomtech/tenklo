@@ -43,6 +43,19 @@ const de: Translation = {
         invalidCredentials: '{provider} hat Ihre Anmeldedaten nicht validiert. Bitte überprüfen Sie die Werte und versuchen Sie es erneut.',
         resourceCapped: 'Sie haben die maximale Anzahl erlaubter Verbindungen erreicht. Bitte wenden Sie sich an den Administrator.',
         invalidPreconfigured: 'Ein vom Administrator festgelegtes vorkonfiguriertes Feld ist ungültig, bitte wenden Sie sich an den Support'
+    },
+    whatsapp: {
+        title: 'Scanne den QR-Code mit WhatsApp',
+        step1: 'Öffne WhatsApp auf deinem Telefon.',
+        step2: 'Gehe zu Einstellungen → Verknüpfte Geräte → Gerät hinzufügen.',
+        step3: 'Richte dein Telefon auf diesen Bildschirm, um den Code zu scannen.',
+        generating: 'QR-Code wird erstellt...',
+        linking: 'Deine Nummer wird verknüpft...',
+        refreshes: 'Der Code wird automatisch aktualisiert.',
+        qrTimeout: 'Der QR-Code wurde nicht rechtzeitig gescannt. Bitte versuche es erneut.',
+        banned: 'WhatsApp hat diese Nummer gesperrt.',
+        failed: 'Die Nummer konnte nicht verknüpft werden. Bitte versuche es erneut.',
+        unavailable: 'WhatsApp ist gerade nicht verfügbar. Bitte versuche es später erneut.'
     }
 };
 

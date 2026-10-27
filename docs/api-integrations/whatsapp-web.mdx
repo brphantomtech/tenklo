@@ -1,0 +1,52 @@
+---
+title: 'WhatsApp (QR code)'
+sidebarTitle: 'WhatsApp (QR code)'
+description: 'Connect a WhatsApp number by scanning a QR code, like WhatsApp Web'
+---
+
+The `whatsapp-web` integration pairs a regular WhatsApp or WhatsApp Business app number by QR code, the same way WhatsApp Web does. It needs no Meta business account and no message templates.
+
+<Warning>
+This integration uses the unofficial WhatsApp Web protocol. WhatsApp may restrict or ban numbers that send automated or unsolicited messages. Use it with numbers whose owners consent, and prefer [WhatsApp Business](/api-integrations/whatsapp-business) (the official Cloud API) where its rules fit your use case.
+</Warning>
+
+## How it works
+
+Tenklo runs a WhatsApp gateway next to the server. The gateway holds one WhatsApp Web session per connection, encrypted at rest in Tenklo's database, and keeps it online.
+
+1. Your user opens the Connect UI and picks the integration.
+2. The Connect UI shows a QR code, refreshed by WhatsApp every 20 seconds or so.
+3. Your user scans it from WhatsApp on their phone: _Settings_ → _Linked devices_ → _Link a device_.
+4. The connection is created, with the paired number in its credentials (`session_id`, `phone`, `name`).
+
+Deleting the connection logs the device out of the number.
+
+## Quickstart
+
+<Steps>
+    <Step title="Create the integration">
+    In Tenklo, go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _WhatsApp (QR code)_. There is nothing to configure.
+    </Step>
+    <Step title="Pair a number">
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, and scan the QR code with the phone of the number to connect.
+    </Step>
+</Steps>
+
+## Self-hosting
+
+The integration needs the WhatsApp gateway (`packages/whatsapp-gateway`), which runs from the same image as the server:
+
+```bash
+node packages/whatsapp-gateway/dist/app.js
+```
+
+| Variable | Server | Gateway | Description |
+| --- | --- | --- | --- |
+| `WHATSAPP_GATEWAY_URL` | ✓ | | Where the server reaches the gateway, e.g. `http://tenklo-whatsapp:3010`. |
+| `WHATSAPP_GATEWAY_SECRET` | ✓ | ✓ | Shared secret (32+ characters) for the commands and events between them. |
+| `WHATSAPP_GATEWAY_EVENTS_URL` | | ✓ | The server's event endpoint, e.g. `http://tenklo-server:3003/internal/whatsapp/events`. |
+| `WHATSAPP_SESSION_ENCRYPTION_KEY` | | ✓ | Encrypts the sessions at rest (32+ characters). Changing it requires pairing every number again. |
+| `WHATSAPP_S3_ENDPOINT`, `WHATSAPP_S3_REGION`, `WHATSAPP_S3_ACCESS_KEY`, `WHATSAPP_S3_SECRET_KEY`, `WHATSAPP_S3_BUCKET` | | ✓ | S3-compatible bucket for media. |
+| `NANGO_DB_*`, `NANGO_REDIS_URL` | ✓ | ✓ | The same database and Redis as the server. |
+
+Keep the gateway on the internal network: only the server needs to reach it.

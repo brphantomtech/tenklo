@@ -127,6 +127,11 @@ export async function refreshOrTestCredentials(props: RefreshProps): Promise<Res
                 res = await testCredentials(props, provider as TestableProvider);
                 break;
             }
+            case 'WHATSAPP_QR': {
+                // Nothing to refresh: the gateway holds the session and reports its health through events.
+                res = Ok(props.connection);
+                break;
+            }
             case 'CUSTOM':
             case 'OAUTH1':
             case undefined: {

@@ -25,6 +25,7 @@ import type { PostAgentPlaygroundChat } from './agent/playground.api.js';
 import type { EndpointMethod } from './api.js';
 import type { GetAuditTrail, GetAuditTrailExport } from './audit-trail/api.js';
 import type {
+    GetPublicWhatsAppQrAuthorization,
     PostPublicApiKeyAuthorization,
     PostPublicAwsSigV4Authorization,
     PostPublicBasicAuthorization,
@@ -34,7 +35,8 @@ import type {
     PostPublicSignatureAuthorization,
     PostPublicTbaAuthorization,
     PostPublicTwoStepAuthorization,
-    PostPublicUnauthenticatedAuthorization
+    PostPublicUnauthenticatedAuthorization,
+    PostPublicWhatsAppQrAuthorization
 } from './auth/http.api.js';
 import type { PostCliTelemetry } from './cli/api.js';
 import type { GetPublicClientMetadata } from './clientMetadata/http.api.js';
@@ -222,6 +224,8 @@ export type PublicApiEndpoints =
     | GetAsyncActionResult
     | PostPublicOauthOutboundAuthorization
     | PostPublicAwsSigV4Authorization
+    | PostPublicWhatsAppQrAuthorization
+    | GetPublicWhatsAppQrAuthorization
     | PostPublicConnection
     | PatchPublicConnection
     | PostPublicSyncStart

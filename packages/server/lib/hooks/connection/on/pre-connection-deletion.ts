@@ -6,6 +6,7 @@ import { configService, functionConfigService, getFunctionMaxConcurrency, getPro
 
 import { envs } from '../../../env.js';
 import { getOrchestrator } from '../../../utils/utils.js';
+import { logoutWhatsAppSession, WHATSAPP_PROVIDER } from '../../../whatsapp/gateway.js';
 import preConnectionExecute from '../pre-connection.js';
 
 import type { LogContextGetter } from '@nangohq/logs';
@@ -29,6 +30,14 @@ export async function preConnectionDeletion({
             }
 
             const integration = await configService.getProviderConfig(connection.provider_config_key, environment.id);
+
+            // A deleted WhatsApp connection must not leave its number paired and its session held by the gateway.
+            if (integration?.provider === WHATSAPP_PROVIDER) {
+                const loggedOut = await logoutWhatsAppSession({ tenantId: environment.uuid, connectionConfig: connection.connection_config });
+                if (loggedOut.isErr()) {
+                    span.setTag('error', loggedOut.error);
+                }
+            }
 
             // Check for provider-specific pre-connection deletion script
             if (integration?.provider) {

@@ -1,5 +1,5 @@
 import type { ApiEndpoint, ApiError } from '../api.js';
-import type { AuditPolicy } from '../audit-trail/event.js';
+import type { AuditPolicy, NoAudit } from '../audit-trail/event.js';
 
 export type ConnectionQueryString = {
     connection_id?: string | undefined;
@@ -212,4 +212,44 @@ export type PostPublicOauthOutboundAuthorization = ApiEndpoint<{
     Path: '/auth/oauth-outbound/:providerConfigKey';
     Error: AuthErrors;
     Success: ConnectionResponseSuccess;
+}>;
+
+export interface WhatsAppQrPairing {
+    session_id: string;
+    /** starting: the gateway is opening the session. qr: waiting for the scan. connected: paired, the connection exists. */
+    status: 'starting' | 'qr' | 'connected' | 'failed';
+    /** The QR payload to render, while status is qr. */
+    qr: string | null;
+    qr_expires_at: string | null;
+    /** Why the pairing failed, while status is failed. */
+    error: string | null;
+}
+
+type WhatsAppQrAuthErrors = AuthErrors | ApiError<'whatsapp_gateway_unavailable'> | ApiError<'unknown_whatsapp_pairing'>;
+
+export type PostPublicWhatsAppQrAuthorization = ApiEndpoint<{
+    // The connection is created (and audited) once the QR is scanned, by GetPublicWhatsAppQrAuthorization.
+    Audit: NoAudit<'starts-pairing-only'>;
+    Method: 'POST';
+    Body: Record<string, never>;
+    Querystring: ConnectionQueryString;
+    Params: {
+        providerConfigKey: string;
+    };
+    Path: '/auth/whatsapp-qr/:providerConfigKey';
+    Error: WhatsAppQrAuthErrors;
+    Success: WhatsAppQrPairing;
+}>;
+
+export type GetPublicWhatsAppQrAuthorization = ApiEndpoint<{
+    Audit: AuditPolicy<'connection', 'created', 'environment'>;
+    Method: 'GET';
+    Querystring: ConnectionQueryString;
+    Params: {
+        providerConfigKey: string;
+        sessionId: string;
+    };
+    Path: '/auth/whatsapp-qr/:providerConfigKey/:sessionId';
+    Error: WhatsAppQrAuthErrors;
+    Success: WhatsAppQrPairing & { providerConfigKey: string; connectionId: string | null };
 }>;

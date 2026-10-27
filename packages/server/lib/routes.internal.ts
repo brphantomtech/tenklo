@@ -7,6 +7,7 @@ import { getSharedCredentialsProvider } from './controllers/sharedCredentials/id
 import { patchSharedCredentialsProvider } from './controllers/sharedCredentials/id/patchSharedCredential.js';
 import { postSharedCredentialsProvider } from './controllers/sharedCredentials/postSharedCredential.js';
 import { getUsersProvider } from './controllers/users/getUsersProvider.js';
+import { postInternalWhatsAppEvent } from './controllers/whatsapp/postInternalEvents.js';
 import authMiddleware from './middleware/access.middleware.js';
 import { rateLimiterMiddleware } from './middleware/ratelimit.middleware.js';
 
@@ -28,3 +29,6 @@ internalApi.route('/shared-credentials').post(interalApiAuth, postSharedCredenti
 internalApi.route('/shared-credentials/:id').patch(interalApiAuth, patchSharedCredentialsProvider);
 
 internalApi.route('/users').get(interalApiAuth, getUsersProvider);
+
+// Authenticated by WHATSAPP_GATEWAY_SECRET, not the internal API key: the gateway only holds that secret.
+internalApi.route('/whatsapp/events').post(rateLimiterMiddleware, postInternalWhatsAppEvent);

@@ -43,6 +43,19 @@ const fr: Translation = {
         invalidCredentials: "{provider} n'a pas validé vos identifiants. Veuillez vérifier les valeurs et réessayer.",
         resourceCapped: "Vous avez atteint le nombre maximum de connexions autorisées. Veuillez contacter l'administrateur.",
         invalidPreconfigured: "Un champ préconfiguré par l'administrateur n'est pas valide, veuillez contacter le support"
+    },
+    whatsapp: {
+        title: 'Scannez le code QR avec WhatsApp',
+        step1: 'Ouvrez WhatsApp sur votre téléphone.',
+        step2: 'Allez dans Paramètres → Appareils connectés → Connecter un appareil.',
+        step3: 'Pointez votre téléphone vers cet écran pour scanner le code.',
+        generating: 'Génération du code QR...',
+        linking: 'Connexion de votre numéro...',
+        refreshes: 'Le code se met à jour automatiquement.',
+        qrTimeout: "Le code QR n'a pas été scanné à temps. Veuillez réessayer.",
+        banned: 'WhatsApp a bloqué ce numéro.',
+        failed: "Le numéro n'a pas pu être connecté. Veuillez réessayer.",
+        unavailable: "WhatsApp n'est pas disponible pour le moment. Veuillez réessayer plus tard."
     }
 };
 

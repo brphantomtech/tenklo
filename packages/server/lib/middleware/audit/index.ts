@@ -31,6 +31,7 @@ export {
 } from './billing.middleware.js';
 export {
     auditConnectionCreated,
+    auditPolledConnectionCreated,
     auditConnectionDeleted,
     auditConnectionMetadataUpdated,
     auditConnectionRefreshed,

@@ -801,6 +801,9 @@ export function buildProxyHeaders({
             headers['authorization'] = authHeaders.Authorization;
             break;
         }
+        case 'WHATSAPP_QR': {
+            throw new ProxyError('unsupported_auth', 'WhatsApp connections are not proxied: use the /whatsapp endpoints');
+        }
         default: {
             throw new ProxyError('unsupported_auth', `Auth "${(connection.credentials as any).type}" is not supported`);
         }

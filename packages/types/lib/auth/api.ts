@@ -19,6 +19,7 @@ export interface AuthModes {
     MCP_OAUTH2_GENERIC: 'MCP_OAUTH2_GENERIC';
     InstallPlugin: 'INSTALL_PLUGIN';
     AwsSigV4: 'AWS_SIGV4';
+    WhatsAppQr: 'WHATSAPP_QR';
 }
 
 export type AuthModeType = AuthModes[keyof AuthModes];
@@ -187,6 +188,17 @@ export interface AwsSigV4Credentials extends CredentialsCommon {
     external_id?: string | undefined;
 }
 
+/** A WhatsApp number paired by QR code (WhatsApp Web), held by the whatsapp-gateway. */
+export interface WhatsAppQrCredentials {
+    type: AuthModes['WhatsAppQr'];
+    /** The gateway session holding the paired device (the StackChat channelId). */
+    session_id: string;
+    /** The paired number, digits only, as WhatsApp reports it. */
+    phone: string | null;
+    /** The WhatsApp profile name of the paired number. */
+    name: string | null;
+}
+
 export interface CombinedOauth2AppCredentials extends CredentialsCommon {
     type: AuthModes['Custom'];
     app: AppCredentials;
@@ -228,6 +240,7 @@ export type AllAuthCredentials =
     | CombinedOauth2AppCredentials
     | SignatureCredentials
     | InstallPluginCredentials
-    | AwsSigV4Credentials;
+    | AwsSigV4Credentials
+    | WhatsAppQrCredentials;
 
 export type ApiPublicAllAuthCredentials = ReplaceInObjectDeep<AllAuthCredentials, Date, string>;

@@ -20,7 +20,9 @@ import type {
     OAuthCredentialsOverride,
     SignatureCredentials,
     TBACredentials,
-    TwoStepCredentials
+    TwoStepCredentials,
+    WhatsAppQrPairing,
+    WhatsAppQrPairingStatus
 } from './types.js';
 
 export type * from './types.js';
@@ -408,6 +410,43 @@ export default class Nango {
         }
 
         return { params };
+    }
+
+    /**
+     * Starts a WhatsApp QR pairing, for integrations whose auth mode is WHATSAPP_QR.
+     * Render the returned `qr` and poll {@link whatsappQrStatus} until it returns a `connectionId`: the QR rotates
+     * every ~20 seconds, and the connection is created once it is scanned.
+     * @param providerConfigKey - The integration ID
+     * @param options - Optional. The connection ID (not with a connect session) and connection config
+     */
+    public async whatsappQrStart(
+        providerConfigKey: string,
+        options?: { connectionId?: string; connectionConfig?: ConnectionConfig }
+    ): Promise<WhatsAppQrPairing> {
+        const url = this.hostBaseUrl + `/auth/whatsapp-qr/${providerConfigKey}${this.toQueryString(options?.connectionId ?? null, options?.connectionConfig)}`;
+        const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+        return await this.whatsappQrResponse<WhatsAppQrPairing>(res);
+    }
+
+    /**
+     * The current state of a WhatsApp QR pairing started with {@link whatsappQrStart}.
+     * @param providerConfigKey - The integration ID
+     * @param sessionId - The `session_id` returned by whatsappQrStart
+     */
+    public async whatsappQrStatus(providerConfigKey: string, sessionId: string, connectionConfig?: ConnectionConfig): Promise<WhatsAppQrPairingStatus> {
+        const url = this.hostBaseUrl + `/auth/whatsapp-qr/${providerConfigKey}/${encodeURIComponent(sessionId)}${this.toQueryString(null, connectionConfig)}`;
+        const res = await fetch(url, { method: 'GET' });
+        return await this.whatsappQrResponse<WhatsAppQrPairingStatus>(res);
+    }
+
+    private async whatsappQrResponse<T>(res: Response): Promise<T> {
+        if (!res.ok) {
+            const errorResponse = (await res.json().catch(() => ({ error: { code: 'unknown_error', message: `HTTP ${res.status}` } }))) as {
+                error: { code: AuthErrorType; message?: string };
+            };
+            throw new AuthError(errorResponse.error.message || errorResponse.error.code, errorResponse.error.code);
+        }
+        return (await res.json()) as T;
     }
 
     private async triggerAuth({

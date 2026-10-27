@@ -100,7 +100,8 @@ import type {
     SignatureCredentials,
     Tags,
     TbaCredentials,
-    TwoStepCredentials
+    TwoStepCredentials,
+    WhatsAppQrCredentials
 } from '@nangohq/types';
 import type { Result } from '@nangohq/utils';
 import type https from 'node:https';
@@ -389,7 +390,8 @@ export class ConnectionService {
             | BasicApiCredentials
             | BillCredentials
             | SignatureCredentials
-            | AwsSigV4Credentials;
+            | AwsSigV4Credentials
+            | WhatsAppQrCredentials;
         connectionConfig?: ConnectionConfig;
         webhookUrlOverride?: string | null | undefined;
         config: ProviderConfig;
