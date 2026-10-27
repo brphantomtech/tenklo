@@ -37,7 +37,9 @@ cp deploy/tenklo/docker-compose.yml "$DEPLOY_DIR/docker-compose.yml"
     {
         echo "TENKLO_IMAGE_TAG=$SHA"
         for name in "${required[@]}" NPM_NETWORK; do
-            [ -n "${!name:-}" ] && printf '%s=%s\n' "$name" "${!name}"
+            if [ -n "${!name:-}" ]; then
+                printf '%s=%s\n' "$name" "${!name}"
+            fi
         done
     } > "$DEPLOY_DIR/.env.next"
 )
