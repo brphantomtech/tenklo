@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/data-ingestion",
     "version": "1.0.0",
-    "description": "Package to ingest Nango data for analytics",
+    "description": "Package to ingest Tenklo data for analytics",
     "type": "module",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",

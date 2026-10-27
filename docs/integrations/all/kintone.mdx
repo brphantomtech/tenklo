@@ -8,17 +8,17 @@ description: 'Access the Kintone API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Kintone_. Nango doesn't provide a test OAuth app for Kintone yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Kintone_. Tenklo doesn't provide a test OAuth app for Kintone yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Kintone">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Kintone. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Kintone. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Kintone API">
-        Let's make your first request to the Kintone API (fetch records from an app). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Kintone API (fetch records from an app). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/k/v1/record.json?app={appId}" \
+                curl "https://api.tenklo.dev/proxy/k/v1/record.json?app={appId}" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the Kintone API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -58,7 +58,7 @@ description: 'Access the Kintone API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Kintone accounts.
@@ -72,8 +72,8 @@ description: 'Access the Kintone API in 2 minutes 💨'
       <Step title="Create a new OAuth Client">
         1. Log in to your Kintone account, click the gear icon on the upper right menu of Kintone and select **User & System Administration**.
         2. From the left navbar, go to **System Administration** > **Integrations**, and click on **OAuth**.
-        3. Fill in all the required information. For **Redirect endpoint** enter `https://api.nango.dev/oauth/callback`.
-        4. Click **Save**. Your **Client ID** and **Client Secret** will be generated automatically. Copy these credentials as you'll need them when configuring your integration in Nango.
+        3. Fill in all the required information. For **Redirect endpoint** enter `https://api.tenklo.dev/oauth/callback`.
+        4. Click **Save**. Your **Client ID** and **Client Secret** will be generated automatically. Copy these credentials as you'll need them when configuring your integration in Tenklo.
       </Step>
        <Step title="Configure users">
          <Note> In order for a user to use the OAuth client, they must be explicitly granted permission to interact with it. By default, no users have access to a newly created OAuth client.</Note>
@@ -121,5 +121,5 @@ description: 'Access the Kintone API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

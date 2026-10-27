@@ -10344,7 +10344,7 @@ ring-central-sandbox:
     - Voicemail
     - VoipCalling
 
-# source: https://nango.dev/docs/integrations/all/rippling-shop-app (no official OAuth2 scopes documentation found)
+# source: https://tenklo.dev/docs/integrations/all/rippling-shop-app (no official OAuth2 scopes documentation found)
 rippling-shop-app: []
 
 # source: providers.yaml (no official scopes page or discovery endpoint found)
@@ -12225,7 +12225,7 @@ whoop:
 # source: providers.yaml (no official scopes page or discovery endpoint found)
 wildix-pbx: []
 
-# source: https://nango.dev/docs/api-integrations/wiseagent/how-to-register-your-own-wiseagent-oauth-app
+# source: https://tenklo.dev/docs/api-integrations/wiseagent/how-to-register-your-own-wiseagent-oauth-app
 wiseagent:
     - calendar
     - contacts

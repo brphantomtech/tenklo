@@ -100,7 +100,7 @@ export const IntegrationsList = () => {
     return (
         <DashboardLayout fullWidth title="Integrations" className="flex flex-col gap-3">
             <Helmet>
-                <title>Integrations - Nango</title>
+                <title>Integrations - Tenklo</title>
             </Helmet>
             <header className="flex items-center gap-3">
                 <InputGroup className="flex-1">
@@ -140,7 +140,7 @@ export const IntegrationsList = () => {
             {data?.data && data.data.length === 0 && (
                 <div className="flex flex-col gap-5 p-20 items-center justify-center bg-surface-panel rounded">
                     <h3 className="text-title-body text-text-strong">No available integrations</h3>
-                    <p className="text-text-secondary text-body-medium-regular">You don’t have any integrations set up yet with Nango.</p>
+                    <p className="text-text-secondary text-body-medium-regular">You don’t have any integrations set up yet with Tenklo.</p>
                     <PermissionGate asChild condition={canWriteIntegration}>
                         {(allowed) => (
                             <ButtonLink disabled={!allowed} to={`/${env}/integrations/create`} size="lg">

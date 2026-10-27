@@ -55,7 +55,7 @@ export const ManagedEmailVerification: React.FC = () => {
     return (
         <DefaultLayout className="gap-10">
             <Helmet>
-                <title>Verify your email - Nango</title>
+                <title>Verify your email - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col items-center gap-3">

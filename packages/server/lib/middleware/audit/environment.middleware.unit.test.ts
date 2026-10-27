@@ -105,10 +105,10 @@ describe('environment audit middleware (unit)', () => {
     it('marks a session that predates the operator id, without inventing one', async () => {
         const req = fakeReq({
             body: { variables: [] },
-            session: { impersonatedBy: { accountId: 1, accountName: 'Nango' } }
+            session: { impersonatedBy: { accountId: 1, accountName: 'Tenklo' } }
         });
         const event = await runAudit(auditEnvironmentVariablesChanged, req, fakeRes(locals));
-        expect(event?.via).toEqual([{ type: 'impersonation', id: '1', display: 'Nango' }]);
+        expect(event?.via).toEqual([{ type: 'impersonation', id: '1', display: 'Tenklo' }]);
     });
 
     it('webhook settings: records only the URL origin, never the path or secret query params', async () => {

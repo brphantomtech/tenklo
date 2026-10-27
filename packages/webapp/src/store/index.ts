@@ -29,7 +29,7 @@ const initialEnv: unknown = storage.getItem(LocalStorageKeys.LastEnvironment);
 export const useStore = create<State>()((set, get) => ({
     env: typeof initialEnv === 'string' && initialEnv ? initialEnv : 'dev',
     envs: [{ name: 'dev' }, { name: PROD_ENVIRONMENT_NAME }],
-    baseUrl: 'https://api.nango.dev',
+    baseUrl: 'https://api.tenklo.dev',
     showGettingStarted: true,
     debugMode: false,
 

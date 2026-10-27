@@ -8,18 +8,18 @@ description: 'Access the Webex API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-       In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Webex_. Nango doesn't provide a test OAuth app for Webex yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+       In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Webex_. Tenklo doesn't provide a test OAuth app for Webex yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Webex">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Webex. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Webex. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Webex API">
-        Let's make your first request to the Webex API (fetch a list of people). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Webex API (fetch a list of people). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/people" \
+                curl "https://api.tenklo.dev/proxy/people" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -29,7 +29,7 @@ description: 'Access the Webex API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -54,7 +54,7 @@ description: 'Access the Webex API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You’re connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You’re connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Webex accounts.
@@ -72,11 +72,11 @@ description: 'Access the Webex API in 2 minutes 💨'
 
     Fill in your integration name, select an icon, and add a description for the App Hub.
 
-    In _Redirect URI(s)_, configure the following Redirect URL: `https://api.nango.dev/oauth/callback`.
+    In _Redirect URI(s)_, configure the following Redirect URL: `https://api.tenklo.dev/oauth/callback`.
 
     In _Scopes_, select the scopes relevant for your integration.
 
-    Create the Webex app. Copy/paste the `Client ID` and `Client secret`, you will need to specify it in Nango later on. 
+    Create the Webex app. Copy/paste the `Client ID` and `Client secret`, you will need to specify it in Tenklo later on. 
   </Step>
   <Step title="Create a Webex test account">
     If you don't have a Webex account already, create one to test your integration. 
@@ -107,5 +107,5 @@ description: 'Access the Webex API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

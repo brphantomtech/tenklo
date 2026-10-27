@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Looker OAuth app'
 sidebarTitle: 'Looker (OAuth) Setup'
-description: 'Register an OAuth client application with Looker and connect it to Nango'
+description: 'Register an OAuth client application with Looker and connect it to Tenklo'
 ---
 
 This guide shows you how to register an OAuth client application with your Looker instance. This is required before any user can authenticate into the Looker API via OAuth.
@@ -20,7 +20,7 @@ This guide shows you how to register an OAuth client application with your Looke
     Looker requires your application's origin to be allowlisted before OAuth code exchange can succeed.
 
     1. Navigate to **Admin** > **Embed**.
-    2. Under **Embedded Domain Allowlist**, add `https://api.nango.dev`.
+    2. Under **Embedded Domain Allowlist**, add `https://api.tenklo.dev`.
 
     <Warning>Do not include a trailing slash (`/`) in the domain URL.</Warning>
   </Step>
@@ -36,7 +36,7 @@ This guide shows you how to register an OAuth client application with your Looke
     | Parameter | Value |
     |-----------|-------|
     | `client_guid` | A unique identifier for your app (e.g., `my-nango-app`) |
-    | `redirect_uri` | `https://api.nango.dev/oauth/callback` |
+    | `redirect_uri` | `https://api.tenklo.dev/oauth/callback` |
     | `display_name` | The name shown to users on the consent screen |
     | `description` | What your app does with the user's Looker account |
 

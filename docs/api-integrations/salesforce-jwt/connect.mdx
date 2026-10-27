@@ -28,7 +28,7 @@ JWT authentication requires a digital certificate and the private key used to si
 
 **You will create two files:**
 
-- **server.key** – Your private key. Use this file (or its PEM content) in Nango as **Private Key**.
+- **server.key** – Your private key. Use this file (or its PEM content) in Tenklo as **Private Key**.
 - **server.crt** – The digital certificate. Upload this file when creating the External Client App (under **Enable JWT Bearer Flow**).
 
 **Steps:**
@@ -54,7 +54,7 @@ These steps are for getting started only. For production, use a key and certific
 <img src="/api-integrations/salesforce-jwt/app_basic_info.png" />
 
 4. In the **API (Enable OAuth Settings)** section, check **Enable OAuth**.
-5. For **Callback URL**, enter `https://api.nango.dev/oauth/callback`. Salesforce requires this field even though JWT Bearer Flow does not use it.
+5. For **Callback URL**, enter `https://api.tenklo.dev/oauth/callback`. Salesforce requires this field even though JWT Bearer Flow does not use it.
 6. Under **Selected OAuth Scopes**, add:
    - **Manage user data via APIs (api)**
    - **Perform requests at any time (refresh_token, offline_access)**
@@ -77,7 +77,7 @@ These steps are for getting started only. For production, use a key and certific
 <img src="/api-integrations/salesforce-jwt/client_credentials.png" />
 
 3. If prompted, verify your identity (e.g. enter the code sent to your email).
-4. Copy the **Consumer Key** and **Consumer Secret**; you’ll need them when setting up a connection in Nango.
+4. Copy the **Consumer Key** and **Consumer Secret**; you’ll need them when setting up a connection in Tenklo.
 
 <img src="/api-integrations/salesforce-jwt/consumer_credentials.png" />
 
@@ -99,7 +99,7 @@ Use the authorization server's URL that matches your environment:
 - **Sandbox:** `test.salesforce.com`
 - **Experience Cloud site:** `site.force.com/customers` (or your Experience Cloud site URL if implementing for a site)
 
-Enter this URL in Nango as the **Authorization server's URL**.
+Enter this URL in Tenklo as the **Authorization server's URL**.
 
 #### Step 6: Finding the username
 

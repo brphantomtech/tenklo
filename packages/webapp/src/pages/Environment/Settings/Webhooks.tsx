@@ -84,7 +84,7 @@ export const Webhooks: React.FC = () => {
                 label={
                     <div className="flex gap-1.5">
                         Webhook URLs
-                        <DocsIconLink href="https://nango.dev/docs/guides/platform/webhooks-from-nango" label="Webhooks documentation" />
+                        <DocsIconLink href="https://tenklo.dev/docs/guides/platform/webhooks-from-nango" label="Webhooks documentation" />
                     </div>
                 }
             >
@@ -116,9 +116,9 @@ export const Webhooks: React.FC = () => {
             <SettingsGroup label="Signing key">
                 <div className="flex flex-col gap-2">
                     <p className="text-body-small-regular text-text-secondary">
-                        Use this key to verify that webhook payloads are from Nango.{' '}
+                        Use this key to verify that webhook payloads are from Tenklo.{' '}
                         <a
-                            href="https://nango.dev/docs/guides/platform/webhooks-from-nango#verifying-webhooks-from-nango"
+                            href="https://tenklo.dev/docs/guides/platform/webhooks-from-nango#verifying-webhooks-from-nango"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-text-brand hover:underline"
@@ -132,7 +132,7 @@ export const Webhooks: React.FC = () => {
                             <TriangleAlert />
                             <AlertTitle>Accept both keys until {bothKeysValidUntil.toLocaleTimeString()}</AlertTitle>
                             <AlertDescription>
-                                The new key takes up to 5 minutes to reach every Nango process. Until then, webhooks can be signed with either the old or the
+                                The new key takes up to 5 minutes to reach every Tenklo process. Until then, webhooks can be signed with either the old or the
                                 new key. Switching verification over right away will reject valid webhooks.
                             </AlertDescription>
                         </Alert>

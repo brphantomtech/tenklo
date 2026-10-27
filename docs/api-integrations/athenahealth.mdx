@@ -6,22 +6,22 @@ description: 'Integrate your application with the athenahealth API'
 
 ## 🚀 Quickstart
 
-Connect to athenahealth with Nango and see data flow in 2 minutes.
+Connect to athenahealth with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to the **Integrations** tab -> _Configure New Integration_ -> _athenahealth_. In the integration's **Scopes** field, enter the scope athenahealth granted your app (e.g. `athena/service/Athenanet.MDP.*`) — without it, connections won't have API access.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to the **Integrations** tab -> _Configure New Integration_ -> _athenahealth_. In the integration's **Scopes** field, enter the scope athenahealth granted your app (e.g. `athena/service/Athenanet.MDP.*`) — without it, connections won't have API access.
     </Step>
     <Step title="Authorize athenahealth">
     Go to the **Connections** tab -> _Add Test Connection_ -> _Authorize_, then enter your client ID, client secret, API environment, and practice ID. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the athenahealth API">
-    Let's make your first request to the athenahealth API (get your practice's info). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), [connection ID](https://app.nango.dev/dev/connections), and your athenahealth practice ID:
+    Let's make your first request to the athenahealth API (get your practice's info). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), [connection ID](https://app.tenklo.dev/dev/connections), and your athenahealth practice ID:
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/<PRACTICE-ID>/practiceinfo" \
+            curl "https://api.tenklo.dev/proxy/v1/<PRACTICE-ID>/practiceinfo" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to athenahealth with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to athenahealth with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the **Logs** tab in Nango to inspect requests.
+    ✅ You're connected! Check the **Logs** tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>

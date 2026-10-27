@@ -21,13 +21,13 @@ describe('fetchApi base path handling', () => {
     });
 
     it('requests a bare-origin apiURL without altering the path', async () => {
-        useGlobal.getState().setApiURL('https://api.nango.dev');
+        useGlobal.getState().setApiURL('https://api.tenklo.dev');
         const fetchMock = mockFetchOnce();
 
         await getConnectSession();
 
         const requestedUrl = fetchMock.mock.calls[0]?.[0] as URL;
-        expect(requestedUrl.toString()).toBe('https://api.nango.dev/connect/session');
+        expect(requestedUrl.toString()).toBe('https://api.tenklo.dev/connect/session');
     });
 
     it('preserves a self-hosted base path prefix on /connect/session', async () => {

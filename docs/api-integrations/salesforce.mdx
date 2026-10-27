@@ -6,22 +6,22 @@ description: 'Integrate your application with the Salesforce API'
 
 ## 🚀 Quickstart
 
-Connect to Salesforce with Nango and see data flow in 2 minutes.
+Connect to Salesforce with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Salesforce_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Salesforce_.
     </Step>
     <Step title="Authorize Salesforce">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Salesforce. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Salesforce. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Salesforce API">
-    Let's make your first request to the Salesforce API (fetch a list of contacts). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Salesforce API (fetch a list of contacts). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/services/data/v58.0/query?q=SELECT+Id,FirstName,LastName,Email+FROM+Contact+LIMIT+10" \
+            curl "https://api.tenklo.dev/proxy/services/data/v58.0/query?q=SELECT+Id,FirstName,LastName,Email+FROM+Contact+LIMIT+10" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Salesforce with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,11 +53,11 @@ Connect to Salesforce with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -65,14 +65,14 @@ Connect to Salesforce with Nango and see data flow in 2 minutes.
 
 ## 📚 Salesforce Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my account?](/api-integrations/salesforce/connect)  
 Connect your Salesforce account
 - [How to register your own Salesforce OAuth app](/api-integrations/salesforce/salesforce-api-oauth-app-setup)  
-Register an OAuth app with Salesforce and obtain credentials to connect it to Nango
-- [How to set up webhooks with Salesforce on Nango](/api-integrations/salesforce/webhooks)  
-Send record changes from an Apex trigger to Nango and verify them
+Register an OAuth app with Salesforce and obtain credentials to connect it to Tenklo
+- [How to set up webhooks with Salesforce on Tenklo](/api-integrations/salesforce/webhooks)  
+Send record changes from an Apex trigger to Tenklo and verify them
 
 Official docs: [Salesforce API docs](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm)
 

@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	url := "https://api.nango.dev/v1/users"
+	url := "https://api.tenklo.dev/v1/users"
 
 	req, err := http.NewRequest("GET", url, nil)
 
@@ -41,7 +41,7 @@ func main() {
 `;
 
 exports[`language snippets > httpSnippet > GET endpoint > should generate Java snippet 1`] = `
-"HttpResponse<String> response = Unirest.get("https://api.nango.dev/v1/users")
+"HttpResponse<String> response = Unirest.get("https://api.tenklo.dev/v1/users")
   .header("Authorization", "Bearer nang****")
   .header("Content-Type", "application/json")
   .header("Connection-Id", "test_connection_id")
@@ -54,7 +54,7 @@ exports[`language snippets > httpSnippet > GET endpoint > should generate PHP sn
 
 $client = new \\GuzzleHttp\\Client();
 
-$response = $client->request('GET', 'https://api.nango.dev/v1/users', [
+$response = $client->request('GET', 'https://api.tenklo.dev/v1/users', [
   'headers' => [
     'Authorization' => 'Bearer nang****',
     'Connection-Id' => 'test_connection_id',
@@ -69,7 +69,7 @@ echo $response->getBody();"
 exports[`language snippets > httpSnippet > GET endpoint > should generate Python snippet 1`] = `
 "import http.client
 
-conn = http.client.HTTPSConnection("api.nango.dev")
+conn = http.client.HTTPSConnection("api.tenklo.dev")
 
 headers = {
     'Authorization': "Bearer nang****",
@@ -88,7 +88,7 @@ print(data.decode("utf-8"))"
 
 exports[`language snippets > httpSnippet > GET endpoint > should generate cURL snippet 1`] = `
 "curl --request GET \\
-  --url https://api.nango.dev/v1/users \\
+  --url https://api.tenklo.dev/v1/users \\
   --header 'Authorization: Bearer nang****' \\
   --header 'Connection-Id: test_connection_id' \\
   --header 'Content-Type: application/json' \\
@@ -107,7 +107,7 @@ import (
 
 func main() {
 
-	url := "https://api.nango.dev/v1/users"
+	url := "https://api.tenklo.dev/v1/users"
 
 	payload := strings.NewReader("{ \\"aString\\": \\"<string>\\", \\"aNumber\\": \\"<number>\\", \\"aBoolean\\": \\"<boolean>\\", \\"anArrayOfStrings\\": \\"<string[]>\\", \\"anObject\\": { \\"anotherString\\": \\"<string>\\" }, \\"anArrayOfObjects\\": \\"<{ \\"anotherString\\": \\"<string>\\" }[]>\\", \\"anArrayOfReferencedModel\\": \\"<Address[]>\\", \\"aUnion\\": \\"<string | number>\\" }")
 
@@ -139,7 +139,7 @@ func main() {
 `;
 
 exports[`language snippets > httpSnippet > POST endpoint with input > should generate Java snippet with input 1`] = `
-"HttpResponse<String> response = Unirest.post("https://api.nango.dev/v1/users")
+"HttpResponse<String> response = Unirest.post("https://api.tenklo.dev/v1/users")
   .header("Authorization", "Bearer nang****")
   .header("Content-Type", "application/json")
   .header("Connection-Id", "test_connection_id")
@@ -153,7 +153,7 @@ exports[`language snippets > httpSnippet > POST endpoint with input > should gen
 
 $client = new \\GuzzleHttp\\Client();
 
-$response = $client->request('POST', 'https://api.nango.dev/v1/users', [
+$response = $client->request('POST', 'https://api.tenklo.dev/v1/users', [
   'body' => '{ "aString": "<string>", "aNumber": "<number>", "aBoolean": "<boolean>", "anArrayOfStrings": "<string[]>", "anObject": { "anotherString": "<string>" }, "anArrayOfObjects": "<{ "anotherString": "<string>" }[]>", "anArrayOfReferencedModel": "<Address[]>", "aUnion": "<string | number>" }',
   'headers' => [
     'Authorization' => 'Bearer nang****',
@@ -169,7 +169,7 @@ echo $response->getBody();"
 exports[`language snippets > httpSnippet > POST endpoint with input > should generate Python snippet with input 1`] = `
 "import http.client
 
-conn = http.client.HTTPSConnection("api.nango.dev")
+conn = http.client.HTTPSConnection("api.tenklo.dev")
 
 payload = "{ \\"aString\\": \\"<string>\\", \\"aNumber\\": \\"<number>\\", \\"aBoolean\\": \\"<boolean>\\", \\"anArrayOfStrings\\": \\"<string[]>\\", \\"anObject\\": { \\"anotherString\\": \\"<string>\\" }, \\"anArrayOfObjects\\": \\"<{ \\"anotherString\\": \\"<string>\\" }[]>\\", \\"anArrayOfReferencedModel\\": \\"<Address[]>\\", \\"aUnion\\": \\"<string | number>\\" }"
 
@@ -190,7 +190,7 @@ print(data.decode("utf-8"))"
 
 exports[`language snippets > httpSnippet > POST endpoint with input > should generate cURL snippet with input 1`] = `
 "curl --request POST \\
-  --url https://api.nango.dev/v1/users \\
+  --url https://api.tenklo.dev/v1/users \\
   --header 'Authorization: Bearer nang****' \\
   --header 'Connection-Id: test_connection_id' \\
   --header 'Content-Type: application/json' \\
@@ -209,7 +209,7 @@ exports[`language snippets > httpSnippet > POST endpoint with input > should gen
 
 exports[`language snippets > httpSnippet > with hideSecret option > should generate cURL snippet with hidden secret 1`] = `
 "curl --request GET \\
-  --url https://api.nango.dev/v1/users \\
+  --url https://api.tenklo.dev/v1/users \\
   --header 'Authorization: Bearer nang****' \\
   --header 'Connection-Id: test_connection_id' \\
   --header 'Content-Type: application/json' \\
@@ -218,7 +218,7 @@ exports[`language snippets > httpSnippet > with hideSecret option > should gener
 
 exports[`language snippets > httpSnippet > with hideSecret option > should generate cURL snippet with visible secret 1`] = `
 "curl --request GET \\
-  --url https://api.nango.dev/v1/users \\
+  --url https://api.tenklo.dev/v1/users \\
   --header 'Authorization: Bearer nango_secret_key_123456789' \\
   --header 'Connection-Id: test_connection_id' \\
   --header 'Content-Type: application/json' \\

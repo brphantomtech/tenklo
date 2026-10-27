@@ -23,29 +23,29 @@ Submit one report per root cause.
 
 In scope:
 
-- Nango Cloud
-- Nango Enterprise deployments configured according to our documentation
-- The latest release of the open source Nango repository, deployed according to our documentation
+- Tenklo Cloud
+- Tenklo Enterprise deployments configured according to our documentation
+- The latest release of the open source Tenklo repository, deployed according to our documentation
 
 ## Out of Scope
 
 We will close the following without further review:
 
 - **Self-hosted misconfiguration.** Issues that only arise when a deployment does not follow our documentation. Examples: required secrets left unset, left at default values, or set to weak values (such as `NANGO_ADMIN_KEY` or `NANGO_ENCRYPTION_KEY`), default credentials, services exposed publicly when the documentation says they should not be, or missing TLS.
-- **Unsupported or unlicensed configurations.** Issues that depend on running features or deployment modes outside their licensed or supported use. For example, functions on free self-hosted Nango, or the local runner in production.
+- **Unsupported or unlicensed configurations.** Issues that depend on running features or deployment modes outside their licensed or supported use. For example, functions on free self-hosted Tenklo, or the local runner in production.
 - **Trusted-operator actions.** Issues that require privileges that already grant equivalent access, such as the ability to deploy code, change instance configuration, or access the host.
 - **Known or duplicate issues.** Issues already reported, already publicly documented, or already covered by a published advisory.
 - Reports from automated scanners without a demonstrated, exploitable impact.
 - Missing security headers, cookie flags, or best-practice recommendations without a demonstrated exploit.
 - Denial of service, volumetric attacks, or rate-limiting findings.
 - Social engineering, phishing, or physical attacks.
-- Vulnerabilities in third-party dependencies without a demonstrated exploit path in Nango.
+- Vulnerabilities in third-party dependencies without a demonstrated exploit path in Tenklo.
 
 ## Testing Rules
 
 - Test only against your own local instance or your own accounts.
 - Do not access, modify, or delete data that does not belong to you.
-- Do not run automated scanning or load testing against Nango Cloud.
+- Do not run automated scanning or load testing against Tenklo Cloud.
 
 ## Coordinated Disclosure
 
@@ -53,6 +53,6 @@ Do not disclose the issue publicly until we have had a reasonable opportunity to
 
 ## Rewards and Recognition
 
-Nango does not operate a bug bounty program and does not offer monetary rewards.
+Tenklo does not operate a bug bounty program and does not offer monetary rewards.
 
 If a valid, in-scope report leads to a published advisory, we will credit the reporter as a finder unless they ask us not to.

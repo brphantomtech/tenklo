@@ -73,7 +73,7 @@ export const SettingsTab = () => {
                             Overrides the environment-wide webhook URL for local development — see{' '}
                             <Button asChild variant="link-accent" size="xs">
                                 <a
-                                    href="https://nango.dev/docs/guides/platform/environments#engineering-collaboration"
+                                    href="https://tenklo.dev/docs/guides/platform/environments#engineering-collaboration"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >

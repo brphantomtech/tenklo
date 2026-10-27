@@ -334,10 +334,10 @@ describe(`POST ${endpoint}`, () => {
             }
         });
 
-        it('builds a CIMD client_id when the Nango instance is reachable at a public HTTPS URL', async () => {
+        it('builds a CIMD client_id when the Tenklo instance is reachable at a public HTTPS URL', async () => {
             const realProvider = shared.getProvider('amplitude-mcp')!;
             vi.spyOn(shared, 'getProvider').mockReturnValue({ ...realProvider, client_registration: 'cimd' } as typeof realProvider);
-            vi.stubEnv('NANGO_SERVER_URL', 'https://mock.nango.dev');
+            vi.stubEnv('NANGO_SERVER_URL', 'https://mock.tenklo.dev');
 
             try {
                 const { apiKey, env } = await seeders.seedAccountEnvAndUser();
@@ -359,14 +359,14 @@ describe(`POST ${endpoint}`, () => {
                 isSuccess(resGet.json);
                 const credentials = resGet.json.data.credentials as { type: string; client_id: string };
                 expect(credentials.type).toBe('MCP_OAUTH2');
-                expect(credentials.client_id).toBe(`https://mock.nango.dev/oauth/client-metadata/${env.uuid}/amplitude-mcp-cimd`);
+                expect(credentials.client_id).toBe(`https://mock.tenklo.dev/oauth/client-metadata/${env.uuid}/amplitude-mcp-cimd`);
             } finally {
                 vi.unstubAllEnvs();
                 vi.restoreAllMocks();
             }
         });
 
-        it('rejects creating a CIMD integration when the Nango instance has no public HTTPS URL configured', async () => {
+        it('rejects creating a CIMD integration when the Tenklo instance has no public HTTPS URL configured', async () => {
             const realProvider = shared.getProvider('amplitude-mcp')!;
             vi.spyOn(shared, 'getProvider').mockReturnValue({ ...realProvider, client_registration: 'cimd' } as typeof realProvider);
             vi.stubEnv('NANGO_SERVER_URL', '');

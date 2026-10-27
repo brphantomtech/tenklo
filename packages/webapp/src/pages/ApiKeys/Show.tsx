@@ -201,7 +201,7 @@ export const AccountApiKeysShow: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Account API keys">
                 <Helmet>
-                    <title>Account API keys - Nango</title>
+                    <title>Account API keys - Tenklo</title>
                 </Helmet>
                 <div className="mx-auto flex max-w-377 flex-col gap-4">
                     <Skeleton className="h-16 w-full" />
@@ -216,7 +216,7 @@ export const AccountApiKeysShow: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Account API keys">
                 <Helmet>
-                    <title>Account API keys - Nango</title>
+                    <title>Account API keys - Tenklo</title>
                 </Helmet>
                 <div className="flex flex-col items-center gap-2 rounded-md border border-border-muted p-10 py-20 text-center text-text-strong">
                     <h2 className="text-xl">Access denied</h2>
@@ -231,7 +231,7 @@ export const AccountApiKeysShow: React.FC = () => {
     return (
         <DashboardLayout fullWidth title="Account API keys">
             <Helmet>
-                <title>Account API keys - Nango</title>
+                <title>Account API keys - Tenklo</title>
             </Helmet>
 
             <div className="mx-auto flex max-w-377 flex-col gap-4">
@@ -245,7 +245,7 @@ export const AccountApiKeysShow: React.FC = () => {
                         </span>
                     </AlertDescription>
                     <AlertActions>
-                        <AlertButtonLink to="https://nango.dev/docs/reference/backend/http-api/api-keys" target="_blank" rel="noopener noreferrer">
+                        <AlertButtonLink to="https://tenklo.dev/docs/reference/backend/http-api/api-keys" target="_blank" rel="noopener noreferrer">
                             Learn more
                             <ExternalLink />
                         </AlertButtonLink>

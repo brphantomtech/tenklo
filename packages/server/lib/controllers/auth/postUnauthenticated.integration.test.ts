@@ -99,7 +99,7 @@ describe(`GET ${endpoint}`, () => {
         expect(connection?.webhook_url_override).toBeNull();
     });
 
-    it('rejects a nango.dev webhook_url_override set on the connect session', async () => {
+    it('rejects a tenklo.dev webhook_url_override set on the connect session', async () => {
         const { env, apiKey } = await seeders.seedAccountEnvAndUser();
         await seeders.createConfigSeed(env, 'unauthenticated', 'unauthenticated');
 
@@ -109,7 +109,7 @@ describe(`GET ${endpoint}`, () => {
             body: {
                 end_user: { id: '1', email: 'john@example.com' },
                 allowed_integrations: ['unauthenticated'],
-                webhook_url_override: 'https://api.nango.dev/hook'
+                webhook_url_override: 'https://api.tenklo.dev/hook'
             }
         });
 
@@ -120,7 +120,7 @@ describe(`GET ${endpoint}`, () => {
                 errors: [
                     {
                         code: 'custom',
-                        message: `Webhook URLs cannot point to Nango's domain (nango.dev).`,
+                        message: `Webhook URLs cannot point to Tenklo's domain (tenklo.dev).`,
                         path: ['webhook_url_override']
                     }
                 ]

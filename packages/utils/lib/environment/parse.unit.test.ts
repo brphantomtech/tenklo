@@ -43,7 +43,7 @@ describe('parse', () => {
         expect(() => parseEnvs(ENVS, { SIGNUP_AD_CONTEXT_COOKIE_NAME: name })).toThrowError(/SIGNUP_AD_CONTEXT_COOKIE_NAME/);
     });
 
-    it('parses the local Nango user id as a non-negative integer', () => {
+    it('parses the local Tenklo user id as a non-negative integer', () => {
         expect(parseEnvs(ENVS, { LOCAL_NANGO_USER_ID: '0' }).LOCAL_NANGO_USER_ID).toBe(0);
         expect(parseEnvs(ENVS, { LOCAL_NANGO_USER_ID: '1e2' }).LOCAL_NANGO_USER_ID).toBe(100);
         expect(() => parseEnvs(ENVS, { LOCAL_NANGO_USER_ID: '1.5' })).toThrowError(/LOCAL_NANGO_USER_ID/);
@@ -176,8 +176,8 @@ describe('parse', () => {
     });
 
     it('should parse the management MCP server URL', () => {
-        const res = parseEnvs(ENVS, { NANGO_MANAGEMENT_MCP_SERVER_URL: 'https://mcp-development.nango.dev' });
-        expect(res.NANGO_MANAGEMENT_MCP_SERVER_URL).toBe('https://mcp-development.nango.dev');
+        const res = parseEnvs(ENVS, { NANGO_MANAGEMENT_MCP_SERVER_URL: 'https://mcp-development.tenklo.dev' });
+        expect(res.NANGO_MANAGEMENT_MCP_SERVER_URL).toBe('https://mcp-development.tenklo.dev');
     });
 
     it('should parse the OpenAI Apps challenge token', () => {

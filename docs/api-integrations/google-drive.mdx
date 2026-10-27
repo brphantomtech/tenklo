@@ -6,26 +6,26 @@ description: 'Integrate your application with the Google Drive API'
 
 ## 🚀 Quickstart
 
-Connect to Google Drive with Nango and see data flow in 2 minutes.
+Connect to Google Drive with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Google Drive_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Google Drive_.
 
     <Note>
-      Nango has credentials you can use for testing. Activate them in the dashboard.
+      Tenklo has credentials you can use for testing. Activate them in the dashboard.
     </Note>
     </Step>
     <Step title="Authorize Google Drive">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Google Drive. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Google Drive. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Google Drive API">
-    Let's make your first request to the Google Drive API (fetch a list of files). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Google Drive API (fetch a list of files). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/drive/v3/files?pageSize=10" \
+            curl "https://api.tenklo.dev/proxy/drive/v3/files?pageSize=10" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -35,7 +35,7 @@ Connect to Google Drive with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -57,11 +57,11 @@ Connect to Google Drive with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -69,15 +69,15 @@ Connect to Google Drive with Nango and see data flow in 2 minutes.
 
 ## 📚 Google Drive Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Google Drive OAuth app](/api-integrations/google-drive/how-to-register-your-own-google-drive-api-oauth-app)  
-Register an OAuth app with Google Drive and obtain credentials to connect it to Nango
+Register an OAuth app with Google Drive and obtain credentials to connect it to Tenklo
 
-- [How to setup webhooks with Google Drive on Nango](/api-integrations/google-drive/webhooks)  
-Receive real-time Google Drive notifications using notification channels and Nango
+- [How to setup webhooks with Google Drive on Tenklo](/api-integrations/google-drive/webhooks)  
+Receive real-time Google Drive notifications using notification channels and Tenklo
 
-- [Complete integration example with the Nango Sample App](/getting-started/sample-app)
+- [Complete integration example with the Tenklo Sample App](/getting-started/sample-app)
 See a production-ready Google Drive integration with file picker, webhooks, and file syncing. Includes a [demo video walkthrough](https://youtu.be/oTpWlmnv7dM) and [GitHub repository](https://github.com/NangoHQ/sample-app).
 
 - [Google App & Security Review](/api-integrations/google-shared/google-security-review)

@@ -6,22 +6,22 @@ description: 'Connect your application to the Stitch MCP server using Google OAu
 
 ## 🚀 Quickstart
 
-Connect to the Stitch MCP server with Nango using your **Google account** and a **Google Cloud Project ID**.
+Connect to the Stitch MCP server with Tenklo using your **Google account** and a **Google Cloud Project ID**.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) → _Configure New Integration_ → _Stitch (MCP)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) → _Configure New Integration_ → _Stitch (MCP)_.
     </Step>
     <Step title="Authorize with Google">
-    Go to [Connections](https://app.nango.dev/dev/connections) → _Add Test Connection_ → _Stitch (MCP)_ and authorize with your Google account.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) → _Add Test Connection_ → _Stitch (MCP)_ and authorize with your Google account.
     </Step>
     <Step title="Call the Stitch MCP server">
-    Make your first MCP request (e.g. initialize). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first MCP request (e.g. initialize). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/mcp" \
+            curl "https://api.tenklo.dev/proxy/mcp" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -46,7 +46,7 @@ Connect to the Stitch MCP server with Nango using your **Google account** and a 
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -79,11 +79,11 @@ Connect to the Stitch MCP server with Nango using your **Google account** and a 
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
     To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -94,7 +94,7 @@ Connect to the Stitch MCP server with Nango using your **Google account** and a 
 Nango-maintained guides for common use cases.
 
 - [How to register your own Stitch (MCP) OAuth app](/api-integrations/stitch-mcp/how-to-register-your-own-stitch-mcp-api-oauth-app)  
-Register a Google OAuth app and connect it to Nango.
+Register a Google OAuth app and connect it to Tenklo.
 
 
 Official docs: [Stitch MCP documentation](https://stitch.withgoogle.com/docs/mcp/setup/)

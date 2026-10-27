@@ -1,33 +1,33 @@
 ---
-title: 'How to set up webhooks with Jobber on Nango'
+title: 'How to set up webhooks with Jobber on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Jobber events in your app using Nango webhooks'
+description: 'Learn how to receive real-time Jobber events in your app using Tenklo webhooks'
 ---
 
-This guide shows you how to receive real-time Jobber events in Nango by registering a webhook in your Jobber app settings.
+This guide shows you how to receive real-time Jobber events in Tenklo by registering a webhook in your Jobber app settings.
 
 ## How it works
 
-1. When a connection is created, Nango automatically fetches the connected Jobber account's ID and stores it for webhook routing — no setup needed on your end.
-2. Jobber sends a signed POST request to your Nango webhook URL when a subscribed event occurs.
-3. Nango verifies the signature, matches the payload's `accountId` to the correct connection, and forwards the event to your app.
+1. When a connection is created, Tenklo automatically fetches the connected Jobber account's ID and stores it for webhook routing — no setup needed on your end.
+2. Jobber sends a signed POST request to your Tenklo webhook URL when a subscribed event occurs.
+3. Tenklo verifies the signature, matches the payload's `accountId` to the correct connection, and forwards the event to your app.
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-In the Nango dashboard, open your Jobber integration and copy the **Webhook URL**.
+In the Tenklo dashboard, open your Jobber integration and copy the **Webhook URL**.
 
 ### 2. Register the webhook in Jobber
 
 1. Go to [Manage Apps](https://developer.getjobber.com/apps) and open your app.
-2. Add a webhook pointing to your Nango webhook URL, and select the topics you want to subscribe to.
+2. Add a webhook pointing to your Tenklo webhook URL, and select the topics you want to subscribe to.
 
-There's no separate webhook secret to configure — Jobber signs webhook payloads with your app's OAuth Client Secret, which Nango already has from the integration setup.
+There's no separate webhook secret to configure — Jobber signs webhook payloads with your app's OAuth Client Secret, which Tenklo already has from the integration setup.
 
 ### 3. Handle forwarded webhooks
 
-Every request from Jobber includes an `X-Jobber-Hmac-SHA256` header — a Base64-encoded HMAC-SHA256 of the raw request body, signed with your app's OAuth client secret. Nango verifies this automatically before forwarding the event. Example payload:
+Every request from Jobber includes an `X-Jobber-Hmac-SHA256` header — a Base64-encoded HMAC-SHA256 of the raw request body, signed with your app's OAuth client secret. Tenklo verifies this automatically before forwarding the event. Example payload:
 
 ```json
 {
@@ -51,7 +51,7 @@ Jobber provides at-least-once delivery. Your webhook handler should be idempoten
 
 Once routed to a connection, you have two options:
 
-- **Forward it to your app** — Nango verifies the signature and forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
+- **Forward it to your app** — Tenklo verifies the signature and forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
 - **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
 ## Supported topics
@@ -66,4 +66,4 @@ Webhooks fire for any topic configured in your Jobber app. Examples:
 
 For the full list, see `WebHookTopicEnum` in the [Jobber GraphQL schema](https://developer.getjobber.com/docs/).
 
-<Tip>Need help getting started? Join us in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Join us in the [community](https://tenklo.dev/slack).</Tip>

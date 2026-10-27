@@ -53,7 +53,7 @@ export function VerifyEmail() {
     return (
         <DefaultLayout className="gap-10">
             <Helmet>
-                <title>Verify Email - Nango</title>
+                <title>Verify Email - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col items-center gap-3">

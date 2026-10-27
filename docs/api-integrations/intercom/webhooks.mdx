@@ -1,41 +1,41 @@
 ---
-title: 'How to set up webhooks with Intercom on Nango'
+title: 'How to set up webhooks with Intercom on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Intercom events in your app using Nango webhooks'
+description: 'Learn how to receive real-time Intercom events in your app using Tenklo webhooks'
 ---
 
-Intercom webhooks notify your app when something changes in a workspace — a contact is created, a conversation receives a reply, a ticket changes state. You subscribe to topics on your Intercom app with the endpoint set to your Nango webhook URL; Nango verifies the request and routes it to the right connection.
+Intercom webhooks notify your app when something changes in a workspace — a contact is created, a conversation receives a reply, a ticket changes state. You subscribe to topics on your Intercom app with the endpoint set to your Tenklo webhook URL; Tenklo verifies the request and routes it to the right connection.
 
 Webhook subscriptions belong to your Intercom app, not a single workspace: you receive notifications from every workspace that installed your app.
 
 ## How it works
 
-1. You add your Nango webhook URL and the topics you want to your Intercom app in the Developer Hub.
+1. You add your Tenklo webhook URL and the topics you want to your Intercom app in the Developer Hub.
 2. Intercom sends a POST request to that URL when a subscribed event occurs in any workspace that installed your app, signing it with `X-Hub-Signature`.
-3. Nango verifies the signature, matches the workspace ID in the payload's `app_id` to the connection's `appId`, and forwards the event to your app.
+3. Tenklo verifies the signature, matches the workspace ID in the payload's `app_id` to the connection's `appId`, and forwards the event to your app.
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-In the Nango dashboard, open your Intercom integration and copy the **Webhook URL**.
+In the Tenklo dashboard, open your Intercom integration and copy the **Webhook URL**.
 
 ### 2. Check your app's permissions
 
 In the [Intercom Developer Hub](https://app.intercom.com/a/developer-signup), open your app and go to the **Authentication** page. Make sure the app has:
 
 - The permissions required by each topic you plan to subscribe to — see [Supported events](#supported-events).
-- **Read admins** — Nango uses it to look up the workspace ID when a connection is created.
+- **Read admins** — Tenklo uses it to look up the workspace ID when a connection is created.
 
 ### 3. Subscribe to topics
 
 In your app, go to **Configure** > **Webhooks**:
 
-1. Paste your Nango webhook URL as the endpoint URL.
+1. Paste your Tenklo webhook URL as the endpoint URL.
 2. Select the topics you want to receive.
 3. Click **Save**.
 
-Use the same Intercom app whose Client ID and Client Secret are configured in Nango — see [Signature verification](#signature-verification).
+Use the same Intercom app whose Client ID and Client Secret are configured in Tenklo — see [Signature verification](#signature-verification).
 
 ## Webhook payload
 
@@ -70,9 +70,9 @@ The POST body is a notification object wrapping the resource the event is about.
 
 ## Connection matching
 
-Nango matches an incoming webhook to a connection using the workspace ID in the payload's `app_id` against the connection's `appId`. Nango stores `appId` automatically when a connection is created, so no extra configuration is needed.
+Tenklo matches an incoming webhook to a connection using the workspace ID in the payload's `app_id` against the connection's `appId`. Tenklo stores `appId` automatically when a connection is created, so no extra configuration is needed.
 
-Connections created before Intercom webhooks were supported don't have an `appId` yet. Re-authorize them once so Nango stores it.
+Connections created before Intercom webhooks were supported don't have an `appId` yet. Re-authorize them once so Tenklo stores it.
 
 `appId` identifies the Intercom workspace, not a single connection. If your app lets multiple end users each connect the same workspace (e.g. several teammates at the same company), every matching connection receives its own copy of the event.
 
@@ -82,18 +82,18 @@ If no connection's `appId` matches the payload's `app_id`, the webhook is not ro
 
 ## Signature verification
 
-Nango verifies `X-Hub-Signature` automatically using your integration's client secret — no extra setup needed. Intercom signs each notification with the client secret of the app it belongs to, so notifications from an app other than the one configured in Nango fail verification.
+Tenklo verifies `X-Hub-Signature` automatically using your integration's client secret — no extra setup needed. Intercom signs each notification with the client secret of the app it belongs to, so notifications from an app other than the one configured in Tenklo fail verification.
 
 ## Handle the webhook
 
 Once routed to a connection, you have two options:
 
-- **Forward it to your app** — Nango forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
-- **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. Nango matches subscriptions against the notification's `topic`. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
+- **Forward it to your app** — Tenklo forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
+- **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. Tenklo matches subscriptions against the notification's `topic`. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
 ## Supported events
 
-Nango can route any topic Intercom delivers, since routing only depends on the payload's `app_id`. Common topics:
+Tenklo can route any topic Intercom delivers, since routing only depends on the payload's `app_id`. Common topics:
 
 | Topic | Description | Required permission |
 | --- | --- | --- |
@@ -116,6 +116,6 @@ To stop webhooks, open your app in the Intercom Developer Hub, go to **Configure
 
 Re-subscribe to the topics with the steps above to resume.
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

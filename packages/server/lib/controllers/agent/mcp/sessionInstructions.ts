@@ -8,8 +8,8 @@ export function buildSessionInstructions(session: AgentSession): string {
     const { nangoToolSearch, nangoExecute, nangoProxy, nangoCreateConnection } = session.metaTools;
 
     const sections = [
-        `# Nango agent session
-- This MCP server is a Nango agent session. It acts on the user's apps through the integrations below, each on one connection to that app.
+        `# Tenklo agent session
+- This MCP server is a Tenklo agent session. It acts on the user's apps through the integrations below, each on one connection to that app.
 - The session's integrations and tools were fixed when it was created and cannot change. You cannot add an integration or a tool from here.
 - Tool names start with their integration, such as \`github__list_repos\`. Always use a name exactly as your tool list or a tool result gives it, never build one yourself.
 - Your tool list may hold only some of the session's tools, so a tool missing from the list can still exist.
@@ -40,7 +40,7 @@ export function buildSessionInstructions(session: AgentSession): string {
 
     if (nangoProxy) {
         sections.push(`## Calling an API directly
-- nango_proxy calls the app's API directly on a connected integration, and Nango authenticates the request for you. Unlike the session's tools, it is not limited to what the session was set up to do, so it is a last resort: use it only when no tool covers the task${nangoToolSearch ? ', after searching' : ''}.
+- nango_proxy calls the app's API directly on a connected integration, and Tenklo authenticates the request for you. Unlike the session's tools, it is not limited to what the session was set up to do, so it is a last resort: use it only when no tool covers the task${nangoToolSearch ? ', after searching' : ''}.
 - Use it to fill a gap in the session's tools, not to get around them. Do not use it for something a tool refused or limited, and be careful with writes on an integration whose tools only read. When a write through nango_proxy goes beyond what the session's tools suggest it was set up for, check with the user first.`);
     }
 

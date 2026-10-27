@@ -8,17 +8,17 @@ description: 'Access the Sellsy API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Sellsy_. Nango doesn't provide a test OAuth app for Sellsy yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, Secret shopper, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Sellsy_. Tenklo doesn't provide a test OAuth app for Sellsy yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, Secret shopper, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Sellsy">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Sellsy. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Sellsy. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Sellsy API">
-        Let's make your first request to the Sellsy API (fetch a list of contacts). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Sellsy API (fetch a list of contacts). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/v2/contacts" \
+                curl "https://api.tenklo.dev/proxy/v2/contacts" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the Sellsy API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -54,7 +54,7 @@ description: 'Access the Sellsy API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Sellsy accounts.
@@ -70,11 +70,11 @@ description: 'Access the Sellsy API in 2 minutes 💨'
         2. Click **Create API access** and select between:
         - **Private** - API access limited to staffs of your Sellsy account.
         - **Public** - API access to connect to all Sellsy accounts. A validation by Sellsy is also required.
-        3. Fill in all the required information. For **Redirect URL**, add `https://api.nango.dev/oauth/callback` and select the permissions you want to give to your API access.
+        3. Fill in all the required information. For **Redirect URL**, add `https://api.tenklo.dev/oauth/callback` and select the permissions you want to give to your API access.
         4. Click **Save**.
       </Step>
       <Step title="Obtain your client credentials">
-        1. After creating the app, copy the **Client ID** and **Secret shopper** that Sellsy will generate. You'll need these when configuring your integration in Nango.
+        1. After creating the app, copy the **Client ID** and **Secret shopper** that Sellsy will generate. You'll need these when configuring your integration in Tenklo.
       </Step>
       <Step title="Next">
         Follow the [_Quickstart_](/getting-started/quickstart).
@@ -118,5 +118,5 @@ description: 'Access the Sellsy API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

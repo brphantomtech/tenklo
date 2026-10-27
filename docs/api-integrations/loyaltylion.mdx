@@ -6,11 +6,11 @@ description: 'Integrate your application with the LoyaltyLion API'
 
 ## 🚀 Quickstart
 
-Connect to LoyaltyLion with Nango and see data flow in 2 minutes.
+Connect to LoyaltyLion with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to **Integrations** -> _Configure New Integration_ -> _LoyaltyLion_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to **Integrations** -> _Configure New Integration_ -> _LoyaltyLion_.
     </Step>
     <Step id="authorize-loyaltylion" title="Authorize LoyaltyLion">
     Go to **Connections** -> _Add Test Connection_ -> _Authorize_, then log in to LoyaltyLion and approve access for your store. Later, you'll let your users do the same directly from your app.
@@ -21,7 +21,7 @@ Connect to LoyaltyLion with Nango and see data flow in 2 minutes.
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v2/customers" \
+            curl "https://api.tenklo.dev/proxy/v2/customers" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to LoyaltyLion with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,11 +53,11 @@ Connect to LoyaltyLion with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the **Logs** tab in Nango to inspect requests.
+    ✅ You're connected! Check the **Logs** tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -66,7 +66,7 @@ Connect to LoyaltyLion with Nango and see data flow in 2 minutes.
 ## 📚 LoyaltyLion integration guides
 
 - [How to register your own LoyaltyLion OAuth app](/api-integrations/loyaltylion/how-to-register-your-own-loyaltylion-oauth-app)  
-Request OAuth credentials from LoyaltyLion's partner team and connect them to Nango.
+Request OAuth credentials from LoyaltyLion's partner team and connect them to Tenklo.
 
 Official docs: [LoyaltyLion API docs](https://developers.loyaltylion.com/api-reference/introduction)
 

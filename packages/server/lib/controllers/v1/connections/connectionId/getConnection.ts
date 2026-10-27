@@ -62,7 +62,7 @@ export const getConnection = asyncWrapperWithEnvironment<GetConnection>(async (r
         res.status(404).send({
             error: {
                 code: 'unknown_provider_config',
-                message: 'Provider config not found for the given provider config key. Please make sure the provider config exists in the Nango dashboard.'
+                message: 'Provider config not found for the given provider config key. Please make sure the provider config exists in the Tenklo dashboard.'
             }
         });
         return;

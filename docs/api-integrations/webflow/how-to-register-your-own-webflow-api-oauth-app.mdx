@@ -1,7 +1,7 @@
 ---
-title: 'Set up Webflow with Nango'
+title: 'Set up Webflow with Tenklo'
 sidebarTitle: 'Webflow Setup'
-description: 'Register an OAuth app with Webflow and connect it to Nango'
+description: 'Register an OAuth app with Webflow and connect it to Tenklo'
 ---
 
 This guide shows you how to register a Webflow app and obtain your OAuth credentials (client ID & secret). These are required to let your users grant your app access to their Webflow site data.
@@ -20,13 +20,13 @@ This guide shows you how to register a Webflow app and obtain your OAuth credent
   </Step>
   <Step title="Configure the Data Client capability">
     Click **Continue**, then under App Capabilities select **Data Client** — this is what enables OAuth access to site data via the Webflow Data API. In the OAuth configuration:
-    - Set the Redirect URL to `https://api.nango.dev/oauth/callback`.
+    - Set the Redirect URL to `https://api.tenklo.dev/oauth/callback`.
     - Select the scopes your integration needs. For the full list, see [Webflow's OAuth scopes documentation](https://docs.developers.webflow.com/data/reference/scopes).
 
     Click **Create app** to finish registration.
   </Step>
   <Step title="Copy your credentials">
-    On the app's page, copy the **Client ID** and **Client Secret** — you'll enter these when configuring your integration in Nango.
+    On the app's page, copy the **Client ID** and **Client Secret** — you'll enter these when configuring your integration in Tenklo.
   </Step>
 </Steps>
 
@@ -34,6 +34,6 @@ This guide shows you how to register a Webflow app and obtain your OAuth credent
 New apps are initially available only to users in your app's own Workspace. Publishing to the Webflow Marketplace is required for general availability to all external users, but you can test with specific external users before submitting — see [Register an App](https://docs.developers.webflow.com/docs/register-an-app) for details.
 </Note>
 
-You're now ready to integrate Webflow with Nango. For more details, see the [Webflow API documentation](https://docs.developers.webflow.com/data/reference/rest-introduction).
+You're now ready to integrate Webflow with Tenklo. For more details, see the [Webflow API documentation](https://docs.developers.webflow.com/data/reference/rest-introduction).
 
 ---

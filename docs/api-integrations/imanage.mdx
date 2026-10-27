@@ -6,22 +6,22 @@ description: 'Integrate your application with the iManage Work API'
 
 ## 🚀 Quickstart
 
-Connect to iManage Work with Nango and see data flow in 2 minutes.
+Connect to iManage Work with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _iManage Work_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _iManage Work_.
     </Step>
     <Step id="authorize-imanage" title="Authorize iManage Work">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to iManage Work. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to iManage Work. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-imanage-api" title="Call the iManage Work API">
-    Let's make your first request to the iManage Work API. It returns your session's authentication status and the API versions available on your server. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the iManage Work API. It returns your session's authentication status and the API versions available on your server. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api" \
+            curl "https://api.tenklo.dev/proxy/api" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to iManage Work with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to iManage Work with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -63,7 +63,7 @@ Connect to iManage Work with Nango and see data flow in 2 minutes.
 
 ## Use the customer ID and default library
 
-Most Work API endpoints include the customer ID and library ID in the path, for example `/work/api/v2/customers/{customerId}/libraries/{libraryId}/workspaces`. Nango stores both on the connection but doesn't add them to requests for you. Read them from the connection and build the path:
+Most Work API endpoints include the customer ID and library ID in the path, for example `/work/api/v2/customers/{customerId}/libraries/{libraryId}/workspaces`. Tenklo stores both on the connection but doesn't add them to requests for you. Read them from the connection and build the path:
 
 ```typescript
 const connection = await nango.getConnection('<INTEGRATION-ID>', '<CONNECTION-ID>');
@@ -83,7 +83,7 @@ const res = await nango.get({
 
 ## 📚 iManage Work integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my account?](/api-integrations/imanage/connect)  
 Find your server hostname, customer ID, and default library to connect your account.

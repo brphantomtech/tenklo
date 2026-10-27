@@ -1,24 +1,24 @@
 ---
 title: 'Functions guide'
 sidebarTitle: 'Functions guide'
-description: 'Understand Nango Functions and choose the right way to start using them.'
+description: 'Understand Tenklo Functions and choose the right way to start using them.'
 ---
 
 ## Overview
 
-**Functions** are Nango's runtime for custom integration logic.
+**Functions** are Tenklo's runtime for custom integration logic.
 
-When you build integrations directly, every provider forces you to solve the same hard problems: OAuth credentials, token refresh, per-customer permissions, retries, rate limits, data freshness, observability, and safe execution. Nango handles that infrastructure, and functions let you write the provider-specific logic that is unique to your product.
+When you build integrations directly, every provider forces you to solve the same hard problems: OAuth credentials, token refresh, per-customer permissions, retries, rate limits, data freshness, observability, and safe execution. Tenklo handles that infrastructure, and functions let you write the provider-specific logic that is unique to your product.
 
 You can use Nango-maintained catalog actions directly, enable sync templates, or write and deploy your own functions. Your app can call functions from any language, framework, backend job, or agent workflow. Each execution runs for a specific integration and connection, so the function has scoped access to the right customer's credentials without exposing those credentials to your app or agent.
 
 ## How functions fit
 
-1. Your user authorizes an external API through [Nango Auth](/guides/auth/auth-guide).
+1. Your user authorizes an external API through [Tenklo Auth](/guides/auth/auth-guide).
 2. Your app stores the resulting `connectionId`.
 3. You use a catalog action, enable a sync template, or deploy a custom function for the integration.
-4. Nango runs the function on demand, on a schedule, from an external webhook, or after a connection lifecycle event.
-5. Your app receives the function result, sync records, or webhooks from Nango.
+4. Tenklo runs the function on demand, on a schedule, from an external webhook, or after a connection lifecycle event.
+5. Your app receives the function result, sync records, or webhooks from Tenklo.
 
 Functions are the right layer when you need custom API logic, data syncing, webhook processing, AI tools, or per-customer integration behavior.
 
@@ -27,7 +27,7 @@ Functions are the right layer when you need custom API logic, data syncing, webh
 - **Scoped external API access** — run API calls with the credentials and scopes of one connection.
 - **Any app stack** — trigger functions through HTTP APIs or SDKs from any backend language.
 - **Multiple trigger types** — call functions on demand, run them on a schedule, route external webhooks into them, or react to connection lifecycle events.
-- **Agent-ready tools** — expose selected functions to agents through the API or Nango's MCP server while keeping provider credentials out of the model loop.
+- **Agent-ready tools** — expose selected functions to agents through the API or Tenklo's MCP server while keeping provider credentials out of the model loop.
 - **Built-in integration infrastructure** — retries, rate-limit handling, logs, OpenTelemetry export, records storage, checkpoints, and per-connection metadata.
 - **Flexible development workflows** — use catalog actions directly, enable sync templates, build through the Functions API, or keep function code in a local CLI project.
 
@@ -36,27 +36,27 @@ Functions are the right layer when you need custom API logic, data syncing, webh
 
 ### Ways to use or develop functions
 
-There are three ways to use or develop Nango functions. Start with the path that matches how much control and dynamism you need.
+There are three ways to use or develop Tenklo functions. Start with the path that matches how much control and dynamism you need.
 
 | Path | Best for | How it works |
 | --- | --- | --- |
-| [Option 1: Use the template catalog](#use-function-templates) | Getting started quickly when Nango already has the provider operation in the catalog. | Use catalog actions, or enable a sync template. |
-| [Option 2: Build locally with the CLI](#build-locally-with-the-cli) | Serious production use cases where you want reviewable diffs, tests, CI/CD, and source control. | Write TypeScript functions in your repo, dry run them against real connections, and deploy with the Nango CLI. |
-| [Option 3: Build with the Functions API](#build-with-the-functions-api) | Prototypes, provider operations not covered by templates, and just-in-time integrations where an agent creates behavior dynamically. | Send generated TypeScript source to Nango, compile it, dry run it, and deploy it without a local functions project. |
+| [Option 1: Use the template catalog](#use-function-templates) | Getting started quickly when Tenklo already has the provider operation in the catalog. | Use catalog actions, or enable a sync template. |
+| [Option 2: Build locally with the CLI](#build-locally-with-the-cli) | Serious production use cases where you want reviewable diffs, tests, CI/CD, and source control. | Write TypeScript functions in your repo, dry run them against real connections, and deploy with the Tenklo CLI. |
+| [Option 3: Build with the Functions API](#build-with-the-functions-api) | Prototypes, provider operations not covered by templates, and just-in-time integrations where an agent creates behavior dynamically. | Send generated TypeScript source to Tenklo, compile it, dry run it, and deploy it without a local functions project. |
 
 <a id="start-with-templates"></a>
 <a id="use-function-templates"></a>
 <a id="template-catalog"></a>
 ### Option 1: Use the template catalog
 
-The template catalog contains pre-built Nango functions for common provider operations. Catalog actions are available out of the box and update automatically. Sync templates must be enabled before they run.
+The template catalog contains pre-built Tenklo functions for common provider operations. Catalog actions are available out of the box and update automatically. Sync templates must be enabled before they run.
 
 <a id="catalog-action-stability"></a>
 <Note>
-  **Catalog actions and stability.** Catalog actions are maintained by Nango and update automatically. Their input schema, output shape, and behavior may change as the catalog evolves. They are best suited to agentic workflows, such as MCP tool calling. If deterministic application code needs a stable contract, [pull the action into your functions project and deploy it](#extend-a-template). The deployed function becomes your owned implementation and no longer follows catalog updates.
+  **Catalog actions and stability.** Catalog actions are maintained by Tenklo and update automatically. Their input schema, output shape, and behavior may change as the catalog evolves. They are best suited to agentic workflows, such as MCP tool calling. If deterministic application code needs a stable contract, [pull the action into your functions project and deploy it](#extend-a-template). The deployed function becomes your owned implementation and no longer follows catalog updates.
 </Note>
 
-You can find templates in the [template catalog](https://www.nango.dev/templates), in the integration page of the Nango dashboard, and in the [Nango integration templates repository](https://github.com/NangoHQ/integration-templates).
+You can find templates in the [template catalog](https://www.tenklo.dev/templates), in the integration page of the Tenklo dashboard, and in the [Tenklo integration templates repository](https://github.com/NangoHQ/integration-templates).
 
 You can use catalog actions with [Agent sessions](/guides/agent-sessions) or call them directly from your backend. For deterministic application code, [pull and deploy it](#extend-a-template) to avoid unexpected changes.
 
@@ -97,7 +97,7 @@ Local development is the default path for production integrations. Use it when y
 
 <Steps>
   <Step id="install-and-initialize" title="Install and initialize">
-    Install the Nango CLI globally:
+    Install the Tenklo CLI globally:
 
     ```bash
     npm install -g nango
@@ -120,9 +120,9 @@ Local development is the default path for production integrations. Use it when y
     NANGO_SECRET_KEY_DEV='<DEV-API-KEY>'
     ```
 
-    Get your [API keys](/reference/backend/http-api/api-keys) from **Environment Settings > API Keys**. Despite the variable name, each value stores a [Nango API key](/reference/backend/http-api/api-keys). The CLI picks up the matching key for whichever environment you deploy to.
+    Get your [API keys](/reference/backend/http-api/api-keys) from **Environment Settings > API Keys**. Despite the variable name, each value stores a [Tenklo API key](/reference/backend/http-api/api-keys). The CLI picks up the matching key for whichever environment you deploy to.
 
-    `nango init` creates `nango-integrations/.gitignore` with `.env` ignored. Keep the `.env` file untracked so [Nango API keys](/reference/backend/http-api/api-keys) are not committed.
+    `nango init` creates `nango-integrations/.gitignore` with `.env` ignored. Keep the `.env` file untracked so [Tenklo API keys](/reference/backend/http-api/api-keys) are not committed.
 
     <Note>
       Keys are matched by environment name: `NANGO_SECRET_KEY_<ENV_NAME>`. If you rename an environment in the UI, update the variable name in `.env` to match.
@@ -140,9 +140,9 @@ Local development is the default path for production integrations. Use it when y
     </Accordion>
 
     <Accordion title="For agents">
-      Run `nango init nango-integrations` to scaffold the folder. Ask the user for their [Nango API key](/reference/backend/http-api/api-keys) from **Environment Settings > API Keys** and write it to the matching `NANGO_SECRET_KEY_<ENV_NAME>` variable in `nango-integrations/.env`. Confirm that `nango-integrations/.gitignore` ignores `.env`.
+      Run `nango init nango-integrations` to scaffold the folder. Ask the user for their [Tenklo API key](/reference/backend/http-api/api-keys) from **Environment Settings > API Keys** and write it to the matching `NANGO_SECRET_KEY_<ENV_NAME>` variable in `nango-integrations/.env`. Confirm that `nango-integrations/.gitignore` ignores `.env`.
 
-      For additional context while building, add Nango's documentation MCP server (`https://nango.dev/docs/mcp`) and install the local builder skill:
+      For additional context while building, add Tenklo's documentation MCP server (`https://tenklo.dev/docs/mcp`) and install the local builder skill:
 
       ```bash
       npx skills add NangoHQ/skills -s building-nango-functions-locally
@@ -151,7 +151,7 @@ Local development is the default path for production integrations. Use it when y
   </Step>
 
   <Step id="understand-folder-layout" title="Understand the folder layout">
-    A Nango integrations folder is a small TypeScript project. The root contains shared project files, and each integration gets its own folder named after the integration ID.
+    A Tenklo integrations folder is a small TypeScript project. The root contains shared project files, and each integration gets its own folder named after the integration ID.
 
     Inside each integration folder, keep function files grouped by type. Sync functions live in `syncs/`, action functions in `actions/`, and event functions in `on-events/`. This keeps the trigger model visible from the file path and matches how the CLI discovers function code.
 
@@ -195,8 +195,8 @@ Local development is the default path for production integrations. Use it when y
     | --- | --- | --- | --- |
     | Keep external API data fresh, replicate records, or reconcile changes | Sync function | Schedule, manual sync trigger, or external webhook reconciliation | [Sync functions](/guides/functions/syncs/sync-functions) |
     | Run an operation when your app, backend job, or agent asks for it | Action function | HTTP API, SDK, async action queue, or MCP/tool call | [Action functions](/guides/functions/action-functions) |
-    | Process an external provider webhook inside Nango | Webhook function | External API webhook | [Webhook functions](/guides/functions/webhook-functions) |
-    | React to Nango connection lifecycle events | Event function | Connection creation, validation, or deletion | [Event functions](/guides/functions/event-functions) |
+    | Process an external provider webhook inside Tenklo | Webhook function | External API webhook | [Webhook functions](/guides/functions/webhook-functions) |
+    | React to Tenklo connection lifecycle events | Event function | Connection creation, validation, or deletion | [Event functions](/guides/functions/event-functions) |
 
     For shared primitives, use [Storage](/guides/functions/storage) for connection metadata and [Data validation](/guides/functions/data-validation) for function input, output, and provider response validation.
   </Step>
@@ -236,7 +236,7 @@ Local development is the default path for production integrations. Use it when y
 
 Use the Functions API when an agent should create or change an integration without the user working in a codebase. The agent might be Codex, Claude Code, Cursor, or a product agent running inside your app or sandbox.
 
-This is useful for prototypes, onboarding flows, provider operations not covered by templates, and just-in-time integrations where users describe behavior in text and an agent publishes the matching function to Nango.
+This is useful for prototypes, onboarding flows, provider operations not covered by templates, and just-in-time integrations where users describe behavior in text and an agent publishes the matching function to Tenklo.
 
 <div className="agent-quickstart-actions">
   <button
@@ -257,9 +257,9 @@ At a high level, the flow is:
 3. Compile the source with `POST /functions/compile`. Send the TypeScript source as `code` and use compiler errors to improve it.
 4. Start a dry run with `POST /functions/dryruns`. Send the integration ID, function type, source `code`, connection ID, and any action input, sync metadata, or checkpoint payload needed for the run.
 5. Poll `GET /functions/dryruns/{id}` until the dry run reaches `success` or `failed`, then inspect the result, logs, records, or error.
-6. Deploy it with `POST /functions/deployments`. Send `type: "function"`, the integration ID, function name, function type, and final source `code`. After deployment, your app can call or trigger the function like any other Nango function.
+6. Deploy it with `POST /functions/deployments`. Send `type: "function"`, the integration ID, function name, function type, and final source `code`. After deployment, your app can call or trigger the function like any other Tenklo function.
 
-Resolve these endpoints against `NANGO_SERVER_URL`, or `https://api.nango.dev` by default. Send `Authorization: Bearer <NANGO-API-KEY>` and `Content-Type: application/json`. Scoped API keys need `environment:functions:compile` for compile, `environment:functions:dryrun` for dry run creation and polling, and `environment:deploy` for deployment.
+Resolve these endpoints against `NANGO_SERVER_URL`, or `https://api.tenklo.dev` by default. Send `Authorization: Bearer <NANGO-API-KEY>` and `Content-Type: application/json`. Scoped API keys need `environment:functions:compile` for compile, `environment:functions:dryrun` for dry run creation and polling, and `environment:deploy` for deployment.
 
 The Functions API is powerful, but it intentionally skips a local Git workflow. For production integrations that need code review, tests, ownership, and CI/CD, prefer [local development with the CLI](#build-locally-with-the-cli).
 

@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Typeform OAuth app'
 sidebarTitle: 'Typeform setup'
-description: 'Register an OAuth app with Typeform and obtain credentials to connect it to Nango'
+description: 'Register an OAuth app with Typeform and obtain credentials to connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Typeform to obtain your OAuth credentials (Client ID & Client Secret). These are required to let your users grant your app access to their Typeform account.
@@ -14,16 +14,16 @@ This guide shows you how to register your own app with Typeform to obtain your O
     Click **Register a new app** and fill in:
     - **App Name** — your application's name
     - **App website** — your app's homepage URL
-    - **Redirect URI(s)** — `https://api.nango.dev/oauth/callback`
+    - **Redirect URI(s)** — `https://api.tenklo.dev/oauth/callback`
     </Step>
     <Step title="Get your credentials">
     After registering, copy the **Client Secret** immediately — Typeform only shows it once. Your **Client ID** stays visible in the Developer Apps panel afterward. If you lose the secret, use **Edit app** -> **Regenerate client secret**.
     </Step>
     <Step title="Configure scopes">
-    Include the `offline` scope so Typeform issues a refresh token — without it, Nango can't refresh the connection automatically. See [Typeform's scope list](https://www.typeform.com/developers/get-started/scopes) for the rest.
+    Include the `offline` scope so Typeform issues a refresh token — without it, Tenklo can't refresh the connection automatically. See [Typeform's scope list](https://www.typeform.com/developers/get-started/scopes) for the rest.
     </Step>
-    <Step title="Add credentials to Nango">
-    In Nango, open your Typeform integration and enter the **Client ID** and **Client Secret** from the Developer Apps panel, plus the scopes your app needs.
+    <Step title="Add credentials to Tenklo">
+    In Tenklo, open your Typeform integration and enter the **Client ID** and **Client Secret** from the Developer Apps panel, plus the scopes your app needs.
     </Step>
 </Steps>
 

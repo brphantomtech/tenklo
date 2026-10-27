@@ -1,16 +1,16 @@
 ---
-title: 'How to set up webhooks with Salesforce on Nango'
+title: 'How to set up webhooks with Salesforce on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to send Salesforce record changes to Nango from an Apex trigger and verify them'
+description: 'Learn how to send Salesforce record changes to Tenklo from an Apex trigger and verify them'
 ---
 
-Salesforce has no outbound webhooks that Nango can subscribe to. Instead, you install an Apex trigger in each connected org that calls your Nango webhook URL when records change. Because the call comes from code you install, not from Salesforce, there is no provider signature. Nango verifies each call with a secret that belongs to the connection instead.
+Salesforce has no outbound webhooks that Tenklo can subscribe to. Instead, you install an Apex trigger in each connected org that calls your Tenklo webhook URL when records change. Because the call comes from code you install, not from Salesforce, there is no provider signature. Tenklo verifies each call with a secret that belongs to the connection instead.
 
 ## How it works
 
-1. An Apex trigger in the connected org sends a POST request to your Nango webhook URL when a record changes.
-2. Nango reads the connection id from `nango.connectionId` in the body and checks the `X-Nango-Webhook-Secret` header against that connection's `webhookSecret` metadata.
-3. Nango routes the event to the connection, using `nango.eventType` as the webhook type.
+1. An Apex trigger in the connected org sends a POST request to your Tenklo webhook URL when a record changes.
+2. Tenklo reads the connection id from `nango.connectionId` in the body and checks the `X-Nango-Webhook-Secret` header against that connection's `webhookSecret` metadata.
+3. Tenklo routes the event to the connection, using `nango.eventType` as the webhook type.
 
 A request without the header, with a wrong secret, or for a connection that has no `webhookSecret` is rejected. Every connection needs its own secret. There is no integration level secret, because it would sit in every org's trigger and any org admin could use it to send events for other connections.
 
@@ -30,7 +30,7 @@ The body must be JSON with a `nango` object. Everything else is up to you and is
 
 | Field | Description |
 | --- | --- |
-| `nango.connectionId` | The Nango connection id of the org the trigger runs in. |
+| `nango.connectionId` | The Tenklo connection id of the org the trigger runs in. |
 | `nango.eventType` | The event name. Syncs subscribe to it with `webhookSubscriptions`. |
 
 ## Setup
@@ -55,7 +55,7 @@ export default createOnEvent({
 Read it back with [Get connection](/reference/backend/http-api/connections/get) when you install the trigger. To set or rotate it yourself instead:
 
 ```bash
-curl -X PATCH "https://api.nango.dev/connections/metadata" \
+curl -X PATCH "https://api.tenklo.dev/connections/metadata" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -69,7 +69,7 @@ See [Update connection metadata](/reference/backend/http-api/connections/update-
 
 ### 2. Install the Apex trigger
 
-Copy the Nango webhook URL from your Salesforce integration's **Webhooks** section in the Nango dashboard, and add its host as a Remote Site Setting in the org so Apex can call it.
+Copy the Tenklo webhook URL from your Salesforce integration's **Webhooks** section in the Tenklo dashboard, and add its host as a Remote Site Setting in the org so Apex can call it.
 
 Store the webhook URL, the connection id and the secret where the trigger can read them but regular users cannot, for example a protected custom setting in a managed package. The example below uses a `Nango_Settings__c` hierarchy custom setting:
 
@@ -114,4 +114,4 @@ Once routed, you have two options:
 - **Forward it to your app**: Nango forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
 - **Process it in a sync**: run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
-<Tip>Need help getting started? Join us in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Join us in the [community](https://tenklo.dev/slack).</Tip>

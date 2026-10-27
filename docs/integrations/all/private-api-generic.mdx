@@ -21,14 +21,14 @@ Use Private API (Generic) for APIs that authenticate with an API key but do not 
 - **Base URL**: the upstream API the proxy calls.
 - **API key label**: the label end users see for the key field in the Connect UI.
 
-The key is vaulted by Nango and injected by the proxy, so raw credentials never need to leave Nango.
+The key is vaulted by Tenklo and injected by the proxy, so raw credentials never need to leave Tenklo.
 
 ## Important limitations
 
-- **Limited functionality**: Private API (Generic) is limited to storing and injecting a single API key. Because it's generic, many advanced Nango features are not available for it.
+- **Limited functionality**: Private API (Generic) is limited to storing and injecting a single API key. Because it's generic, many advanced Tenklo features are not available for it.
 - **Base URL required**: You must set the base URL on the integration; there is no predefined base URL like other integrations.
-- **Recommended use cases only**: The only recommended use case for private API integrations is to store credentials for internal/customer-specific APIs that cannot be added to the Nango catalog.
-- **For all other use cases**: We recommend [contributing the API to Nango](/integrations/contribute-or-request-api) or requesting it be added by us.
+- **Recommended use cases only**: The only recommended use case for private API integrations is to store credentials for internal/customer-specific APIs that cannot be added to the Tenklo catalog.
+- **For all other use cases**: We recommend [contributing the API to Tenklo](/integrations/contribute-or-request-api) or requesting it be added by us.
 
 ## Create the integration programmatically
 
@@ -51,7 +51,7 @@ await nango.createIntegration({
 ```
 
 ```bash HTTP API
-curl -X POST 'https://api.nango.dev/integrations' \
+curl -X POST 'https://api.tenklo.dev/integrations' \
   -H 'Authorization: Bearer <NANGO-API-KEY>' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -85,7 +85,7 @@ To change the configuration later, send the fields you want to update with [Upda
 
 _No setup guide yet._
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 <Note>Contribute improvements to the setup guide by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/private-api-generic.mdx)</Note>
 

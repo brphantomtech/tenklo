@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Simpro OAuth app'
 sidebarTitle: 'Simpro Setup'
-description: 'Register an OAuth app with Simpro and connect it to Nango'
+description: 'Register an OAuth app with Simpro and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Simpro to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Simpro account.
@@ -22,13 +22,13 @@ Use this path if you only need to connect to your own Simpro build.
   <Step title="Create a new application">
     1. Click **Create Application**
     2. Fill in: Company, Name, Email Address
-    3. **Redirect URI**: enter `https://api.nango.dev/oauth/callback`
+    3. **Redirect URI**: enter `https://api.tenklo.dev/oauth/callback`
     4. **Authentication Method**: select `OAuth 2.0`
     5. **Grant Type**: select `Authorisation Code`
     6. Click **Create**
   </Step>
   <Step title="Get your credentials">
-    Copy your **Client ID** and **Client Secret** from the application detail page (or download the key file Simpro offers on creation). You'll need these when configuring the integration in Nango.
+    Copy your **Client ID** and **Client Secret** from the application detail page (or download the key file Simpro offers on creation). You'll need these when configuring the integration in Tenklo.
   </Step>
   <Step title="Next">
     Follow the [_Quickstart_](/getting-started/quickstart) to connect your first account. Note that this app's credentials only work against the build it was created in — if you need to connect multiple customer builds, see Path 2.
@@ -46,11 +46,11 @@ Use this path if you're building a public integration that connects to many Simp
   <Step title="Submit the integration approval form">
     From the partner portal, find **Integration Approval Process and Technical Guidelines**. The PDF describes a 2-phase approval (submit integration name, description, redirect URIs → Simpro reviews → central credentials issued).
   </Step>
-  <Step title="Specify your Nango callback URL">
-    In the integration approval form, set the redirect URI to `https://api.nango.dev/oauth/callback`.
+  <Step title="Specify your Tenklo callback URL">
+    In the integration approval form, set the redirect URI to `https://api.tenklo.dev/oauth/callback`.
   </Step>
   <Step title="Receive central OAuth credentials">
-    After approval, the Simpro Group partner team will issue you a central client ID and secret that work across every customer's Simpro build. Use these in your Nango integration settings.
+    After approval, the Simpro Group partner team will issue you a central client ID and secret that work across every customer's Simpro build. Use these in your Tenklo integration settings.
   </Step>
   <Step title="Next">
     Follow the [_Quickstart_](/getting-started/quickstart) to connect your first customer's account. Each customer enters their own Simpro build name when authorising.

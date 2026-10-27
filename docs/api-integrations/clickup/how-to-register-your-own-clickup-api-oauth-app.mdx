@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own ClickUp OAuth app'
 sidebarTitle: 'ClickUp Setup'
-description: 'Register an OAuth app with ClickUp and connect it to Nango'
+description: 'Register an OAuth app with ClickUp and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with ClickUp to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their ClickUp account.
@@ -18,20 +18,20 @@ This guide shows you how to register your own app with ClickUp to obtain your OA
 
     <Note>Only Workspace owners or admins can create OAuth apps.</Note>
 
-    4. Fill in all the required information. For the **Redirect URL**, add `https://api.nango.dev/oauth/callback`.
+    4. Fill in all the required information. For the **Redirect URL**, add `https://api.tenklo.dev/oauth/callback`.
     5. Click **Create App**.
   </Step>
 
   <Step title="Obtain OAuth credentials">
-    1. After creating your app, you'll receive a **Client ID** and **Client Secret**. Make a copy of these as you'll need them when configuring your integration in Nango.
+    1. After creating your app, you'll receive a **Client ID** and **Client Secret**. Make a copy of these as you'll need them when configuring your integration in Tenklo.
   </Step>
 
-  <Step title="Configure your integration in Nango">
-    Follow the [Quickstart](/getting-started/quickstart) to add your OAuth credentials to your ClickUp integration in Nango.
+  <Step title="Configure your integration in Tenklo">
+    Follow the [Quickstart](/getting-started/quickstart) to add your OAuth credentials to your ClickUp integration in Tenklo.
   </Step>
 </Steps>
 
-<Note>ClickUp does not use scopes in their OAuth implementation, so you can leave the scope field empty when configuring your integration in Nango.</Note>
+<Note>ClickUp does not use scopes in their OAuth implementation, so you can leave the scope field empty when configuring your integration in Tenklo.</Note>
 
 <Note>Users can authorize one or more Workspaces for your application. Use the [Get Authorized Teams (Workspaces)](https://developer.clickup.com/reference/getauthorizedteams) endpoint to see which Workspaces are authorized.</Note>
 

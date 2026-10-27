@@ -5,16 +5,16 @@ import { assertOAuthServerUsesDashboardApiOrigin, isOAuthServerEnabled } from '.
 
 describe('OAuth server origin configuration', () => {
     it('accepts the dashboard API origin', () => {
-        expect(() => assertOAuthServerUsesDashboardApiOrigin('https://api.nango.dev', 'https://api.nango.dev')).not.toThrow();
-        expect(() => assertOAuthServerUsesDashboardApiOrigin('https://api.nango.dev/', 'https://api.nango.dev')).not.toThrow();
+        expect(() => assertOAuthServerUsesDashboardApiOrigin('https://api.tenklo.dev', 'https://api.tenklo.dev')).not.toThrow();
+        expect(() => assertOAuthServerUsesDashboardApiOrigin('https://api.tenklo.dev/', 'https://api.tenklo.dev')).not.toThrow();
     });
 
     it('allows the OAuth server to remain disabled', () => {
-        expect(() => assertOAuthServerUsesDashboardApiOrigin(undefined, 'https://api.nango.dev')).not.toThrow();
+        expect(() => assertOAuthServerUsesDashboardApiOrigin(undefined, 'https://api.tenklo.dev')).not.toThrow();
     });
 
     it('rejects a different OAuth origin', () => {
-        expect(() => assertOAuthServerUsesDashboardApiOrigin('https://id.nango.dev', 'https://api.nango.dev')).toThrow(
+        expect(() => assertOAuthServerUsesDashboardApiOrigin('https://id.tenklo.dev', 'https://api.tenklo.dev')).toThrow(
             'NANGO_OAUTH_SERVER_BASE_URL must use the same origin as the dashboard API'
         );
     });
@@ -25,7 +25,7 @@ describe('OAuth server origin configuration', () => {
             envs.NANGO_OAUTH_SERVER_BASE_URL = undefined;
             expect(isOAuthServerEnabled()).toBe(false);
 
-            envs.NANGO_OAUTH_SERVER_BASE_URL = 'https://api.nango.dev';
+            envs.NANGO_OAUTH_SERVER_BASE_URL = 'https://api.tenklo.dev';
             expect(isOAuthServerEnabled()).toBe(true);
         } finally {
             envs.NANGO_OAUTH_SERVER_BASE_URL = previousBaseUrl;

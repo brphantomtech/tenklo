@@ -79,7 +79,7 @@ router.use((err: any, req: Request, res: Response<ApiError<'invalid_json'> | Api
         res.status(400).send({
             error: {
                 code: 'unsupported_content_type',
-                message: `${err.message}. The "Content-Type" header on a request to the Nango proxy must be "multipart/form-data" or omitted. To send this Content-Type to the destination API, set it via the "nango-proxy-Content-Type" header instead (see https://docs.nango.dev/guides/platform/proxy-requests).`
+                message: `${err.message}. The "Content-Type" header on a request to the Tenklo proxy must be "multipart/form-data" or omitted. To send this Content-Type to the destination API, set it via the "nango-proxy-Content-Type" header instead (see https://docs.tenklo.dev/guides/platform/proxy-requests).`
             }
         });
         return;

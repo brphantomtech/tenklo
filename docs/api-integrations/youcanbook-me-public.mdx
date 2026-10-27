@@ -6,22 +6,22 @@ description: 'Integrate your application with the unauthenticated YouCanBookMe b
 
 ## 🚀 Quickstart
 
-Connect to YouCanBookMe's public booking API with Nango — no credentials required beyond your booking page's subdomain.
+Connect to YouCanBookMe's public booking API with Tenklo — no credentials required beyond your booking page's subdomain.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _YouCanBookMe (Public)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _YouCanBookMe (Public)_.
     </Step>
     <Step title="Authorize YouCanBookMe (Public)">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your booking page subdomain. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your booking page subdomain. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the YouCanBookMe API">
-    Let's make your first request to the YouCanBookMe API (create a booking intent). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), [connection ID](https://app.nango.dev/dev/connections), and your subdomain:
+    Let's make your first request to the YouCanBookMe API (create a booking intent). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), [connection ID](https://app.tenklo.dev/dev/connections), and your subdomain:
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/intents" \
+            curl "https://api.tenklo.dev/proxy/v1/intents" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -36,7 +36,7 @@ Connect to YouCanBookMe's public booking API with Nango — no credentials requi
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -59,11 +59,11 @@ Connect to YouCanBookMe's public booking API with Nango — no credentials requi
     </Tabs>
     Or fetch the connection's subdomain with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 

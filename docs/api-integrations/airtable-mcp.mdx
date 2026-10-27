@@ -6,22 +6,22 @@ description: 'Connect AI tools to Airtable via the Model Context Protocol (MCP) 
 
 ## 🚀 Quickstart
 
-Connect to the Airtable MCP server with Nango and call MCP tools in minutes. Airtable MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required.
+Connect to the Airtable MCP server with Tenklo and call MCP tools in minutes. Airtable MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) → _Configure New Integration_ → _Airtable (MCP)_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) → _Configure New Integration_ → _Airtable (MCP)_.
     </Step>
     <Step id="authorize-airtable" title="Authorize Airtable">
-        Go to [Connections](https://app.nango.dev/dev/connections) → _Add Test Connection_ → _Authorize_, then log in to your Airtable account and choose which bases and workspaces to connect. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) → _Add Test Connection_ → _Authorize_, then log in to your Airtable account and choose which bases and workspaces to connect. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-airtable-mcp" title="Call the Airtable MCP API">
-        Make your first MCP request (initialize handshake). Replace the placeholders below with your [API key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Make your first MCP request (initialize handshake). Replace the placeholders below with your [API key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/mcp" \
+                curl "https://api.tenklo.dev/proxy/mcp" \
                   -X POST \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -46,7 +46,7 @@ Connect to the Airtable MCP server with Nango and call MCP tools in minutes. Air
 
             <Tab title="Node">
 
-                Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+                Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
                 ```typescript
                 import { Nango } from '@nangohq/node';
@@ -77,17 +77,17 @@ Connect to the Airtable MCP server with Nango and call MCP tools in minutes. Air
             </Tab>
 
         </Tabs>
-        ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+        ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-nango" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step id="implement-nango" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Airtable (MCP) guides
 
-Nango uses **dynamic client registration** with Airtable's MCP OAuth server. You do not need to register an MCP application — just create the integration in Nango and authorize with your Airtable account. During authorization, your users choose which bases, apps, and workspaces to grant access to, and the MCP server respects their existing Airtable permissions (e.g. read-only access stays read-only).
+Tenklo uses **dynamic client registration** with Airtable's MCP OAuth server. You do not need to register an MCP application — just create the integration in Tenklo and authorize with your Airtable account. During authorization, your users choose which bases, apps, and workspaces to grant access to, and the MCP server respects their existing Airtable permissions (e.g. read-only access stays read-only).
 
 Official resources: [Airtable MCP server overview](https://airtable.com/developers/agents/mcp/getting-started)
 

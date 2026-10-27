@@ -32,7 +32,7 @@ function stubCustomer(
         id: `local-customer-${accountId}`,
         invoicingDetails: {
             legalEntityName: details?.legalEntityName ?? `Local account ${accountId}`,
-            email: details?.email ?? `account-${accountId}@local.nango.dev`,
+            email: details?.email ?? `account-${accountId}@local.tenklo.dev`,
             additionalEmails: details?.additionalEmails ?? [],
             address: null,
             taxId: null

@@ -22,7 +22,7 @@ vi.mock('../utils.js', () => ({
     getConnection: mocks.getConnection,
     parseSecretKey: mocks.parseSecretKey,
     printDebug: vi.fn(),
-    resolveHostport: () => 'https://api.nango.dev'
+    resolveHostport: () => 'https://api.tenklo.dev'
 }));
 
 vi.mock('../zeroYaml/definitions.js', () => ({

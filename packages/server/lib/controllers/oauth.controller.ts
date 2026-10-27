@@ -1127,8 +1127,8 @@ class OAuthController {
                 token_endpoint_auth_method: 'none',
                 grant_types: ['authorization_code', 'refresh_token'],
                 response_types: ['code'],
-                client_name: config.custom?.['oauth_client_name'] || 'Nango Dynamic MCP Client',
-                client_uri: config.custom?.['oauth_client_uri'] || 'https://nango.dev',
+                client_name: config.custom?.['oauth_client_name'] || 'Tenklo Dynamic MCP Client',
+                client_uri: config.custom?.['oauth_client_uri'] || 'https://tenklo.dev',
                 ...(config.custom?.['oauth_client_logo_uri'] && { logo_uri: config.custom['oauth_client_logo_uri'] }),
                 scope: scopes || ''
             };

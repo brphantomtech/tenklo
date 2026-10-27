@@ -74,7 +74,7 @@ export function createAgentSessionMcpServer(params: Omit<AgentSessionMcpContext,
 
     const server = new McpServer(
         {
-            name: 'Nango Agent Session MCP server',
+            name: 'Tenklo Agent Session MCP server',
             version: '1.0.0'
         },
         {

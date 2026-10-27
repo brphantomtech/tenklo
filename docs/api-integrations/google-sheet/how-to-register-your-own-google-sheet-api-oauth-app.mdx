@@ -1,7 +1,7 @@
 ---
-title: 'Set up Google Sheets with Nango'
+title: 'Set up Google Sheets with Tenklo'
 sidebarTitle: 'Google Sheets Setup'
-description: 'Register an OAuth app with Google and connect it to Nango'
+description: 'Register an OAuth app with Google and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Google Cloud to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Google Sheets account.
@@ -47,9 +47,9 @@ This guide shows you how to register your own app with Google Cloud to obtain yo
     2. Click **Create Credentials** and select **OAuth client ID**.
     3. Select **Web application** as the application type.
     4. Enter a name for your OAuth client.
-    5. Under **Authorized redirect URIs**, add `https://api.nango.dev/oauth/callback`.
+    5. Under **Authorized redirect URIs**, add `https://api.tenklo.dev/oauth/callback`.
     6. Click **Create**.
-    7. A dialog will appear with your client ID and client secret. Save these credentials securely as you'll need them when configuring your integration in Nango.
+    7. A dialog will appear with your client ID and client secret. Save these credentials securely as you'll need them when configuring your integration in Tenklo.
   </Step>
   <Step title="Start building your integration">
     Follow the [_Quickstart_](/getting-started/quickstart) to build your integration.
@@ -68,9 +68,9 @@ This guide shows you how to register your own app with Google Cloud to obtain yo
 
 ## Important Notes
 
-- Set the _Authorized JavaScript origins_ to your site URL (`https://app.nango.dev` if you're testing from the Nango UI).
+- Set the _Authorized JavaScript origins_ to your site URL (`https://app.tenklo.dev` if you're testing from the Tenklo UI).
 - Select scopes from the scopes page based on the APIs you enabled earlier; see [Google's OAuth 2.0 Scopes](https://developers.google.com/identity/protocols/oauth2/scopes) for the full list.
-- For information on why Google refresh tokens expire, see [Why is my Google refresh token expiring?](https://nango.dev/blog/why-is-my-google-refresh-token-expiring).
+- For information on why Google refresh tokens expire, see [Why is my Google refresh token expiring?](https://tenklo.dev/blog/why-is-my-google-refresh-token-expiring).
 - For verification requirements, user types, incremental authorization, and rate limits, see [Google's OAuth 2.0 documentation](https://developers.google.com/identity/protocols/oauth2) and the [Google Sheets API docs](https://developers.google.com/sheets/api/reference/rest).
 
 ---

@@ -1,6 +1,6 @@
 # @nangohq/design-system
 
-Shared design system for the Nango app — design tokens, components, and Storybook.
+Shared design system for the Tenklo app — design tokens, components, and Storybook.
 
 ## Storybook
 

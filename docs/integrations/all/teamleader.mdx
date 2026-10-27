@@ -8,19 +8,19 @@ description: 'Access the Teamleader Focus API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Teamleader Focus_. Nango doesn't provide a test OAuth app for Teamleader Focus yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID and secret in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Teamleader Focus_. Tenklo doesn't provide a test OAuth app for Teamleader Focus yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID and secret in the integration settings in Tenklo.
 
       </Step>
       <Step title="Authorize Teamleader Focus">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Teamleader Focus. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Teamleader Focus. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Teamleader Focus API">
-        Let's make your first request to the Teamleader Focus API (fetch a list of deals). This request will return basic details about the authenticated user. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Teamleader Focus API (fetch a list of deals). This request will return basic details about the authenticated user. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl -X POST "https://api.nango.dev/proxy/deals.list" \
+                curl -X POST "https://api.tenklo.dev/proxy/deals.list" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>" \
@@ -36,7 +36,7 @@ description: 'Access the Teamleader Focus API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -66,7 +66,7 @@ description: 'Access the Teamleader Focus API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Teamleader Focus accounts.
@@ -86,11 +86,11 @@ description: 'Access the Teamleader Focus API in 2 minutes 💨'
         1. From the top right corner, click **Create integration**.
         2. Enter a name for your integration.
         3. Click **Create Integration**.
-        4. You will be provided with a **Client ID** and **Client Secret**. Copy these credentials as you'll need them when configuring your integration in Nango.
+        4. You will be provided with a **Client ID** and **Client Secret**. Copy these credentials as you'll need them when configuring your integration in Tenklo.
       </Step>
       <Step title="Configure your integration">
         1. Fill in all the required information for your integration.
-        2. Under **Valid Redirect URIs**, add `https://api.nango.dev/oauth/callback`.
+        2. Under **Valid Redirect URIs**, add `https://api.tenklo.dev/oauth/callback`.
         3. Select at least 2 OAuth scopes that your integration needs.
         4. Click **Save Changes**.
       </Step>
@@ -114,12 +114,12 @@ description: 'Access the Teamleader Focus API in 2 minutes 💨'
     <Note>Contribute useful links by [editing this page](https://github.com/nangohq/nango/tree/master/docs-v2/integrations/all/teamleader.mdx)</Note>
   </Tab>
   <Tab title="🚨 API gotchas">
-    - You don't need to add scopes when setting up the integration in Nango. Teamleader Focus will use the **scopes** you selected when creating the integration in their marketplace.
+    - You don't need to add scopes when setting up the integration in Tenklo. Teamleader Focus will use the **scopes** you selected when creating the integration in their marketplace.
 
     <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs-v2/integrations/all/teamleader.mdx)</Note>
   </Tab>
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

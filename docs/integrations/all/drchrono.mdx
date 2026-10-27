@@ -8,17 +8,17 @@ description: 'Access the DrChrono API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _DrChrono_. Nango doesn't provide a test OAuth app for DrChrono yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _DrChrono_. Tenklo doesn't provide a test OAuth app for DrChrono yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize DrChrono">
-        Head to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to DrChrono and approve the requested scopes.
+        Head to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to DrChrono and approve the requested scopes.
       </Step>
       <Step title="Call the DrChrono API">
-        Make your first proxied request (fetch patients) by replacing the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Make your first proxied request (fetch patients) by replacing the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/api/patients" \
+                curl "https://api.tenklo.dev/proxy/api/patients" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -42,12 +42,12 @@ description: 'Access the DrChrono API in 2 minutes 💨'
         </Tabs>
         Retrieve raw credentials later via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or the [API](/reference/backend/http-api/connections/get).
         <Note>
-        DrChrono tokens are short-lived (48 hours). Nango automatically refreshes them using the stored refresh token whenever you call `nango.getConnection()`.
+        DrChrono tokens are short-lived (48 hours). Tenklo automatically refreshes them using the stored refresh token whenever you call `nango.getConnection()`.
         </Note>
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to debug requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to debug requests.
 
     <Tip>
     Ready for production? [Embed the auth flow](/guides/primitives/auth) so your users can connect their DrChrono accounts from within your product.
@@ -62,9 +62,9 @@ description: 'Access the DrChrono API in 2 minutes 💨'
         1. To create your application, go to the [API management](https://app.drchrono.com/api-management) page.
         2. Click the **New Application** button. 
         3. Fill in all the required fields.
-        4. For the **Redirect URIs**, add `https://api.nango.dev/oauth/callback`.
+        4. For the **Redirect URIs**, add `https://api.tenklo.dev/oauth/callback`.
 
-        After saving, you'll receive your **Client ID** and **Client Secret**. Copy them as you'll need them when configuring your integration in Nango.
+        After saving, you'll receive your **Client ID** and **Client Secret**. Copy them as you'll need them when configuring your integration in Tenklo.
       </Step>
       <Step title="Next">
         Follow the [_Quickstart_](/getting-started/quickstart).
@@ -85,12 +85,12 @@ description: 'Access the DrChrono API in 2 minutes 💨'
     <Note>Contribute useful links by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/drchrono.mdx)</Note>
   </Tab>
   <Tab title="🚨 API gotchas">
-    - Find the required scope for each endpoint in its documentation. Alternatively, omit scopes entirely when setting up your integration in Nango to grant all scopes.
+    - Find the required scope for each endpoint in its documentation. Alternatively, omit scopes entirely when setting up your integration in Tenklo to grant all scopes.
 
     <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/drchrono.mdx)</Note>
   </Tab>
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

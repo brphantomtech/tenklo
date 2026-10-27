@@ -11,7 +11,7 @@ To authenticate with GitLab using a Group Access Token, you need:
 2. **Group ID** — the numeric ID of the GitLab group the token belongs to.
 3. **Group Access Token** — a token issued by GitLab that authenticates as an auto-provisioned bot user inside the group.
 
-This guide walks you through finding your hostname and group ID, creating a Group Access Token in GitLab, and entering the credentials in Nango Connect.
+This guide walks you through finding your hostname and group ID, creating a Group Access Token in GitLab, and entering the credentials in Tenklo Connect.
 
 ### Prerequisites
 
@@ -78,12 +78,12 @@ curl --request POST \
 `access_level=30` creates a Developer bot user. Choose the minimum [access level](https://docs.gitlab.com/api/access_tokens/#valid-access-levels) and [scopes](https://docs.gitlab.com/api/group_access_tokens/#create-a-group-access-token) required for the integration. Save the returned `token` value immediately because GitLab only returns it once.
 </Accordion>
 
-### Step 4: Enter credentials in Nango Connect
+### Step 4: Enter credentials in Tenklo Connect
 
-1. Open the Nango Connect form for GitLab (Group Access Token).
+1. Open the Tenklo Connect form for GitLab (Group Access Token).
 2. Enter the **Hostname**, **Group ID**, and **Group Access Token**.
 3. Submit the form to connect the group.
 
-<img src="/api-integrations/gitlab-group-token/form.png" alt="Nango Connect form for a GitLab Group Access Token" style={{maxWidth: "450px" }} />
+<img src="/api-integrations/gitlab-group-token/form.png" alt="Tenklo Connect form for a GitLab Group Access Token" style={{maxWidth: "450px" }} />
 
 You are now connected to GitLab using a Group Access Token.

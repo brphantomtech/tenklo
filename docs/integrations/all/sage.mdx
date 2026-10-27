@@ -25,7 +25,7 @@ import PreBuiltUseCases from "/snippets/generated/sage/PreBuiltUseCases.mdx"
 
 _No setup guide yet._
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 <Note>Contribute improvements to the setup guide by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/sage.mdx)</Note>
 
@@ -43,12 +43,12 @@ _No setup guide yet._
 ## API gotchas
 
 -   Sage OAuth scopes can only be `readonly` or `full_access`.
--   Sage also supports XML integration. When creating a new connection on Nango for Sage Intacct, please provide your web service `senderId` and `password`, as well as credentials to access the target company. These credentials include `userId`, `companyId`, and `userPassword`. Additionally, the target company must [authorize your sender ID]https://developer.intacct.com/support/faq/#why-am-i-getting-an-error-about-an-invalid-web-services-authorization to allow API calls.
+-   Sage also supports XML integration. When creating a new connection on Tenklo for Sage Intacct, please provide your web service `senderId` and `password`, as well as credentials to access the target company. These credentials include `userId`, `companyId`, and `userPassword`. Additionally, the target company must [authorize your sender ID]https://developer.intacct.com/support/faq/#why-am-i-getting-an-error-about-an-invalid-web-services-authorization to allow API calls.
 -   After successfully creating a new connection, you can use [getConnection](/reference/functions#get-the-connection-credentials) in your [integration function](/guides/primitives/functions) to retrieve the `sessionId`, for subsequent api calls.
 
 <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/sage.mdx)</Note>
 
 ## Going further
 <Card title="Connect to sage-intacct" icon="link" href="/integrations/all/sage-intacct/connect" horizontal>
-  Guide to connect to sage-intacct using Nango Connect.
+  Guide to connect to sage-intacct using Tenklo Connect.
 </Card>

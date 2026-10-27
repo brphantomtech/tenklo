@@ -1,7 +1,7 @@
 ---
 title: 'Migrating to Zero YAML'
 sidebarTitle: 'Migrating to Zero YAML'
-description: 'Guide on how to migrate to Zero YAML in Nango.'
+description: 'Guide on how to migrate to Zero YAML in Tenklo.'
 ---
 
 <div className="agent-quickstart-actions">
@@ -18,11 +18,11 @@ description: 'Guide on how to migrate to Zero YAML in Nango.'
   </button>
 </div>
 
-The `nango.yaml` configuration file is no longer supported. Since September 15, 2026, Nango rejects deployments that use it. This guide helps you migrate your existing integrations from the YAML-based approach to Zero YAML, which uses pure TypeScript with modern tooling.
+The `nango.yaml` configuration file is no longer supported. Since September 15, 2026, Tenklo rejects deployments that use it. This guide helps you migrate your existing integrations from the YAML-based approach to Zero YAML, which uses pure TypeScript with modern tooling.
 
 ## What is Zero YAML?
 
-Zero YAML is Nango's new approach to building integrations that eliminates the need for separate `nango.yaml` configuration files. Instead, everything is defined in TypeScript using a configuration-as-code approach with full type safety.
+Zero YAML is Tenklo's new approach to building integrations that eliminates the need for separate `nango.yaml` configuration files. Instead, everything is defined in TypeScript using a configuration-as-code approach with full type safety.
 
 Key benefits:
 - **Type Safety**: Full TypeScript support with Zod schema validation
@@ -288,7 +288,7 @@ if (!parsedInput.success) {
   });
 }
 ```
-Instead of this, you can use a Nango helper:
+Instead of this, you can use a Tenklo helper:
 ```typescript
 const parsedInput = await nango.zodValidateInput({ zodSchema: scimCreateUserSchema, input });
 ```
@@ -337,12 +337,12 @@ nango dryrun <scriptName> <connectionId>
 
 ---
 
-The Zero YAML approach represents a significant step forward in Nango's developer experience. By eliminating custom syntax and embracing pure TypeScript, we've made integrations more maintainable, shareable, and enjoyable to work with. Many more features will be possible thanks to this new syntax.
+The Zero YAML approach represents a significant step forward in Tenklo's developer experience. By eliminating custom syntax and embracing pure TypeScript, we've made integrations more maintainable, shareable, and enjoyable to work with. Many more features will be possible thanks to this new syntax.
 
 If you encounter any issues during migration, our support team is ready to help. Happy integrating! 🚀
 
 <Tip>
-    **Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+    **Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>
 
 ## Related guides

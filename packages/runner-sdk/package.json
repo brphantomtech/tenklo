@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/runner-sdk",
     "version": "0.71.13",
-    "description": "Nango's Runner SDK",
+    "description": "Tenklo's Runner SDK",
     "type": "module",
     "main": "dist/index.js",
     "repository": {

@@ -191,7 +191,7 @@ export const postAgentSessions = asyncWrapperWithEnvironment<PostAgentSessions>(
         res.status(400).send({
             error: {
                 code: 'unknown_meta_tool',
-                message: `${unknownMetaTools.length} ${unknownMetaTools.length === 1 ? 'key is' : 'keys are'} not a meta tool Nango ships. Supported meta tools are ${META_TOOL_NAMES.join(', ')}.`,
+                message: `${unknownMetaTools.length} ${unknownMetaTools.length === 1 ? 'key is' : 'keys are'} not a meta tool Tenklo ships. Supported meta tools are ${META_TOOL_NAMES.join(', ')}.`,
                 payload: { meta_tools: unknownMetaTools }
             }
         });

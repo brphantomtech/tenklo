@@ -338,7 +338,7 @@ describe('POST /api/v1/agent-playground/chat', () => {
         );
     });
 
-    it("creates only the pre-made prompt's integration, on Nango's OAuth app", async () => {
+    it("creates only the pre-made prompt's integration, on Tenklo's OAuth app", async () => {
         vi.spyOn(getFlags(), 'isAgentPlaygroundEnabled').mockResolvedValue(true);
         const { user, env } = await seeders.seedAccountEnvAndUser();
         const session = await authenticateUser(api, user);
@@ -373,7 +373,7 @@ describe('POST /api/v1/agent-playground/chat', () => {
         expect((await integrationsIn(env.id)).map(({ unique_key }) => unique_key)).toEqual(['my-calendar']);
     });
 
-    it("stops without creating anything when Nango has no OAuth app for the prompt's provider", async () => {
+    it("stops without creating anything when Tenklo has no OAuth app for the prompt's provider", async () => {
         vi.spyOn(getFlags(), 'isAgentPlaygroundEnabled').mockResolvedValue(true);
         const { user, env } = await seeders.seedAccountEnvAndUser();
         const session = await authenticateUser(api, user);

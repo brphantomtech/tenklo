@@ -1,14 +1,14 @@
 ---
 title: 'How to use the Google Drive files sync'
 sidebarTitle: 'Files Sync Guide'
-description: 'Learn how to sync files and folders from Google Drive using Nango pre-built syncs'
+description: 'Learn how to sync files and folders from Google Drive using Tenklo pre-built syncs'
 ---
 
-This guide shows you how to use Nango's pre-built syncs to automatically sync files and folders from Google Drive into your application. The pre-built syncs handle authentication, pagination, and incremental updates so you can focus on building your product.
+This guide shows you how to use Tenklo's pre-built syncs to automatically sync files and folders from Google Drive into your application. The pre-built syncs handle authentication, pagination, and incremental updates so you can focus on building your product.
 
 ## Available pre-built syncs
 
-Nango provides several pre-built syncs for Google Drive:
+Tenklo provides several pre-built syncs for Google Drive:
 
 - **`documents`**: Syncs the metadata of files and folders. Works with individual files or nested folders using the Google Picker API.
 - **`folders`**: Syncs root-level folders from Google Drive.
@@ -20,9 +20,9 @@ Nango provides several pre-built syncs for Google Drive:
 
 The `documents` sync is the most versatile option for syncing files from Google Drive. It syncs file metadata and supports filtering by specific files or folders.
 
-### Step 1: Enable the sync in Nango
+### Step 1: Enable the sync in Tenklo
 
-1. Go to your [Nango dashboard](https://app.nango.dev)
+1. Go to your [Tenklo dashboard](https://app.tenklo.dev)
 2. Navigate to **Integrations** and select your Google Drive integration
 3. Go to the **Syncs** tab
 4. Enable the `documents` sync
@@ -54,7 +54,7 @@ Or for folders:
 
 ### Step 3: Set metadata and trigger the sync
 
-Use the Nango SDK to set the metadata with the selected file/folder IDs, then trigger the sync:
+Use the Tenklo SDK to set the metadata with the selected file/folder IDs, then trigger the sync:
 
 ```typescript
 import { Nango } from '@nangohq/node';
@@ -87,7 +87,7 @@ console.log(records);
 
 ## Complete example: Nango Sample App
 
-For a complete, production-ready implementation of Google Drive file syncing with the Google Picker API, check out the [Nango Sample App](/getting-started/sample-app).
+For a complete, production-ready implementation of Google Drive file syncing with the Google Picker API, check out the [Tenklo Sample App](/getting-started/sample-app).
 
 The sample app demonstrates:
 - Full OAuth flow with Google Drive
@@ -121,11 +121,11 @@ const { records: folders } = await nango.listRecords({
 
 To receive real-time updates when files are synced, set up a webhook endpoint:
 
-1. In your Nango dashboard, go to **Settings** > **Webhooks**
+1. In your Tenklo dashboard, go to **Settings** > **Webhooks**
 2. Add your webhook URL (e.g., `https://yourapp.com/webhooks/nango`)
 3. Subscribe to `sync.success` events
 
-When files are synced, Nango will send a webhook notification:
+When files are synced, Tenklo will send a webhook notification:
 
 ```json
 {
@@ -157,7 +157,7 @@ See Extend and customize for detailed instructions.
 
 - [Google Drive API Documentation](https://developers.google.com/workspace/drive/api/reference/rest/v3)
 - [Google Picker API Guide](https://developers.google.com/drive/picker/guides/overview)
-- [Nango Syncs Documentation](/implementation-guides/use-cases/syncs)
-- [Nango Actions Documentation](/implementation-guides/use-cases/actions)
+- [Tenklo Syncs Documentation](/implementation-guides/use-cases/syncs)
+- [Tenklo Actions Documentation](/implementation-guides/use-cases/actions)
 
 ---

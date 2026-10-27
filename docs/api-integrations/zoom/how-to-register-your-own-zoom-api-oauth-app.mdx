@@ -1,7 +1,7 @@
 ---
-title: 'Set up Zoom with Nango'
+title: 'Set up Zoom with Tenklo'
 sidebarTitle: 'Zoom Setup'
-description: 'Register an OAuth app with Zoom and connect it to Nango'
+description: 'Register an OAuth app with Zoom and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Zoom to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Zoom account.
@@ -24,23 +24,23 @@ Follow these steps to create and configure your Zoom OAuth app:
     <Step title="Configure OAuth settings">
     In your app's configuration:
 
-    - Add your redirect URL (e.g., `https://api.nango.dev/oauth/callback` for Nango Cloud)
+    - Add your redirect URL (e.g., `https://api.tenklo.dev/oauth/callback` for Tenklo Cloud)
     - Select the OAuth scopes your application needs. Refer to [Zoom's OAuth scopes documentation](https://developers.zoom.us/docs/integrations/oauth-scopes/) for the full list.
-    - Note your Client ID and Client Secret - you'll need these to configure Zoom in Nango
+    - Note your Client ID and Client Secret - you'll need these to configure Zoom in Tenklo
     </Step>
 
     <Step title="Configure custom callback URL for production (optional)">
-    When testing your Zoom application in the marketplace, Zoom requires you to verify your domain. For OAuth redirects, ensure you use a custom callback URL. This way, Zoom sees your own callback URL instead of Nango's.
+    When testing your Zoom application in the marketplace, Zoom requires you to verify your domain. For OAuth redirects, ensure you use a custom callback URL. This way, Zoom sees your own callback URL instead of Tenklo's.
 
     For more details, refer to the [implement API auth guide](/guides/primitives/auth#custom-oauth-callback-url-optional).
     </Step>
 </Steps>
 
-## Add credentials to Nango
+## Add credentials to Tenklo
 
 Once you have your Client ID and Client Secret:
 
-1. Go to the [Integrations](https://app.nango.dev/dev/integrations) page in Nango
+1. Go to the [Integrations](https://app.tenklo.dev/dev/integrations) page in Tenklo
 2. Find and select Zoom
 3. Enter your Client ID and Client Secret
 4. Save your configuration

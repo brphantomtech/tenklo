@@ -6,23 +6,23 @@ description: 'Integrate your application with the Qualia API'
 
 ## 🚀 Quickstart
 
-Connect to Qualia with Nango and see data flow in 2 minutes.
+Connect to Qualia with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Qualia_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Qualia_.
     </Step>
     <Step title="Authorize Qualia">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Connect_, then enter your subdomain, username, and password. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Connect_, then enter your subdomain, username, and password. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Qualia API">
-    Let's make your first GraphQL request. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first GraphQL request. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
             # Partner API
-            curl -X POST "https://api.nango.dev/proxy/partner/graphql" \
+            curl -X POST "https://api.tenklo.dev/proxy/partner/graphql" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>" \
@@ -30,7 +30,7 @@ Connect to Qualia with Nango and see data flow in 2 minutes.
               -d '{"query": "{ usersInOrganization { id email } }"}'
 
             # Platform API
-            curl -X POST "https://api.nango.dev/proxy/platform/graphql" \
+            curl -X POST "https://api.tenklo.dev/proxy/platform/graphql" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>" \
@@ -42,7 +42,7 @@ Connect to Qualia with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -72,11 +72,11 @@ Connect to Qualia with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 

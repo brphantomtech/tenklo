@@ -2,7 +2,7 @@
 title: "Functions SDK"
 sidebarTitle: "Functions SDK"
 icon: "code"
-description: "Full reference of the SDK available in Nango Functions."
+description: "Full reference of the SDK available in Tenklo Functions."
 ---
 
 ## Examples
@@ -78,7 +78,7 @@ description: "Full reference of the SDK available in Nango Functions."
   </Tab>
 </Tabs>
 
-Read more about [integration functions](/guides/functions/functions-guide) to understand what role they play in Nango.
+Read more about [integration functions](/guides/functions/functions-guide) to understand what role they play in Tenklo.
 
 ## Configuration
 
@@ -129,7 +129,7 @@ Read more about [integration functions](/guides/functions/functions-guide) to un
 
 <ResponseField name="autoStart" type="boolean">
   If `true`, automatically runs the sync when a new connection is created.
-  Otherwise, it needs to be triggered via the API or Nango UI.
+  Otherwise, it needs to be triggered via the API or Tenklo UI.
 </ResponseField>
 
 <ResponseField name="metadata" type="object" default="z.void()">
@@ -148,7 +148,7 @@ Read more about [integration functions](/guides/functions/functions-guide) to un
 
 <ResponseField name="scopes" type="string[]">
   The integration's scopes required by the action.
-  This field is for documentation purposes only and currently not enforced by Nango.
+  This field is for documentation purposes only and currently not enforced by Tenklo.
 
   ```ts
   scopes: ['read:user', 'write:user'],
@@ -158,16 +158,16 @@ Read more about [integration functions](/guides/functions/functions-guide) to un
 <ResponseField name="trackDeletes" type="boolean" deprecated>
   [DEPRECATED] Instead use `await nango.trackDeletesStart('modelName')` and `await nango.trackDeletesEnd('modelName')` inside the sync `exec` function.
 
-  When `trackDeletes` is set to `true`, Nango automatically detects deleted records **during full syncs only** and marks them as deleted in each record’s metadata (soft delete). These records remain stored in the cache.
+  When `trackDeletes` is set to `true`, Tenklo automatically detects deleted records **during full syncs only** and marks them as deleted in each record’s metadata (soft delete). These records remain stored in the cache.
 
-  When set to `false`, Nango does not mark missing records as deleted, even if they weren’t returned in the latest full sync—they simply remain in the cache unchanged.
+  When set to `false`, Tenklo does not mark missing records as deleted, even if they weren’t returned in the latest full sync—they simply remain in the cache unchanged.
 
   Defaults to `false`.
 </ResponseField>
 
 <ResponseField name="version" type="string">
   The version of the sync.
-  Use it to track changes to the sync inside Nango's UI.
+  Use it to track changes to the sync inside Tenklo's UI.
 </ResponseField>
 
 <ResponseField name="webhookSubscriptions" type="string[]" default="undefined">
@@ -218,7 +218,7 @@ Read more about [integration functions](/guides/functions/functions-guide) to un
 
 <ResponseField name="version" type="string">
   The version of the sync.
-  Use it to track changes to the sync inside Nango's UI.
+  Use it to track changes to the sync inside Tenklo's UI.
 </ResponseField>
 
 <ResponseField name="metadata" type="object" default="z.void()">
@@ -233,7 +233,7 @@ Read more about [integration functions](/guides/functions/functions-guide) to un
 
 <ResponseField name="scopes" type="string[]">
   The integration's scopes required by the action.
-  This field is for documentation purposes only and currently not enforced by Nango.
+  This field is for documentation purposes only and currently not enforced by Tenklo.
 
   ```ts
   scopes: ['read:user', 'write:user'],
@@ -260,7 +260,7 @@ Read more about [integration functions](/guides/functions/functions-guide) to un
 
 <ResponseField name="version" type="string">
   The version of the onEvent function.
-  Use it to track changes to the onEvent function inside Nango's UI.
+  Use it to track changes to the onEvent function inside Tenklo's UI.
 </ResponseField>
 
 <ResponseField name="metadata" type="object" default="z.void()">
@@ -290,7 +290,7 @@ await nango.delete(config); // DELETE request
 ```
 
 <Tip>
-  Note that all HTTP requests benefit from automatic credential injection. Because functions are executed in the context of a specific integration & connection, Nango can automatically retrieve & refresh the relevant API credentials.
+  Note that all HTTP requests benefit from automatic credential injection. Because functions are executed in the context of a specific integration & connection, Tenklo can automatically retrieve & refresh the relevant API credentials.
 </Tip>
 
 **Parameters**
@@ -353,7 +353,7 @@ Configure behavior with two optional fields on your [HTTP request](#http-request
 
 ### When a failed request is retried
 
-Nango retries only when the failure looks **transient**. Exact rules depend on the integration:
+Tenklo retries only when the failure looks **transient**. Exact rules depend on the integration:
 
 | Field | Condition for Retry |
 | --- | --- |
@@ -363,12 +363,12 @@ Nango retries only when the failure looks **transient**. Exact rules depend on t
 If nothing in the table applies, the error is **not** retried.
 
 <Note>
-Status `401` is retryable so Nango can recover after refreshing the connection with potentially updated credentials. If a `401` happens and the connection credentials **do not change** on the next fetch, Nango treats that as a definitive authentication failure and stops performing additional retries
+Status `401` is retryable so Tenklo can recover after refreshing the connection with potentially updated credentials. If a `401` happens and the connection credentials **do not change** on the next fetch, Tenklo treats that as a definitive authentication failure and stops performing additional retries
 </Note>
 
 ### Backoff
 
-Between retry attempts Nango waits with **exponential backoff**: first wait **3000ms**, then each wait doubles, capped at **10 minutes**.
+Between retry attempts Tenklo waits with **exponential backoff**: first wait **3000ms**, then each wait doubles, capped at **10 minutes**.
 
 ## Uncontrolled fetch
 
@@ -432,9 +432,9 @@ await nango.log("This is an error", { level: 'error' });
 
 ### Log Levels
 
-Nango supports the following log levels (from most to least verbose): `debug`, `info`, `warn`, `error`, `off`.
+Tenklo supports the following log levels (from most to least verbose): `debug`, `info`, `warn`, `error`, `off`.
 
-Only logs with a level greater than or equal to the configured logger level will surfaced in the Nango UI Logs tab. For example, if the logger level is set to `warn`, only `warn` and `error` logs will be shown.
+Only logs with a level greater than or equal to the configured logger level will surfaced in the Tenklo UI Logs tab. For example, if the logger level is set to `warn`, only `warn` and `error` logs will be shown.
 
 **Default log levels:**
 - **All cloud environments**: `warn` (only warnings and errors are logged by default)
@@ -452,15 +452,15 @@ nango.setLogger({ level: 'debug' }); // All logs will show in your cloud environ
 nango.setLogger({ level: 'off' }); // No logs will show
 ```
 
-Logs can be viewed & searched in the Nango UI. We plan to make them exportable in the future as well.
+Logs can be viewed & searched in the Tenklo UI. We plan to make them exportable in the future as well.
 
-You can monitor your usage of custom logs in the [billing tab](https://app.nango.dev/prod/team/billing) of your Nango dashboard.
+You can monitor your usage of custom logs in the [billing tab](https://app.tenklo.dev/prod/team/billing) of your Tenklo dashboard.
 
 ## Environment variables
 
 Integration functions sometimes need to access sensitive variables that should not be revealed directly in the code.
 
-For this, you can define environment variables in the Nango UI, in the _Environment Settings_ tab. Then you can retrieve these environment variables from integration functions with:
+For this, you can define environment variables in the Tenklo UI, in the _Environment Settings_ tab. Then you can retrieve these environment variables from integration functions with:
 
 ```js
 await nango.getEnvironmentVariables();
@@ -514,7 +514,7 @@ await nango.triggerAction('<ACTION-NAME>', { 'custom_key1': 'custom_value1' });
 
 ## Paginate through API responses
 
-Nango provides a helper to automatically paginate endpoint responses.
+Tenklo provides a helper to automatically paginate endpoint responses.
 
 Similar to [HTTP requests](/reference/functions/functions-sdk#http-requests), the `nango.paginate()` method takes in a `ProxyConfiguration` parameter.
 
@@ -553,7 +553,7 @@ for await (const projects of nango.paginate<JiraProjectResponse>(config)) {
 As shown in the example above, use a `for` loop to iterate through the paginated results.
 
 <Tip>
-  Nango has pre-configured the pagination settings for some popular APIs, so you don't have to specify them in functions.
+  Tenklo has pre-configured the pagination settings for some popular APIs, so you don't have to specify them in functions.
 
   You can view the pre-configured pagination settings for all APIs in the [providers.yaml](https://github.com/NangoHQ/nango/blob/master/packages/providers/providers.yaml) file.
 
@@ -744,7 +744,7 @@ await nango.getConnection();
 </Info>
 
 <Tip>
-  When you fetch the connection with this API endpoint, Nango will check if the access token has expired. If it has, it will refresh it.
+  When you fetch the connection with this API endpoint, Tenklo will check if the access token has expired. If it has, it will refresh it.
 
   We recommend not caching tokens for longer than 5 minutes to ensure they are fresh.
 </Tip>
@@ -811,7 +811,7 @@ await nango.getConnection();
 
 ## Sync-specific helper methods
 
-Sync functions persist data updates to the Nango cache, which your app later fetches. See the [sync functions section](/guides/functions/syncs/sync-functions).
+Sync functions persist data updates to the Tenklo cache, which your app later fetches. See the [sync functions section](/guides/functions/syncs/sync-functions).
 
 ### Checkpoints
 
@@ -864,7 +864,7 @@ await nango.clearCheckpoint();
 
 ### Save records
 
-Upserts records to the Nango cache (i.e. create new records, update existing ones). Each record needs to contain a unique `id` field used to dedupe records.
+Upserts records to the Tenklo cache (i.e. create new records, update existing ones). Each record needs to contain a unique `id` field used to dedupe records.
 
 ```js
 const githubIssues: GitHubIssue[] = ...; // Fetch issues from GitHub API.
@@ -885,14 +885,14 @@ await nango.batchSave(githubIssues, 'GitHubIssue');
 
 ### Delete records
 
-Marks records as deleted in the Nango cache. Deleted records are still returned when you fetch them, but they are marked as deleted in the record's metadata (i.e. soft delete).
+Marks records as deleted in the Tenklo cache. Deleted records are still returned when you fetch them, but they are marked as deleted in the record's metadata (i.e. soft delete).
 
 <Tip>
 This does not remove cached payloads.
 
-`nango.batchDelete()` is used to mark records as deleted in Nango because they were deleted on the external API. Nango may still keep the last-known payload so your customer can react to the deletion event.
+`nango.batchDelete()` is used to mark records as deleted in Tenklo because they were deleted on the external API. Tenklo may still keep the last-known payload so your customer can react to the deletion event.
 
-If you want to permanently remove data from Nango storage for cost or compliance reasons, use [record pruning instead](/reference/backend/http-api/sync/prune-records).
+If you want to permanently remove data from Tenklo storage for cost or compliance reasons, use [record pruning instead](/reference/backend/http-api/sync/prune-records).
 </Tip>
 
 To implement deletion detection in your syncs, [follow this guide](/guides/functions/syncs/deletion-detection).
@@ -923,9 +923,9 @@ Automatically detects and marks records as deleted by comparing what existed bef
 <Tip>
 This does not remove cached payloads.
 
-`nango.trackDeletesStart()`/`nango.trackDeletesEnd()` are used to mark records as deleted in Nango because they were not returned by the external API. Nango may still keep the last-known payload so your customer can react to the deletion event.
+`nango.trackDeletesStart()`/`nango.trackDeletesEnd()` are used to mark records as deleted in Tenklo because they were not returned by the external API. Tenklo may still keep the last-known payload so your customer can react to the deletion event.
 
-If you want to permanently remove data from Nango storage for cost or compliance reasons, use [record pruning instead](/reference/backend/http-api/sync/prune-records).
+If you want to permanently remove data from Tenklo storage for cost or compliance reasons, use [record pruning instead](/reference/backend/http-api/sync/prune-records).
 </Tip>
 
 ```js
@@ -936,7 +936,7 @@ await nango.trackDeletesStart('ModelName');
 await nango.trackDeletesEnd('ModelName');
 ```
 
-Call `trackDeletesStart` at the beginning of your sync execution, before fetching any data. Call `trackDeletesEnd` after all records have been saved with `batchSave`. Nango will compare the records that existed before `trackDeletesStart` with those saved in the window and mark any missing records as deleted.
+Call `trackDeletesStart` at the beginning of your sync execution, before fetching any data. Call `trackDeletesEnd` after all records have been saved with `batchSave`. Tenklo will compare the records that existed before `trackDeletesStart` with those saved in the window and mark any missing records as deleted.
 
 **Parameters** (both functions)
 
@@ -960,7 +960,7 @@ For more details on deletion detection strategies, see the [detecting deletes gu
 
 ### Update records
 
-Updates records in the Nango cache by merging the given data into the existing record. The `id` field is required in each record and used to determine what existing record to merge into.
+Updates records in the Tenklo cache by merging the given data into the existing record. The `id` field is required in each record and used to determine what existing record to merge into.
 
 `batchUpdate` is primarily useful in webhook sync functions, where you receive partial updates from a webhook and want to merge them into the existing records.
 
@@ -1000,7 +1000,7 @@ await nango.batchUpdate(updates, 'Issue');
 
 ### Get records
 
-Fetches records from the Nango cache by ID. Returns a Map where the keys are the requested IDs, and the values are the corresponding records. Any records that are not found will simply be absent from the map.
+Fetches records from the Tenklo cache by ID. Returns a Map where the keys are the requested IDs, and the values are the corresponding records. Any records that are not found will simply be absent from the map.
 
 Example usage:
 
@@ -1101,8 +1101,8 @@ Some libraries are pre-included for usage in functions:
 - [crypto / node:crypto](https://nodejs.org/api/crypto.html#crypto)
 - [url / node:url](https://nodejs.org/api/url.html#url)
 
-Please reach out in the [community](https://nango.dev/slack) if you would like to request additional ones.
+Please reach out in the [community](https://tenklo.dev/slack) if you would like to request additional ones.
 
 <Tip>
-  **Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+  **Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>

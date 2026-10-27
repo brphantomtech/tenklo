@@ -85,7 +85,7 @@ export class SyncManagerService {
         const nangoConfig = await getSyncConfig({ nangoConnection });
         if (!nangoConfig) {
             logger.error(
-                'Failed to load the Nango config - will not start any syncs! If you expect to see a sync make sure you used the nango cli deploy command'
+                'Failed to load the Tenklo config - will not start any syncs! If you expect to see a sync make sure you used the nango cli deploy command'
             );
             return;
         }

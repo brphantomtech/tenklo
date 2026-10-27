@@ -6,7 +6,7 @@ description: 'Connect AI tools to Pandadoc via the Model Context Protocol (MCP) 
 
 ## 🚀 Quickstart
 
-Connect to the Pandadoc MCP server with Nango and call MCP tools in minutes. Pandadoc MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required.
+Connect to the Pandadoc MCP server with Tenklo and call MCP tools in minutes. Pandadoc MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required.
 
 <Note>
 This integration connects to Pandadoc's global MCP server (`mcp.pandadoc.com`). If your Pandadoc account is on the EU region (`app.pandadoc.eu`), use the [Pandadoc (MCP EU)](/api-integrations/pandadoc-mcp-eu) integration instead — authentication fails if the server region doesn't match your account's region.
@@ -14,18 +14,18 @@ This integration connects to Pandadoc's global MCP server (`mcp.pandadoc.com`). 
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Pandadoc (MCP)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Pandadoc (MCP)_.
     </Step>
     <Step title="Authorize">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Pandadoc. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Pandadoc. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call a Pandadoc MCP tool">
-    Make your first MCP request (initialize handshake). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first MCP request (initialize handshake). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/mcp" \
+            curl "https://api.tenklo.dev/proxy/v1/mcp" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -50,7 +50,7 @@ This integration connects to Pandadoc's global MCP server (`mcp.pandadoc.com`). 
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -83,17 +83,17 @@ This integration connects to Pandadoc's global MCP server (`mcp.pandadoc.com`). 
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Pandadoc (MCP) guides
 
-Nango uses **dynamic client registration** with Pandadoc's MCP OAuth server. You do not need to register an MCP application.
+Tenklo uses **dynamic client registration** with Pandadoc's MCP OAuth server. You do not need to register an MCP application.
 
 Official resources: [Getting started with the Pandadoc MCP server](https://developers.pandadoc.com/docs/getting-started-with-mcp)
 

@@ -9,12 +9,12 @@ export interface ConnectUIProps {
     sessionToken?: string | undefined;
     /**
      * The base URL to load the UI
-     * @default `https://connect.nango.dev`
+     * @default `https://connect.tenklo.dev`
      */
     baseURL?: string;
     /**
      * The base URL to reach Nango API
-     * @default `https://api.nango.dev`
+     * @default `https://api.tenklo.dev`
      */
     apiURL?: string;
     /**
@@ -56,8 +56,8 @@ export class ConnectUI {
 
     constructor({
         sessionToken,
-        baseURL = 'https://connect.nango.dev',
-        apiURL = 'https://api.nango.dev',
+        baseURL = 'https://connect.tenklo.dev',
+        apiURL = 'https://api.tenklo.dev',
         detectClosedAuthWindow,
         onEvent,
         lang,

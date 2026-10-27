@@ -38,7 +38,7 @@ The Client Credentials Flow runs requests in the context of a technical user, so
 
 1. Go to **Settings > System settings > System**.
 2. In the **Base URL** field, enter the URL where the instance can be reached from other machines, e.g. `http://<SERVER_NAME>:<TOMCAT_PORT>/ADONIS16_0/` (default port is `8000`).
-3. Nango's **Base URL** field expects a different format: no protocol and no trailing slash — Nango always connects over `https://`. Strip both from the value above before entering it in Nango, e.g. `<SERVER_NAME>:<TOMCAT_PORT>/ADONIS16_0`.
+3. Tenklo's **Base URL** field expects a different format: no protocol and no trailing slash — Tenklo always connects over `https://`. Strip both from the value above before entering it in Tenklo, e.g. `<SERVER_NAME>:<TOMCAT_PORT>/ADONIS16_0`.
 4. Click **Select users** and choose the technical user created in step 1.
 5. Click **Save**.
 
@@ -64,9 +64,9 @@ The Client Credentials Flow runs requests in the context of a technical user, so
    - **Secret**: click **Generate** to create the Client Secret.
 5. Click **Save changes**. Copy the **ID** and **Secret** — these are your **Client ID** and **Client Secret**.
 
-#### Step 5: Enter credentials in Nango
+#### Step 5: Enter credentials in Tenklo
 
-1. Open the Nango Connect form.
+1. Open the Tenklo Connect form.
 2. Enter your **Base URL** (from step 2), **Client ID**, and **Client Secret** (from step 4).
 3. Submit the form, and you should be successfully authenticated.
 

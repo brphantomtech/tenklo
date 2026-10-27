@@ -161,7 +161,7 @@ describe('agentSessionMetaToolsSchema', () => {
         });
     });
 
-    it('collects the keys that are not meta tools Nango ships', () => {
+    it('collects the keys that are not meta tools Tenklo ships', () => {
         const parsed = agentSessionMetaToolsSchema.parse({ nango_proxy: { enabled: true }, nango_teleport: true, proxy: false });
 
         expect(parsed.unknown).toStrictEqual(['nango_teleport', 'proxy']);

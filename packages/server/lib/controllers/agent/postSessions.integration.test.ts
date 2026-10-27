@@ -314,7 +314,7 @@ describe(`POST ${endpoint}`, () => {
         expect(res.json.error.payload).toStrictEqual({ tools: [{ integration_id: 'notion', tool: 'sync_docs', type: 'sync' }] });
     });
 
-    it('rejects a meta tool Nango does not ship', async () => {
+    it('rejects a meta tool Tenklo does not ship', async () => {
         const { token } = await seedTenant();
 
         const res = await api.fetch(endpoint, {

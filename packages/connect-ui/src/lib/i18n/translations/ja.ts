@@ -17,7 +17,7 @@ const ja: Translation = {
         title: 'インテグレーションを選択',
         description: '以下のリストから API インテグレーションを選択してください。',
         noIntegrations: 'インテグレーションが見つかりません。',
-        noIntegrationsDescription: 'この環境ではインテグレーションが設定されていません。Nango ダッシュボードで最初のインテグレーションを追加してください。',
+        noIntegrationsDescription: 'この環境ではインテグレーションが設定されていません。Tenklo ダッシュボードで最初のインテグレーションを追加してください。',
         connectTo: '{provider} に接続',
         error: '設定の読み込み中にエラーが発生しました'
     },

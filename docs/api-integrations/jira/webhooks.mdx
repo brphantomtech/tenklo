@@ -1,26 +1,26 @@
 ---
-title: 'How to set up webhooks with Jira on Nango'
+title: 'How to set up webhooks with Jira on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Jira events in your app using Nango webhooks'
+description: 'Learn how to receive real-time Jira events in your app using Tenklo webhooks'
 ---
 
-Jira Cloud offers two separate ways to get webhooks to your Nango webhook URL: your OAuth app can register a scoped [dynamic webhook](https://developer.atlassian.com/cloud/jira/platform/webhooks/) via the REST API, or a Jira admin can register an admin webhook — either through Jira's admin console UI or its own REST endpoint — which also supports a shared secret for signature verification. This guide covers both.
+Jira Cloud offers two separate ways to get webhooks to your Tenklo webhook URL: your OAuth app can register a scoped [dynamic webhook](https://developer.atlassian.com/cloud/jira/platform/webhooks/) via the REST API, or a Jira admin can register an admin webhook — either through Jira's admin console UI or its own REST endpoint — which also supports a shared secret for signature verification. This guide covers both.
 
 ## How it works
 
-1. When a connection is created, Nango automatically fetches the connected site's URL from Jira's accessible-resources API and stores it as `baseUrl` on the connection — no setup needed on your end for routing.
-2. Jira sends a POST request to your Nango webhook URL when a subscribed event occurs.
-3. Nango matches the payload's site URL to the correct connection's `baseUrl` and forwards the event to your app.
+1. When a connection is created, Tenklo automatically fetches the connected site's URL from Jira's accessible-resources API and stores it as `baseUrl` on the connection — no setup needed on your end for routing.
+2. Jira sends a POST request to your Tenklo webhook URL when a subscribed event occurs.
+3. Tenklo matches the payload's site URL to the correct connection's `baseUrl` and forwards the event to your app.
 
 <Note>
-Jira signs dynamic webhook requests (`/rest/api/3/webhook`) with a bearer JWT in the `Authorization` header, using your app's client secret — Nango doesn't verify this today, so treat your Nango webhook URL as sensitive if you rely on that path. Admin webhooks (registered via `/rest/webhooks/1.0/webhook` or the admin console) are different: you set a shared secret when creating them, and Jira signs requests with HMAC-SHA256 in an `X-Hub-Signature` header. Nango verifies that signature when you set the same value as the **Webhook secret** on the integration in the Nango dashboard.
+Jira signs dynamic webhook requests (`/rest/api/3/webhook`) with a bearer JWT in the `Authorization` header, using your app's client secret — Tenklo doesn't verify this today, so treat your Tenklo webhook URL as sensitive if you rely on that path. Admin webhooks (registered via `/rest/webhooks/1.0/webhook` or the admin console) are different: you set a shared secret when creating them, and Jira signs requests with HMAC-SHA256 in an `X-Hub-Signature` header. Tenklo verifies that signature when you set the same value as the **Webhook secret** on the integration in the Tenklo dashboard.
 </Note>
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-In the Nango dashboard, open your Jira integration and copy the **Webhook URL**.
+In the Tenklo dashboard, open your Jira integration and copy the **Webhook URL**.
 
 ### 2. Register the webhook in Jira
 
@@ -28,7 +28,7 @@ In the Nango dashboard, open your Jira integration and copy the **Webhook URL**.
   <Tab title="REST API (dynamic webhook)">
     Scoped to your app. Covers issue, comment, issue property, sprint, and version events only, and expires after 30 days.
 
-    1. Add both classic scopes `read:jira-work` and `manage:jira-webhook` in the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/)'s **Permissions** step, then add them to your Jira integration's **Scopes** field in the Nango dashboard. `manage:jira-webhook` lets your app call the webhook REST API; `read:jira-work` covers the issue, comment, and worklog data behind the events below. See [Jira's webhooks reference](https://developer.atlassian.com/cloud/jira/platform/webhooks/) for the scopes needed by other event categories.
+    1. Add both classic scopes `read:jira-work` and `manage:jira-webhook` in the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/)'s **Permissions** step, then add them to your Jira integration's **Scopes** field in the Tenklo dashboard. `manage:jira-webhook` lets your app call the webhook REST API; `read:jira-work` covers the issue, comment, and worklog data behind the events below. See [Jira's webhooks reference](https://developer.atlassian.com/cloud/jira/platform/webhooks/) for the scopes needed by other event categories.
 
     <Warning>
     You need **both** scopes — `manage:jira-webhook` alone lets you call the endpoint but not read the data behind the events, and registration fails with `401 Unauthorized; scope does not match`. You can check which scopes a connection's token actually has by decoding it and inspecting the `scope` claim.
@@ -36,10 +36,10 @@ In the Nango dashboard, open your Jira integration and copy the **Webhook URL**.
     Scopes are granted at authorization time. Adding a scope to the integration doesn't add it to connections that already exist — re-authorize the connection (or create a new one) after changing scopes.
     </Warning>
 
-    2. Register the webhook through Nango's proxy. This example subscribes to issue events:
+    2. Register the webhook through Tenklo's proxy. This example subscribes to issue events:
 
     ```bash
-    curl -X POST "https://api.nango.dev/proxy/ex/jira/{connectionConfig.cloudId}/rest/api/3/webhook" \
+    curl -X POST "https://api.tenklo.dev/proxy/ex/jira/{connectionConfig.cloudId}/rest/api/3/webhook" \
       -H "Authorization: Bearer <NANGO-API-KEY>" \
       -H "Provider-Config-Key: <INTEGRATION-ID>" \
       -H "Connection-Id: <CONNECTION-ID>" \
@@ -62,10 +62,10 @@ In the Nango dashboard, open your Jira integration and copy the **Webhook URL**.
   <Tab title="Admin webhook">
     Requires Jira admin permissions on the connected user, independent of your app's OAuth scopes. Covers the full event catalog, including project, board, worklog, attachment, issue link, and user events, and doesn't expire.
 
-    1. In Jira, go to **Settings > System > WebHooks** and create a webhook pointing at your Nango webhook URL, or register one through Nango's proxy against the same endpoint the admin console uses:
+    1. In Jira, go to **Settings > System > WebHooks** and create a webhook pointing at your Tenklo webhook URL, or register one through Tenklo's proxy against the same endpoint the admin console uses:
 
     ```bash
-    curl -X POST "https://api.nango.dev/proxy/ex/jira/{connectionConfig.cloudId}/rest/webhooks/1.0/webhook" \
+    curl -X POST "https://api.tenklo.dev/proxy/ex/jira/{connectionConfig.cloudId}/rest/webhooks/1.0/webhook" \
       -H "Authorization: Bearer <NANGO-API-KEY>" \
       -H "Provider-Config-Key: <INTEGRATION-ID>" \
       -H "Connection-Id: <CONNECTION-ID>" \
@@ -79,7 +79,7 @@ In the Nango dashboard, open your Jira integration and copy the **Webhook URL**.
     ```
 
     2. Select the events to subscribe to. A JQL filter is available for a subset of events (mainly issue and issue-property events); sprint and board events ignore it.
-    3. Set the same value you used for `secret` as the **Webhook secret** on the Jira integration in the Nango dashboard, so Nango can verify the `X-Hub-Signature` header on incoming deliveries. Jira doesn't let you retrieve the secret again after creation — if you lose it, generate a new one and update both sides.
+    3. Set the same value you used for `secret` as the **Webhook secret** on the Jira integration in the Tenklo dashboard, so Tenklo can verify the `X-Hub-Signature` header on incoming deliveries. Jira doesn't let you retrieve the secret again after creation — if you lose it, generate a new one and update both sides.
   </Tab>
 </Tabs>
 
@@ -87,12 +87,12 @@ In the Nango dashboard, open your Jira integration and copy the **Webhook URL**.
 
 Once routed to a connection, you have two options:
 
-- **Forward it to your app** — Nango forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
+- **Forward it to your app** — Tenklo forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
 - **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
 ## Supported events
 
-Nango can only route events whose payload includes a `self` link on `issue`, `comment`, `sprint`, `board`, `worklog`, `version`, `issueLink`, `project`, `attachment`, `issuetype`, `filter`, or `user`. Examples:
+Tenklo can only route events whose payload includes a `self` link on `issue`, `comment`, `sprint`, `board`, `worklog`, `version`, `issueLink`, `project`, `attachment`, `issuetype`, `filter`, or `user`. Examples:
 
 | Event | Description | Setup path |
 | --- | --- | --- |
@@ -109,4 +109,4 @@ Nango can only route events whose payload includes a `self` link on `issue`, `co
 
 For the full list, see [Jira's webhook events reference](https://developer.atlassian.com/cloud/jira/platform/webhooks/).
 
-<Tip>Need help getting started? Join us in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Join us in the [community](https://tenklo.dev/slack).</Tip>

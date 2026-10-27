@@ -126,7 +126,7 @@ export const ImpersonateForm: React.FC = () => {
 
     return (
         <div className="w-100 flex flex-col gap-3 p-6 border border-border-default rounded-md relative">
-            <h3 className="text-heading-sm text-text-strong absolute top-[-12px] left-3 bg-surface-canvas px-1">Nango admin</h3>
+            <h3 className="text-heading-sm text-text-strong absolute top-[-12px] left-3 bg-surface-canvas px-1">Tenklo admin</h3>
             <h3 className="text-heading-sm text-text-strong">Impersonate account</h3>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(() => attempt())} className="flex flex-col gap-3">

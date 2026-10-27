@@ -6,14 +6,14 @@ description: 'Integrate your application with the Google Health API'
 
 ## Quickstart
 
-Connect to Google Health with Nango and see data flow in 2 minutes.
+Connect to Google Health with Tenklo and see data flow in 2 minutes.
 
 <Steps>
   <Step id="create-integration" title="Create the integration">
-    In Nango, open **Integrations** and configure a new **Google Health** integration.
+    In Tenklo, open **Integrations** and configure a new **Google Health** integration.
 
     <Note>
-      Google Health requires your own Google Cloud OAuth client. Follow the setup guide linked below, then add the OAuth client ID, client secret, and Google Health scopes in the integration settings in Nango.
+      Google Health requires your own Google Cloud OAuth client. Follow the setup guide linked below, then add the OAuth client ID, client secret, and Google Health scopes in the integration settings in Tenklo.
     </Note>
   </Step>
   <Step id="authorize-google-health" title="Authorize Google Health">
@@ -22,13 +22,13 @@ Connect to Google Health with Nango and see data flow in 2 minutes.
     For a first test, include at least one read scope such as `https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly`.
   </Step>
   <Step id="call-google-health-api" title="Call the Google Health API">
-    Make your first request to get the Google Health identity for the authorized user. Replace the placeholders below with your Nango API key, integration ID, and connection ID:
+    Make your first request to get the Google Health identity for the authorized user. Replace the placeholders below with your Tenklo API key, integration ID, and connection ID:
 
     <Tabs>
       <Tab title="cURL">
 
         ```bash
-        curl "https://api.nango.dev/proxy/v4/users/me/identity" \
+        curl "https://api.tenklo.dev/proxy/v4/users/me/identity" \
           -H "Authorization: Bearer <NANGO-API-KEY>" \
           -H "Provider-Config-Key: <INTEGRATION-ID>" \
           -H "Connection-Id: <CONNECTION-ID>"
@@ -38,7 +38,7 @@ Connect to Google Health with Nango and see data flow in 2 minutes.
 
       <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -59,11 +59,11 @@ Connect to Google Health with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    Check the **Logs** tab in Nango to inspect requests.
+    Check the **Logs** tab in Tenklo to inspect requests.
   </Step>
 
-  <Step id="implement-nango" title="Implement Nango in your app">
-    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+  <Step id="implement-nango" title="Implement Tenklo in your app">
+    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
     To obtain your own production credentials, follow the setup guide linked below.
   </Step>
@@ -75,10 +75,10 @@ Connect to Google Health with Nango and see data flow in 2 minutes.
 
 ## Google Health integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Google Health OAuth app](/api-integrations/google-health/how-to-register-your-own-google-health-api-oauth-app)
-  Register an OAuth app with Google and obtain credentials to connect it to Nango
+  Register an OAuth app with Google and obtain credentials to connect it to Tenklo
 
 - [Google app and security review](/api-integrations/google-shared/google-security-review)
   Pass Google's OAuth app verification to go to production

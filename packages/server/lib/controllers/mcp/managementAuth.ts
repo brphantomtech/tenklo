@@ -36,7 +36,7 @@ export const getManagementOAuthProtectedResourceMetadata: RequestHandler = (_req
         authorization_servers: [oauthServerConfig.config.baseUrl],
         scopes_supported: [MANAGEMENT_MCP_OAUTH_SCOPE],
         bearer_methods_supported: ['header'],
-        resource_name: 'Nango Management MCP server'
+        resource_name: 'Tenklo Management MCP server'
     });
 };
 

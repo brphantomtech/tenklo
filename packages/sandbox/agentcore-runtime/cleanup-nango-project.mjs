@@ -15,7 +15,7 @@ if (!projectDir) {
 
 const filesToRemove = ['build', 'github', '.nango/nango.json', '.nango/schema.json', '.nango/schema.ts'];
 
-const indexContents = `// Register Nango functions with side-effect imports.
+const indexContents = `// Register Tenklo functions with side-effect imports.
 // Example: import './github/actions/my-action.js';
 `;
 

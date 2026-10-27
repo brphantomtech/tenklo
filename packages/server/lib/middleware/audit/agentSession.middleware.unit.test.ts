@@ -25,7 +25,7 @@ describe('agent session audit middleware (unit)', () => {
             data: {
                 session_id: SESSION_ID,
                 session_token: 'nango_agent_supersecret',
-                mcp_url: 'https://api.nango.dev/session/x/mcp',
+                mcp_url: 'https://api.tenklo.dev/session/x/mcp',
                 expires_at: '2026-09-26T10:00:00.000Z',
                 toolset: {},
                 meta_tools: { nango_tool_search: true, nango_execute: true, nango_proxy: false }

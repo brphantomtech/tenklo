@@ -6,22 +6,22 @@ description: 'Send events to PostHog using the public capture API and a project 
 
 ## 🚀 Quickstart
 
-Connect to PostHog's Capture API with Nango and send your first event in 2 minutes. This uses a **Project Token** (`phc_...`), not a personal API key — the capture API is a public, write-only endpoint with no identity validation, so no user login is required.
+Connect to PostHog's Capture API with Tenklo and send your first event in 2 minutes. This uses a **Project Token** (`phc_...`), not a personal API key — the capture API is a public, write-only endpoint with no identity validation, so no user login is required.
 
 <Steps>
     <Step title="Create an integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _PostHog (Capture API)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _PostHog (Capture API)_.
     </Step>
     <Step title="Authorize PostHog">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your **Hostname** (e.g. `us.i.posthog.com`) and **Project Token**. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your **Hostname** (e.g. `us.i.posthog.com`) and **Project Token**. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Send your first event">
-    Let's send a test event via the capture API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's send a test event via the capture API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/i/v0/e/" \
+            curl "https://api.tenklo.dev/proxy/i/v0/e/" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -34,7 +34,7 @@ Connect to PostHog's Capture API with Nango and send your first event in 2 minut
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,13 +53,13 @@ Connect to PostHog's Capture API with Nango and send your first event in 2 minut
         </Tab>
     </Tabs>
 
-    Nango automatically adds your stored **Project Token** as the `api_key` field in the request body — you only need to supply `event` and `distinct_id` (plus any `properties` you want).
+    Tenklo automatically adds your stored **Project Token** as the `api_key` field in the request body — you only need to supply `event` and `distinct_id` (plus any `properties` you want).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 

@@ -6,22 +6,22 @@ description: 'Connect your application to the WordPress.com MCP server using OAu
 
 ## 🚀 Quickstart
 
-Connect to the WordPress.com MCP server with Nango and call MCP tools in minutes. WordPress.com MCP uses OAuth 2.1 with **dynamic client registration**, so no app registration is required.
+Connect to the WordPress.com MCP server with Tenklo and call MCP tools in minutes. WordPress.com MCP uses OAuth 2.1 with **dynamic client registration**, so no app registration is required.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to Integrations -> _Configure New Integration_ -> _WordPress.com (MCP)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to Integrations -> _Configure New Integration_ -> _WordPress.com (MCP)_.
     </Step>
     <Step id="authorize" title="Authorize WordPress.com">
     Go to Connections -> _Add Test Connection_ -> _Authorize_, then log in to WordPress.com. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-mcp-tool" title="Call a WordPress.com MCP tool">
-    Make your first MCP request (initialize handshake). Replace the placeholders below with your [API key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first MCP request (initialize handshake). Replace the placeholders below with your [API key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v2/mcp/v1" \
+            curl "https://api.tenklo.dev/proxy/v2/mcp/v1" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -46,7 +46,7 @@ Connect to the WordPress.com MCP server with Nango and call MCP tools in minutes
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -77,17 +77,17 @@ Connect to the WordPress.com MCP server with Nango and call MCP tools in minutes
         </Tab>
 
     </Tabs>
-    ✅ You're connected! Check the Logs tab in Nango to inspect requests.
+    ✅ You're connected! Check the Logs tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 WordPress.com (MCP) guides
 
-Nango uses **dynamic client registration** with WordPress.com's OAuth 2.1 server. You do not need to register an application — just create the integration in Nango and authorize with your WordPress.com account.
+Tenklo uses **dynamic client registration** with WordPress.com's OAuth 2.1 server. You do not need to register an application — just create the integration in Tenklo and authorize with your WordPress.com account.
 
 Official resources: [WordPress.com MCP documentation](https://developer.wordpress.com/docs/mcp/)
 

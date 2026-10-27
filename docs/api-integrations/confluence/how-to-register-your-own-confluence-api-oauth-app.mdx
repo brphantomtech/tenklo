@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Confluence OAuth app'
 sidebarTitle: 'Confluence Setup'
-description: 'Register an OAuth app with Confluence and obtain credentials to connect it to Nango'
+description: 'Register an OAuth app with Confluence and obtain credentials to connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Confluence (Atlassian) to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Confluence account.
@@ -19,7 +19,7 @@ This guide shows you how to register your own app with Confluence (Atlassian) to
   <Step title="Configure OAuth 2.0 (3LO)">
     1. In the left sidebar, select **Authorization**.
     2. Next to OAuth 2.0 (3LO), click **Add**.
-    3. Enter `https://api.nango.dev/oauth/callback` as the Callback URL.
+    3. Enter `https://api.tenklo.dev/oauth/callback` as the Callback URL.
     4. Click **Save** to save your changes.
   </Step>
   <Step title="Add API permissions">
@@ -39,7 +39,7 @@ This guide shows you how to register your own app with Confluence (Atlassian) to
   <Step title="Obtain your client credentials">
     1. In the left sidebar, select **Settings**.
     2. Note your **Client ID**.
-    3. Copy both the Client ID and Secret by clicking the copy buttons next to them, as you'll need them when configuring your integration in Nango.
+    3. Copy both the Client ID and Secret by clicking the copy buttons next to them, as you'll need them when configuring your integration in Tenklo.
   </Step>
   <Step title="Make your app available to users (optional)">
     If you want to distribute your app to other users:
@@ -56,22 +56,22 @@ This guide shows you how to register your own app with Confluence (Atlassian) to
 
 ## Important notes for Confluence API
 
-When working with the Confluence API through Nango, keep these important points in mind:
+When working with the Confluence API through Tenklo, keep these important points in mind:
 
 **Refresh token requirement:**
-To allow the possibility of refreshing the token, you must add `offline_access` to your scopes when creating the integration on the Nango UI.
+To allow the possibility of refreshing the token, you must add `offline_access` to your scopes when creating the integration on the Tenklo UI.
 
 **Cloud ID and domain configuration:**
 A single Confluence OAuth token can be valid for multiple Atlassian sites. For example, the same token might grant access to both "nango-hq.atlassian.net" and "nango-test.atlassian.net". This is why specifying the `domain` during connection creation is important if you need to connect to a specific site.
 
 When connecting to Confluence, you have two options for specifying which Confluence site to connect to:
 1. Provide a `domain` during connection creation (recommended): This ensures you connect to the specific Confluence site you want.
-2. Let Nango auto-select the first available site (legacy behavior): If no baseUrl is specified, Nango will use the first site from the accessible resources api.
+2. Let Tenklo auto-select the first available site (legacy behavior): If no baseUrl is specified, Tenklo will use the first site from the accessible resources api.
 
 The connection process works as follows:
-1. Nango fetches all accessible sites for the OAuth token
-2. If you specified a `domain`, Nango finds the matching site and sets its `cloudId`
-3. If no `domain` is specified, Nango uses the first available site and sets its `cloudId`
+1. Tenklo fetches all accessible sites for the OAuth token
+2. If you specified a `domain`, Tenklo finds the matching site and sets its `cloudId`
+3. If no `domain` is specified, Tenklo uses the first available site and sets its `cloudId`
 4. The selected site's `cloudId` and `domain` are stored in the connection configuration
 
 You will need to fetch your Cloud ID to be able to make API requests to the Confluence API. You can do this with the proxy by calling:

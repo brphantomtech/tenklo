@@ -6,22 +6,22 @@ description: 'Integrate your application with the Snowflake API'
 
 ## 🚀 Quickstart
 
-Connect to Snowflake with Nango and see data flow in minutes.
+Connect to Snowflake with Tenklo and see data flow in minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) → _Configure New Integration_ → _Snowflake_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) → _Configure New Integration_ → _Snowflake_.
     </Step>
     <Step id="authorize-snowflake" title="Authorize Snowflake">
-        Go to [Connections](https://app.nango.dev/dev/connections) → _Add Test Connection_ → _Authorize_, then log in to your Snowflake account. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) → _Add Test Connection_ → _Authorize_, then log in to your Snowflake account. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-snowflake-api" title="Call the Snowflake API">
-        Make your first request to the Snowflake API. Replace the placeholders below with your [API key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Make your first request to the Snowflake API. Replace the placeholders below with your [API key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/api/v2/databases" \
+                curl "https://api.tenklo.dev/proxy/api/v2/databases" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -30,7 +30,7 @@ Connect to Snowflake with Nango and see data flow in minutes.
             </Tab>
             <Tab title="Node">
 
-                Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+                Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
                 ```typescript
                 import { Nango } from '@nangohq/node';
@@ -47,10 +47,10 @@ Connect to Snowflake with Nango and see data flow in minutes.
                 ```
             </Tab>
         </Tabs>
-        ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+        ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
-    <Step id="implement-nango" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step id="implement-nango" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -59,7 +59,7 @@ Connect to Snowflake with Nango and see data flow in minutes.
 ## 📚 Snowflake integration guides
 
 - [How to register your own Snowflake OAuth app](/api-integrations/snowflake/how-to-register-your-own-snowflake-api-oauth-app)  
-  Register an OAuth integration with Snowflake and obtain credentials to connect it to Nango
+  Register an OAuth integration with Snowflake and obtain credentials to connect it to Tenklo
 - [How to link your Snowflake account](/api-integrations/snowflake/connect)  
   Find your Snowflake account domain and enter it in the Connect UI
 

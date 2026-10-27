@@ -145,8 +145,8 @@ describe('createManagementMcpServer', () => {
             name: 'github',
             display_name: 'GitHub',
             auth_mode: 'OAUTH2' as const,
-            docs: 'https://nango.dev/docs/api-integrations/github',
-            logo_url: 'https://api.nango.dev/images/template-logos/github.svg',
+            docs: 'https://tenklo.dev/docs/api-integrations/github',
+            logo_url: 'https://api.tenklo.dev/images/template-logos/github.svg',
             templates: []
         };
         const handlerSpy = vi.spyOn(getProvidersTool, 'handler').mockResolvedValueOnce(Ok(response));
@@ -1461,7 +1461,7 @@ describe('createManagementMcpServer', () => {
             expect(result.isErr()).toBe(true);
             if (result.isErr()) {
                 expect(result.error).toBeInstanceOf(PublicMcpError);
-                expect(result.error.message).toBe('Nango logs are disabled');
+                expect(result.error.message).toBe('Tenklo logs are disabled');
             }
         } finally {
             logsEnvs.NANGO_LOGS_ENABLED = previousLogsEnabled;

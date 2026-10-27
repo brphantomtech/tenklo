@@ -1,21 +1,21 @@
 ---
-title: 'How to setup webhooks with Google Calendar on Nango'
+title: 'How to setup webhooks with Google Calendar on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to set up Google Calendar webhooks with notification channels and Nango'
+description: 'Learn how to set up Google Calendar webhooks with notification channels and Tenklo'
 ---
 
-This guide shows you how to receive real-time Google Calendar webhooks in Nango using [notification channels](https://developers.google.com/workspace/calendar/api/guides/push#create-notification-channels). Unlike Gmail, Google Calendar does **not** require Google Cloud Pub/Sub—you configure a webhook URL directly with the Calendar API.
+This guide shows you how to receive real-time Google Calendar webhooks in Tenklo using [notification channels](https://developers.google.com/workspace/calendar/api/guides/push#create-notification-channels). Unlike Gmail, Google Calendar does **not** require Google Cloud Pub/Sub—you configure a webhook URL directly with the Calendar API.
 
 ## How it works
 
 The Google Calendar API uses notification channels to deliver webhooks. The flow is:
 
-1. You call the `watch` endpoint for the Google Calendar you want to monitor, passing your Nango webhook URL as the channel `address`.
+1. You call the `watch` endpoint for the Google Calendar you want to monitor, passing your Tenklo webhook URL as the channel `address`.
 2. Google creates a notification channel and sends an initial `sync` message to your URL.
-3. When the watched calendar changes, Google sends a notification to Nango
-4. Nango matches the notification to the correct connection and forwards it to your app
+3. When the watched calendar changes, Google sends a notification to Tenklo
+4. Tenklo matches the notification to the correct connection and forwards it to your app
 
-Nango derives the calendar identifier from the `X-Goog-Resource-URI` header (e.g. `https://www.googleapis.com/calendar/v3/calendars/user%40example.com/events?alt=json`) and matches the webhook to a connection. For **new** connections on the **google-calendar** integration, Nango persists a hash of the user's email in **`connection_config.emailAddressHash`** at connection time, so the usual **primary-calendar** flow in this guide needs no extra metadata for routing.
+Tenklo derives the calendar identifier from the `X-Goog-Resource-URI` header (e.g. `https://www.googleapis.com/calendar/v3/calendars/user%40example.com/events?alt=json`) and matches the webhook to a connection. For **new** connections on the **google-calendar** integration, Tenklo persists a hash of the user's email in **`connection_config.emailAddressHash`** at connection time, so the usual **primary-calendar** flow in this guide needs no extra metadata for routing.
 
 Watching **additional calendars** uses a different metadata-based step; see [Connection matching](#connection-matching).
 
@@ -23,20 +23,20 @@ Watching **additional calendars** uses a different metadata-based step; see [Con
 
 ### 1. Get your webhook URL
 
-Copy the webhook URL from your Google Calendar integration page in the Nango dashboard, under the **Webhook URL** section. This is the HTTPS URL you will use as the channel `address` when creating notification channels.
+Copy the webhook URL from your Google Calendar integration page in the Tenklo dashboard, under the **Webhook URL** section. This is the HTTPS URL you will use as the channel `address` when creating notification channels.
 
-### 2. Set a webhook secret in Nango
+### 2. Set a webhook secret in Tenklo
 
-Google Calendar push notifications have no HMAC. The `token` you set on the channel is echoed back as `X-Goog-Channel-Token` and is the only way Nango can authenticate the request.
+Google Calendar push notifications have no HMAC. The `token` you set on the channel is echoed back as `X-Goog-Channel-Token` and is the only way Tenklo can authenticate the request.
 
-1. In the Nango dashboard, open your Google Calendar integration and go to the **Settings** tab
+1. In the Tenklo dashboard, open your Google Calendar integration and go to the **Settings** tab
 2. Under **Webhook Configuration**, enter a secret string in the **Webhook Secret** field
 3. Click **Save**. You will pass this same value as `token` when creating channels.
 
-Once a secret is saved, Nango rejects notifications that omit `X-Goog-Channel-Token` or send a different value. Existing channels created without `token` must be recreated.
+Once a secret is saved, Tenklo rejects notifications that omit `X-Goog-Channel-Token` or send a different value. Existing channels created without `token` must be recreated.
 
 <Warning>
-With no secret saved, Nango has nothing to check the channel token against and forwards every notification that reaches the webhook URL unverified. Set the secret before you create any channel.
+With no secret saved, Tenklo has nothing to check the channel token against and forwards every notification that reaches the webhook URL unverified. Set the secret before you create any channel.
 </Warning>
 
 ### 3. Create a notification channel (watch a resource)
@@ -78,7 +78,7 @@ export default createOnEvent({
             data: {
                 id: channelId,
                 type: 'webhook',
-                // Webhook URL can be found on https://app.nango.dev/dev/integrations/google-calendar (your integration settings page)
+                // Webhook URL can be found on https://app.tenklo.dev/dev/integrations/google-calendar (your integration settings page)
                 address: webhookUrl,
                 expiration: expiration,
                 ...(webhookSecret && { token: webhookSecret }),
@@ -116,7 +116,7 @@ Replace:
 
 - **&lt;CALENDAR_ID&gt;** — The calendar to watch, identified by the user's email address.
 - **&lt;AUTH_TOKEN&gt;** — A valid OAuth 2.0 access token for the user who owns or has access to the calendar.
-- **address** — Your Nango webhook URL from the dashboard.
+- **address** — Your Tenklo webhook URL from the dashboard.
 - **id** — A unique string (e.g. UUID) identifying this channel; max 64 characters. It is echoed in `X-Goog-Channel-ID` on every notification.
 - **token** — The webhook secret from [step 2](#2-set-a-webhook-secret-in-nango). Google echoes it as `X-Goog-Channel-Token`. Required once a secret is saved on the integration.
 - **expiration** — (Optional) Unix timestamp in **milliseconds** when the channel should stop sending notifications. If omitted, Google applies a default; channels must be renewed before they expire.
@@ -125,7 +125,7 @@ Replace:
 
 Google does **not** renew channels automatically. When a channel is close to its expiration, you must create a new channel by calling the `watch` endpoint again with a **new** unique `id`. After the new channel is created successfully, stop the old channel so only one remains active. See [Renew notification channels](https://developers.google.com/workspace/calendar/api/guides/push#renew-notification-channels).
 
-You can use a Nango sync with a suitable frequency (e.g. every few days) to renew the watch before it expires:
+You can use a Tenklo sync with a suitable frequency (e.g. every few days) to renew the watch before it expires:
 
 ```typescript
 import { createSync, ProxyConfiguration } from 'nango';
@@ -167,7 +167,7 @@ export default createSync({
             data: {
                 id: channelId,
                 type: 'webhook',
-                // Webhook URL can be found on https://app.nango.dev/dev/integrations/google-calendar (your integration settings page)
+                // Webhook URL can be found on https://app.tenklo.dev/dev/integrations/google-calendar (your integration settings page)
                 address: webhookUrl,
                 expiration: expiration,
                 ...(webhookSecret && { token: webhookSecret }),
@@ -200,7 +200,7 @@ export default createSync({
 
 ### 5. Stop notifications on connection deletion
 
-If a connection is deleted in Nango but the channel remains active, Google may continue sending notifications until the channel expires. To stop notifications immediately for a deleted connection, call `channels.stop` before deletion.
+If a connection is deleted in Tenklo but the channel remains active, Google may continue sending notifications until the channel expires. To stop notifications immediately for a deleted connection, call `channels.stop` before deletion.
 
 You can automate this with a `pre-connection-deletion` lifecycle event. This uses the `googleCalendarChannelId` and `googleCalendarResourceId` stored in metadata during channel creation (step 3) and renewal (step 4):
 
@@ -240,7 +240,7 @@ export default createOnEvent({
 
 ### 6. Handle forwarded webhooks
 
-When a Calendar notification arrives, Nango matches it to the correct connection and forwards it to your system. Notification messages have **no body**; Google sends only HTTP headers. Nango forwards those headers in the payload. Example structure:
+When a Calendar notification arrives, Tenklo matches it to the correct connection and forwards it to your system. Notification messages have **no body**; Google sends only HTTP headers. Tenklo forwards those headers in the payload. Example structure:
 
 ```json
 {
@@ -266,13 +266,13 @@ Relevant headers (see [Google's documentation](https://developers.google.com/wor
 | `x-goog-resource-state` | `sync` = channel created; `exists` = resource changed (create/update/delete). |
 | `x-goog-resource-uri` | The watched resource (e.g. which calendar's events). |
 | `x-goog-channel-id` | The channel `id` you sent when creating the channel. |
-| `x-goog-channel-token` | The `token` you set when creating the channel. Nango verifies this against the integration webhook secret when one is configured. |
+| `x-goog-channel-token` | The `token` you set when creating the channel. Tenklo verifies this against the integration webhook secret when one is configured. |
 | `x-goog-message-number` | Incrementing message number for this channel. |
 
 Notifications do **not** include the changed events themselves—you must call the Calendar API (e.g. list events or get event) to fetch the updates. After receiving the webhook, trigger your sync or API calls for that connection:
 
 ```bash
-curl -X POST "https://api.nango.dev/sync/trigger" \
+curl -X POST "https://api.tenklo.dev/sync/trigger" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -286,7 +286,7 @@ curl -X POST "https://api.nango.dev/sync/trigger" \
 With webhooks driving real-time updates, you can run syncs less often (e.g. `1d` or `1h`) as a safety net for missed notifications.
 
 <Note>
-If you prefer Nango to automatically run a sync when the webhook arrives (instead of forwarding it to your app), you can enable webhook processing in a sync script using `webhookSubscriptions` and `onWebhook`. For Google Calendar, subscribe to `'*'` and use the forwarded headers (e.g. `x-goog-resource-state`, `x-goog-resource-uri`) to decide what to fetch.
+If you prefer Tenklo to automatically run a sync when the webhook arrives (instead of forwarding it to your app), you can enable webhook processing in a sync script using `webhookSubscriptions` and `onWebhook`. For Google Calendar, subscribe to `'*'` and use the forwarded headers (e.g. `x-goog-resource-state`, `x-goog-resource-uri`) to decide what to fetch.
 
 See: [Real-time syncs](/implementation-guides/use-cases/syncs/realtime-syncs)
 </Note>
@@ -295,21 +295,21 @@ See: [Real-time syncs](/implementation-guides/use-cases/syncs/realtime-syncs)
 
 ### Primary calendar
 
-For primary calendars, Nango matches the incoming request to a connection using the calendar identifier (email) extracted from `X-Goog-Resource-URI` (e.g. `.../calendars/user@example.com/events...`). The lookup order is:
+For primary calendars, Tenklo matches the incoming request to a connection using the calendar identifier (email) extracted from `X-Goog-Resource-URI` (e.g. `.../calendars/user@example.com/events...`). The lookup order is:
 
-1. `connection_config.emailAddressHash` — automatically set by Nango for new connections (created after 2026-03-11)
+1. `connection_config.emailAddressHash` — automatically set by Tenklo for new connections (created after 2026-03-11)
 2. `metadata.emailAddress` — fallback (customer-controlled)
 3. `metadata.email` — fallback (customer-controlled)
 
-For **new connections** (created after 2026-03-11), no action is needed. Nango automatically persists the email hash at connection time.
+For **new connections** (created after 2026-03-11), no action is needed. Tenklo automatically persists the email hash at connection time.
 
 For **existing connections** created before this feature was available, you have two options:
 
-- **Re-authorize** the connection so Nango's post-connection hook runs and persists the email hash automatically
+- **Re-authorize** the connection so Tenklo's post-connection hook runs and persists the email hash automatically
 - **Set the metadata manually** via the API:
 
 ```bash
-curl -X PATCH "https://api.nango.dev/connection/metadata" \
+curl -X PATCH "https://api.tenklo.dev/connection/metadata" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -328,10 +328,10 @@ If you want to subscribe to notifications from other calendars besides the prima
 - The value must be a JSON **`string[]`**. Store the **`X-Goog-Resource-URI` string exactly as Google sends it**: same encoding, path, and query string.
 - The lookup on **`metadata.googleCalendarWatchResourceUris`** takes priority over the primary calendar matching described [above for primary calendars](#primary-calendar), so include the URIs for all calendars you are subscribing to, including the primary calendar.
 
-**Duplicates:** If more than one connection lists the **same** URI in `googleCalendarWatchResourceUris`, **every** matching connection is included. Nango forwards the webhook **once per matching connection**, with appropriate `connectionId`.
+**Duplicates:** If more than one connection lists the **same** URI in `googleCalendarWatchResourceUris`, **every** matching connection is included. Tenklo forwards the webhook **once per matching connection**, with appropriate `connectionId`.
 
 ```bash
-curl -X PATCH "https://api.nango.dev/connection/metadata" \
+curl -X PATCH "https://api.tenklo.dev/connection/metadata" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -345,13 +345,13 @@ curl -X PATCH "https://api.nango.dev/connection/metadata" \
     }
   }'
 ```
-This will associate both listed calendar resource URIs with the connection. Nango will match any incoming webhook with those exact `X-Goog-Resource-URI` values to this connection.
+This will associate both listed calendar resource URIs with the connection. Tenklo will match any incoming webhook with those exact `X-Goog-Resource-URI` values to this connection.
 
 To do this in bulk, iterate over the [list connections](/reference/backend/http-api/connections/list) response and [update the metadata](/reference/backend/http-api/connections/update-metadata) for each one.
 
 
 <Warning>
-If Nango cannot match the incoming webhook to a connection, the webhook will still be forwarded but won't include a `connectionId` in the payload.
+If Tenklo cannot match the incoming webhook to a connection, the webhook will still be forwarded but won't include a `connectionId` in the payload.
 </Warning>
 
 ## Rollback strategy
@@ -361,8 +361,8 @@ To stop webhooks:
 1. Call `channels/stop` for each channel you created (using the channel `id` and `resourceId`), or
 2. Let the channel expire by not renewing it.
 
-Re-enable notifications by creating a new channel with a new `id` and your Nango webhook URL as `address`.
+Re-enable notifications by creating a new channel with a new `id` and your Tenklo webhook URL as `address`.
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

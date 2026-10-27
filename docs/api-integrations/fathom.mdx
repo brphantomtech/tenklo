@@ -6,7 +6,7 @@ description: 'Integrate your application with the Fathom API'
 
 ## 🚀 Quickstart
 
-Connect to Fathom with Nango and see data flow in 2 minutes.
+Connect to Fathom with Tenklo and see data flow in 2 minutes.
 
 <Note>
 Fathom also supports **OAuth 2.0** — see the [Fathom (OAuth)](/api-integrations/fathom-oauth) integration if you'd rather use that.
@@ -14,18 +14,18 @@ Fathom also supports **OAuth 2.0** — see the [Fathom (OAuth)](/api-integration
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Fathom_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Fathom_.
     </Step>
     <Step title="Authorize Fathom">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Fathom API key — see the [connect guide](/api-integrations/fathom/connect) for where to find it. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Fathom API key — see the [connect guide](/api-integrations/fathom/connect) for where to find it. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Fathom API">
-    Let's make your first request to the Fathom API to list your teams. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Fathom API to list your teams. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/external/v1/teams" \
+            curl "https://api.tenklo.dev/proxy/external/v1/teams" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -35,7 +35,7 @@ Fathom also supports **OAuth 2.0** — see the [Fathom (OAuth)](/api-integration
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -55,22 +55,22 @@ Fathom also supports **OAuth 2.0** — see the [Fathom (OAuth)](/api-integration
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Fathom integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my account?](/api-integrations/fathom/connect)  
 Find your API key, then connect with the Connect UI
 
-- [How to set up webhooks with Fathom on Nango](/api-integrations/fathom/webhooks)  
+- [How to set up webhooks with Fathom on Tenklo](/api-integrations/fathom/webhooks)  
 Receive real-time notifications when a Fathom recording finishes processing
 
 Official docs: [Fathom API docs](https://developers.fathom.ai/api-overview)

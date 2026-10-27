@@ -31,7 +31,7 @@ import UsefulLinks from "/snippets/microsoft-shared/useful-links.mdx"
     1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as at least an Application Developer.
     2. If you have access to multiple tenants, use the Settings icon in the top menu to switch to the tenant in which you want to register the application.
     3. From the search bar at the top of the Azure portal, search for **App registrations** and select it. Then choose **New registration**. Or from your left navigation tab, navigate to **Applications** > **App registrations** then choose **New registration**.
-    4. Enter a meaningful name for your application, for example "Nango Integration".
+    4. Enter a meaningful name for your application, for example "Tenklo Integration".
     5. Under **Supported account types**, select the appropriate option based on your needs:
        - **Accounts in any organizational directory** - For multitenant apps that you want users in any Microsoft Entra tenant to be able to use.
        - **Accounts in any organizational directory and personal Microsoft accounts** - For multitenant apps that support both organizational and personal Microsoft accounts.
@@ -45,7 +45,7 @@ import UsefulLinks from "/snippets/microsoft-shared/useful-links.mdx"
     1. In the left sidebar, select **Authentication**.
     2. Under **Platform configurations**, select **Add a platform**.
     3. Select **Web** as the platform type.
-    4. Enter `https://api.nango.dev/oauth/callback` as the Redirect URI.
+    4. Enter `https://api.tenklo.dev/oauth/callback` as the Redirect URI.
     5. Under **Implicit grant and hybrid flows**, check the boxes for **Access tokens** and **ID tokens** if your application needs them.
     6. Under **Advanced settings**, set **Allow public client flows** to **No** for web applications.
     7. Click **Configure** to save your changes.
@@ -73,7 +73,7 @@ import UsefulLinks from "/snippets/microsoft-shared/useful-links.mdx"
   </Step>
 </Steps>
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 
 <UsefulLinks />
@@ -81,7 +81,7 @@ import UsefulLinks from "/snippets/microsoft-shared/useful-links.mdx"
 
 ## API gotchas
 
--   The Microsoft Advertising API doesn't offer a REST API, which means certain Nango functionalities won't be accessible, including syncs, workflows, and proxy requests.
+-   The Microsoft Advertising API doesn't offer a REST API, which means certain Tenklo functionalities won't be accessible, including syncs, workflows, and proxy requests.
 -   To engage with the Microsoft Advertising API, developers must initially retrieve the access token utilizing the [backend API](/reference/backend/http-api/connections/get). This token should then be utilized with [official client libraries](https://learn.microsoft.com/en-us/advertising/guides/client-libraries?view=bingads-13) or a [SOAP Client](https://learn.microsoft.com/en-us/advertising/guides/authentication-oauth-quick-start?view=bingads-13) for further interaction.
 <APIGotchas />
 

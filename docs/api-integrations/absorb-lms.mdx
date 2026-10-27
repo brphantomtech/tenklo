@@ -6,22 +6,22 @@ description: 'Integrate your application with the Absorb LMS API'
 
 ## 🚀 Quickstart
 
-Connect to Absorb LMS with Nango and see data flow in 2 minutes.
+Connect to Absorb LMS with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Absorb LMS_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Absorb LMS_.
     </Step>
     <Step title="Authorize Absorb LMS">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Absorb LMS. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Absorb LMS. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Absorb LMS API">
-    Let's make your first request to the Absorb LMS API (get your profile). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Absorb LMS API (get your profile). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/my-details" \
+            curl "https://api.tenklo.dev/proxy/api/my-details" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Absorb LMS with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Absorb LMS with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -63,13 +63,13 @@ Connect to Absorb LMS with Nango and see data flow in 2 minutes.
 
 ## 📚 Absorb LMS Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Absorb LMS OAuth app](/api-integrations/absorb-lms/how-to-register-your-own-absorb-lms-api-oauth-app)  
-  Register an OAuth app with Absorb LMS and obtain credentials to connect it to Nango
+  Register an OAuth app with Absorb LMS and obtain credentials to connect it to Tenklo
 
 - [How to link your Absorb LMS account](/api-integrations/absorb-lms/connect)  
-  Find your portal route and API credentials to connect your Absorb LMS account to Nango
+  Find your portal route and API credentials to connect your Absorb LMS account to Tenklo
 
 Official docs: [Absorb LMS Integration API documentation](https://docs.myabsorb.com/integration-api/v2/docs)
 

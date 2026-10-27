@@ -156,10 +156,10 @@ describe('accountGroupProperties', () => {
 });
 
 describe('isInternalAccount', () => {
-    it('is internal only when every user has a @nango.dev email', () => {
-        expect(isInternalAccount([{ email: 'a@nango.dev' }, { email: 'B@Nango.dev' }])).toBe(true);
-        expect(isInternalAccount([{ email: 'a@nango.dev' }, { email: 'kelvin@customer.com' }])).toBe(false);
-        expect(isInternalAccount([{ email: 'a@nango.dev.example.com' }])).toBe(false);
+    it('is internal only when every user has a @tenklo.dev email', () => {
+        expect(isInternalAccount([{ email: 'a@tenklo.dev' }, { email: 'B@Tenklo.dev' }])).toBe(true);
+        expect(isInternalAccount([{ email: 'a@tenklo.dev' }, { email: 'kelvin@customer.com' }])).toBe(false);
+        expect(isInternalAccount([{ email: 'a@tenklo.dev.example.com' }])).toBe(false);
         expect(isInternalAccount([])).toBe(false);
     });
 });
@@ -247,7 +247,7 @@ describe('withProductTrackingContext', () => {
         expect(lastCapture().properties).not.toHaveProperty('$session_id');
     });
 
-    it('sends nothing while a Nango admin is impersonating the account, even for an event that names it', () => {
+    it('sends nothing while a Tenklo admin is impersonating the account, even for an event that names it', () => {
         withProductTrackingContext(
             () => ({ team, environment, impersonated: true }),
             () => {

@@ -1,4 +1,4 @@
-name: Deploy Nango Integrations
+name: Deploy Tenklo Integrations
 'on':
     # To deploy nango integrations automatically on code changes:
     # - uncomment the push option below

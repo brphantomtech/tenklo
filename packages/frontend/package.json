@@ -1,12 +1,12 @@
 {
     "name": "@nangohq/frontend",
     "version": "0.71.13",
-    "description": "Nango's frontend library for OAuth handling.",
+    "description": "Tenklo's frontend library for OAuth handling.",
     "type": "module",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "keywords": [],
-    "author": "bastien@nango.dev",
+    "author": "bastien@tenklo.dev",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/NangoHQ/nango.git",

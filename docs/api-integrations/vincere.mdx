@@ -6,22 +6,22 @@ description: 'Integrate your application with the Vincere API'
 
 ## 🚀 Quickstart
 
-Connect to Vincere with Nango and see data flow in 2 minutes.
+Connect to Vincere with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Vincere_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Vincere_.
     </Step>
     <Step title="Authorize Vincere">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your **Subdomain** and **API Key** and log in to Vincere. See the [connect guide](/api-integrations/vincere/connect) for instructions on finding these. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your **Subdomain** and **API Key** and log in to Vincere. See the [connect guide](/api-integrations/vincere/connect) for instructions on finding these. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Vincere API">
-    Let's make your first request to the Vincere API (retrieve a candidate). Replace the placeholders below with your [secret key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Vincere API (retrieve a candidate). Replace the placeholders below with your [secret key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v2/candidate/1" \
+            curl "https://api.tenklo.dev/proxy/v2/candidate/1" \
               -H "Authorization: Bearer <NANGO-SECRET-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Vincere with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -52,11 +52,11 @@ Connect to Vincere with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -67,7 +67,7 @@ Connect to Vincere with Nango and see data flow in 2 minutes.
 - [How to connect Vincere (subdomain & API key)](/api-integrations/vincere/connect)  
   Find your Vincere subdomain and request the API key issued for your tenant.
 - [How to register your own Vincere OAuth app](/api-integrations/vincere/how-to-register-your-own-vincere-api-oauth-app)  
-  Request OAuth credentials from Vincere and connect them to Nango.
+  Request OAuth credentials from Vincere and connect them to Tenklo.
 
 Official docs: [Vincere API documentation](https://api.vincere.io/)
 

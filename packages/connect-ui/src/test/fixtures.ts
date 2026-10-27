@@ -10,7 +10,7 @@ export const integrationFixtures = [
         display_name: 'GitHub',
         forward_webhooks: false,
         missing_fields: [],
-        logo: 'https://app.nango.dev/images/template-logos/github.svg',
+        logo: 'https://app.tenklo.dev/images/template-logos/github.svg',
         created_at: TIMESTAMP,
         updated_at: TIMESTAMP
     },
@@ -20,7 +20,7 @@ export const integrationFixtures = [
         display_name: 'Slack',
         forward_webhooks: false,
         missing_fields: [],
-        logo: 'https://app.nango.dev/images/template-logos/slack.svg',
+        logo: 'https://app.tenklo.dev/images/template-logos/slack.svg',
         created_at: TIMESTAMP,
         updated_at: TIMESTAMP
     }
@@ -38,7 +38,7 @@ export const apiKeyProvider = {
     docs: 'https://docs.example.com/github',
     docs_connect: 'https://docs.example.com/github/connect',
     name: 'github',
-    logo_url: 'https://app.nango.dev/images/template-logos/github.svg'
+    logo_url: 'https://app.tenklo.dev/images/template-logos/github.svg'
 } satisfies GetPublicProvider['Success']['data'];
 
 export const providerResponse = { data: apiKeyProvider } satisfies GetPublicProvider['Success'];
@@ -50,7 +50,7 @@ export const twoStepProvider = {
     display_name: 'Sage Intacct',
     docs: 'https://docs.example.com/sage-intacct',
     name: 'sage-intacct-cc',
-    logo_url: 'https://app.nango.dev/images/template-logos/sage-intacct-cc.svg',
+    logo_url: 'https://app.tenklo.dev/images/template-logos/sage-intacct-cc.svg',
     token_response: { token: 'access_token' },
     credentials: {
         username: { type: 'string', title: 'Username', description: 'Username', automated: false, order: 2 }
@@ -79,7 +79,7 @@ export const twoStepOtherProvider = {
     display_name: 'Tableau',
     docs: 'https://docs.example.com/tableau',
     name: 'tableau',
-    logo_url: 'https://app.nango.dev/images/template-logos/tableau.svg',
+    logo_url: 'https://app.tenklo.dev/images/template-logos/tableau.svg',
     token_response: { token: 'access_token' },
     credentials: {
         pat_name: { type: 'string', title: 'Personal App Token', description: 'PAT name', automated: false, order: 1 },
@@ -100,7 +100,7 @@ export const dualConfigProvider = {
     display_name: 'Stripe App (Sandbox)',
     docs: 'https://docs.example.com/stripe-app-sandbox',
     name: 'stripe-app-sandbox',
-    logo_url: 'https://app.nango.dev/images/template-logos/stripe-app-sandbox.svg',
+    logo_url: 'https://app.tenklo.dev/images/template-logos/stripe-app-sandbox.svg',
     integration_config: {
         appDomain: { type: 'string', title: 'App Domain', description: 'App Domain', automated: false, optional: true, order: 1 }
     },

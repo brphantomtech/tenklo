@@ -6,22 +6,22 @@ description: 'Integrate your application with the AgencyZoom API to manage leads
 
 ## 🚀 Quickstart
 
-Connect to AgencyZoom with Nango and see data flow in 2 minutes.
+Connect to AgencyZoom with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _AgencyZoom_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _AgencyZoom_.
     </Step>
     <Step id="authorize-agencyzoom" title="Authorize AgencyZoom">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your AgencyZoom username and password. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your AgencyZoom username and password. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-agencyzoom-api" title="Call the AgencyZoom API">
-    Let's make your first request to the AgencyZoom API (list employees). Replace the placeholders below with your [secret key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the AgencyZoom API (list employees). Replace the placeholders below with your [secret key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/api/employees" \
+            curl "https://api.tenklo.dev/proxy/v1/api/employees" \
               -H "Authorization: Bearer <NANGO-SECRET-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to AgencyZoom with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to AgencyZoom with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step id="implement" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
@@ -67,7 +67,7 @@ Nango-maintained guides for common use cases.
   Connect your AgencyZoom account using the Connect UI
 
 <Note>
-The permissions available to Nango match those of the AgencyZoom user account used to authorize the connection. Use the agency owner's account if your integration needs access to all functionality.
+The permissions available to Tenklo match those of the AgencyZoom user account used to authorize the connection. Use the agency owner's account if your integration needs access to all functionality.
 </Note>
 
 Official docs: [AgencyZoom API reference](https://app.agencyzoom.com/openapi/)

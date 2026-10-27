@@ -185,13 +185,13 @@ function buildReleaseNotes({ manifest, cliffNotes, tagName, imageVersion, appVer
     const releasedOn = releaseDate ? new Date(releaseDate).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10);
 
     const sections = [
-        `## Managed Nango ${imageVersion} (application ${appVersion})`,
+        `## Managed Tenklo ${imageVersion} (application ${appVersion})`,
         '',
         `- **Released:** ${releasedOn}`,
         `- **Docker image:** \`nangohq/nango:${tagName}\``,
         `- **Pin CLI to:** \`${appVersion}\``,
         comparisonUrl ? `- **Compare:** ${comparisonUrl}` : null,
-        '- **Public changelog:** https://nango.dev/docs/updates/changelog',
+        '- **Public changelog:** https://tenklo.dev/docs/updates/changelog',
         '',
         '### Changes',
         '',

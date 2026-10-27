@@ -50,7 +50,7 @@ export const ConnectionShow = () => {
         return (
             <DashboardLayout>
                 <Helmet>
-                    <title>Connection - Nango</title>
+                    <title>Connection - Tenklo</title>
                 </Helmet>
                 <CriticalErrorAlert message={connectionError ? 'Failed to load connection data' : 'Failed to load integration data for this connection'} />
             </DashboardLayout>
@@ -61,7 +61,7 @@ export const ConnectionShow = () => {
         return (
             <DashboardLayout>
                 <Helmet>
-                    <title>Connection - Nango</title>
+                    <title>Connection - Tenklo</title>
                 </Helmet>
                 <div className="flex flex-col gap-5">
                     <div className="flex gap-4 items-center">
@@ -105,7 +105,7 @@ export const ConnectionShow = () => {
     return (
         <DashboardLayout>
             <Helmet>
-                <title>{connectionResponse.endUser?.email || connectionResponse.connection.connection_id} - Connection - Nango</title>
+                <title>{connectionResponse.endUser?.email || connectionResponse.connection.connection_id} - Connection - Tenklo</title>
             </Helmet>
 
             <Tabs value={activeSegment}>

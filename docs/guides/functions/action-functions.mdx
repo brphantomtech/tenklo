@@ -9,7 +9,7 @@ Action functions run when your app, backend job, or agent explicitly calls them.
 Use action functions for reads, writes, multi-step provider workflows, unified API operations, and AI tools.
 
 <Note>
-  Nango provides a catalog of pre-built actions that you can call out of the box. This guide describes writing and deploying your own action function. To customize actions from the catalog, see [Extend a template](/guides/functions/functions-guide#extend-a-template).
+  Tenklo provides a catalog of pre-built actions that you can call out of the box. This guide describes writing and deploying your own action function. To customize actions from the catalog, see [Extend a template](/guides/functions/functions-guide#extend-a-template).
 </Note>
 
 ## Create the function
@@ -115,7 +115,7 @@ Synchronous execution is the default. The API or SDK call returns the function o
   <Tab title="cURL">
   ```bash
   curl --request POST \
-    --url https://api.nango.dev/action/trigger \
+    --url https://api.tenklo.dev/action/trigger \
     --header 'Authorization: Bearer <ENV-SECRET-KEY>' \
     --header 'Connection-Id: <CONNECTION-ID>' \
     --header 'Provider-Config-Key: github' \
@@ -135,7 +135,7 @@ Synchronous execution is the default. The API or SDK call returns the function o
 
 ## Trigger asynchronously
 
-Use async execution for bulk writes, bursty work, or provider endpoints with tight rate limits. Nango queues the execution, applies retries, and lets you poll or receive a webhook when it completes.
+Use async execution for bulk writes, bursty work, or provider endpoints with tight rate limits. Tenklo queues the execution, applies retries, and lets you poll or receive a webhook when it completes.
 
 <Note>
   Execution timing for asynchronous actions is not guaranteed. Async actions are currently processed sequentially per environment, so completion time depends on how many actions are queued and how long each one runs. Design callers to handle delays by polling the result endpoint or listening for the completion webhook.
@@ -160,7 +160,7 @@ Use async execution for bulk writes, bursty work, or provider endpoints with tig
   <Tab title="cURL">
   ```bash
   curl --request POST \
-    --url https://api.nango.dev/action/trigger \
+    --url https://api.tenklo.dev/action/trigger \
     --header 'Authorization: Bearer <ENV-SECRET-KEY>' \
     --header 'Connection-Id: <CONNECTION-ID>' \
     --header 'Provider-Config-Key: github' \
@@ -188,7 +188,7 @@ const result = await nango.getAsyncActionResult({ id });
 
 The async trigger response includes a `statusUrl` and `id`. Poll `GET /action/<ACTION-ID>` for the result: `404` means the execution is still running, `200` returns the function output, and `500` returns the execution error.
 
-To receive completion events instead of polling, configure [webhooks from Nango to your app](/guides/platform/webhooks-from-nango) and enable the `Async action completed` webhook.
+To receive completion events instead of polling, configure [webhooks from Tenklo to your app](/guides/platform/webhooks-from-nango) and enable the `Async action completed` webhook.
 
 <Warning>
   Use retries only for idempotent function logic. Retried writes can otherwise create duplicate side effects in the external API.

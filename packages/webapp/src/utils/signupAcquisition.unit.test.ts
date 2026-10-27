@@ -11,7 +11,7 @@ describe('signup acquisition', () => {
     it('keeps campaign fields and strips unrelated URL data', () => {
         expect(
             acquisitionFromInitialInfo({
-                u: 'https://nango.dev/integrations?utm_source=facebook&utm_medium=paid_social&utm_campaign=launch&token=secret#fragment',
+                u: 'https://tenklo.dev/integrations?utm_source=facebook&utm_medium=paid_social&utm_campaign=launch&token=secret#fragment',
                 r: 'https://www.facebook.com/feed?private=value'
             })
         ).toEqual({
@@ -23,7 +23,7 @@ describe('signup acquisition', () => {
         });
     });
 
-    it.each(['https://next.nango.dev/pricing', 'https://pr-161.next.nango.dev/pricing'])('accepts preview website hosts: %s', (u) => {
+    it.each(['https://next.tenklo.dev/pricing', 'https://pr-161.next.tenklo.dev/pricing'])('accepts preview website hosts: %s', (u) => {
         expect(acquisitionFromInitialInfo({ u: `${u}?utm_source=t1` })).toEqual({ acquisition_utm_source: 't1', acquisition_landing_path: '/pricing' });
     });
 
@@ -31,23 +31,23 @@ describe('signup acquisition', () => {
         undefined,
         {},
         { u: 'invalid' },
-        { u: 'https://app.nango.dev/signup/invite-token' },
-        { u: 'https://app.nango.dev/account/private-id' },
-        { u: 'https://app.nango.dev.evil.example/signup' },
-        { u: 'https://pr-7872.app-development.nango.dev/signup/invite-token' },
-        { u: 'https://pr-7872.app-development.nango.dev/account/private-id' },
-        { u: 'https://pr-7872.app-development.nango.dev.evil.example/signup' },
-        { u: 'https://pr-other.app-development.nango.dev/signup' },
-        { u: 'https://pr-7872-storybook.app-development.nango.dev/signup' },
-        { u: 'http://pr-7872.app-development.nango.dev/signup' },
+        { u: 'https://app.tenklo.dev/signup/invite-token' },
+        { u: 'https://app.tenklo.dev/account/private-id' },
+        { u: 'https://app.tenklo.dev.evil.example/signup' },
+        { u: 'https://pr-7872.app-development.tenklo.dev/signup/invite-token' },
+        { u: 'https://pr-7872.app-development.tenklo.dev/account/private-id' },
+        { u: 'https://pr-7872.app-development.tenklo.dev.evil.example/signup' },
+        { u: 'https://pr-other.app-development.tenklo.dev/signup' },
+        { u: 'https://pr-7872-storybook.app-development.tenklo.dev/signup' },
+        { u: 'http://pr-7872.app-development.tenklo.dev/signup' },
         { u: 'https://other.example/' },
-        { u: 'https://a.b.next.nango.dev/' },
-        { u: 'https://next.nango.dev.evil.example/' }
+        { u: 'https://a.b.next.tenklo.dev/' },
+        { u: 'https://next.tenklo.dev.evil.example/' }
     ])('ignores unavailable website history: %j', (info) => {
         expect(acquisitionFromInitialInfo(info)).toBeUndefined();
     });
 
-    it.each(['app.nango.dev', 'app-development.nango.dev', 'pr-7872.app-development.nango.dev'])('keeps direct-to-app signup attribution on %s', (host) => {
+    it.each(['app.tenklo.dev', 'app-development.tenklo.dev', 'pr-7872.app-development.tenklo.dev'])('keeps direct-to-app signup attribution on %s', (host) => {
         expect(
             acquisitionFromInitialInfo({
                 u: `https://${host}/signup?utm_source=github&utm_medium=referral&token=secret`,
@@ -61,15 +61,15 @@ describe('signup acquisition', () => {
         });
     });
 
-    it('keeps direct signup UTMs without treating Nango docs as an external referrer', () => {
-        expect(acquisitionFromInitialInfo({ u: 'https://app.nango.dev/signup/?utm_source=docs', r: 'https://nango.dev/docs' })).toEqual({
+    it('keeps direct signup UTMs without treating Tenklo docs as an external referrer', () => {
+        expect(acquisitionFromInitialInfo({ u: 'https://app.tenklo.dev/signup/?utm_source=docs', r: 'https://tenklo.dev/docs' })).toEqual({
             acquisition_utm_source: 'docs',
             acquisition_landing_path: '/signup/'
         });
     });
 
     it('does not invent a referrer for direct visits or use unsafe campaign values', () => {
-        expect(acquisitionFromInitialInfo({ u: 'https://nango.dev/?utm_source=person@example.com&utm_term=' + 'x'.repeat(257), r: '$direct' })).toEqual({
+        expect(acquisitionFromInitialInfo({ u: 'https://tenklo.dev/?utm_source=person@example.com&utm_term=' + 'x'.repeat(257), r: '$direct' })).toEqual({
             acquisition_landing_path: '/'
         });
     });
@@ -77,7 +77,7 @@ describe('signup acquisition', () => {
     it.each(['\u0080', '\u0085', '\u009f'])('drops campaign controls while keeping valid source fields: %j', (control) => {
         expect(
             acquisitionFromInitialInfo({
-                u: `https://pr-7872.app-development.nango.dev/signup/?utm_source=face${encodeURIComponent(control)}book&utm_campaign=caf%C3%A9`
+                u: `https://pr-7872.app-development.tenklo.dev/signup/?utm_source=face${encodeURIComponent(control)}book&utm_campaign=caf%C3%A9`
             })
         ).toEqual({ acquisition_utm_campaign: 'café', acquisition_landing_path: '/signup/' });
     });

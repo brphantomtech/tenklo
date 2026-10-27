@@ -11,7 +11,7 @@ type Story = StoryObj<typeof meta>;
 
 const EXAMPLES = [
     { name: 'John Doe', label: 'Two words' },
-    { name: 'Nango', label: 'Single word' },
+    { name: 'Tenklo', label: 'Single word' },
     { name: 'Acme/Production', label: 'Slash separator' }
 ];
 

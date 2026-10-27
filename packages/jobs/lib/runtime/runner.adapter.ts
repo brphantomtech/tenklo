@@ -47,12 +47,12 @@ export class RunnerRuntimeAdapter implements RuntimeAdapter {
 
             return Ok(res);
         } catch (err) {
-            logger.error('Nango runner was unable to execute the function', {
+            logger.error('Tenklo runner was unable to execute the function', {
                 error: err,
                 taskId: params.taskId,
                 runnerUrl: runner.value.url
             });
-            return Err(new Error(`Nango runner was unable to execute the function`, { cause: err }));
+            return Err(new Error(`Tenklo runner was unable to execute the function`, { cause: err }));
         }
     }
 }

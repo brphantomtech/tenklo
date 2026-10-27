@@ -15,7 +15,7 @@ The client application is created inside Simpplr by an app manager. It is not yo
 ### Prerequisites
 
 - You must have the app manager role in your Simpplr tenant.
-- Your tenant must run on Simpplr's own platform. Deployments that run as a managed package inside Salesforce authenticate through Salesforce instead; use Nango's `salesforce` integration for those.
+- Your tenant must run on Simpplr's own platform. Deployments that run as a managed package inside Salesforce authenticate through Salesforce instead; use Tenklo's `salesforce` integration for those.
 
 ### Instructions
 
@@ -45,7 +45,7 @@ Read the region from the host in your tenant's OAuth token URL:
 | `platform.au.simpplr.com` | `au` |
 | `platform.ca.simpplr.com` | `ca` |
 
-Nango sends both the token request and all API calls to the host for the region you pick, so a wrong value points the connection at another region's tenant and authentication fails.
+Tenklo sends both the token request and all API calls to the host for the region you pick, so a wrong value points the connection at another region's tenant and authentication fails.
 
 #### Step 3: Enter credentials in the Connect UI
 

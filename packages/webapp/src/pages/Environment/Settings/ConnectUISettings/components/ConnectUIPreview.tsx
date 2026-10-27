@@ -44,7 +44,7 @@ export const ConnectUIPreview = forwardRef<ConnectUIPreviewRef, { className?: st
                 is_preview: true,
                 end_user: {
                     id: 'previewUserId',
-                    email: 'preview@nango.dev',
+                    email: 'preview@tenklo.dev',
                     display_name: 'Preview User'
                 }
             });

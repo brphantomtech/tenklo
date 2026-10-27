@@ -67,7 +67,7 @@ export async function handlePostEnvironment({
         res.status(403).send({
             error: {
                 code: 'forbidden',
-                message: 'OpenTelemetry export is not available for your account. Check if your Nango plan includes access to this feature.'
+                message: 'OpenTelemetry export is not available for your account. Check if your Tenklo plan includes access to this feature.'
             }
         });
         return;

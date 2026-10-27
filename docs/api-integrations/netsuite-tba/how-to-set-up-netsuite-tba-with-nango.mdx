@@ -1,10 +1,10 @@
 ---
-title: 'Set up Netsuite TBA with Nango'
+title: 'Set up Netsuite TBA with Tenklo'
 sidebarTitle: 'Netsuite TBA Setup'
-description: 'Configure token-based authentication with Netsuite and connect it to Nango'
+description: 'Configure token-based authentication with Netsuite and connect it to Tenklo'
 ---
 
-This guide shows you how to set up token-based authentication (TBA) with Netsuite and connect it to Nango. TBA provides a machine-to-machine authentication flow that's more reliable than OAuth, as it doesn't have the 7-day refresh token expiration that Netsuite's standard OAuth flow has.
+This guide shows you how to set up token-based authentication (TBA) with Netsuite and connect it to Tenklo. TBA provides a machine-to-machine authentication flow that's more reliable than OAuth, as it doesn't have the 7-day refresh token expiration that Netsuite's standard OAuth flow has.
 
 <Note>
 Creating a Netsuite account typically requires scheduling a call with their sales team. If you don't have an account yet, visit [Netsuite's website](https://www.netsuite.com/) to get started.
@@ -69,7 +69,7 @@ If you have admin privileges in your Netsuite account, follow these steps to ena
     - **Consumer Key** (also called Client ID)
     - **Consumer Secret** (also called Client Secret)
 
-    You'll need these to configure your Nango integration.
+    You'll need these to configure your Tenklo integration.
   </Step>
 </Steps>
 
@@ -97,11 +97,11 @@ If you have admin privileges in your Netsuite account, follow these steps to ena
   </Step>
 </Steps>
 
-### Configure Nango
+### Configure Tenklo
 
 <Steps>
-  <Step title="Create integration in Nango">
-    In Nango, create a new integration using the `netsuite-tba` provider and leave the "Client Id" and "Client Secret" values empty.
+  <Step title="Create integration in Tenklo">
+    In Tenklo, create a new integration using the `netsuite-tba` provider and leave the "Client Id" and "Client Secret" values empty.
   </Step>
 
   <Step title="Create connection with credentials">

@@ -1,6 +1,6 @@
 ---
-title: 'How to set Workday up with Nango'
-description: 'Register your own OAuth app and configure Workday for production use in Nango'
+title: 'How to set Workday up with Tenklo'
+description: 'Register your own OAuth app and configure Workday for production use in Tenklo'
 ---
 
 This guide will show you how to register your application with Workday to obtain your own production OAuth credentials (client id & secret).
@@ -17,8 +17,8 @@ Once you complete this guide, your users can grant your app access to their Work
             - **Client Name**: Enter a unique, descriptive name (e.g., `Nango HRIS Integration`).
             - **Client Grant Type**: Select **Authorization Code Grant** (required for OAuth 2.0 flows).
             - **Access Token Type**: Select **Bearer** (standard for API authentication).
-            - **Redirection URI**: Set to `https://api.nango.dev/oauth/callback`.
-                - Use your custom callback URL if your Nango account has one set up.
+            - **Redirection URI**: Set to `https://api.tenklo.dev/oauth/callback`.
+                - Use your custom callback URL if your Tenklo account has one set up.
             - **Non-Expiring Refresh Tokens**: ✅ Enable (recommended for long-lived access).
             - **Scope** (Functional Areas):
                 + **Custom Objects > System** (required for custom object operations).
@@ -27,11 +27,11 @@ Once you complete this guide, your users can grant your app access to their Work
                 + **Staffing** (for recruitment/hiring data).
                 + **Tenant Non-Configurable** (read-only tenant settings).
             - **Include Workday Owned Scope**: ⚠️ Optional; it grants access to API scopes that are owned and managed by Workday itself.
-        2. Click **OK** to generate client credentials (**Client ID and Client Secret**), save these credentials securely as you'll need them when configuring your integration in Nango.
+        2. Click **OK** to generate client credentials (**Client ID and Client Secret**), save these credentials securely as you'll need them when configuring your integration in Tenklo.
     </Step>
     <Step title="Obtain refresh token (optional)">
         <Note>
-        The refresh token is **optional**. If omitted, Nango will automatically obtain and use the refresh token from the OAuth authorization flow. If you provide a refresh token, Nango will use the one you provide instead. **Important**: If you provide a refresh token, it must be non-expiring to ensure token refresh operations don't fail. Make sure **Non-Expiring Refresh Tokens** is enabled when registering your API client (see Step 2).
+        The refresh token is **optional**. If omitted, Tenklo will automatically obtain and use the refresh token from the OAuth authorization flow. If you provide a refresh token, Tenklo will use the one you provide instead. **Important**: If you provide a refresh token, it must be non-expiring to ensure token refresh operations don't fail. Make sure **Non-Expiring Refresh Tokens** is enabled when registering your API client (see Step 2).
         </Note>
 
         To obtain a refresh token:
@@ -41,9 +41,9 @@ Once you complete this guide, your users can grant your app access to their Work
         4. In the prompt that appears, enter the **Integration System User (ISU)** in the **Workday Account** field.
             - For information on creating an ISU, see [Workday Integration Security User](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html).
         5. A new screen will appear. Check the **"Regenerate New Refresh Token"** box and click **OK**.
-        6. A new refresh token will be generated. Save this token securely as you'll need it when configuring your integration in Nango (optional).
+        6. A new refresh token will be generated. Save this token securely as you'll need it when configuring your integration in Tenklo (optional).
     </Step>
-    <Step title="Configure your integration in Nango">
-    Follow the [_Quickstart_](/getting-started/quickstart) to add your credentials to Nango.
+    <Step title="Configure your integration in Tenklo">
+    Follow the [_Quickstart_](/getting-started/quickstart) to add your credentials to Tenklo.
   </Step>
 </Steps>

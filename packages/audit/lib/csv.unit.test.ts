@@ -68,13 +68,13 @@ describe('auditCsvRows', () => {
     });
 
     it('names the impersonating party in the via cell', () => {
-        const row = auditCsvRows([event({ via: [{ type: 'impersonation', id: '1', display: 'Nango' }] })]);
-        expect(row).toContain(',impersonation:Nango,');
+        const row = auditCsvRows([event({ via: [{ type: 'impersonation', id: '1', display: 'Tenklo' }] })]);
+        expect(row).toContain(',impersonation:Tenklo,');
     });
 
     it('carries the operator id in its own cell, and never their name', () => {
-        const row = auditCsvRows([event({ via: [{ type: 'impersonation', id: '1', display: 'Nango', actorId: '7' }] })]);
-        expect(row).toContain(',impersonation:Nango,7,');
+        const row = auditCsvRows([event({ via: [{ type: 'impersonation', id: '1', display: 'Tenklo', actorId: '7' }] })]);
+        expect(row).toContain(',impersonation:Tenklo,7,');
     });
 
     it('joins several targets into one cell', () => {

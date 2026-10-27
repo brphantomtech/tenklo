@@ -38,8 +38,8 @@ vi.mock('../../middleware/access.middleware.js', () => ({
 }));
 vi.mock('../../oauth/server.js', () => ({
     oauthServerConfig: {
-        config: { baseUrl: 'https://login.nango.dev', encryptionKey: 'test-encryption-key' },
-        resource: { resource: 'https://mcp.nango.dev/mcp', scopes: ['environment:*'] }
+        config: { baseUrl: 'https://login.tenklo.dev', encryptionKey: 'test-encryption-key' },
+        resource: { resource: 'https://mcp.tenklo.dev/mcp', scopes: ['environment:*'] }
     },
     oauthServer: {
         AccessToken: { find: accessTokenFindMock },
@@ -53,7 +53,7 @@ const account = { id: 42, uuid: 'account-uuid', name: 'Test account' };
 const plan = { id: 3, account_id: 42, has_rbac: true };
 const originalOpenAIAppsChallengeToken = envs.NANGO_OPENAI_APPS_CHALLENGE_TOKEN;
 const validAccessToken = {
-    aud: 'https://mcp.nango.dev/mcp',
+    aud: 'https://mcp.tenklo.dev/mcp',
     accountId: '7',
     clientId: 'https://client.example.com/metadata.json',
     grantId: 'grant-id',
@@ -115,11 +115,11 @@ describe('Management MCP OAuth authentication', () => {
 
         expect(status).toHaveBeenCalledWith(200);
         expect(json).toHaveBeenCalledWith({
-            resource: 'https://mcp.nango.dev/mcp',
-            authorization_servers: ['https://login.nango.dev'],
+            resource: 'https://mcp.tenklo.dev/mcp',
+            authorization_servers: ['https://login.tenklo.dev'],
             scopes_supported: ['environment:*'],
             bearer_methods_supported: ['header'],
-            resource_name: 'Nango Management MCP server'
+            resource_name: 'Tenklo Management MCP server'
         });
     });
 
@@ -196,7 +196,7 @@ describe('Management MCP OAuth authentication', () => {
         expect(status).toHaveBeenCalledWith(401);
         expect(json).toHaveBeenCalledWith({ error: 'unauthorized' });
         expect(headers.get('WWW-Authenticate')).toBe(
-            'Bearer resource_metadata="https://mcp.nango.dev/.well-known/oauth-protected-resource/mcp", scope="environment:*"'
+            'Bearer resource_metadata="https://mcp.tenklo.dev/.well-known/oauth-protected-resource/mcp", scope="environment:*"'
         );
     });
 
@@ -213,7 +213,7 @@ describe('Management MCP OAuth authentication', () => {
     });
 
     it('rejects a token whose audience is not exactly the Management MCP resource', async () => {
-        accessTokenFindMock.mockResolvedValue({ ...validAccessToken, aud: ['https://mcp.nango.dev/mcp', 'https://other.example.com'] });
+        accessTokenFindMock.mockResolvedValue({ ...validAccessToken, aud: ['https://mcp.tenklo.dev/mcp', 'https://other.example.com'] });
         const req = request('oauth-access-token');
         const { res, status } = response();
 
@@ -311,7 +311,7 @@ describe('Management MCP OAuth authentication', () => {
         expect(status).toHaveBeenCalledWith(401);
         expect(json).toHaveBeenCalledWith({ error: 'unauthorized' });
         expect(headers.get('WWW-Authenticate')).toBe(
-            'Bearer resource_metadata="https://mcp.nango.dev/.well-known/oauth-protected-resource/mcp", scope="environment:*"'
+            'Bearer resource_metadata="https://mcp.tenklo.dev/.well-known/oauth-protected-resource/mcp", scope="environment:*"'
         );
     });
 });

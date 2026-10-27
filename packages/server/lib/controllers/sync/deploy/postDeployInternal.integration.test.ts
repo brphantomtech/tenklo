@@ -54,7 +54,7 @@ describe(`POST ${endpoint}`, () => {
 
         isError(res.json);
         expect(res.res.status).toBe(403);
-        expect(res.json).toStrictEqual({ error: { code: 'forbidden', message: 'This endpoint is only available for Nango internal use' } });
+        expect(res.json).toStrictEqual({ error: { code: 'forbidden', message: 'This endpoint is only available for Tenklo internal use' } });
     });
 
     describe('models_json_schema handling', () => {

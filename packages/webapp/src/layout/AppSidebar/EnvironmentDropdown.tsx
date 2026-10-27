@@ -121,7 +121,7 @@ export const EnvironmentDropdown: React.FC = () => {
                                 <Alert variant="warning" size="compact">
                                     <TriangleAlert />
                                     <AlertDescription>
-                                        Max number of environments reached. {isLegacy ? 'Contact Nango to add more.' : 'Upgrade for more.'}
+                                        Max number of environments reached. {isLegacy ? 'Contact Tenklo to add more.' : 'Upgrade for more.'}
                                     </AlertDescription>
                                     {!isLegacy && (
                                         <AlertActions>

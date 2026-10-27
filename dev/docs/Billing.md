@@ -3,17 +3,17 @@
 ## 🤓 How it works?
 <!--
 shape: sequence_diagram
-User1 -> Nango: I want to upgrade to Starter
-Nango -> User1: Give us a credit card first
+User1 -> Tenklo: I want to upgrade to Starter
+Tenklo -> User1: Give us a credit card first
 User1 -> Stripe: Save payment info
-User1 -> Nango: I want to upgrade to Starter
-Nango -> Orb: Schedule an upgrade to Starter for User1
-Orb -> Nango: Here is a future SubscriptionID and a prorated invoice
-Nango -> Stripe: User1 needs to pay <prorated>
-Stripe -> Nango: (webhook) Payment succeeded
-Nango -> Orb: User1 paid for SubscriptionID, apply the change
-Orb -> Nango: (webhook) Plan changed
-Nango -> User1: Success
+User1 -> Tenklo: I want to upgrade to Starter
+Tenklo -> Orb: Schedule an upgrade to Starter for User1
+Orb -> Tenklo: Here is a future SubscriptionID and a prorated invoice
+Tenklo -> Stripe: User1 needs to pay <prorated>
+Stripe -> Tenklo: (webhook) Payment succeeded
+Tenklo -> Orb: User1 paid for SubscriptionID, apply the change
+Orb -> Tenklo: (webhook) Plan changed
+Tenklo -> User1: Success
 -->
 <img width="2096" height="2636" src="https://github.com/user-attachments/assets/a270bd2f-0522-4de6-b149-fcb0e25aa0b3" />
 

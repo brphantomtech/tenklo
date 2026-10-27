@@ -48,7 +48,7 @@ if (!previousProviders) {
 
 console.log('# Provider Changelog');
 console.log();
-console.log(`Nango supports ${Object.keys(previousProviders).length} providers`);
+console.log(`Tenklo supports ${Object.keys(previousProviders).length} providers`);
 console.log();
 
 for (const [date, added] of months) {

@@ -49,7 +49,7 @@ describe('sandboxed function command output helpers', () => {
             const output = parseDryrunSuccessOutput(`✓ Typechecking
   Building 1 file(s) - ./github/actions/listRepos.js
 ✓ Compiled
-Note: In Nango Cloud, only logs with level "warn" or "error" will be shown by default.
+Note: In Tenklo Cloud, only logs with level "warn" or "error" will be shown by default.
 Executing -> integration:"github" script:"listRepos"
 Done
 {
@@ -85,7 +85,7 @@ not json
             const output = parseDeploySuccessOutput(`✓ Typechecking
 ✓ Compiled
 ✓ Packaging
-✓ Acquiring remote state (https://api-staging.nango.dev)
+✓ Acquiring remote state (https://api-staging.tenklo.dev)
 ✓ Deployed
 Successfully deployed the functions:
 - listRepos@v2.0.0
@@ -93,7 +93,7 @@ Successfully deployed the functions:
 
             expect(output).toStrictEqual({
                 output: `✓ Packaging
-✓ Acquiring remote state (https://api-staging.nango.dev)
+✓ Acquiring remote state (https://api-staging.tenklo.dev)
 ✓ Deployed
 Successfully deployed the functions:
 - listRepos@v2.0.0`,

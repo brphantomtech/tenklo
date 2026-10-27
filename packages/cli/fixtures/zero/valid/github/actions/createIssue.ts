@@ -28,7 +28,7 @@ export default createAction({
             endpoint: '/repos/NangoHQ/interactive-demo/issues',
             data: {
                 title: `[demo] ${input.title}`,
-                body: `This issue was created automatically using Nango Action.`,
+                body: `This issue was created automatically using Tenklo Action.`,
                 labels: ['automatic']
             }
         });

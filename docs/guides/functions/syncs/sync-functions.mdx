@@ -4,7 +4,7 @@ sidebarTitle: 'Sync function guide'
 description: 'Build sync functions that keep external API data fresh and consumable by your app.'
 ---
 
-Sync functions keep external API data fresh in your app. They run on a recurring cadence, write records to Nango's records cache, and let your app consume changes reliably.
+Sync functions keep external API data fresh in your app. They run on a recurring cadence, write records to Tenklo's records cache, and let your app consume changes reliably.
 
 Use sync functions when your app needs to replicate a dataset from an external system for sync, indexing, RAG, reporting, or change-detection workflows.
 
@@ -155,7 +155,7 @@ nango deploy --sync contacts dev
 
 ## Start or trigger runs
 
-If `autoStart: true`, Nango starts the schedule for new connections automatically. Otherwise, start it after the connection is ready and required metadata is saved:
+If `autoStart: true`, Tenklo starts the schedule for new connections automatically. Otherwise, start it after the connection is ready and required metadata is saved:
 
 ```typescript
 await nango.startSync('crm', ['contacts'], '<CONNECTION-ID>');
@@ -173,7 +173,7 @@ await nango.triggerSync('crm', ['contacts'], '<CONNECTION-ID>');
 
 ## Consume records
 
-Configure your app's Nango webhook URL in **Environment Settings > Webhook URLs**. After a run, Nango sends a sync webhook with the connection, integration, sync name, model, and change counts. Your app should then read records by cursor:
+Configure your app's Tenklo webhook URL in **Environment Settings > Webhook URLs**. After a run, Tenklo sends a sync webhook with the connection, integration, sync name, model, and change counts. Your app should then read records by cursor:
 
 <Tabs>
   <Tab title="TypeScript">
@@ -192,7 +192,7 @@ Configure your app's Nango webhook URL in **Environment Settings > Webhook URLs*
   </Tab>
   <Tab title="cURL">
   ```bash
-  curl -G https://api.nango.dev/records \
+  curl -G https://api.tenklo.dev/records \
     --header 'Authorization: Bearer <ENV-SECRET-KEY>' \
     --header 'Provider-Config-Key: crm' \
     --header 'Connection-Id: <CONNECTION-ID>' \
@@ -202,7 +202,7 @@ Configure your app's Nango webhook URL in **Environment Settings > Webhook URLs*
   </Tab>
 </Tabs>
 
-The consumer loop is: receive a sync webhook from Nango, look up the last cursor processed for that connection and model, fetch records with that cursor, process them, then store the cursor from the last record fetched.
+The consumer loop is: receive a sync webhook from Tenklo, look up the last cursor processed for that connection and model, fetch records with that cursor, process them, then store the cursor from the last record fetched.
 
 ## Two-way syncs
 

@@ -111,11 +111,11 @@ function buildConfig(appId: string, darkMode: boolean, user?: ApiUser, emailHash
         },
         logo: {
             url: `${window.location.origin}/${darkMode ? 'logo-icon-dark.svg' : 'logo-icon-light.svg'}`,
-            alt: 'Nango'
+            alt: 'Tenklo'
         },
         links: [
-            { icon: 'book', text: 'View docs & ask AI', url: 'https://docs.nango.dev' },
-            { icon: 'slack', text: 'Join Slack & ask our engineers', url: 'https://nango.dev/slack' }
+            { icon: 'book', text: 'View docs & ask AI', url: 'https://docs.tenklo.dev' },
+            { icon: 'slack', text: 'Join Slack & ask our engineers', url: 'https://tenklo.dev/slack' }
         ],
         chatButtons: [
             { icon: 'chat', text: 'Ask a question', threadDetails: {} },
@@ -196,7 +196,7 @@ export const PlainChat: React.FC<{ user?: ApiUser }> = ({ user }) => {
                 theme: darkMode ? 'dark' : 'light',
                 logo: {
                     url: `${window.location.origin}/${darkMode ? 'logo-icon-dark.svg' : 'logo-icon-light.svg'}`,
-                    alt: 'Nango'
+                    alt: 'Tenklo'
                 }
             });
         }

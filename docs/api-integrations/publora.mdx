@@ -6,22 +6,22 @@ description: 'Integrate your application with the Publora API'
 
 ## Quickstart
 
-Connect to Publora with Nango and see data flow in 2 minutes. The Publora API uses API key authentication, so no user redirect is required.
+Connect to Publora with Tenklo and see data flow in 2 minutes. The Publora API uses API key authentication, so no user redirect is required.
 
 <Steps>
     <Step title="Create the integration" id="create-integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Publora_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Publora_.
     </Step>
     <Step title="Connect Publora" id="connect-publora">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_. Enter your Publora API key, then save.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_. Enter your Publora API key, then save.
     </Step>
     <Step title="Call the Publora API" id="call-publora-api">
-    Let's make your first request to the Publora API: list the social accounts the key can publish to. Replace the placeholders below with your [secret key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Publora API: list the social accounts the key can publish to. Replace the placeholders below with your [secret key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/v1/platform-connections" \
+            curl "https://api.tenklo.dev/proxy/api/v1/platform-connections" \
               -H "Authorization: Bearer <NANGO-SECRET-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Publora with Nango and see data flow in 2 minutes. The Publora API us
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -50,11 +50,11 @@ Connect to Publora with Nango and see data flow in 2 minutes. The Publora API us
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/sdks/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connection/get).
 
-    You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app" id="implement-nango">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app" id="implement-nango">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -62,10 +62,10 @@ Connect to Publora with Nango and see data flow in 2 minutes. The Publora API us
 
 ## Publora integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to get your Publora API key](/api-integrations/publora/connect)
-Generate an API key in the Publora dashboard and connect it to Nango
+Generate an API key in the Publora dashboard and connect it to Tenklo
 
 Official docs: [Publora API docs](https://docs.publora.com)
 

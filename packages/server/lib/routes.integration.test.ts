@@ -70,7 +70,7 @@ describe('route', () => {
             expect((await res.json()) as unknown).toStrictEqual({ error: { code: 'not_found', message: 'Not found' } });
         });
 
-        it("does not intercept Nango's existing OAuth routes", async () => {
+        it("does not intercept Tenklo's existing OAuth routes", async () => {
             const res = await fetch(`${api.url}/oauth/client-metadata/not-a-uuid/provider`);
 
             expect(res.status).toBe(400);

@@ -14,7 +14,7 @@ const SIDES = ['top', 'right', 'bottom', 'left'] as const;
 const ALIGNS = ['start', 'center', 'end'] as const;
 
 const LONG_TEXT =
-    'Records are written by the sync and kept in Nango until the connection is deleted. Nango stores the last known state of every record, so re-running a sync never duplicates them.';
+    'Records are written by the sync and kept in Tenklo until the connection is deleted. Tenklo stores the last known state of every record, so re-running a sync never duplicates them.';
 
 // One trigger per row: an open tooltip needs the whole row to itself, or neighbours overlap it.
 const Row = ({ label, children }: { label: string; children: React.ReactNode }) => (

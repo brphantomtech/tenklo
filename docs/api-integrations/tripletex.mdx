@@ -6,22 +6,22 @@ description: 'Integrate your application with the Tripletex API'
 
 ## 🚀 Quickstart
 
-Connect to Tripletex with Nango and see data flow in 2 minutes.
+Connect to Tripletex with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Tripletex_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Tripletex_.
     </Step>
     <Step title="Connect your Tripletex account">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_. Enter your Consumer Token and Employee Token, select the Environment (`tripletex.no` for production or `api-test.tripletex.tech` for the sandbox), set the Proxy Company ID (usually `0`), then save. See the [connect guide](/api-integrations/tripletex/connect) for how to generate these tokens.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_. Enter your Consumer Token and Employee Token, select the Environment (`tripletex.no` for production or `api-test.tripletex.tech` for the sandbox), set the Proxy Company ID (usually `0`), then save. See the [connect guide](/api-integrations/tripletex/connect) for how to generate these tokens.
     </Step>
     <Step title="Call the Tripletex API">
-    Make your first request (returns the employee the session represents). Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request (returns the employee the session represents). Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v2/token/session/>whoAmI" \
+            curl "https://api.tenklo.dev/proxy/v2/token/session/>whoAmI" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Tripletex with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Tripletex with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To set up your own credentials, follow the connect guide linked below.
     </Step>
@@ -63,10 +63,10 @@ Connect to Tripletex with Nango and see data flow in 2 minutes.
 
 ## 📚 Tripletex integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to connect your Tripletex account](/api-integrations/tripletex/connect)  
-Generate an employee token in Tripletex and connect it to Nango
+Generate an employee token in Tripletex and connect it to Tenklo
 
 Official docs: [Tripletex API documentation](https://developer.tripletex.no/docs/)
 

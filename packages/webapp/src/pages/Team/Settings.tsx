@@ -23,7 +23,7 @@ export const TeamSettingsPage: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Team settings" className="flex flex-col gap-8 max-w-7xl mx-0">
                 <Helmet>
-                    <title>Team Settings - Nango</title>
+                    <title>Team Settings - Tenklo</title>
                 </Helmet>
                 <div className="flex flex-col gap-4">
                     <Skeleton className="w-[250px]" />
@@ -42,7 +42,7 @@ export const TeamSettingsPage: React.FC = () => {
     return (
         <DashboardLayout fullWidth title="Team settings" className="flex flex-col gap-8 max-w-7xl mx-0">
             <Helmet>
-                <title>Team Settings - Nango</title>
+                <title>Team Settings - Tenklo</title>
             </Helmet>
             <InviteTeamMembers />
             <TeamSettings />

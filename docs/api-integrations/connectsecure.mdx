@@ -6,22 +6,22 @@ description: 'Integrate your application with the ConnectSecure API'
 
 ## 🚀 Quickstart
 
-Connect to ConnectSecure with Nango and see data flow in 2 minutes.
+Connect to ConnectSecure with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _ConnectSecure_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _ConnectSecure_.
     </Step>
     <Step title="Authorize ConnectSecure">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_. Enter your ConnectSecure pod host, tenant, Client ID, and Client Secret. Nango verifies the credentials against your pod before creating the connection.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_. Enter your ConnectSecure pod host, tenant, Client ID, and Client Secret. Tenklo verifies the credentials against your pod before creating the connection.
     </Step>
     <Step title="Call the ConnectSecure API">
-    Make your first request to the ConnectSecure API (list companies). Replace the placeholders below with your [API key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request to the ConnectSecure API (list companies). Replace the placeholders below with your [API key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/r/company/companies?skip=0&limit=10" \
+            curl "https://api.tenklo.dev/proxy/r/company/companies?skip=0&limit=10" \
               -H "Authorization: Bearer <API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to ConnectSecure with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,11 +53,11 @@ Connect to ConnectSecure with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-nango" title="Implement Nango in your app">
-    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step id="implement-nango" title="Implement Tenklo in your app">
+    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
     To find your ConnectSecure connection details, follow the connect guide linked below.
     </Step>
@@ -68,7 +68,7 @@ Connect to ConnectSecure with Nango and see data flow in 2 minutes.
 Nango-maintained guides for common use cases.
 
 - [How do I link my ConnectSecure account?](/api-integrations/connectsecure/connect)
-  Find the four required connection values and connect to Nango
+  Find the four required connection values and connect to Tenklo
 
 Official docs: [ConnectSecure support and documentation](https://connectsecure.com/support)
 

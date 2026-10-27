@@ -187,7 +187,7 @@ export class ProxyService {
                     new ProxyServiceError({
                         code: 'unknown_integration',
                         message:
-                            'Provider config not found for the given provider config key. Please make sure the provider config exists in the Nango dashboard.',
+                            'Provider config not found for the given provider config key. Please make sure the provider config exists in the Tenklo dashboard.',
                         status: 404
                     }),
                     params.integrationId

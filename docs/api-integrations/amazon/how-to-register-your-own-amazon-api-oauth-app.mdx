@@ -1,7 +1,7 @@
 ---
-title: 'Set up Amazon with Nango'
+title: 'Set up Amazon with Tenklo'
 sidebarTitle: 'Amazon Setup'
-description: 'Register an OAuth app with Amazon and connect it to Nango'
+description: 'Register an OAuth app with Amazon and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Amazon to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Amazon account.
@@ -25,11 +25,11 @@ This guide shows you how to register your own app with Amazon to obtain your OAu
     1. Click **Web Settings** under the application name
     2. Click **Edit** to configure the OAuth settings
     3. Add your **Allowed JavaScript Origins** (e.g., `https://yourdomain.com`)
-    4. Add your **Allowed Return URLs** - this should be your Nango callback URL:
+    4. Add your **Allowed Return URLs** - this should be your Tenklo callback URL:
        ```
-       https://api.nango.dev/oauth/callback
+       https://api.tenklo.dev/oauth/callback
        ```
-       Or if you're self-hosting Nango, use your instance's callback URL.
+       Or if you're self-hosting Tenklo, use your instance's callback URL.
     5. Save your changes
     </Step>
 
@@ -37,17 +37,17 @@ This guide shows you how to register your own app with Amazon to obtain your OAu
     After saving, you'll see your **Client ID** and **Client Secret** in the web settings section. Copy these credentials.
     </Step>
 
-    <Step title="Add credentials to Nango">
-    In the [Nango dashboard](https://app.nango.dev/dev/integrations), find your Amazon integration and add:
+    <Step title="Add credentials to Tenklo">
+    In the [Tenklo dashboard](https://app.tenklo.dev/dev/integrations), find your Amazon integration and add:
     - **Client ID** from step 4
     - **Client Secret** from step 4
     - **Scopes** - Add the required scopes for your use case (see [Amazon's scope documentation](https://developer.amazon.com/docs/login-with-amazon/customer-profile.html))
     </Step>
 </Steps>
 
-## Connection configuration in Nango
+## Connection configuration in Tenklo
 
-Amazon uses different domain extensions for different regions (e.g., `amazon.com` for the US, `amazon.co.uk` for the UK, or `amazon.de` for Germany). When creating a connection in Nango, you can specify the region-specific domain using connection configuration parameters.
+Amazon uses different domain extensions for different regions (e.g., `amazon.com` for the US, `amazon.co.uk` for the UK, or `amazon.de` for Germany). When creating a connection in Tenklo, you can specify the region-specific domain using connection configuration parameters.
 
 For more details on Amazon's OAuth implementation, see [Amazon's OAuth documentation](https://developer.amazon.com/docs/login-with-amazon/authorization-code-grant.html).
 

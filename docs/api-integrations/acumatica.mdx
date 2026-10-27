@@ -6,22 +6,22 @@ description: 'Integrate your application with the Acumatica ERP REST API using t
 
 ## 🚀 Quickstart
 
-Connect to Acumatica with Nango and see data flow in 2 minutes. The Resource Owner Password Credentials flow is machine-to-machine — no user redirect required.
+Connect to Acumatica with Tenklo and see data flow in 2 minutes. The Resource Owner Password Credentials flow is machine-to-machine — no user redirect required.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Acumatica_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Acumatica_.
     </Step>
     <Step id="connect-acumatica-account" title="Connect your Acumatica account">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_. Enter your Instance URL, Client ID, Client Secret, Username, and Password, then save.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_. Enter your Instance URL, Client ID, Client Secret, Username, and Password, then save.
     </Step>
     <Step id="call-acumatica-api" title="Call the Acumatica API">
-    Make your first request (list customers). Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request (list customers). Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/entity/Default/23.200.001/Customer" \
+            curl "https://api.tenklo.dev/proxy/entity/Default/23.200.001/Customer" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Acumatica with Nango and see data flow in 2 minutes. The Resource Own
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Acumatica with Nango and see data flow in 2 minutes. The Resource Own
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own credentials, follow the setup guide linked below.
     </Step>
@@ -63,10 +63,10 @@ Connect to Acumatica with Nango and see data flow in 2 minutes. The Resource Own
 
 ## 📚 Acumatica integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to configure Acumatica credentials](/api-integrations/acumatica/connect)  
-Register a connected application in Acumatica ERP and obtain credentials to connect it to Nango
+Register a connected application in Acumatica ERP and obtain credentials to connect it to Tenklo
 
 Official docs: [Acumatica REST API docs](https://help.acumatica.com/Help?ScreenId=ShowWiki&pageid=d1dfed8d-cd39-4a19-bd7d-5a7b7c7d70cf)
 

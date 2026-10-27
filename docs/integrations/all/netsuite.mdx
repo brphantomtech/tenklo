@@ -25,7 +25,7 @@ import PreBuiltUseCases from "/snippets/generated/netsuite/PreBuiltUseCases.mdx"
 
 _No setup guide yet._
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 <Note>Contribute improvements to the setup guide by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/netsuite.mdx)</Note>
 
@@ -39,7 +39,7 @@ _No setup guide yet._
 
 <Note>Contribute useful links by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/netsuite.mdx)</Note>
 
-## Connection configuration in Nango
+## Connection configuration in Tenklo
 
 - Netsuite requires a user specific account id to run OAuth.
 
@@ -47,7 +47,7 @@ _No setup guide yet._
 
 - There doesn't seem to be a way to create a Netsuite account without scheduling a call.
 - The `netsuite` integration which uses OAuth 2.0 has a refresh token that has a fixed expiration of 7 days. After which point the refresh token becomes invalid and a new access token must be obtained by making users go through the authorization code flow again.
-To avoid this we recommend using the machine to machine flow which is called the `netsuite-tba` integration in Nango
+To avoid this we recommend using the machine to machine flow which is called the `netsuite-tba` integration in Tenklo
 
 <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/netsuite.mdx)</Note>
 
@@ -79,7 +79,7 @@ To avoid this we recommend using the machine to machine flow which is called the
 -   Enter a "**Token Name**"
 -   Save your new access token
 -   The token credentials will now be displayed. Copy the "**Token ID**" & "**Token Secret**"
--   In Nango create a new integration using the `netsuite-tba` and leave the "Client Id" and "Client Secret" values empty.
+-   In Tenklo create a new integration using the `netsuite-tba` and leave the "Client Id" and "Client Secret" values empty.
 -   Create a new connection and for the "**OAuth Client Id Override**" value paste in the
 value you received from Netsuite called "**Client ID**" and for the "**OAuth Client Secret**" value paste in the value you received
 from Netsuite called "**Client Secret**". For "**Token ID**" & "**Token Secret**" paste in the values you received from Netsuite

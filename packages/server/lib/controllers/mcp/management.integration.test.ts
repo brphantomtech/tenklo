@@ -26,7 +26,7 @@ async function mcpFetch({
     token,
     method,
     body,
-    host = 'mcp-test.nango.dev'
+    host = 'mcp-test.tenklo.dev'
 }: {
     token: string;
     method: 'GET' | 'POST';
@@ -76,14 +76,14 @@ async function mcpFetch({
     });
 }
 
-async function mcpGet({ token, host = 'mcp-test.nango.dev' }: { token: string; host?: string }): Promise<{ status: number; json: any }> {
+async function mcpGet({ token, host = 'mcp-test.tenklo.dev' }: { token: string; host?: string }): Promise<{ status: number; json: any }> {
     return await mcpFetch({ token, method: 'GET', host });
 }
 
 async function mcpPost({
     token,
     body,
-    host = 'mcp-test.nango.dev'
+    host = 'mcp-test.tenklo.dev'
 }: {
     token: string;
     body: Record<string, unknown>;
@@ -98,7 +98,7 @@ async function fetchManagementMcp(input: string | URL | Request, init?: RequestI
     new Headers(init?.headers).forEach((value, name) => {
         headers[name] = value;
     });
-    headers['host'] = 'mcp-test.nango.dev';
+    headers['host'] = 'mcp-test.tenklo.dev';
 
     return await new Promise((resolve, reject) => {
         const req = request(
@@ -288,7 +288,7 @@ describe('POST /mcp management server', () => {
                 mcp_auth_type: 'apiKey',
                 surface: 'server',
                 is_production: env.is_production,
-                $mcp_server_name: 'Nango Management MCP server',
+                $mcp_server_name: 'Tenklo Management MCP server',
                 $mcp_tool_name: 'providers_get',
                 $mcp_is_error: false
             });
@@ -1299,7 +1299,7 @@ describe('POST /mcp management server', () => {
             content: [
                 {
                     type: 'text',
-                    text: 'Provider config not found for the given provider config key. Please make sure the provider config exists in the Nango dashboard.'
+                    text: 'Provider config not found for the given provider config key. Please make sure the provider config exists in the Tenklo dashboard.'
                 }
             ],
             isError: true
@@ -1481,7 +1481,7 @@ describe('POST /mcp management server', () => {
         const { secret } = await createKeyWithScopes(['environment:logs:read']);
         const res = await mcpPost({
             token: secret,
-            host: 'api-development.nango.dev',
+            host: 'api-development.tenklo.dev',
             body: { jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} }
         });
 

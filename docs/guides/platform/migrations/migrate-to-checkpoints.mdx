@@ -30,12 +30,12 @@ If you want your syncs to be resilient to failures, ensuring that a failed run r
 
 `nango.lastSyncDate` is deprecated and replaced by checkpoints — a more flexible and resilient way to track sync progress.
 
-With `lastSyncDate`, Nango automatically tracked the timestamp of the last completed sync run. Your function could read it but not set it, and it was always a timestamp. With checkpoints, you define the schema, you control when it's saved, and you can store any type of progress marker — not just a date.
+With `lastSyncDate`, Tenklo automatically tracked the timestamp of the last completed sync run. Your function could read it but not set it, and it was always a timestamp. With checkpoints, you define the schema, you control when it's saved, and you can store any type of progress marker — not just a date.
 
 | | `lastSyncDate` (deprecated) | Checkpoints |
 | --- | --- | --- |
 | **Type** | Always a `Date` | Any schema you define with Zod |
-| **Control** | Managed by Nango, read-only | You set it explicitly with `saveCheckpoint()` |
+| **Control** | Managed by Tenklo, read-only | You set it explicitly with `saveCheckpoint()` |
 | **Granularity** | Updated once per completed run | Updated mid-execution, after each batch |
 | **Resilience** | If a run fails, no progress is saved | Progress is saved incrementally — the next run resumes from the last checkpoint |
 
@@ -49,7 +49,7 @@ Checkpoints also replace the `syncType: 'incremental'` field in your sync declar
 
 1. **No mid-run resilience.** If a sync fetched 90% of its data and then failed, all progress was lost. The next run started over from the previous `lastSyncDate`, re-fetching everything.
 
-2. **Rigid type.** The value was always a timestamp managed by Nango. Some APIs use cursors, page tokens, or composite markers to track progress — `lastSyncDate` couldn't accommodate these.
+2. **Rigid type.** The value was always a timestamp managed by Tenklo. Some APIs use cursors, page tokens, or composite markers to track progress — `lastSyncDate` couldn't accommodate these.
 
 Checkpoints solve both problems. For a full overview, see the [checkpoints guide](/guides/functions/syncs/checkpoints).
 
@@ -209,7 +209,7 @@ Because the first post-migration run starts fresh, it may take longer than usual
 </Warning>
 
 <Tip>
-    **Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+    **Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>
 
 ## Related guides

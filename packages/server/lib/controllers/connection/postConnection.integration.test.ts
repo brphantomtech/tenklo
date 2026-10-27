@@ -251,7 +251,7 @@ describe(`POST ${endpoint}`, () => {
         });
     });
 
-    it('should reject a webhook_url override pointing to nango.dev', async () => {
+    it('should reject a webhook_url override pointing to tenklo.dev', async () => {
         const { env, apiKey } = await seeders.seedAccountEnvAndUser();
         await seeders.createConfigSeed(env, 'github', 'github');
         const res = await api.fetch(endpoint, {
@@ -260,7 +260,7 @@ describe(`POST ${endpoint}`, () => {
             body: {
                 provider_config_key: 'github',
                 credentials: { type: 'OAUTH2', access_token: '123' },
-                webhook_url_override: 'https://api.nango.dev/hook'
+                webhook_url_override: 'https://api.tenklo.dev/hook'
             }
         });
 
@@ -271,7 +271,7 @@ describe(`POST ${endpoint}`, () => {
                 errors: [
                     {
                         code: 'custom',
-                        message: `Webhook URLs cannot point to Nango's domain (nango.dev).`,
+                        message: `Webhook URLs cannot point to Tenklo's domain (tenklo.dev).`,
                         path: ['webhook_url_override']
                     }
                 ]

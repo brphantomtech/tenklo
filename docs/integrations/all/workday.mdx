@@ -8,17 +8,17 @@ description: 'Access the Workday SOAP API with custom integrations'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Workday_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Workday_.
       </Step>
       <Step title="Authorize Workday">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Workday. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Workday. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Workday SOAP API">
-        Let's make your first request to the Workday SOAP API (fetch workers using Human_Resources service). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Workday SOAP API (fetch workers using Human_Resources service). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="Node">
 
-            Install Nango's backend SDK and SOAP library with `npm i @nangohq/node soap`. Then run:
+            Install Tenklo's backend SDK and SOAP library with `npm i @nangohq/node soap`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -76,7 +76,7 @@ description: 'Access the Workday SOAP API with custom integrations'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Workday accounts.
@@ -94,7 +94,7 @@ description: 'Access the Workday SOAP API with custom integrations'
     <Note>Contribute useful links by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/workday.mdx)</Note>
   </Tab>
   <Tab title="🚨 API gotchas">
-    - Workday provides two APIs, a REST and a SOAP one and Nango supports them both.
+    - Workday provides two APIs, a REST and a SOAP one and Tenklo supports them both.
     - Workday requires a user-specific `hostname` and `tenant` for the API base URL.
     - Access to most Workday's API doc resources, including detailed documentation on OAuth authentication flows, is typically restricted to Workday customers and partners. To access these resources, you can:​
     1. **Sign In to Workday Community**: Visit the [Workday Community](https://community.workday.com/) and sign in with your Workday credentials. If you don't have an account, you can [request one](https://workday.my.site.com/customercenter/register).
@@ -104,5 +104,5 @@ description: 'Access the Workday SOAP API with custom integrations'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

@@ -73,7 +73,7 @@ export const UserSettings: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Profile settings">
                 <Helmet>
-                    <title>Profile Settings - Nango</title>
+                    <title>Profile Settings - Tenklo</title>
                 </Helmet>
                 <div className="flex flex-col gap-4">
                     <Skeleton className="w-[250px]" />
@@ -94,7 +94,7 @@ export const UserSettings: React.FC = () => {
     return (
         <DashboardLayout fullWidth title="Profile settings">
             <Helmet>
-                <title>Profile Settings - Nango</title>
+                <title>Profile Settings - Tenklo</title>
             </Helmet>
             <div className="grid max-w-[700px] grid-cols-[237px_1fr] items-center gap-x-6 gap-y-8">
                 <FieldLabel htmlFor="display-name">Display name</FieldLabel>

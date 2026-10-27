@@ -87,7 +87,7 @@ describe('language snippets', () => {
 
     describe('httpSnippet', () => {
         const baseTestData = {
-            baseUrl: 'https://api.nango.dev',
+            baseUrl: 'https://api.tenklo.dev',
             secretKey: 'nango_secret_key_123456789',
             connectionId: 'test_connection_id',
             providerConfigKey: 'github'

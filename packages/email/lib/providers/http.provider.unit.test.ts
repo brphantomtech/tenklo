@@ -13,12 +13,12 @@ vi.mock('../env.js', () => ({
             content: [{ type: 'text/html', value: '{{html}}' }],
             tracking: { enabled: true }
         },
-        SMTP_FROM: 'Nango <noreply@example.com>',
+        SMTP_FROM: 'Tenklo <noreply@example.com>',
         EMAIL_HTTP_TIMEOUT_MS: 10_000
     }
 }));
 
-const values = { to: 'user@example.com', from: 'Nango <noreply@example.com>', subject: 'Verify your email', html: '<p>Hi</p>' };
+const values = { to: 'user@example.com', from: 'Tenklo <noreply@example.com>', subject: 'Verify your email', html: '<p>Hi</p>' };
 
 describe('renderBody', () => {
     const testCases = [
@@ -81,7 +81,7 @@ describe('HttpEmailProvider.send', () => {
         expect(init?.signal).toBeInstanceOf(AbortSignal);
         expect(JSON.parse(init?.body as string)).toStrictEqual({
             personalizations: [{ to: [{ email: 'user@example.com' }] }],
-            from: { email: 'Nango <noreply@example.com>' },
+            from: { email: 'Tenklo <noreply@example.com>' },
             subject: 'Verify your email',
             content: [{ type: 'text/html', value: '<p>Hi</p>' }],
             tracking: { enabled: true }

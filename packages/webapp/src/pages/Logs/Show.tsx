@@ -25,13 +25,13 @@ export const LogsShow: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Logs">
                 <Helmet>
-                    <title>Logs - Nango</title>
+                    <title>Logs - Tenklo</title>
                 </Helmet>
                 <div className="flex gap-2 flex-col border border-border-muted rounded-md items-center text-text-strong text-center p-10 py-20">
                     <h2 className="text-xl text-center">Logs not configured</h2>
                     <div className="text-sm text-text-muted">
                         Follow{' '}
-                        <Link to="https://nango.dev/docs/guides/platform/self-hosting#logs" className="text-text-link">
+                        <Link to="https://tenklo.dev/docs/guides/platform/self-hosting#logs" className="text-text-link">
                             these instructions
                         </Link>{' '}
                         to configure logs.
@@ -44,7 +44,7 @@ export const LogsShow: React.FC = () => {
     return (
         <DashboardLayout fullWidth title="Logs" className="h-full">
             <Helmet>
-                <title>Logs - Nango</title>
+                <title>Logs - Tenklo</title>
             </Helmet>
 
             <div key={env} className="flex flex-col h-full">

@@ -696,7 +696,7 @@ function buildAgentPrompt(params: { providerNames: string[]; baseRef: string; pr
     const namesList = params.providerNames.map((p) => `- ${p}`).join('\n');
 
     return [
-        'You are updating OAuth2 provider scopes for Nango.',
+        'You are updating OAuth2 provider scopes for Tenklo.',
         '',
         'Objective:',
         '- Update only the providers listed below in packages/providers/providers.scopes.yaml.',
@@ -732,7 +732,7 @@ function buildAgentPrompt(params: { providerNames: string[]; baseRef: string; pr
         '       Note the source for both: # source: <discovery URL> (scopes_supported) + <docs URL>',
         '',
         'STEP B — Official documentation (required when STEP A fails, returns no scopes, or is OIDC-only per A3):',
-        "  B1) Search for and fetch the provider's COMPLETE OFFICIAL OAuth2 scopes reference page (not Nango docs).",
+        "  B1) Search for and fetch the provider's COMPLETE OFFICIAL OAuth2 scopes reference page (not Tenklo docs).",
         '       READ THE ENTIRE PAGE — scroll through all sections, tables, and sub-sections. Many providers organise',
         '       scopes into categories (e.g. Zoho CRM lists scopes per module, Google has per-product scope pages,',
         '       Microsoft has Graph API permissions pages) — you MUST include ALL of them.',

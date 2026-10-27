@@ -48,8 +48,8 @@ AWS offers multiple authentication methods. This guide covers two main approache
     5. (Optional) Add a description tag, then click **Create access key**.
     6. On the final page, you'll see your **Access key ID** and **Secret access key**. Make sure to download the .csv file or copy these values, as you won't be able to view the secret access key again.
   </Step>
-  <Step title="Configure your integration in Nango">
-    When setting up your AWS IAM integration in Nango:
+  <Step title="Configure your integration in Tenklo">
+    When setting up your AWS IAM integration in Tenklo:
     
     - Use your **Access key ID** as the username
     - Use your **Secret access key** as the password
@@ -84,7 +84,7 @@ AWS offers multiple authentication methods. This guide covers two main approache
     3. Choose **Confidential client** for server-side applications.
     4. Enter a name for your app client.
     5. Set the **Refresh token expiration** as needed (default is 30 days).
-    6. Under **Allowed callback URLs**, add `https://api.nango.dev/oauth/callback`.
+    6. Under **Allowed callback URLs**, add `https://api.tenklo.dev/oauth/callback`.
     7. Select the **OAuth 2.0 grant types** you need (typically Authorization code grant).
     8. Under **OpenID Connect scopes**, select the scopes your application requires.
     9. Choose **Create app client**.
@@ -98,7 +98,7 @@ AWS offers multiple authentication methods. This guide covers two main approache
   <Step title="Configure OAuth Settings">
     1. In the **App integration** tab, under **Hosted UI**, choose **Edit**.
     2. Configure the identity providers you want to use.
-    3. Set the callback URL to `https://api.nango.dev/oauth/callback`.
+    3. Set the callback URL to `https://api.tenklo.dev/oauth/callback`.
     4. Select the OAuth scopes you need.
     5. Choose **Save changes**.
   </Step>
@@ -108,8 +108,8 @@ AWS offers multiple authentication methods. This guide covers two main approache
     3. Note your **Client ID**.
     4. Click **Show client secret** to view and copy your client secret.
   </Step>
-  <Step title="Configure your integration in Nango">
-    When setting up your AWS Cognito integration in Nango:
+  <Step title="Configure your integration in Tenklo">
+    When setting up your AWS Cognito integration in Tenklo:
     
     - Use your **Client ID** and **Client Secret**
     - For the OAuth authorization URL, use: `https://{your-domain}.auth.{region}.amazoncognito.com/oauth2/authorize`
@@ -122,7 +122,7 @@ AWS offers multiple authentication methods. This guide covers two main approache
 </Steps>
 
 ### Creating a new connection
-- To create a new connection in Nango for AWS IAM, you'll need an Access Key ID and a Secret Access Key. Use these to set up your connection, with the Access Key ID as the username and the Secret Access Key as the password. For more details on generating these keys, visit [Create an access key](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-key-self-managed.html#Using_CreateAccessKey).
+- To create a new connection in Tenklo for AWS IAM, you'll need an Access Key ID and a Secret Access Key. Use these to set up your connection, with the Access Key ID as the username and the Secret Access Key as the password. For more details on generating these keys, visit [Create an access key](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-key-self-managed.html#Using_CreateAccessKey).
 - With this you can now use your basic auth credentials to sign you requests as follows. For more on how to sign your requests, please vist [AWS signature version 4 for API requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html)
 
 ```js
@@ -157,7 +157,7 @@ AWS offers multiple authentication methods. This guide covers two main approache
 ```
 
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 
 ## Useful links

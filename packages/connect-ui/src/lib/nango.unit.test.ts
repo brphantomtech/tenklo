@@ -4,7 +4,7 @@ import { buildWebsocketsPath } from './nango.js';
 
 describe('buildWebsocketsPath', () => {
     it('defaults to the root path on a bare-origin apiURL', () => {
-        expect(buildWebsocketsPath('https://api.nango.dev')).toBe('/');
+        expect(buildWebsocketsPath('https://api.tenklo.dev')).toBe('/');
     });
 
     it('preserves a base path configured in apiURL', () => {
@@ -20,7 +20,7 @@ describe('buildWebsocketsPath', () => {
     });
 
     it('applies a custom server websockets path on a bare-origin apiURL', () => {
-        expect(buildWebsocketsPath('https://api.nango.dev', '/ws')).toBe('/ws');
+        expect(buildWebsocketsPath('https://api.tenklo.dev', '/ws')).toBe('/ws');
     });
 
     it('treats the default server path "/" like an unset value', () => {

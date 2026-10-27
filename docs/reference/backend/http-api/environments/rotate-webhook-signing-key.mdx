@@ -7,7 +7,7 @@ openapi: 'POST /environment/webhook-signing-key/rotate'
   Requires an [Environment API key](/reference/backend/http-api/api-keys#environment-api-keys) with the `environment:webhook_signing_key:rotate` scope. It rotates the key of the environment the API key belongs to.
 </Info>
 
-Replaces the key Nango uses to [sign webhooks](/guides/platform/webhooks-from-nango#verifying-webhooks-from-nango). The new key is returned once, and stays readable under **Environment Settings > Webhooks > Signing key**.
+Replaces the key Tenklo uses to [sign webhooks](/guides/platform/webhooks-from-nango#verifying-webhooks-from-nango). The new key is returned once, and stays readable under **Environment Settings > Webhooks > Signing key**.
 
 <Warning>
   For up to 5 minutes after a rotation, webhooks are signed with either the old or the new key. Accept both until then.

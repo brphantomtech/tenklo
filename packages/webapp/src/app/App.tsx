@@ -41,7 +41,7 @@ const App = () => {
         }
 
         hasPrintedVersion.current = true;
-        console.log(`Nango v${meta.version} ${globalEnv.gitHash ? `(${globalEnv.gitHash})` : ''}`);
+        console.log(`Tenklo v${meta.version} ${globalEnv.gitHash ? `(${globalEnv.gitHash})` : ''}`);
     }, [meta]);
 
     return (

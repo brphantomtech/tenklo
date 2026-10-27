@@ -56,7 +56,7 @@ const WatermarkToggle: React.FC<{ disabled: boolean; form: any }> = ({ disabled,
         {(field: any) => (
             <Field orientation="horizontal" className="gap-5">
                 <FieldLabel htmlFor={field.name} className={disabled ? 'text-text-muted' : undefined}>
-                    Show &quot;Secured by Nango&quot;
+                    Show &quot;Secured by Tenklo&quot;
                 </FieldLabel>
                 <Switch
                     id={field.name}
@@ -145,7 +145,7 @@ export const ConnectUISettings = () => {
                                         Override it per session from the{' '}
                                         <Button asChild variant="link-accent" size="xs">
                                             <a
-                                                href="https://nango.dev/docs/reference/frontend/frontend-sdk#connect-using-nango-connect-ui"
+                                                href="https://tenklo.dev/docs/reference/frontend/frontend-sdk#connect-using-nango-connect-ui"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >

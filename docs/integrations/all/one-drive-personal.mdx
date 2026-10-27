@@ -8,17 +8,17 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _OneDrive Personal_. Nango doesn't provide a test OAuth app for OneDrive Personal yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _OneDrive Personal_. Tenklo doesn't provide a test OAuth app for OneDrive Personal yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize OneDrive">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to your OneDrive Personal account. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to your OneDrive Personal account. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the OneDrive API">
-        Let's make your first request to the OneDrive API (get drive information). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the OneDrive API (get drive information). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/v1.0/drive" \
+                curl "https://api.tenklo.dev/proxy/v1.0/drive" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -51,7 +51,7 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their OneDrive accounts.
@@ -66,7 +66,7 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
         1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as at least an Application Developer.
         2. If you have access to multiple tenants, use the Settings icon in the top menu to switch to the tenant in which you want to register the application.
         3. From the search bar at the top of the Azure portal, search for **App registrations** and select it. Then choose **New registration**. Or from your left navigation tab, navigate to **Applications** > **App registrations** then choose **New registration**.
-        4. Enter a meaningful name for your application, for example "Nango Integration".
+        4. Enter a meaningful name for your application, for example "Tenklo Integration".
         5. Under **Supported account types**, select the appropriate option based on your needs:
            - **Personal Microsoft accounts only** - For apps that only need to access OneDrive Personal accounts.
            - **Accounts in any organizational directory and personal Microsoft accounts** - For multitenant apps that support both organizational and personal Microsoft accounts.
@@ -80,7 +80,7 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
         1. In the left sidebar, select **Authentication**.
         2. Under **Platform configurations**, select **Add a platform**.
         3. Select **Web** as the platform type.
-        4. Enter `https://api.nango.dev/oauth/callback` as the Redirect URI.
+        4. Enter `https://api.tenklo.dev/oauth/callback` as the Redirect URI.
         5. Under **Implicit grant and hybrid flows**, check the boxes for **Access tokens** and **ID tokens** if your application needs them.
         6. Under **Advanced settings**, set **Allow public client flows** to **No** for web applications.
         7. Click **Configure** to save your changes.
@@ -108,7 +108,7 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
 
     ## Complete Integration Implementation
 
-    For a complete, production-ready implementation of OneDrive Personal integration with Nango, check out the **[Nango Sample App](/getting-started/sample-app)**.
+    For a complete, production-ready implementation of OneDrive Personal integration with Tenklo, check out the **[Tenklo Sample App](/getting-started/sample-app)**.
 
     The sample app provides:
     - Full OAuth flow implementation
@@ -161,5 +161,5 @@ description: 'Access the OneDrive Personal API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

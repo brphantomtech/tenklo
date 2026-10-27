@@ -4,9 +4,9 @@ sidebarTitle: 'Data validation'
 description: 'How to validate data in your functions and in your app'
 ---
 
-Nango offers data validation at two levels: inside your [Nango functions](/guides/functions/functions-guide) (when calling external APIs) and in your application code (when consuming function responses).
+Tenklo offers data validation at two levels: inside your [Tenklo functions](/guides/functions/functions-guide) (when calling external APIs) and in your application code (when consuming function responses).
 
-## Validate API responses in Nango functions
+## Validate API responses in Tenklo functions
 
 Use Zod to validate data you receive from and send to external APIs. The CLI will also surface *type* errors during dry runs when using the `--validation` option.
 
@@ -28,7 +28,7 @@ export default createSync({
 });
 ```
 
-## Validate Nango function responses in your app
+## Validate Tenklo function responses in your app
 
 ### TypeScript types (compile-time)
 
@@ -49,7 +49,7 @@ const issues = await nango.listRecords<GithubIssue>({ ... });
 
 ### JSON Schema (runtime, language-agnostic)
 
-When you run `nango compile` or `nango deploy`, Nango generates a `nango.json` file in the `.nango` folder. Each sync/action entry includes a `json_schema` property with the JSON Schema for its models:
+When you run `nango compile` or `nango deploy`, Tenklo generates a `nango.json` file in the `.nango` folder. Each sync/action entry includes a `json_schema` property with the JSON Schema for its models:
 
 ```json
 // .nango/nango.json (simplified)

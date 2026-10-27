@@ -6,11 +6,11 @@ description: 'Integrate your application with the Fiix API'
 
 ## 🚀 Quickstart
 
-Connect to Fiix with Nango and see data flow in 2 minutes.
+Connect to Fiix with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to **Integrations** -> _Configure New Integration_ -> _Fiix_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to **Integrations** -> _Configure New Integration_ -> _Fiix_.
     </Step>
     <Step id="authorize-fiix" title="Authorize Fiix">
     Go to **Connections** -> _Add Test Connection_ -> _Authorize_, then enter your subdomain, App Key, Access Key, and Secret Key. Later, you'll let your users do the same directly from your app.
@@ -21,7 +21,7 @@ Connect to Fiix with Nango and see data flow in 2 minutes.
         <Tab title="cURL">
 
             ```bash
-            curl -X POST "https://api.nango.dev/proxy/api/" \
+            curl -X POST "https://api.tenklo.dev/proxy/api/" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>" \
@@ -33,7 +33,7 @@ Connect to Fiix with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -57,7 +57,7 @@ Connect to Fiix with Nango and see data flow in 2 minutes.
         </Tab>
     </Tabs>
 
-    Nango adds your keys to the request URL and signs every request for you.
+    Tenklo adds your keys to the request URL and signs every request for you.
 
     <Note>
     Fiix returns errors with a `200` status. Check the response for an `error` object to know if a request failed.
@@ -65,11 +65,11 @@ Connect to Fiix with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the **Logs** tab in Nango to inspect requests.
+    ✅ You're connected! Check the **Logs** tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 

@@ -6,27 +6,27 @@ description: 'Integrate your application with the Google Search Console API'
 
 ## 🚀 Quickstart
 
-Connect to Google Search Console with Nango and see data flow in 2 minutes.
+Connect to Google Search Console with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create an integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Google Search Console_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Google Search Console_.
 
     <Note>
-      Nango has credentials you can use for testing. Activate them in the dashboard.
+      Tenklo has credentials you can use for testing. Activate them in the dashboard.
     </Note>
 
     </Step>
     <Step title="Authorize Google Search Console">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Google account. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Google account. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Google Search Console API">
-    Let's make your first request to the Google Search Console API (fetch a list of sites). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Google Search Console API (fetch a list of sites). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v3/sites" \
+            curl "https://api.tenklo.dev/proxy/v3/sites" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -36,7 +36,7 @@ Connect to Google Search Console with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -58,11 +58,11 @@ Connect to Google Search Console with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -73,7 +73,7 @@ Connect to Google Search Console with Nango and see data flow in 2 minutes.
 Nango-maintained guides for common use cases.
 
 - [How to register your own Google Search Console OAuth app](/api-integrations/google-search-console/how-to-register-your-own-google-search-console-oauth-app)  
-Register an OAuth app with Google and obtain credentials to connect it to Nango
+Register an OAuth app with Google and obtain credentials to connect it to Tenklo
 
 - [Google App & Security Review](/api-integrations/google-shared/google-security-review)
 Pass Google's OAuth app verification to go to production

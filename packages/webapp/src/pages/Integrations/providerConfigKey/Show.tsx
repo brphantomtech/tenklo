@@ -57,7 +57,7 @@ export const ShowIntegration: React.FC = () => {
                 titleActions={<Skeleton className="h-8 w-44" />}
             >
                 <Helmet>
-                    <title>Integration - Nango</title>
+                    <title>Integration - Tenklo</title>
                 </Helmet>
                 <Skeleton className="w-full h-10" />
                 <Skeleton className="w-56 h-8" />
@@ -85,7 +85,7 @@ export const ShowIntegration: React.FC = () => {
             }
         >
             <Helmet>
-                <title>Integration - Nango</title>
+                <title>Integration - Tenklo</title>
             </Helmet>
 
             <AutoIdlingBanner />

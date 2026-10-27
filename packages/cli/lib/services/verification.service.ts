@@ -37,14 +37,14 @@ class VerificationService {
     public async ensureZeroYaml({ fullPath, debug }: { fullPath: string; debug: boolean }) {
         const precheck = await this.preCheck({ fullPath, debug });
         if (!precheck.isNango) {
-            console.error(chalk.red(`Not inside a Nango folder`));
+            console.error(chalk.red(`Not inside a Tenklo folder`));
             process.exitCode = 1;
             return false;
         }
         if (!precheck.isZeroYaml) {
             console.error(
                 chalk.red(
-                    'The `nango.yaml` configuration file is deprecated. See the migration guide to Zero YAML: https://nango.dev/docs/guides/platform/migrations/migrate-to-zero-yaml'
+                    'The `nango.yaml` configuration file is deprecated. See the migration guide to Zero YAML: https://tenklo.dev/docs/guides/platform/migrations/migrate-to-zero-yaml'
                 )
             );
             process.exitCode = 1;
@@ -56,7 +56,7 @@ class VerificationService {
     public async ensureNangoYaml({ fullPath, debug }: { fullPath: string; debug: boolean }) {
         const precheck = await this.preCheck({ fullPath, debug });
         if (!precheck.isNango) {
-            console.log(chalk.red(`Not inside a Nango folder`));
+            console.log(chalk.red(`Not inside a Tenklo folder`));
             process.exitCode = 1;
             return false;
         }

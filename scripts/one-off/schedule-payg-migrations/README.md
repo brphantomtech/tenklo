@@ -5,7 +5,7 @@ Schedules eligible Orb subscriptions to move to the pay-as-you-go plan at the en
 ## Prerequisites
 
 - Set `ORB_API_KEY` to the Orb API key for the environment you intend to target.
-- Set `NANGO_DATABASE_URL` to the Nango database URL for the environment you intend to target.
+- Set `NANGO_DATABASE_URL` to the Tenklo database URL for the environment you intend to target.
 - Prepare a CSV with this exact structure:
 
 ```csv
@@ -28,7 +28,7 @@ After reviewing the output, execute the schedules:
 ORB_API_KEY=... NANGO_DATABASE_URL=... npx tsx scripts/one-off/schedule-payg-migrations/schedule.ts ./customers.csv --execute
 ```
 
-The script skips accounts with no or multiple active subscriptions or a CSV/Orb current-plan mismatch. Plan and Growth add-on scheduling are independently idempotent: an existing plan change does not create another one, and an existing active or future Growth interval does not create another add-on. For an existing scheduled Growth interval, the script verifies that Nango has the same activation date; a mismatch is reported as a failure and is not overwritten. It never cancels or replaces an existing change.
+The script skips accounts with no or multiple active subscriptions or a CSV/Orb current-plan mismatch. Plan and Growth add-on scheduling are independently idempotent: an existing plan change does not create another one, and an existing active or future Growth interval does not create another add-on. For an existing scheduled Growth interval, the script verifies that Tenklo has the same activation date; a mismatch is reported as a failure and is not overwritten. It never cancels or replaces an existing change.
 
 Schedule calls are throttled by 2 seconds by default. Change the delay, or pass `0` to disable it, with `--throttle-ms`:
 

@@ -3,7 +3,7 @@ import type { PlanDefinition } from '@nangohq/types';
 /**
  * Static marketing copy for the plan comparison cards. Deliberately not derived from
  * `PlanDefinition.flags` — paid plans set every cap to `null` (uncapped, metered via Orb instead),
- * so the flags can't produce these numbers. Keep in sync with https://nango.dev/pricing.
+ * so the flags can't produce these numbers. Keep in sync with https://tenklo.dev/pricing.
  */
 export const PLAN_CARD_LIMITS: Partial<Record<PlanDefinition['code'], string[]>> = {
     free: [

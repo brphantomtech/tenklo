@@ -18,7 +18,7 @@ export const proxyInputSchema = z
         headers: proxyHeadersSchema
             .optional()
             .describe(
-                'Extra request headers. Nango authenticates the request from the session connection, so credential headers are rejected rather than forwarded.'
+                'Extra request headers. Tenklo authenticates the request from the session connection, so credential headers are rejected rather than forwarded.'
             ),
         body: z.json().optional().describe("The request body. Sent as JSON unless a 'content-type' header says otherwise.")
     })

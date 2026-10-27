@@ -6,26 +6,26 @@ description: 'Integrate your application with the MEDITECH Greenfield FHIR API u
 
 ## 🚀 Quickstart
 
-Connect to MEDITECH Greenfield with Nango and see data flow in 2 minutes.
+Connect to MEDITECH Greenfield with Tenklo and see data flow in 2 minutes.
 
 <Note>
-Nango's MEDITECH Greenfield integration uses the **OAuth 2.0 authorization code grant** (with PKCE), registered with MEDITECH as a **confidential client**. MEDITECH doesn't offer self-serve OAuth app creation: for sandbox testing, the Greenfield support team provisions your Client ID and Client Secret manually; for production, MEDITECH registers your client on behalf of the healthcare organization you're integrating with. See the [OAuth client setup guide](/api-integrations/greenfield-meditech/how-to-register-your-own-greenfield-meditech-api-oauth-app) for both paths.
+Tenklo's MEDITECH Greenfield integration uses the **OAuth 2.0 authorization code grant** (with PKCE), registered with MEDITECH as a **confidential client**. MEDITECH doesn't offer self-serve OAuth app creation: for sandbox testing, the Greenfield support team provisions your Client ID and Client Secret manually; for production, MEDITECH registers your client on behalf of the healthcare organization you're integrating with. See the [OAuth client setup guide](/api-integrations/greenfield-meditech/how-to-register-your-own-greenfield-meditech-api-oauth-app) for both paths.
 </Note>
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to the **Integrations** tab -> _Configure New Integration_ -> _MEDITECH Greenfield_. Enter the **Client ID** and **Client Secret** MEDITECH issued for your integration, and the scopes MEDITECH approved for your workflow (e.g. `patient/*.read`). Without a scope, connections won't have API access.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to the **Integrations** tab -> _Configure New Integration_ -> _MEDITECH Greenfield_. Enter the **Client ID** and **Client Secret** MEDITECH issued for your integration, and the scopes MEDITECH approved for your workflow (e.g. `patient/*.read`). Without a scope, connections won't have API access.
     </Step>
     <Step id="authorize" title="Authorize MEDITECH Greenfield">
     Go to the **Connections** tab -> _Add Test Connection_ -> _Authorize_, then enter your **Authorization Host** and **FHIR API host** (e.g. `greenfield-apis.meditech.com` and `greenfield-prod-apis.meditech.com` for the sandbox), log in with your MEDITECH Expanse credentials, and approve the requested scopes. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-api" title="Call the MEDITECH Greenfield API">
-    Let's make your first request to the MEDITECH Greenfield API (fetch the FHIR Capability Statement). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the MEDITECH Greenfield API (fetch the FHIR Capability Statement). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v2/uscore/STU6/metadata" \
+            curl "https://api.tenklo.dev/proxy/v2/uscore/STU6/metadata" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -35,7 +35,7 @@ Nango's MEDITECH Greenfield integration uses the **OAuth 2.0 authorization code 
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -55,11 +55,11 @@ Nango's MEDITECH Greenfield integration uses the **OAuth 2.0 authorization code 
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the **Logs** tab in Nango to inspect requests.
+    ✅ You're connected! Check the **Logs** tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-nango" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step id="implement-nango" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own credentials, follow the setup guide linked below.
     </Step>

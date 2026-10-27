@@ -27,7 +27,7 @@ export async function createConnectionToolsMcpServer(
 ): Promise<Result<Server>> {
     const server = new Server(
         {
-            name: 'Nango Connection Tools MCP server',
+            name: 'Tenklo Connection Tools MCP server',
             version: '1.0.0'
         },
         {

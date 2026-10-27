@@ -34,8 +34,8 @@ describe(`GET ${endpoint}`, () => {
         isSuccess(json);
         expect(json).toStrictEqual<typeof json>({
             client_id: `${serverUrl}/oauth/client-metadata/${env.uuid}/my-mcp`,
-            client_name: 'Nango',
-            client_uri: 'https://nango.dev',
+            client_name: 'Tenklo',
+            client_uri: 'https://tenklo.dev',
             redirect_uris: [`${serverUrl}/oauth/callback`],
             grant_types: ['authorization_code', 'refresh_token'],
             response_types: ['code'],

@@ -117,7 +117,7 @@ describe('createCredentials', () => {
 
     const appleAppStoreProvider: ProviderJwt = {
         display_name: 'Apple App Store',
-        docs: 'https://nango.dev/docs/api-integrations/apple-app-store',
+        docs: 'https://tenklo.dev/docs/api-integrations/apple-app-store',
         auth_mode: 'JWT',
         signature: { protocol: 'EC' },
         token: {
@@ -191,7 +191,7 @@ describe('createCredentials', () => {
     // form — still resolves correctly instead of silently dropping a required claim.
     const salesforceJwtProvider: ProviderTwoStep = {
         display_name: 'Salesforce (JWT)',
-        docs: 'https://nango.dev/docs/api-integrations/salesforce-jwt',
+        docs: 'https://tenklo.dev/docs/api-integrations/salesforce-jwt',
         auth_mode: 'TWO_STEP',
         signature: { protocol: 'RSA' },
         token: {

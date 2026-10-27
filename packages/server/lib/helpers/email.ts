@@ -23,12 +23,12 @@ export async function sendVerificationEmail(email: string, name: string, token: 
         `
 <p>Hi ${he.encode(name)},</p>
 
-<p>Please verify your account on Nango by clicking <a href="${basePublicUrl}/signup/verification/${token}">${basePublicUrl}/signup/verification/${token}</a></p>
+<p>Please verify your account on Tenklo by clicking <a href="${basePublicUrl}/signup/verification/${token}">${basePublicUrl}/signup/verification/${token}</a></p>
 
-<p>Questions or issues? We are happy to help on the <a href="https://nango.dev/slack">Slack community</a>!</p>
+<p>Questions or issues? We are happy to help on the <a href="https://tenklo.dev/slack">Slack community</a>!</p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }
@@ -37,15 +37,15 @@ export async function sendResetPasswordEmail({ user, token }: { user: DBUser; to
     const emailClient = EmailClient.getInstance();
     await emailClient.send(
         user.email,
-        'Nango password reset',
+        'Tenklo password reset',
         `<p>Hi ${he.encode(user.name)},</p>
 
         <p>Someone requested a password reset.</p>
         <p><a href="${basePublicUrl}/reset-password/${token}">Reset password</a></p>
-        <p>If you didn't initiate this request, please contact us immediately at support@nango.dev</p>
+        <p>If you didn't initiate this request, please contact us immediately at support@tenklo.dev</p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }
@@ -71,17 +71,17 @@ export async function sendInviteEmail({
 
     await emailClient.send(
         email,
-        sanitizeEmailSubject(`You're Invited! Join "${account.name}" on Nango`),
+        sanitizeEmailSubject(`You're Invited! Join "${account.name}" on Tenklo`),
         `<p>Hi,</p>
 
-<p>${he.encode(user.name)} invites you to join "${he.encode(account.name)}" on Nango.</p>
+<p>${he.encode(user.name)} invites you to join "${he.encode(account.name)}" on Tenklo.</p>
 
 <p>${callToAction}</p>
 
-<p>Questions or issues? We are happy to help on the <a href="https://nango.dev/slack">Slack community</a>!</p>
+<p>Questions or issues? We are happy to help on the <a href="https://tenklo.dev/slack">Slack community</a>!</p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }
@@ -99,17 +99,17 @@ export async function sendAccountInvitationRequestEmail({
     const inviteUrl = buildInvitePrefillUrl(requester.email);
     await emailClient.send(
         email,
-        sanitizeEmailSubject(`${requester.name} wants to join "${account.name}" on Nango`),
+        sanitizeEmailSubject(`${requester.name} wants to join "${account.name}" on Tenklo`),
         `<p>Hi,</p>
 
-<p><strong>${he.encode(requester.name)}</strong> (${he.encode(requester.email)}) has requested to join <strong>${he.encode(account.name)}</strong> on Nango.</p>
+<p><strong>${he.encode(requester.name)}</strong> (${he.encode(requester.email)}) has requested to join <strong>${he.encode(account.name)}</strong> on Tenklo.</p>
 
 <p>Their email address has been verified.</p>
 
 <p><a href="${he.encode(inviteUrl)}">Invite them to your team</a></p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }
@@ -118,19 +118,19 @@ export async function sendTrialAlmostOverEmail({ user, inDays }: { user: Pick<DB
     const emailClient = EmailClient.getInstance();
     await emailClient.send(
         user.email,
-        `Some Nango features will pause in ${inDays} days`,
+        `Some Tenklo features will pause in ${inDays} days`,
         `<p>Hi ${he.encode(user.name)},</p>
 
-<p>Some Nango features (syncs & actions) will pause in ${inDays} days. All other features—like authorization flows, credential retrieval, and the proxy—will keep working as usual.</p>
+<p>Some Tenklo features (syncs & actions) will pause in ${inDays} days. All other features—like authorization flows, credential retrieval, and the proxy—will keep working as usual.</p>
 
-<p>You can delay the idle from the Integrations tab in the <a href="https://app.nango.dev">Nango UI</a>.</p>
+<p>You can delay the idle from the Integrations tab in the <a href="https://app.tenklo.dev">Tenklo UI</a>.</p>
 
-<p>We idle syncs & actions because they use dedicated infrastructure, which is too costly to run indefinitely on free plans. <a href="https://app.nango.dev/prod/team/billing">Upgrade</a> to prevent auto idling forever.</p>
+<p>We idle syncs & actions because they use dedicated infrastructure, which is too costly to run indefinitely on free plans. <a href="https://app.tenklo.dev/prod/team/billing">Upgrade</a> to prevent auto idling forever.</p>
 
-<p>Need help or have questions? Join us in the <a href="https://nango.dev/slack">Slack community</a>!</p>
+<p>Need help or have questions? Join us in the <a href="https://tenklo.dev/slack">Slack community</a>!</p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }
@@ -139,19 +139,19 @@ export async function sendTrialHasExpired({ user }: { user: Pick<DBUser, 'name' 
     const emailClient = EmailClient.getInstance();
     await emailClient.send(
         user.email,
-        `Some Nango features have been paused`,
+        `Some Tenklo features have been paused`,
         `<p>Hi ${he.encode(user.name)},</p>
 
-<p>Some Nango features (syncs & actions) have been paused. All other features—like authorization flows, credential retrieval, and the proxy—still work as usual.</p>
+<p>Some Tenklo features (syncs & actions) have been paused. All other features—like authorization flows, credential retrieval, and the proxy—still work as usual.</p>
 
-<p>You can reactivate any sync or action in the <a href="https://app.nango.dev">Nango UI</a> for 14 more days.</p>
+<p>You can reactivate any sync or action in the <a href="https://app.tenklo.dev">Tenklo UI</a> for 14 more days.</p>
 
-<p>We idle syncs & actions because they use dedicated infrastructure, which is too costly to run indefinitely on free plans. <a href="https://app.nango.dev/prod/team/billing">Upgrade</a> to prevent auto idling forever.</p>
+<p>We idle syncs & actions because they use dedicated infrastructure, which is too costly to run indefinitely on free plans. <a href="https://app.tenklo.dev/prod/team/billing">Upgrade</a> to prevent auto idling forever.</p>
 
-<p>Need help or have questions? Join us in the <a href="https://nango.dev/slack">Slack community</a>!</p>
+<p>Need help or have questions? Join us in the <a href="https://tenklo.dev/slack">Slack community</a>!</p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }
@@ -190,7 +190,7 @@ export async function sendSpendAlertEmail({
 
     await emailClient.send(
         email,
-        sanitizeEmailSubject(`Nango spend for "${accountName}" has passed ${threshold}`),
+        sanitizeEmailSubject(`Tenklo spend for "${accountName}" has passed ${threshold}`),
         `<p>Hi,</p>
 
 <p>Spend for <strong>${he.encode(accountName)}</strong> has passed its ${he.encode(threshold)} spend alert. The current billing period ends on ${he.encode(formatPeriodEnd(periodEnd))}, and usage keeps accruing until then.</p>
@@ -200,7 +200,7 @@ export async function sendSpendAlertEmail({
 <p>This alert goes to the billing contacts and admins on the account. The threshold can be changed or removed from the same page.</p>
 
 <p>Best,<br>
-Team Nango</p>
+Team Tenklo</p>
             `
     );
 }

@@ -36,7 +36,7 @@ export const PlaygroundInputs: React.FC<Props> = ({ env, isSync, inputFields, in
                     <Alert variant="info" size="compact">
                         <Info />
                         <AlertDescription>
-                            Sync inputs are read from the connection metadata. Edit metadata via the Nango API or on the connection&apos;s Auth tab.
+                            Sync inputs are read from the connection metadata. Edit metadata via the Tenklo API or on the connection&apos;s Auth tab.
                         </AlertDescription>
                         <AlertActions>
                             {playgroundIntegration && playgroundConnection && (
@@ -45,7 +45,7 @@ export const PlaygroundInputs: React.FC<Props> = ({ env, isSync, inputFields, in
                                 </AlertButtonLink>
                             )}
                             <AlertButtonLink
-                                to="https://nango.dev/docs/getting-started/use-cases/customer-configuration"
+                                to="https://tenklo.dev/docs/getting-started/use-cases/customer-configuration"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

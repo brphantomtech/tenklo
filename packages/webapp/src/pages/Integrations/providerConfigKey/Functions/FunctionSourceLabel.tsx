@@ -7,13 +7,13 @@ import type { FunctionListSource } from '@nangohq/types';
 type DisplaySource = FunctionListSource | 'template';
 
 const SOURCE_LABEL: Record<DisplaySource, { label: string; icon: typeof BookOpen; tooltip: string }> = {
-    catalog: { label: 'Standalone', icon: Anchor, tooltip: 'Deployed function, the source-code lives in Nango.' },
-    standalone: { label: 'Standalone', icon: Anchor, tooltip: 'Deployed function, the source-code lives in Nango.' },
-    repo: { label: 'Your repo', icon: GitBranch, tooltip: 'Deployed from the Nango CLI. You own the source-code.' },
+    catalog: { label: 'Standalone', icon: Anchor, tooltip: 'Deployed function, the source-code lives in Tenklo.' },
+    standalone: { label: 'Standalone', icon: Anchor, tooltip: 'Deployed function, the source-code lives in Tenklo.' },
+    repo: { label: 'Your repo', icon: GitBranch, tooltip: 'Deployed from the Tenklo CLI. You own the source-code.' },
     'tools-catalog': {
-        label: 'Nango catalog',
+        label: 'Tenklo catalog',
         icon: BookOpen,
-        tooltip: 'Written and maintained by Nango. Always on the latest version (auto-updates).'
+        tooltip: 'Written and maintained by Tenklo. Always on the latest version (auto-updates).'
     },
     template: { label: 'Template', icon: LayoutTemplate, tooltip: 'A template you can deploy or customize.' }
 };

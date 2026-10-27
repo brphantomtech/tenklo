@@ -6,17 +6,17 @@ description: 'Integrate your application with the Mailtrap API'
 
 ## 🚀 Quickstart
 
-Connect to Mailtrap with Nango and see data flow in 2 minutes.
+Connect to Mailtrap with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Mailtrap_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Mailtrap_.
     </Step>
     <Step title="Authorize Mailtrap">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your API token. Leave the API Environment on `send`, or switch it to `sandbox` to test without sending to real recipients. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your API token. Leave the API Environment on `send`, or switch it to `sandbox` to test without sending to real recipients. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Mailtrap API">
-    Let's send your first email through the Mailtrap API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's send your first email through the Mailtrap API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
 
     <Tip>
     **Connected to the sandbox?** Include your sandbox inbox ID in the request path, e.g. `/api/send/{inboxId}` instead of `/api/send`. See [Sandbox inbox IDs](#sandbox-inbox-ids).
@@ -26,7 +26,7 @@ Connect to Mailtrap with Nango and see data flow in 2 minutes.
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/send" \
+            curl "https://api.tenklo.dev/proxy/api/send" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>" \
@@ -43,7 +43,7 @@ Connect to Mailtrap with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -69,11 +69,11 @@ Connect to Mailtrap with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/sdks/node#get-a-connection-with-credentials) or [API](/reference/api/connection/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production API token, follow the connect guide linked below.
     </Step>
@@ -86,20 +86,20 @@ Sandbox connections deliver to a Mailtrap inbox instead of real recipients, so t
 To find it, open the [Sandboxes](https://mailtrap.io/sandboxes/projects) section of your Mailtrap account and copy the numeric ID from the inbox URL — for `https://mailtrap.io/sandboxes/2564102/settings` the inbox ID is `2564102`.
 
 <Accordion title="For agents">
-Inbox IDs can also be listed through the Nango proxy. These are Nango API calls, so they need the user's own Nango Environment API key from the **Environment Settings** tab > **API Keys** (signing up at [app.nango.dev/signup](https://app.nango.dev/signup) first if needed), sent as `Authorization: Bearer <NANGO-API-KEY>`. Ask for a key scoped to `environment:proxy` rather than the full-access key created on signup, and don't store or log it. See [API keys](/reference/backend/http-api/api-keys).
+Inbox IDs can also be listed through the Tenklo proxy. These are Tenklo API calls, so they need the user's own Tenklo Environment API key from the **Environment Settings** tab > **API Keys** (signing up at [app.tenklo.dev/signup](https://app.tenklo.dev/signup) first if needed), sent as `Authorization: Bearer <NANGO-API-KEY>`. Ask for a key scoped to `environment:proxy` rather than the full-access key created on signup, and don't store or log it. See [API keys](/reference/backend/http-api/api-keys).
 
 Mailtrap's inbox API lives on `mailtrap.io`, not on the sending hosts this integration connects to, so pass a `Base-Url-Override` header to reach it:
 
 ```bash
 # 1. List accounts to get your account ID
-curl "https://api.nango.dev/proxy/api/accounts" \
+curl "https://api.tenklo.dev/proxy/api/accounts" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Provider-Config-Key: <INTEGRATION-ID>" \
   -H "Connection-Id: <CONNECTION-ID>" \
   -H "Base-Url-Override: https://mailtrap.io"
 
 # 2. List that account's inboxes — each has an `id` to use as {inboxId}
-curl "https://api.nango.dev/proxy/api/accounts/<ACCOUNT-ID>/inboxes" \
+curl "https://api.tenklo.dev/proxy/api/accounts/<ACCOUNT-ID>/inboxes" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Provider-Config-Key: <INTEGRATION-ID>" \
   -H "Connection-Id: <CONNECTION-ID>" \
@@ -114,7 +114,7 @@ curl "https://api.nango.dev/proxy/api/accounts/<ACCOUNT-ID>/inboxes" \
 Nango-maintained guides for common use cases.
 
 - [How to obtain your Mailtrap credentials](/api-integrations/mailtrap/connect)
-Get your API token, and pick the production or sandbox API environment, to connect Mailtrap to Nango
+Get your API token, and pick the production or sandbox API environment, to connect Mailtrap to Tenklo
 
 Official docs: [Mailtrap Transactional Email API](https://docs.mailtrap.io/developers/email-sending/transactional)
 

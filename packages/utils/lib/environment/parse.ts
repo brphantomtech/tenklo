@@ -677,8 +677,8 @@ const ENVS_SHAPE = z.object({
 
     // SMTP
     SMTP_URL: z.url().optional(),
-    SMTP_FROM: z.string().default('Nango <noreply@email.nango.dev>'),
-    SMTP_DOMAIN: z.string().default('email.nango.dev'),
+    SMTP_FROM: z.string().default('Tenklo <noreply@email.tenklo.dev>'),
+    SMTP_DOMAIN: z.string().default('email.tenklo.dev'),
 
     // Generic HTTP email API (SendGrid, Resend, Postmark, ...)
     EMAIL_HTTP_URL: z.url().optional(),

@@ -4,18 +4,18 @@ sidebarTitle: 'Real-time syncs'
 description: 'Combine webhooks from external APIs with periodic polling for a reliable, real-time stream of changes.'
 ---
 
-Nango supports real-time syncs using [webhook functions](/guides/functions/webhook-functions). You can rely entirely on webhooks or combine them with polling to ensure you never miss data.
+Tenklo supports real-time syncs using [webhook functions](/guides/functions/webhook-functions). You can rely entirely on webhooks or combine them with polling to ensure you never miss data.
 
 ## What is a real-time sync
 
 Real-time sync involves receiving webhooks from external APIs and processing them inside a sync function. By default, sync functions poll data at a set frequency, but they can also be configured to handle webhooks for real-time updates.
 
 When processed in a sync:
-- The webhook triggers the execution of a Nango sync script
+- The webhook triggers the execution of a Tenklo sync script
 - The script extracts data from the webhook and optionally fetches additional data from the external API
-- The modified data is stored in the Nango cache
+- The modified data is stored in the Tenklo cache
 
-Whenever the cache is updated, Nango sends a [sync completion webhook](/guides/platform/webhooks-from-nango#sync-webhooks) to notify your application of new data. This entire process happens in real-time.
+Whenever the cache is updated, Tenklo sends a [sync completion webhook](/guides/platform/webhooks-from-nango#sync-webhooks) to notify your application of new data. This entire process happens in real-time.
 
 ### Webhooks & periodic polling
 
@@ -90,7 +90,7 @@ Run `batchSave` / `batchUpdate` / `batchDelete` calls sequentially (not in paral
 
 ## Related guides
 
-- [Webhook functions](/guides/functions/webhook-functions) - process external API webhooks in Nango.
+- [Webhook functions](/guides/functions/webhook-functions) - process external API webhooks in Tenklo.
 - [Webhook forwarding](/guides/platform/webhook-forwarding) - forward provider webhooks to your app.
 - [Sync functions](/guides/functions/syncs/sync-functions) - keep a polling sync as reconciliation.
-- [Webhooks from Nango](/guides/platform/webhooks-from-nango) - consume sync completion notifications.
+- [Webhooks from Tenklo](/guides/platform/webhooks-from-nango) - consume sync completion notifications.

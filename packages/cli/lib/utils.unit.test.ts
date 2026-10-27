@@ -104,7 +104,7 @@ describe('resolveHostport', () => {
     it('defaults to cloud host when NANGO_HOSTPORT is not set', async () => {
         vi.stubEnv('NANGO_HOSTPORT', '');
         const resolveHostport = await importResolveHostport();
-        expect(resolveHostport()).toBe('https://api.nango.dev');
+        expect(resolveHostport()).toBe('https://api.tenklo.dev');
     });
 
     it('uses NANGO_HOSTPORT when set', async () => {
@@ -218,10 +218,10 @@ describe('upgradeAction', () => {
         vi.restoreAllMocks();
     });
 
-    it('checks the npm registry without the Nango API client', async () => {
+    it('checks the npm registry without the Tenklo API client', async () => {
         vi.stubEnv('NANGO_CLI_UPGRADE_MODE', 'auto');
         vi.spyOn(state, 'get').mockReturnValue(undefined);
-        const nangoHttpGet = vi.spyOn(http, 'get').mockRejectedValue(new Error('Nango API client must not be used for the npm registry'));
+        const nangoHttpGet = vi.spyOn(http, 'get').mockRejectedValue(new Error('Tenklo API client must not be used for the npm registry'));
         const registryGet = vi.spyOn(axios, 'get').mockResolvedValue({ data: { 'dist-tags': { latest: NANGO_VERSION } } });
 
         await upgradeAction();

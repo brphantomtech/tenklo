@@ -16,12 +16,12 @@ Checkpoints solve this by tracking how far your sync has progressed. The benefit
 
 - **Performance** — Only fetch what changed. A 15-minute incremental sync processes minutes of changes, not years of history.
 - **Resilience** — If a sync fails mid-execution, the next run resumes from the last checkpoint instead of restarting from scratch.
-- **Lower costs** — Less compute time on Nango, fewer API calls against the external API's rate limits, and lower bandwidth consumption.
+- **Lower costs** — Less compute time on Tenklo, fewer API calls against the external API's rate limits, and lower bandwidth consumption.
 - **Higher freshness** — Faster syncs mean you can run them more frequently, keeping your data closer to real-time.
 
 ## Function interruption and resumption
 
-Nango reserves the right to cap the duration of a function execution. When an execution reaches the limit, Nango interrupts it gracefully and schedules the next execution to start immediately.
+Tenklo reserves the right to cap the duration of a function execution. When an execution reaches the limit, Tenklo interrupts it gracefully and schedules the next execution to start immediately.
 
 Checkpoints are what make this seamless: the next execution should call `getCheckpoint()` and resumes from where the previous one stopped. **Without checkpoints, each execution starts from scratch**, meaning any function that takes longer than the execution cap will loop indefinitely without ever completing.
 
@@ -32,7 +32,7 @@ If your sync processes a large dataset, you must call `saveCheckpoint()` after e
 The interrupt-and-resume flow:
 
 1. Sync runs, processes records, saves a checkpoint after each page.
-2. Nango interrupts the sync gracefully when the execution cap is reached (ie: after the current `saveCheckpoint()` call completes).
+2. Tenklo interrupts the sync gracefully when the execution cap is reached (ie: after the current `saveCheckpoint()` call completes).
 3. The next execution starts immediately, calls `getCheckpoint()`, and continues from that point.
 4. This repeats until the sync finishes naturally.
 
@@ -44,7 +44,7 @@ The typical flow is:
 
 1. Read the current checkpoint with `nango.getCheckpoint()` (returns `null` on first run).
 2. Fetch a page of data from the external API, starting from the checkpoint.
-3. Save the records to Nango's cache with `nango.batchSave()`.
+3. Save the records to Tenklo's cache with `nango.batchSave()`.
 4. Save a new checkpoint with `nango.saveCheckpoint()`.
 5. Repeat until there is no more data.
 
@@ -216,10 +216,10 @@ Both checkpoints and [cursors](/guides/functions/syncs/records-cache#cursors-and
 
 | | Checkpoint | Cursor |
 | --- | --- | --- |
-| **Direction** | Nango → external API | Your app → Nango |
-| **What it tracks** | How far Nango has synced from the external API | How far your app has fetched from Nango's records cache |
+| **Direction** | Tenklo → external API | Your app → Tenklo |
+| **What it tracks** | How far Tenklo has synced from the external API | How far your app has fetched from Tenklo's records cache |
 | **Who manages it** | Your sync function, via `saveCheckpoint()` | Your application, via the `cursor` parameter on [GET /records](/reference/backend/http-api/sync/records-list) |
-| **Typical payload** | A timestamp or API cursor from the external system | An opaque string returned by Nango |
+| **Typical payload** | A timestamp or API cursor from the external system | An opaque string returned by Tenklo |
 
 Both are important: checkpoints keep your sync efficient, and cursors keep your application's data consumption efficient.
 
@@ -229,7 +229,7 @@ When you [trigger a sync](/reference/backend/http-api/sync/trigger) manually (fr
 
 | Option | Default | What it does |
 | --- | --- | --- |
-| `reset` | `false` | When `true`, clears the checkpoint and re-fetches the full dataset from the external API. The cache is preserved, so Nango can still distinguish new records from updated ones. |
+| `reset` | `false` | When `true`, clears the checkpoint and re-fetches the full dataset from the external API. The cache is preserved, so Tenklo can still distinguish new records from updated ones. |
 | `emptyCache` | `false` | When `true`, deletes all cached records before the sync runs. Must be used with `reset: true`. The sync starts completely fresh. |
 
 **Leave both off** for a standard incremental sync.
@@ -259,11 +259,11 @@ Checkpoints are exposed in several places to help you monitor sync progress:
 
 - **Sync webhooks** — The [sync completion webhook](/guides/platform/webhooks-from-nango) includes checkpoint information, so your application knows how far the sync has progressed.
 - **Sync status API** — The [GET /sync/status](/reference/backend/http-api/sync/status) endpoint returns the current checkpoint for each sync, letting you check progress programmatically.
-- **Logs** — Checkpoint-related details are visible in the Nango dashboard logs. *(We are actively improving checkpoint visibility in the dashboard.)*
+- **Logs** — Checkpoint-related details are visible in the Tenklo dashboard logs. *(We are actively improving checkpoint visibility in the dashboard.)*
 
 ## Testing checkpoints locally
 
-When developing locally with the Nango CLI, you can pass a checkpoint value to `dryrun` to simulate resuming from a previous run:
+When developing locally with the Tenklo CLI, you can pass a checkpoint value to `dryrun` to simulate resuming from a previous run:
 
 ```bash
 nango dryrun salesforce-contacts '<CONNECTION-ID>' --checkpoint '{"lastModifiedISO": "2024-01-15T00:00:00Z"}'

@@ -20,7 +20,7 @@ export const Homepage: React.FC = () => {
         return (
             <DashboardLayout>
                 <Helmet>
-                    <title>Homepage - Nango</title>
+                    <title>Homepage - Tenklo</title>
                 </Helmet>
                 <div className="flex justify-between items-center">
                     <div className="flex flex-col gap-2">
@@ -32,7 +32,7 @@ export const Homepage: React.FC = () => {
                     <h2 className="text-xl text-center">Logs not configured</h2>
                     <div className="text-sm text-text-muted">
                         Follow{' '}
-                        <Link to="https://nango.dev/docs/guides/platform/self-hosting#logs" className="text-text-link">
+                        <Link to="https://tenklo.dev/docs/guides/platform/self-hosting#logs" className="text-text-link">
                             these instructions
                         </Link>{' '}
                         to configure logs and enable execution metrics in your dashboard.
@@ -45,13 +45,13 @@ export const Homepage: React.FC = () => {
     return (
         <DashboardLayout>
             <Helmet>
-                <title>Homepage - Nango</title>
+                <title>Homepage - Tenklo</title>
             </Helmet>
             <div className="flex justify-between items-center">
                 <div className="flex flex-col gap-2">
                     <h2 className="text-3xl font-semibold text-text-strong flex gap-4 items-center">Hello, {me.name}!</h2>
 
-                    <div className="text-text-muted text-sm">Here’s your recent activity on Nango.</div>
+                    <div className="text-text-muted text-sm">Here’s your recent activity on Tenklo.</div>
                 </div>
                 <div className="text-text-strong text-sm">
                     Last 14 days <code className="font-code text-xs text-text-secondary">(UTC)</code>
@@ -66,7 +66,7 @@ export const Homepage: React.FC = () => {
                         help={
                             <div>
                                 No sync executions in the last 14 days.{' '}
-                                <Link to="https://nango.dev/docs/guides/functions/syncs/sync-functions" className="underline text-text-strong">
+                                <Link to="https://tenklo.dev/docs/guides/functions/syncs/sync-functions" className="underline text-text-strong">
                                     Learn more
                                 </Link>
                             </div>
@@ -81,7 +81,7 @@ export const Homepage: React.FC = () => {
                         help={
                             <div>
                                 No action executions in the last 14 days.{' '}
-                                <Link to="https://nango.dev/docs/guides/functions/action-functions" className="underline text-text-strong">
+                                <Link to="https://tenklo.dev/docs/guides/functions/action-functions" className="underline text-text-strong">
                                     Learn more
                                 </Link>
                             </div>
@@ -95,7 +95,7 @@ export const Homepage: React.FC = () => {
                     help={
                         <div>
                             No proxy requests sent in the last 14 days.{' '}
-                            <Link to="https://nango.dev/docs/guides/platform/proxy-requests" className="underline text-text-strong">
+                            <Link to="https://tenklo.dev/docs/guides/platform/proxy-requests" className="underline text-text-strong">
                                 Learn more
                             </Link>
                         </div>
@@ -109,7 +109,7 @@ export const Homepage: React.FC = () => {
                         help={
                             <div>
                                 No webhook executions in the last 14 days.{' '}
-                                <Link to="https://nango.dev/docs/getting-started/use-cases/webhooks-from-external-apis" className="underline text-text-strong">
+                                <Link to="https://tenklo.dev/docs/getting-started/use-cases/webhooks-from-external-apis" className="underline text-text-strong">
                                     Learn more
                                 </Link>
                             </div>
@@ -123,7 +123,7 @@ export const Homepage: React.FC = () => {
                     help={
                         <div>
                             No authorization attempted in the last 14 days.{' '}
-                            <Link to="https://nango.dev/docs/guides/auth/auth-guide" className="underline text-text-strong">
+                            <Link to="https://tenklo.dev/docs/guides/auth/auth-guide" className="underline text-text-strong">
                                 Learn more
                             </Link>
                         </div>

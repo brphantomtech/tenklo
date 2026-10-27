@@ -59,7 +59,7 @@ export function parseSignupAdvertising(raw: unknown, now = Date.now()): SignupAd
 }
 
 export function signupAdvertisingFromRequest(req: Pick<Request, 'cookies' | 'headers'>, email: string): SignupAdvertising | undefined {
-    if (!envs.SIGNUP_AD_CONTEXT_ENABLED || !envs.SIGNUP_AD_CONTEXT_COOKIE_NAME || req.headers['sec-gpc'] === '1' || email.toLowerCase().endsWith('@nango.dev'))
+    if (!envs.SIGNUP_AD_CONTEXT_ENABLED || !envs.SIGNUP_AD_CONTEXT_COOKIE_NAME || req.headers['sec-gpc'] === '1' || email.toLowerCase().endsWith('@tenklo.dev'))
         return;
     return parseSignupAdvertising(req.cookies?.[envs.SIGNUP_AD_CONTEXT_COOKIE_NAME]);
 }

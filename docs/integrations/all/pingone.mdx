@@ -8,17 +8,17 @@ description: 'Access the PingOne API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _PingOne_.  Nango doesn't provide a test OAuth app for PingOne yet. You'll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _PingOne_.  Tenklo doesn't provide a test OAuth app for PingOne yet. You'll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize PingOne">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to PingOne. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to PingOne. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the PingOne API">
-        Let's make your first request to the PingOne API (fetch a list of all environments). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the PingOne API (fetch a list of all environments). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/v1/environments?limit=10" \
+                curl "https://api.tenklo.dev/proxy/v1/environments?limit=10" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the PingOne API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -53,7 +53,7 @@ description: 'Access the PingOne API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their PingOne accounts.
@@ -77,7 +77,7 @@ description: 'Access the PingOne API in 2 minutes 💨'
       
       <Step title="Configure the OIDC Web App">
         1. Click on the **Configuration** tab, then click on the pencil icon to edit configuration settings.
-        2. Check the **Refresh Token** checkbox, then add `https://api.nango.dev/oauth/callback` as your **Redirect URIs**.
+        2. Check the **Refresh Token** checkbox, then add `https://api.tenklo.dev/oauth/callback` as your **Redirect URIs**.
         3. From the **Token Endpoint Authentication Method** dropdown, select **Client Secret Post**.
         4. Click the **Save** button.
         5. Navigate to the **Resources** tab, then click the pencil icon. Select the scopes your app needs from the list. You can refer to the [PingOne scopes documentation](https://apidocs.pingidentity.com/pingone/main/v1/api/#pingone-self-management-scopes) for details.
@@ -86,7 +86,7 @@ description: 'Access the PingOne API in 2 minutes 💨'
       
       <Step title="Obtain OAuth credentials">
         1. Click the toggle at the upper right to enable the application.
-        2. Navigate to the **Overview** tab and copy your **Client ID** and **Client Secret** as you will need them when configuring your integration in Nango.
+        2. Navigate to the **Overview** tab and copy your **Client ID** and **Client Secret** as you will need them when configuring your integration in Tenklo.
       </Step>
 
       <Step title="Next">
@@ -130,5 +130,5 @@ description: 'Access the PingOne API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

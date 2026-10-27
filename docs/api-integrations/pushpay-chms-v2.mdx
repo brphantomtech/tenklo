@@ -6,25 +6,25 @@ description: 'Integrate your application with the Pushpay ChMS REST API (v2)'
 
 ## 🚀 Quickstart
 
-Connect to the Pushpay ChMS v2 API with Nango using OAuth 2.0 (System Auth).
+Connect to the Pushpay ChMS v2 API with Tenklo using OAuth 2.0 (System Auth).
 
 <Steps>
     <Step id="configure-pushpay-chms-v2-integration" title="Create the integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Pushpay ChMS (v2)_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Pushpay ChMS (v2)_.
 
-        Nango doesn't provide a test OAuth app for Pushpay ChMS v2. You'll need to register as a value-added partner and create your own OAuth application by following the [setup guide](/api-integrations/pushpay-chms-v2/how-to-register-your-own-pushpay-chms-v2-oauth-app). Then add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        Tenklo doesn't provide a test OAuth app for Pushpay ChMS v2. You'll need to register as a value-added partner and create your own OAuth application by following the [setup guide](/api-integrations/pushpay-chms-v2/how-to-register-your-own-pushpay-chms-v2-oauth-app). Then add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
     </Step>
     <Step id="authorize-pushpay-chms-v2-connection" title="Authorize Pushpay ChMS">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, enter the church subdomain, then complete the Pushpay ChMS authorization prompt as a Master Administrator (or a user who can edit system-wide settings). Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, enter the church subdomain, then complete the Pushpay ChMS authorization prompt as a Master Administrator (or a user who can edit system-wide settings). Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-pushpay-chms-v2-api" title="Call the Pushpay ChMS API">
-        Let's make your first request to the Pushpay ChMS v2 API (`GET /individuals`). Replace the placeholders below with your [API key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Pushpay ChMS v2 API (`GET /individuals`). Replace the placeholders below with your [API key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
 
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/individuals?per_page=1" \
+                curl "https://api.tenklo.dev/proxy/individuals?per_page=1" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -34,7 +34,7 @@ Connect to the Pushpay ChMS v2 API with Nango using OAuth 2.0 (System Auth).
 
             <Tab title="Node">
 
-                Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+                Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
                 ```typescript
                 import { Nango } from '@nangohq/node';
@@ -56,11 +56,11 @@ Connect to the Pushpay ChMS v2 API with Nango using OAuth 2.0 (System Auth).
 
         Or fetch credentials dynamically via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-        ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+        ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-nango-for-pushpay-chms-v2" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step id="implement-nango-for-pushpay-chms-v2" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>

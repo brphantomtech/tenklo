@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Sage Intacct (Client Credentials) app'
 sidebarTitle: 'Sage Intacct (Client Credentials) Setup'
-description: 'Register a Sage Intacct API client and connect it to Nango'
+description: 'Register a Sage Intacct API client and connect it to Tenklo'
 ---
 
 This guide shows you how to register an API client with Sage Intacct to obtain your Client ID and Client Secret. These identify your application to Sage Intacct and are shared across every customer connecting through it.
@@ -22,10 +22,10 @@ This guide shows you how to register an API client with Sage Intacct to obtain y
 
         <Warning>Store the Client Secret server-side only. Never expose it in client-side code, logs, or URLs.</Warning>
   </Step>
-  <Step title="Register your Client ID and Client Secret in Nango (optional)">
+  <Step title="Register your Client ID and Client Secret in Tenklo (optional)">
     Client ID and Client Secret are usually the same for every connection on an integration, since they identify your application to Sage Intacct rather than a specific customer. Register them once on the integration and every connection reuses them automatically — end users are never asked for them in the Connect UI.
 
-    1. In Nango, go to **Integrations** → your Sage Intacct (Client Credentials) integration → **Settings** tab.
+    1. In Tenklo, go to **Integrations** → your Sage Intacct (Client Credentials) integration → **Settings** tab.
     2. Enter your **Client ID** and **Client Secret** in their respective fields. Each field saves as soon as you leave it.
 
     If you'd rather each of your customers use their own Sage Intacct application, leave these fields blank — the Connect UI will ask for Client ID and Client Secret per connection instead.

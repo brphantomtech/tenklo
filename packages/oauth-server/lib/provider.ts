@@ -193,7 +193,7 @@ function requireDashboardAuthentication(): interactionPolicy.DefaultPolicy {
     }
 
     loginPrompt.checks.add(
-        new interactionPolicy.Check('dashboard_session', 'A current Nango dashboard session is required', (ctx) => {
+        new interactionPolicy.Check('dashboard_session', 'A current Tenklo dashboard session is required', (ctx) => {
             // Every authorization request must return to Nango so the interaction
             // controller can verify the current dashboard session. A completed login
             // result means that check already happened for this authorization request.

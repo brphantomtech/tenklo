@@ -12,7 +12,7 @@ import { maskCapturedNetworkRequest, redactSensitiveProperties } from './utils/s
 if (globalEnv.publicPosthogKey) {
     posthog.init(globalEnv.publicPosthogKey, {
         api_host: globalEnv.publicPosthogHost,
-        // The website shares the .nango.dev cookie; without this, a stale per-origin localStorage overrides it.
+        // The website shares the .tenklo.dev cookie; without this, a stale per-origin localStorage overrides it.
         cookieWinsOnConflict: true,
         autocapture: false,
         capture_pageview: 'history_change',

@@ -1,10 +1,10 @@
 ---
 title: 'Records cache'
 sidebarTitle: 'Records cache'
-description: 'How Nango stores synced records, detects changes, and lets your app fetch deltas via cursors.'
+description: 'How Tenklo stores synced records, detects changes, and lets your app fetch deltas via cursors.'
 ---
 
-Sync functions replicate records from an external API to your system continuously. To do this reliably, Nango uses a **records cache** — an intermediate store that sits between the external API and your application.
+Sync functions replicate records from an external API to your system continuously. To do this reliably, Tenklo uses a **records cache** — an intermediate store that sits between the external API and your application.
 
 Every time you call [`nango.batchSave()`](/reference/functions/functions-sdk#save-records) or [`nango.batchDelete()`](/reference/functions/functions-sdk#delete-records) inside a sync function, you are writing to this cache. Your application then reads from the cache using the [GET /records](/reference/backend/http-api/sync/records-list) endpoint or the [Node SDK](/reference/backend/backend-sdk/node#get-records).
 
@@ -12,23 +12,23 @@ Every time you call [`nango.batchSave()`](/reference/functions/functions-sdk#sav
 
 The records cache fulfils three roles:
 
-**Change detection** — By tracking every record that has been synced, Nango can tell you which records are new, which have been updated, and which have been deleted. Your application only needs to fetch the delta, reducing bandwidth and processing on your side.
+**Change detection** — By tracking every record that has been synced, Tenklo can tell you which records are new, which have been updated, and which have been deleted. Your application only needs to fetch the delta, reducing bandwidth and processing on your side.
 
 **Reliable data availability** — Fetching from external APIs is inherently unreliable: rate limits, timeouts, and transient errors are common. The cache decouples this unreliable step from your application. Once data lands in the cache, you can fetch it quickly and reliably.
 
-**Observability** — The cache gives you visibility into the state of synced data directly from the Nango dashboard and API, including record counts, last sync times, and change history.
+**Observability** — The cache gives you visibility into the state of synced data directly from the Tenklo dashboard and API, including record counts, last sync times, and change history.
 
 ## How records are identified and compared
 
 Each record in the cache is uniquely identified by two things:
 
 - **Record ID** — The `id` field you set on each record in your sync function. This should match the unique identifier of the record in the external system (e.g. the external API's primary key).
-- **Payload hash** — Nango computes a hash of the full record payload. When a record with the same ID is saved again, Nango compares hashes to determine whether the record has actually changed.
+- **Payload hash** — Tenklo computes a hash of the full record payload. When a record with the same ID is saved again, Tenklo compares hashes to determine whether the record has actually changed.
 
-If the ID already exists and the hash is identical, the record is considered unchanged and no update is emitted. If the hash differs, Nango marks it as updated.
+If the ID already exists and the hash is identical, the record is considered unchanged and no update is emitted. If the hash differs, Tenklo marks it as updated.
 
 <Info>
-Be careful with fields that change on every fetch but don't represent a meaningful change to the record, such as a `fetched_at` timestamp. Including such fields in the payload will cause Nango to report spurious updates on every sync run. If possible, exclude or normalize these fields before calling `batchSave()`.
+Be careful with fields that change on every fetch but don't represent a meaningful change to the record, such as a `fetched_at` timestamp. Including such fields in the payload will cause Tenklo to report spurious updates on every sync run. If possible, exclude or normalize these fields before calling `batchSave()`.
 </Info>
 
 ## How records are stored
@@ -123,7 +123,7 @@ if (result.records.length > 0) {
 </Tab>
 <Tab title="cURL">
 ```bash
-curl -G https://api.nango.dev/records \
+curl -G https://api.tenklo.dev/records \
   --header 'Authorization: Bearer <NANGO-API-KEY>' \
   --header 'Provider-Config-Key: <INTEGRATION-ID>' \
   --header 'Connection-Id: <CONNECTION-ID>' \

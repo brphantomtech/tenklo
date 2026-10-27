@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own SharePoint Online (v2) OAuth app'
 sidebarTitle: 'SharePoint Online OAuth Setup'
-description: 'Register an OAuth app with SharePoint Online (v2) and connect it to Nango'
+description: 'Register an OAuth app with SharePoint Online (v2) and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with SharePoint Online (v2) (via Microsoft Entra ID) to obtain your OAuth credentials (client ID & secret). These are required to let your users grant your app access to their SharePoint Online account.
@@ -16,7 +16,7 @@ This guide shows you how to register your own app with SharePoint Online (v2) (v
     1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as at least an Application Developer.
     2. If you have access to multiple tenants, use the Settings icon in the top menu to switch to the tenant in which you want to register the application.
     3. From the search bar at the top of the Azure portal, search for **App registrations** and select it. Then choose **New registration**. Or from your left navigation tab, navigate to **Applications** > **App registrations** then choose **New registration**.
-    4. Enter a meaningful name for your application, for example "Nango Integration".
+    4. Enter a meaningful name for your application, for example "Tenklo Integration".
     5. Under **Supported account types** you need to decide who can install your integration:
        - **Accounts in any organizational directory** - Any user account in a professional Microsoft organization (Business, School, etc.)
        - **Accounts in any organizational directory and personal Microsoft accounts** - The accounts from the first option, plus personal Microsoft accounts (pick this unless you want to restrict your integration to business accounts)
@@ -30,7 +30,7 @@ This guide shows you how to register your own app with SharePoint Online (v2) (v
     1. In the left sidebar, select **Authentication**.
     2. Under **Platform configurations**, select **Add a platform**.
     3. Select **Web** as the platform type.
-    4. Enter `https://api.nango.dev/oauth/callback` as the Redirect URI.
+    4. Enter `https://api.tenklo.dev/oauth/callback` as the Redirect URI.
     5. Under **Advanced settings**, keep **Allow public client flows** set to the default **No** for web applications.
     6. Click **Configure** to save your changes.
   </Step>
@@ -48,7 +48,7 @@ This guide shows you how to register your own app with SharePoint Online (v2) (v
   <Step title="Create a client secret">
     1. In the left sidebar, select **Certificates & secrets**.
     2. Under **Client secrets**, click **New client secret**.
-    3. Enter a description for the secret and select an expiration period (6 months, 12 months, 24 months, or custom). Please select a date further in the future to avoid interruptions, note that the **Custom** date can only be set to a maximum of 1 year from the current date. If the secret expires, you will need to regenerate a new one and update your integration within Nango.
+    3. Enter a description for the secret and select an expiration period (6 months, 12 months, 24 months, or custom). Please select a date further in the future to avoid interruptions, note that the **Custom** date can only be set to a maximum of 1 year from the current date. If the secret expires, you will need to regenerate a new one and update your integration within Tenklo.
     4. Click **Add**.
     5. **Important**: Copy the secret value immediately and store it securely. You won't be able to see it again after you leave this page.
   </Step>
@@ -95,7 +95,7 @@ The `sharepointAccessToken` is only available for new connections. If it's missi
 
 ## API version differences
 
-Nango supports both SharePoint Online v1 and v2, providing flexibility for integrations depending on your requirements:
+Tenklo supports both SharePoint Online v1 and v2, providing flexibility for integrations depending on your requirements:
 
 - **SharePoint v1** refers to the older REST API, which uses legacy authentication methods like SharePoint Online (SPO) or older OAuth implementations. Its endpoints follow the pattern `https://<your-tenant>.sharepoint.com/_api/`, and it supports basic SharePoint operations. However, v1 lacks modern features such as delta queries for incremental sync and deep integration with Microsoft 365.
 

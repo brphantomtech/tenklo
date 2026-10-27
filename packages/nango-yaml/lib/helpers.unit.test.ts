@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { getInterval } from './helpers.js';
 
-describe('Nango Config Interval tests', () => {
+describe('Tenklo Config Interval tests', () => {
     it('throws error when interval is less than 30 seconds', () => {
         const interval = getInterval('every 20s', new Date());
         expect(interval).toStrictEqual(new Error('sync_interval_too_short'));

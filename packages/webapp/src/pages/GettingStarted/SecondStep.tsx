@@ -24,13 +24,13 @@ await nango.put({
     providerConfigKey: "${providerConfigKey ?? '<PROVIDER-CONFIG-KEY>'}"
 });
 
-console.log("Starred Nango's Github repository!");
+console.log("Starred Tenklo's Github repository!");
 `.trim();
 }
 
 function getCurlCode(connectionId?: string, providerConfigKey?: string) {
     return `
-curl -X PUT https://api.nango.dev/proxy/user/starred/nangohq/nango \\
+curl -X PUT https://api.tenklo.dev/proxy/user/starred/nangohq/nango \\
     -H "Authorization: Bearer <NANGO-SECRET-KEY>" \\
     -H "Content-Type: application/json" \\
     -H "Connection-Id: ${connectionId ?? '<CONNECTION-ID>'}" \\
@@ -94,7 +94,7 @@ export const SecondStep: React.FC<SecondStepProps> = ({ connectionId, providerCo
             }
 
             toast({
-                title: `Starred Nango's Github repository!`,
+                title: `Starred Tenklo's Github repository!`,
                 variant: 'success'
             });
         } catch {
@@ -111,10 +111,10 @@ export const SecondStep: React.FC<SecondStepProps> = ({ connectionId, providerCo
     return (
         <div className="flex flex-col gap-5 w-full min-w-0">
             <div className="flex flex-col gap-1.5">
-                <h3 className="text-text-strong text-sm font-semibold">Use Nango as a proxy to make requests to Github</h3>
+                <h3 className="text-text-strong text-sm font-semibold">Use Tenklo as a proxy to make requests to Github</h3>
                 {!connectionId && (
                     <p className="text-text-muted text-sm">
-                        Nango will handle API credentials for you. <br />
+                        Tenklo will handle API credentials for you. <br />
                         All you need is the connection id.
                     </p>
                 )}
@@ -185,7 +185,7 @@ export const SecondStep: React.FC<SecondStepProps> = ({ connectionId, providerCo
                                 </Button>
                                 <Button asChild variant="link-accent">
                                     <a href="https://github.com/nangohq/nango" target="_blank" rel="noopener noreferrer">
-                                        Open Nango&apos;s Github repository to see the star
+                                        Open Tenklo&apos;s Github repository to see the star
                                         <ExternalLink />
                                     </a>
                                 </Button>

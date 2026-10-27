@@ -8,20 +8,20 @@ description: 'Connect to the Passportal API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        Sign up for a free Nango account ([here](https://app.nango.dev)) if you haven't already. Then navigate to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> select _Passportal_.
+        Sign up for a free Tenklo account ([here](https://app.tenklo.dev)) if you haven't already. Then navigate to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> select _Passportal_.
       </Step>
 
       <Step title="Authorize Passportal">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Passportal **API Access Key ID**, **HMAC Token**, **Content String**, and **Base URL**. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Passportal **API Access Key ID**, **HMAC Token**, **Content String**, and **Base URL**. Later, you'll let your users do the same directly from your app.
       </Step>
 
       <Step title="Call the Passportal API">
-        Let's make your first request to Passportal (fetch a list of clients). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to Passportal (fetch a list of clients). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
 
         <Tabs>
           <Tab title="cURL">
             ```bash
-            curl -X GET "https://api.nango.dev/proxy/api/v2/clients" \
+            curl -X GET "https://api.tenklo.dev/proxy/api/v2/clients" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>" \
@@ -30,7 +30,7 @@ description: 'Connect to the Passportal API in 2 minutes 💨'
           </Tab>
 
           <Tab title="Node">
-            Install Nango's backend SDK: `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK: `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -53,7 +53,7 @@ description: 'Connect to the Passportal API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
       Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Passportal accounts.
@@ -75,7 +75,7 @@ description: 'Connect to the Passportal API in 2 minutes 💨'
 
   <Tab title="🚨 API gotchas">
     - Passportal uses instance-specific base URLs (for example, mycompany.passportalmsp.com).
-    - Generate your **HMAC Token** offline before creating a connection in Nango.
+    - Generate your **HMAC Token** offline before creating a connection in Tenklo.
     - When creating the connection, ensure you provide the same **Content String** that was used to generate the **HMAC Token**.
 
     <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/passportal.mdx)</Note>
@@ -83,5 +83,5 @@ description: 'Connect to the Passportal API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-  Questions? Join us in the [Slack community](https://nango.dev/slack).
+  Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

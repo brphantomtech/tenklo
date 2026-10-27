@@ -1,9 +1,9 @@
 ---
 title: 'How to register your own ServiceNow OAuth app'
-description: 'Register an OAuth app with ServiceNow and obtain credentials to connect it to Nango'
+description: 'Register an OAuth app with ServiceNow and obtain credentials to connect it to Tenklo'
 ---
 
-This guide shows you how to register your own OAuth application with ServiceNow to obtain your OAuth credentials (Client ID & Client Secret). These are configured once on the ServiceNow integration in Nango — your users then only need to provide their instance's domain to connect their account (see [How do I link my account?](/api-integrations/servicenow/connect)).
+This guide shows you how to register your own OAuth application with ServiceNow to obtain your OAuth credentials (Client ID & Client Secret). These are configured once on the ServiceNow integration in Tenklo — your users then only need to provide their instance's domain to connect their account (see [How do I link my account?](/api-integrations/servicenow/connect)).
 
 <Steps>
     <Step title="Create a ServiceNow Developer Account">
@@ -24,7 +24,7 @@ This guide shows you how to register your own OAuth application with ServiceNow 
         3. Click **New**, then select **Create an OAuth API endpoint for external clients**.
         4. Fill in the following fields:
            - **Name**: A descriptive name for your application.
-           - **Redirect URL**: `https://api.nango.dev/oauth/callback`.
+           - **Redirect URL**: `https://api.tenklo.dev/oauth/callback`.
         5. Click **Submit**. ServiceNow auto-generates the **Client ID** and **Client Secret**.
     </Step>
     <Step title="Configure OAuth scopes">
@@ -39,9 +39,9 @@ This guide shows you how to register your own OAuth application with ServiceNow 
         3. Set **Refresh Token Count** to "Unlimited" to allow continuous refreshing.
         4. Click **Update**.
     </Step>
-    <Step title="Add your Client ID and Client Secret to Nango">
+    <Step title="Add your Client ID and Client Secret to Tenklo">
         1. Copy the **Client ID** and **Client Secret** from the Application Registry.
-        2. In Nango, go to [Integrations](https://app.nango.dev/dev/integrations) -> _ServiceNow_ and enter them as the integration's OAuth credentials.
+        2. In Tenklo, go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _ServiceNow_ and enter them as the integration's OAuth credentials.
     </Step>
     <Step title="Next">
         Follow the [_Quickstart_](/getting-started/quickstart) to connect your first account.

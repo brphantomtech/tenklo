@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/internal-auth",
     "version": "1.0.0",
-    "description": "Internal service auth for Nango control-plane HTTP",
+    "description": "Internal service auth for Tenklo control-plane HTTP",
     "type": "module",
     "main": "./dist/index.js",
     "typings": "./dist/index.d.ts",

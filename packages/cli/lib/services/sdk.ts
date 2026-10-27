@@ -36,7 +36,7 @@ function showLoggerLevelWarning() {
             called = true;
             console.log(
                 chalk.yellow(
-                    'Note: In Nango Cloud, only logs with level "warn" or "error" will be shown by default. Learn more: https://nango.dev/docs/reference/functions/functions-sdk#logging'
+                    'Note: In Tenklo Cloud, only logs with level "warn" or "error" will be shown by default. Learn more: https://tenklo.dev/docs/reference/functions/functions-sdk#logging'
                 )
             );
         }
@@ -131,7 +131,7 @@ export class NangoActionCLI extends NangoActionBase<never, ZodCheckpoint> {
     }
 
     public startSync(_providerConfigKey: string, _syncs: (string | { name: string; variant: string })[], _connectionId?: string): Promise<void> {
-        this.log(`This has no effect but on a remote Nango instance would start a schedule`);
+        this.log(`This has no effect but on a remote Tenklo instance would start a schedule`);
         return Promise.resolve();
     }
 
@@ -419,18 +419,18 @@ export class NangoSyncCLI extends NangoSyncBase<never, never, ZodCheckpoint> {
 
     public override async deleteRecordsFromPreviousExecutions(_model: string): Promise<{ deletedKeys: string[] }> {
         this.log(
-            `This has no effect locally. On a remote Nango instance, it would mark as deleted any records that were not saved during this sync execution.`
+            `This has no effect locally. On a remote Tenklo instance, it would mark as deleted any records that were not saved during this sync execution.`
         );
         return Promise.resolve({ deletedKeys: [] });
     }
 
     public override async trackDeletesStart(model: string): Promise<void> {
-        this.log(`This has no effect locally, but on a remote Nango instance it marks the start of deletion tracking for model '${model}'.`);
+        this.log(`This has no effect locally, but on a remote Tenklo instance it marks the start of deletion tracking for model '${model}'.`);
         return Promise.resolve();
     }
 
     public override async trackDeletesEnd(_model: string): Promise<{ deletedKeys: string[] }> {
-        this.log(`This has no effect locally. On a remote Nango instance, it would mark as deleted any records that were not saved since trackDeletesStart.`);
+        this.log(`This has no effect locally. On a remote Tenklo instance, it would mark as deleted any records that were not saved since trackDeletesStart.`);
         return Promise.resolve({ deletedKeys: [] });
     }
 }

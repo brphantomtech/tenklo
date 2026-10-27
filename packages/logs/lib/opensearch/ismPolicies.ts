@@ -68,7 +68,7 @@ function buildRetentionIsmPolicy(id: string): { id: string; body: Record<string,
         body: {
             policy: {
                 policy_id: id,
-                description: `Nango logs retention (ISM): delete indices after ${retentionMinAge}`,
+                description: `Tenklo logs retention (ISM): delete indices after ${retentionMinAge}`,
                 default_state: 'hot',
                 states: [
                     {

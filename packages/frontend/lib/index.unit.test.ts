@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Nango from './index.js';
 
-const host = 'https://api.nango.dev';
+const host = 'https://api.tenklo.dev';
 const connectSessionToken = 'nango_connect_session_test';
 
 describe('Nango.auth with credentials', () => {

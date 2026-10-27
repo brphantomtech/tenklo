@@ -8,17 +8,17 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Atlassian Government Cloud_. Nango doesn't provide a test OAuth app for Atlassian Government Cloud yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Atlassian Government Cloud_. Tenklo doesn't provide a test OAuth app for Atlassian Government Cloud yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Atlassian Government Cloud">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Atlassian Government Cloud. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Atlassian Government Cloud. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Atlassian Government Cloud API">
-        Let's make your first request to the Atlassian Government Cloud API (fetch a list of issues from Jira). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Atlassian Government Cloud API (fetch a list of issues from Jira). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/ex/jira/{connectionConfig.cloudId}/rest/api/3/search?maxResults=10" \
+                curl "https://api.tenklo.dev/proxy/ex/jira/{connectionConfig.cloudId}/rest/api/3/search?maxResults=10" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -52,13 +52,13 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
         Or fetch credentials dynamically via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
         <Note>
-        The `{connectionConfig.cloudId}` in the URL represents the cloudId. You can get this value from your connection configuration after creating the connection. The cloudId is automatically set by Nango.
+        The `{connectionConfig.cloudId}` in the URL represents the cloudId. You can get this value from your connection configuration after creating the connection. The cloudId is automatically set by Tenklo.
         </Note>
 
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Atlassian Government Cloud accounts.
@@ -78,7 +78,7 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
       <Step title="Configure OAuth 2.0 (3LO)">
         1. In the left sidebar, select **Authorization**.
         2. Next to OAuth 2.0 (3LO), click **Configure**.
-        3. Enter `https://api.nango.dev/oauth/callback` as the **Callback URL**.
+        3. Enter `https://api.tenklo.dev/oauth/callback` as the **Callback URL**.
         4. Click **Save Changes** to save your changes.
       </Step>
       <Step title="Add API permissions">
@@ -91,7 +91,7 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
       <Step title="Obtain your client credentials">
         1. In the left sidebar, select **Settings**.
         2. Note your **Client ID**.
-        3. Copy both the **Client ID** and **Secret** by clicking the copy buttons next to them, as you'll need them when configuring your integration in Nango.
+        3. Copy both the **Client ID** and **Secret** by clicking the copy buttons next to them, as you'll need them when configuring your integration in Tenklo.
       </Step>
       <Step title="Make your app available to users">
         1. In the left sidebar, select **Distribution**.
@@ -140,7 +140,7 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
     - To [use](https://developer.atlassian.com/platform/framework/agc/why-agc/) the AGC, a customer or entity must be a United States government agency or contractor/vendor working with the United States government.
     - When connecting to Atlassian Government Cloud, you have two options for specifying which site to connect to:
       1. Provide a `Subdomain` during connection creation (recommended)
-      2. Let Nango auto-select the first available site: If no `Subdomain` is specified, Nango will use the first site from the accessible resources API.
+      2. Let Tenklo auto-select the first available site: If no `Subdomain` is specified, Tenklo will use the first site from the accessible resources API.
 
     ```ts
     const response = await nango.get({
@@ -151,7 +151,7 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
 
     - A single Atlassian OAuth token can grant access to multiple Atlassian products and sites. For example, the same token might grant access to both "myorg-gov.atlassian.net" and "myorg-test-gov.atlassian.net". This is why specifying the `Subdomain` during connection creation is important if you need to connect to a specific site.
 
-    - The `cloudId` is required when making requests to the Jira or Confluence Cloud REST APIs through the global Atlassian domain (https://api.atlassian.com) using [OAuth 2.0 (3LO)](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#other-integrations). Nango handles getting this automatically by matching it to your specified `subdomain` if provided, or by selecting the first available site if it is not. You will then need to construct your Nango integration's `endpoint` accordingly. 
+    - The `cloudId` is required when making requests to the Jira or Confluence Cloud REST APIs through the global Atlassian domain (https://api.atlassian.com) using [OAuth 2.0 (3LO)](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/#other-integrations). Tenklo handles getting this automatically by matching it to your specified `subdomain` if provided, or by selecting the first available site if it is not. You will then need to construct your Tenklo integration's `endpoint` accordingly. 
     - When using the Atlassian proxy, note that API requests need to be routed through product-specific paths:
       1. Jira apps use the `/jira/{cloudId}/{api}` endpoint.
       2. Confluence apps use the `/confluence/{cloudId}/{api}` endpoint.
@@ -163,5 +163,5 @@ description: 'Access the Atlassian Government Cloud API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

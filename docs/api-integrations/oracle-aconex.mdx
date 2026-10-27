@@ -6,11 +6,11 @@ description: 'Integrate your application with the Oracle Aconex API'
 
 ## 🚀 Quickstart
 
-Connect to Oracle Aconex with Nango and see data flow in 2 minutes.
+Connect to Oracle Aconex with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to **Integrations** -> _Configure New Integration_ -> _Oracle Aconex_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to **Integrations** -> _Configure New Integration_ -> _Oracle Aconex_.
     </Step>
     <Step id="authorize-oracle-aconex" title="Authorize Oracle Aconex">
     Go to **Connections** -> _Add Test Connection_ -> _Authorize_, then log in to Oracle Aconex. Later, you'll let your users do the same directly from your app.
@@ -21,7 +21,7 @@ Connect to Oracle Aconex with Nango and see data flow in 2 minutes.
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/projects" \
+            curl "https://api.tenklo.dev/proxy/api/projects" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Oracle Aconex with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -49,15 +49,15 @@ Connect to Oracle Aconex with Nango and see data flow in 2 minutes.
         </Tab>
     </Tabs>
 
-    Nango adds the access token to every request and refreshes it for you.
+    Tenklo adds the access token to every request and refreshes it for you.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the **Logs** tab in Nango to inspect requests.
+    ✅ You're connected! Check the **Logs** tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -66,7 +66,7 @@ Connect to Oracle Aconex with Nango and see data flow in 2 minutes.
 ## 📚 Oracle Aconex integration guides
 
 - [How to register your own Oracle Aconex OAuth app](/api-integrations/oracle-aconex/how-to-register-your-own-oracle-aconex-oauth-app)  
-Create an OAuth client in the Oracle Construction and Engineering Lobby and connect it to Nango.
+Create an OAuth client in the Oracle Construction and Engineering Lobby and connect it to Tenklo.
 
 Official docs: [Implement OAuth for Aconex APIs](https://help.aconex.com/apis/implement-smart-construction-platform-oauth/)
 

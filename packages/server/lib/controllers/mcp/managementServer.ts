@@ -45,7 +45,7 @@ const logger = getLogger('Server.ManagementMcpServer');
 const oauthToolSecuritySchemes = [{ type: 'oauth2', scopes: [MANAGEMENT_MCP_OAUTH_SCOPE] }] as const;
 
 const oauthServerInstructions =
-    'Environment-bound tools operate in the Nango environment named in each call. environments_list returns environments available to the authenticated user. The server checks access and permissions for the named environment on every call.';
+    'Environment-bound tools operate in the Tenklo environment named in each call. environments_list returns environments available to the authenticated user. The server checks access and permissions for the named environment on every call.';
 
 const managementMcpTools: ManagementMcpTool[] = [
     searchDocsTool,
@@ -188,7 +188,7 @@ async function createOAuthManagementMcpServer(oauthContext: ManagementMcpOAuthCo
 function createBaseManagementMcpServer(instructions?: string): McpServer {
     return new McpServer(
         {
-            name: 'Nango Management MCP server',
+            name: 'Tenklo Management MCP server',
             version: '1.0.0'
         },
         {
@@ -562,7 +562,7 @@ function withRequiredEnvironment(inputSchema: ReturnType<typeof toJsonSchema2020
             environment: {
                 type: 'string',
                 minLength: 1,
-                description: 'The name of the Nango environment in which to run the tool.'
+                description: 'The name of the Tenklo environment in which to run the tool.'
             },
             ...properties
         },

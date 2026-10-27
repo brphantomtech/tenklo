@@ -218,7 +218,7 @@ const webCorsHandler = cors({
     maxAge: 600,
     allowedHeaders: 'Origin, Content-Type, sentry-trace, baggage, X-Nango-Analytics-Session-Id',
     exposedHeaders: 'Authorization, Etag, Content-Type, Content-Length, Set-Cookie, X-Nango-Audit-Export-Truncated',
-    // Allow exact origins and PR preview subdomains (e.g. pr-123.app-development.nango.dev)
+    // Allow exact origins and PR preview subdomains (e.g. pr-123.app-development.tenklo.dev)
     origin: (origin, callback) => {
         callback(null, isAllowedWebCorsOrigin(origin));
     },

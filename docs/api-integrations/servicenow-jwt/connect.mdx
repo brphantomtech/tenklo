@@ -39,7 +39,7 @@ openssl req -new -x509 -key servicenow.key -out servicenow.crt -days 365
 
 Keep `servicenow.key` private. Upload `servicenow.crt` to ServiceNow by opening `sys_certificate.list`, creating a certificate record, and providing the certificate contents.
 
-The certificate expires after 365 days. Before it expires, upload a replacement certificate, update the JWT verifier map, and update the private key in Nango if you generate a new key pair.
+The certificate expires after 365 days. Before it expires, upload a replacement certificate, update the JWT verifier map, and update the private key in Tenklo if you generate a new key pair.
 
 #### Step 3: Create an OAuth JWT API endpoint
 
@@ -57,13 +57,13 @@ The certificate expires after 365 days. Before it expires, upload a replacement 
 3. Enter a **Key ID**, such as `nango-servicenow-key`.
 4. Select the certificate uploaded in step 2 and save the verifier map.
 
-#### Step 5: Connect in Nango
+#### Step 5: Connect in Tenklo
 
 Once you have your credentials:
 
 1. Open the form where you need to authenticate with ServiceNow.
 2. Enter your **Domain**, **Client ID**, **Client Secret**, **Key ID**, **Private Key**, and **User Identifier** in their designated fields.
-   <img src="/api-integrations/servicenow-jwt/form.jpg" alt="Nango ServiceNow JWT connection form" />
+   <img src="/api-integrations/servicenow-jwt/form.jpg" alt="Tenklo ServiceNow JWT connection form" />
 3. Submit the form.
 
 You are now connected to ServiceNow.

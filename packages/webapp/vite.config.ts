@@ -13,9 +13,9 @@ const DEV_PORT = 3000;
 const LOCAL_API_PORT = 3003;
 
 const REMOTE_API_URLS: Record<string, string> = {
-    dev: 'https://api-development.nango.dev',
-    staging: 'https://api-staging.nango.dev',
-    prod: 'https://api.nango.dev'
+    dev: 'https://api-development.tenklo.dev',
+    staging: 'https://api-staging.tenklo.dev',
+    prod: 'https://api.tenklo.dev'
 };
 
 // REMOTE_API mode only: fetch /env.js from the remote API and rewrite apiUrl and dashboardApiUrl

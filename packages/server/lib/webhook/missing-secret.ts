@@ -45,7 +45,7 @@ export function countUnverifiedWebhook({
 export function unverifiedWebhookMessage(integration: Integration, unverified: UnverifiedWebhook): string {
     const remediation = unverified.remediation ?? DEFAULT_REMEDIATION;
 
-    return `This webhook was not verified. Anyone who knows your webhook URL can send events that Nango will process and forward as if they came from ${integration.provider}. ${remediation} to enable verification.`;
+    return `This webhook was not verified. Anyone who knows your webhook URL can send events that Tenklo will process and forward as if they came from ${integration.provider}. ${remediation} to enable verification.`;
 }
 
 /**

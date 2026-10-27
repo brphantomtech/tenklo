@@ -151,7 +151,7 @@ export const postImpersonate = asyncWrapper<PostImpersonate>(async (req, res) =>
         }
 
         await logCtx.enrichOperation({ meta: { ...meta, impersonating: user.id } });
-        void logCtx.info('A Nango admin logged into another account');
+        void logCtx.info('A Tenklo admin logged into another account');
 
         req.login(user, (err) => {
             if (err) {

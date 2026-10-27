@@ -6,7 +6,7 @@ const runtimeName = requiredEnv('AGENTCORE_RUNTIME_NAME');
 const imageUri = requiredEnv('AGENTCORE_RUNTIME_IMAGE_URI');
 const runtimeRoleArn = requiredEnv('AGENTCORE_RUNTIME_ROLE_ARN');
 
-const runtimeDescription = `Nango AgentCore sandbox runtime ${runtimeName}`;
+const runtimeDescription = `Tenklo AgentCore sandbox runtime ${runtimeName}`;
 const waitTimeoutMs = 900_000;
 const waitIntervalMs = 10_000;
 

@@ -77,13 +77,13 @@ describe('OAuth outbound url policy', () => {
                 authorization: 'Bearer secret-jwt',
                 'x-api-key': 'sts-secret',
                 'content-type': 'application/json',
-                'user-agent': 'Nango'
+                'user-agent': 'Tenklo'
             };
             cfg.beforeRedirect!({ href: 'https://evil.example/capture', headers } as any, responseDetails, requestDetails);
             expect(headers['authorization']).toBeUndefined();
             expect(headers['x-api-key']).toBeUndefined();
             expect(headers['content-type']).toBe('application/json');
-            expect(headers['user-agent']).toBe('Nango');
+            expect(headers['user-agent']).toBe('Tenklo');
         });
 
         it('strips credential headers on same-origin redirects too (no forward-on-redirect opt-in)', () => {

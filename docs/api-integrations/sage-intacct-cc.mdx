@@ -6,11 +6,11 @@ description: 'Integrate your application with the Sage Intacct API using machine
 
 ## 🚀 Quickstart
 
-Connect to Sage Intacct with Nango and see data flow in 2 minutes. The Client Credentials flow is machine-to-machine — no user redirect required.
+Connect to Sage Intacct with Tenklo and see data flow in 2 minutes. The Client Credentials flow is machine-to-machine — no user redirect required.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to **Integrations** → _Configure New Integration_ → _Sage Intacct (Client Credentials)_. Optionally, register your Client ID and Client Secret in the **Settings** tab so every connection reuses them — see the [setup guide](/api-integrations/sage-intacct-cc/how-to-register-your-own-sage-intacct-cc-app).
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to **Integrations** → _Configure New Integration_ → _Sage Intacct (Client Credentials)_. Optionally, register your Client ID and Client Secret in the **Settings** tab so every connection reuses them — see the [setup guide](/api-integrations/sage-intacct-cc/how-to-register-your-own-sage-intacct-cc-app).
     </Step>
     <Step id="connect-sage-intacct-account" title="Connect your Sage Intacct account">
     Go to **Connections** → _Add Test Connection_. Enter either your Username or Session ID, plus your Client ID and Client Secret if you left them blank on the integration, then save.
@@ -21,7 +21,7 @@ Connect to Sage Intacct with Nango and see data flow in 2 minutes. The Client Cr
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/objects/expenses/employee-expense" \
+            curl "https://api.tenklo.dev/proxy/v1/objects/expenses/employee-expense" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Sage Intacct with Nango and see data flow in 2 minutes. The Client Cr
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Sage Intacct with Nango and see data flow in 2 minutes. The Client Cr
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the **Logs** tab in Nango to inspect requests.
+    ✅ You're connected! Check the **Logs** tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own credentials, follow the setup guide linked below.
     </Step>
@@ -69,7 +69,7 @@ Nango-maintained guides for common use cases.
 Set up a Web Services user, register and authorize a client application, and obtain your Client ID and Client Secret
 
 - [How to link your Sage Intacct account](/api-integrations/sage-intacct-cc/connect)  
-Connect your Sage Intacct account to Nango using the Connect UI
+Connect your Sage Intacct account to Tenklo using the Connect UI
 
 Official docs: [Sage Intacct API docs](https://developer.sage.com/intacct/docs/)
 

@@ -83,7 +83,7 @@ export const Telemetry: React.FC = () => {
                     <div className="inline-flex items-center gap-2">
                         OTel real-time export
                         <DocsIconLink
-                            href="https://nango.dev/docs/guides/platform/observability#opentelemetry-export"
+                            href="https://tenklo.dev/docs/guides/platform/observability#opentelemetry-export"
                             label="OpenTelemetry export documentation"
                         />
                     </div>

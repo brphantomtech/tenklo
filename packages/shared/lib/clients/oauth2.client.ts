@@ -48,7 +48,7 @@ export function getSimpleOAuth2ClientConfig(
         tokenUrl = new URL('https://placeholder.invalid');
     }
 
-    const headers = { 'User-Agent': 'Nango' };
+    const headers = { 'User-Agent': 'Tenklo' };
 
     const authConfig = provider as ProviderOAuth2;
 

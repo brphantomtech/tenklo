@@ -1,7 +1,7 @@
 ---
-title: 'Set up Asana with Nango'
+title: 'Set up Asana with Tenklo'
 sidebarTitle: 'Asana Setup'
-description: 'Register an OAuth app with Asana and connect it to Nango'
+description: 'Register an OAuth app with Asana and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Asana to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Asana account.
@@ -14,14 +14,14 @@ This guide shows you how to register your own app with Asana to obtain your OAut
      1. Navigate to [My apps](https://app.asana.com/0/my-apps).
      2. Click the **Create new app** button.
      3. Fill in all the required information and click **Create app**.
-     4. You will be redirected to your app's settings. Navigate to the **OAuth** tab and click **+ Add redirect URL**. Add `https://api.nango.dev/oauth/callback` as your redirect URL.
+     4. You will be redirected to your app's settings. Navigate to the **OAuth** tab and click **+ Add redirect URL**. Add `https://api.tenklo.dev/oauth/callback` as your redirect URL.
      5. Under the **Permission scopes** section, select the various scopes you will need.
    </Step>
    <Step title="Change the distribution">
     1. Navigate to the **Manage distribution** tab and select **Any workspace**.
     </Step>
     <Step title="Obtain OAuth credentials">
-    1. Under the same **OAuth** tab, copy your **Client ID** and **Client secret** as you will need them when configuring your integration in Nango.
+    1. Under the same **OAuth** tab, copy your **Client ID** and **Client secret** as you will need them when configuring your integration in Tenklo.
     </Step>
   <Step title="Next">
     Follow the [_Quickstart_](/getting-started/quickstart).
