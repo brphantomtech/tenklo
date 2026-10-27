@@ -32,9 +32,9 @@ export const webhookUrlSchema = z
             } catch {
                 return true;
             }
-            return hostname !== 'nango.dev' && !hostname.endsWith('.nango.dev');
+            return hostname !== 'tenklo.dev' && !hostname.endsWith('.tenklo.dev');
         },
-        { message: `Webhook URLs cannot point to Nango's domain (nango.dev).` }
+        { message: `Webhook URLs cannot point to Tenklo's domain (tenklo.dev).` }
     )
     .refine(
         (url) => {

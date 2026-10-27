@@ -6,22 +6,22 @@ description: 'Connect your application to the Robinhood Trading MCP server'
 
 ## 🚀 Quickstart
 
-Connect to the Robinhood Trading MCP server with Nango and start calling tools in minutes. Robinhood MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required.
+Connect to the Robinhood Trading MCP server with Tenklo and start calling tools in minutes. Robinhood MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required.
 
 <Steps>
     <Step title="Create the integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) → _Configure New Integration_ → _Robinhood (MCP)_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) → _Configure New Integration_ → _Robinhood (MCP)_.
     </Step>
     <Step title="Authorize Robinhood">
-        Go to [Connections](https://app.nango.dev/dev/connections) → _Add Test Connection_ → _Authorize_, then log in to your Robinhood account. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) → _Add Test Connection_ → _Authorize_, then log in to your Robinhood account. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Robinhood Trading MCP API">
-        Make your first MCP request (initialize handshake). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Make your first MCP request (initialize handshake). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/mcp/trading" \
+                curl "https://api.tenklo.dev/proxy/mcp/trading" \
                   -X POST \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -45,7 +45,7 @@ Connect to the Robinhood Trading MCP server with Nango and start calling tools i
             </Tab>
             <Tab title="Node">
 
-                Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+                Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
                 ```typescript
                 import { Nango } from '@nangohq/node';
@@ -76,16 +76,16 @@ Connect to the Robinhood Trading MCP server with Nango and start calling tools i
             </Tab>
         </Tabs>
 
-        ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+        ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
-    <Step title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Robinhood (MCP) guides
 
-Nango uses **dynamic client registration** with Robinhood's OAuth server. You do not need to register an MCP application — just create the integration in Nango and authorize with your Robinhood account.
+Tenklo uses **dynamic client registration** with Robinhood's OAuth server. You do not need to register an MCP application — just create the integration in Tenklo and authorize with your Robinhood account.
 
 Official resources: [Robinhood Trading MCP](https://robinhood.com/us/en/support/articles/agentic-trading-overview/)
 

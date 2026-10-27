@@ -227,7 +227,7 @@ describe('Sync config create', () => {
             source: 'repo'
         });
         expect(error?.message).toBe(
-            `There is no Provider Configuration matching this key. Please make sure this value exists in the Nango dashboard {
+            `There is no Provider Configuration matching this key. Please make sure this value exists in the Tenklo dashboard {
   "providerConfigKey": "google-wrong"
 }`
         );

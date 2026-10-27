@@ -12,16 +12,16 @@ describe('buildInstructions', () => {
     });
 
     it("puts the session's instructions before the playground rules", () => {
-        const instructions = buildInstructions({ ...base, sessionInstructions: '# Nango agent session' });
+        const instructions = buildInstructions({ ...base, sessionInstructions: '# Tenklo agent session' });
 
-        expect(instructions.indexOf('# Nango agent session')).toBeGreaterThan(-1);
-        expect(instructions.indexOf('# Nango agent session')).toBeLessThan(instructions.indexOf('# Nango Agent Playground'));
+        expect(instructions.indexOf('# Tenklo agent session')).toBeGreaterThan(-1);
+        expect(instructions.indexOf('# Tenklo agent session')).toBeLessThan(instructions.indexOf('# Tenklo Agent Playground'));
     });
 
     it('points an app the session does not have to the Integrations tab', () => {
         const instructions = buildInstructions(base);
 
-        expect(instructions).toContain('they can add it in the Integrations tab if Nango supports it');
+        expect(instructions).toContain('they can add it in the Integrations tab if Tenklo supports it');
         expect(instructions).not.toContain('does not offer that app');
     });
 
@@ -31,7 +31,7 @@ describe('buildInstructions', () => {
         expect(instructions).toContain('[Integrations tab](/prod/integrations)');
     });
 
-    it('keeps the agent on Nango and treats tool results as data', () => {
+    it('keeps the agent on Tenklo and treats tool results as data', () => {
         const instructions = buildInstructions(base);
 
         expect(instructions).toContain('Decline anything else');

@@ -1,41 +1,41 @@
 ---
 title: 'Management MCP'
 sidebarTitle: 'Management MCP'
-description: 'Manage Nango from an MCP client.'
+description: 'Manage Tenklo from an MCP client.'
 icon: '/images/mcp.svg'
 ---
 
-The Management MCP server lets MCP-compatible clients manage Nango through tools. It is an agent-friendly alternative to the [public API](/reference/backend/http-api/authentication).
+The Management MCP server lets MCP-compatible clients manage Tenklo through tools. It is an agent-friendly alternative to the [public API](/reference/backend/http-api/authentication).
 
 ## Connect with OAuth
 
 For step-by-step installation instructions for specific coding agents, like Claude Code, Cursor, Codex, VS Code, Pi, and OpenCode, see the [coding agent setup guide](/getting-started/coding-agent-setup#management-mcp-server).
 
-OAuth is the default way to connect. Your MCP client opens Nango in a browser so you can sign in and approve access. You do not need to create or store a credential in the client.
+OAuth is the default way to connect. Your MCP client opens Tenklo in a browser so you can sign in and approve access. You do not need to create or store a credential in the client.
 
 1. Add the Management MCP server to a client that supports [Client ID Metadata Documents (CIMD)](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/):
 
    ```text
-   https://mcp.nango.dev/mcp
+   https://mcp.tenklo.dev/mcp
    ```
 
 2. Start the client's OAuth flow.
-3. Sign in to Nango in the browser and approve the authorization request.
+3. Sign in to Tenklo in the browser and approve the authorization request.
 4. Return to the client. It stores and refreshes the OAuth credentials for you.
 
 The server uses the Streamable HTTP transport.
 
 ## Select an environment
 
-OAuth authorizes the MCP client for your Nango account. Most tools require an `environment` argument containing the name of the environment in which to run the operation.
+OAuth authorizes the MCP client for your Tenklo account. Most tools require an `environment` argument containing the name of the environment in which to run the operation.
 
-Call `environments_list` first to get the environments you can access. The server checks your Nango user permissions in the selected environment for every tool call. All environment-scoped tools require permission to read that environment's settings, plus any permission listed below.
+Call `environments_list` first to get the environments you can access. The server checks your Tenklo user permissions in the selected environment for every tool call. All environment-scoped tools require permission to read that environment's settings, plus any permission listed below.
 
 ## Tools
 
 ### Environments
 
-Use the Environments tool to list the Nango environments available to your user. It does not take an `environment` argument.
+Use the Environments tool to list the Tenklo environments available to your user. It does not take an `environment` argument.
 
 | Tool                | Description                                         | Additional permission |
 | ------------------- | --------------------------------------------------- | --------------------- |
@@ -43,14 +43,14 @@ Use the Environments tool to list the Nango environments available to your user.
 
 ### Documentation
 
-Use the Documentation tools to search the Nango documentation and read complete pages from Mintlify's virtual documentation filesystem. Start with `docs_search` for broad or conceptual queries, then use `docs_query_filesystem` to read a relevant `.mdx` path or perform an exact text search.
+Use the Documentation tools to search the Tenklo documentation and read complete pages from Mintlify's virtual documentation filesystem. Start with `docs_search` for broad or conceptual queries, then use `docs_query_filesystem` to read a relevant `.mdx` path or perform an exact text search.
 
-These tools require no additional environment operation permission. If Mintlify rate-limits a request, the tool error points to the public Nango documentation MCP at `https://nango.dev/docs/mcp` so you can connect to it directly.
+These tools require no additional environment operation permission. If Mintlify rate-limits a request, the tool error points to the public Tenklo documentation MCP at `https://tenklo.dev/docs/mcp` so you can connect to it directly.
 
 | Tool                    | Description                                                               | Additional permission |
 | ----------------------- | ------------------------------------------------------------------------- | --------------------- |
-| `docs_search`           | Search the Nango documentation and return contextual snippets and links. | None                  |
-| `docs_query_filesystem` | Read and query Mintlify's virtual Nango documentation filesystem.         | None                  |
+| `docs_search`           | Search the Tenklo documentation and return contextual snippets and links. | None                  |
+| `docs_query_filesystem` | Read and query Mintlify's virtual Tenklo documentation filesystem.         | None                  |
 
 ### Providers
 
@@ -72,7 +72,7 @@ Use the Connect Session tools to start an authorization flow for an end user.
 
 ### Integrations
 
-Use the Integrations tools to inspect and manage integrations in the authenticated Nango environment.
+Use the Integrations tools to inspect and manage integrations in the authenticated Tenklo environment.
 
 | Tool                  | Description                                                                                      | Additional permission                                                          |
 | --------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
@@ -84,7 +84,7 @@ Use the Integrations tools to inspect and manage integrations in the authenticat
 
 ### Connections
 
-Use the Connections tools to inspect connections in the authenticated Nango environment.
+Use the Connections tools to inspect connections in the authenticated Tenklo environment.
 
 | Tool               | Description                  | Additional permission                                                         |
 | ------------------ | ---------------------------- | ----------------------------------------------------------------------------- |
@@ -105,7 +105,7 @@ Use the Actions tool to trigger an action function synchronously for a connectio
 
 ### Syncs
 
-Use the Sync tools to set sync state or trigger syncs for an integration in the authenticated Nango environment. You can optionally limit either operation to one connection and select named sync variants. Triggering can run a full reset and clear existing synced records.
+Use the Sync tools to set sync state or trigger syncs for an integration in the authenticated Tenklo environment. You can optionally limit either operation to one connection and select named sync variants. Triggering can run a full reset and clear existing synced records.
 
 | Tool              | Description                                                                 | Additional permission        |
 | ----------------- | --------------------------------------------------------------------------- | ---------------------------- |
@@ -114,28 +114,28 @@ Use the Sync tools to set sync state or trigger syncs for an integration in the 
 
 ### Functions
 
-Use the Functions tools to inspect available functions and deploy templates in the authenticated Nango environment. `functions_list` includes deployed functions and Nango catalog actions. Catalog actions are available out of the box; use `deploy_template` when you want to enable a sync template or explicitly deploy a template.
+Use the Functions tools to inspect available functions and deploy templates in the authenticated Tenklo environment. `functions_list` includes deployed functions and Tenklo catalog actions. Catalog actions are available out of the box; use `deploy_template` when you want to enable a sync template or explicitly deploy a template.
 
 | Tool                    | Description                                                                   | Additional permission        |
 | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------- |
-| `functions_list`        | List and filter available functions by integration, including Nango catalog actions. | `environment:functions:list` |
+| `functions_list`        | List and filter available functions by integration, including Tenklo catalog actions. | `environment:functions:list` |
 | `deploy_template`       | Deploy a function template.                                                   | `environment:deploy`         |
 | `get_deployment_status` | Retrieve a deployment's current status and result.                            | `environment:deploy`         |
 
 ### Logs
 
-Use the Logs tools to find activity in the authenticated Nango environment and inspect the messages for a specific operation.
+Use the Logs tools to find activity in the authenticated Tenklo environment and inspect the messages for a specific operation.
 
 | Tool                   | Description                            | Additional permission       |
 | ---------------------- | -------------------------------------- | --------------------------- |
 | `logs_list_operations` | List and filter log operations.        | `environment:logs:read`     |
 | `logs_get_operation`   | Get an operation and its log messages. | `environment:logs:read`     |
 
-See [Observability](/guides/platform/observability) for more information about Nango logs.
+See [Observability](/guides/platform/observability) for more information about Tenklo logs.
 
 ## Use an API key instead
 
-An Environment API key is an option for non-interactive clients and clients that do not support CIMD. It authenticates the client to one Nango environment, so `environments_list` is not exposed and other tool calls do not take an `environment` argument.
+An Environment API key is an option for non-interactive clients and clients that do not support CIMD. It authenticates the client to one Tenklo environment, so `environments_list` is not exposed and other tool calls do not take an `environment` argument.
 
 Create an Environment API key in **Environment Settings > API Keys**, then configure the MCP client to send it as a Bearer token:
 
@@ -149,7 +149,7 @@ API key authentication also exposes these tools:
 
 | Tool              | Description                                                       | Required API key scope        |
 | ----------------- | ----------------------------------------------------------------- | ----------------------------- |
-| `proxy_request`   | Make an authenticated request through the Nango requests proxy.   | `environment:proxy`           |
+| `proxy_request`   | Make an authenticated request through the Tenklo requests proxy.   | `environment:proxy`           |
 | `deploy_function` | Start a code function deployment.                                 | `environment:deploy`          |
 
 `proxy_request` supports `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, along with query parameters, headers, request bodies, base URL overrides, and up to 5 retries. It returns the provider response status, headers, and JSON or UTF-8 text body up to 5 MB (5,000,000 bytes). Unsafe JSON integers and high-precision decimals are returned as strings. Binary responses, other character encodings, and larger responses return a tool error. Use the matching [Proxy HTTP API endpoint](/reference/backend/http-api/proxy/get) for those responses.

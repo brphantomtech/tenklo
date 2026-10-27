@@ -13,7 +13,7 @@ import { Separator } from '../../../components/ui/Separator';
 
 import type { ConnectionFormData } from '../Create';
 
-const CONNECT_SESSION_DOCS_URL = 'https://nango.dev/docs/reference/backend/http-api/connect/sessions/create';
+const CONNECT_SESSION_DOCS_URL = 'https://tenklo.dev/docs/reference/backend/http-api/connect/sessions/create';
 
 interface ConnectionAdvancedConfigProps {
     isOauth2: boolean | undefined;

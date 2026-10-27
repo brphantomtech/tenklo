@@ -15,23 +15,23 @@ describe('webhookUrlSchema', () => {
         expect(accepts('not-a-url')).toBe(false);
     });
 
-    it("rejects Nango's domain and its subdomains", () => {
-        expect(accepts('https://nango.dev/hook')).toBe(false);
-        expect(accepts('https://api.nango.dev/hook')).toBe(false);
+    it("rejects Tenklo's domain and its subdomains", () => {
+        expect(accepts('https://tenklo.dev/hook')).toBe(false);
+        expect(accepts('https://api.tenklo.dev/hook')).toBe(false);
     });
 
     // Regression: the domain restriction must not be bypassable via a trailing dot, a port, or casing.
-    it('rejects nango.dev bypass attempts', () => {
-        expect(accepts('https://nango.dev./hook')).toBe(false); // trailing dot
-        expect(accepts('https://nango.dev:8443/hook')).toBe(false); // non-default port
-        expect(accepts('https://nango.dev:443/hook')).toBe(false);
-        expect(accepts('https://api.nango.dev./hook')).toBe(false); // subdomain + trailing dot
-        expect(accepts('https://nango.dev.:443/hook')).toBe(false);
-        expect(accepts('HTTPS://NANGO.DEV./hook')).toBe(false);
+    it('rejects tenklo.dev bypass attempts', () => {
+        expect(accepts('https://tenklo.dev./hook')).toBe(false); // trailing dot
+        expect(accepts('https://tenklo.dev:8443/hook')).toBe(false); // non-default port
+        expect(accepts('https://tenklo.dev:443/hook')).toBe(false);
+        expect(accepts('https://api.tenklo.dev./hook')).toBe(false); // subdomain + trailing dot
+        expect(accepts('https://tenklo.dev.:443/hook')).toBe(false);
+        expect(accepts('HTTPS://TENKLO.DEV./hook')).toBe(false);
     });
 
     it('allows unrelated domains that merely share the suffix', () => {
-        expect(accepts('https://notnango.dev/hook')).toBe(true);
+        expect(accepts('https://nottenklo.dev/hook')).toBe(true);
     });
 
     it('rejects denylisted hosts (e.g. localhost)', () => {

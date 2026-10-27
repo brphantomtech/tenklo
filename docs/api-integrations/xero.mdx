@@ -6,22 +6,22 @@ description: 'Integrate your application with the Xero API'
 
 ## 🚀 Quickstart
 
-Connect to Xero with Nango and see data flow in 2 minutes.
+Connect to Xero with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Xero_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Xero_.
     </Step>
     <Step title="Authorize Xero">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Xero. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Xero. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Xero API">
-    Let's make your first request to the Xero API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Xero API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api.xro/2.0/Contacts" \
+            curl "https://api.tenklo.dev/proxy/api.xro/2.0/Contacts" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Xero with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -52,11 +52,11 @@ Connect to Xero with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -64,13 +64,13 @@ Connect to Xero with Nango and see data flow in 2 minutes.
 
 ## 📚 Xero Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Xero OAuth app](/api-integrations/xero/how-to-register-your-own-xero-api-oauth-app)  
-Register an OAuth app with Xero and obtain credentials to connect it to Nango
+Register an OAuth app with Xero and obtain credentials to connect it to Tenklo
 
-- [How to configure Xero webhooks with Nango](/api-integrations/xero/webhooks)  
-Learn how to set up webhook notifications from Xero to Nango
+- [How to configure Xero webhooks with Tenklo](/api-integrations/xero/webhooks)  
+Learn how to set up webhook notifications from Xero to Tenklo
 
 Official docs: [Xero API documentation](https://developer.xero.com/documentation/getting-started-guide)
 

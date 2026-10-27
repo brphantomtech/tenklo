@@ -6,11 +6,11 @@ description: 'Integrate your application with the GitLab API using a Group Acces
 
 ## 🚀 Quickstart
 
-Connect to GitLab with a Group Access Token in Nango and see data flow in 2 minutes.
+Connect to GitLab with a Group Access Token in Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), open **Integrations** -> _Configure New Integration_ -> _GitLab (Group Access Token)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), open **Integrations** -> _Configure New Integration_ -> _GitLab (Group Access Token)_.
     </Step>
     <Step id="authorize-gitlab-group" title="Connect your GitLab group">
     Open **Connections** -> _Add Test Connection_ -> _Authorize_, then enter your GitLab hostname, group ID, and Group Access Token. Later, you'll let your users do the same directly from your app.
@@ -21,7 +21,7 @@ Connect to GitLab with a Group Access Token in Nango and see data flow in 2 minu
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/v4/user" \
+            curl "https://api.tenklo.dev/proxy/api/v4/user" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to GitLab with a Group Access Token in Nango and see data flow in 2 minu
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to GitLab with a Group Access Token in Nango and see data flow in 2 minu
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Open **Logs** in Nango to inspect requests.
+    ✅ You're connected! Open **Logs** in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To create a Group Access Token, follow the connect guide linked below.
     </Step>
@@ -63,10 +63,10 @@ Connect to GitLab with a Group Access Token in Nango and see data flow in 2 minu
 
 ## 📚 GitLab (Group Access Token) integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my GitLab group?](/api-integrations/gitlab-group-token/connect)  
-Create a Group Access Token in GitLab and connect it to Nango
+Create a Group Access Token in GitLab and connect it to Tenklo
 
 Official docs: [GitLab Group Access Tokens](https://docs.gitlab.com/user/group/settings/group_access_tokens/)
 
@@ -74,7 +74,7 @@ Official docs: [GitLab Group Access Tokens](https://docs.gitlab.com/user/group/s
 
 - Group Access Tokens authenticate as an auto-provisioned bot user inside the group. The token remains associated with the group when individual members leave.
 - The token grants access to the group and its subgroups and projects, not the wider GitLab instance. Create one connection per group when you need access to multiple unrelated groups.
-- GitLab webhook payloads do not contain a Nango connection ID. Append `?nangoConnectionId=<connectionId>` to the Nango webhook URL when registering a project or group webhook. Configure a [signing token](https://docs.gitlab.com/user/project/integrations/webhooks/#signing-tokens) on the GitLab webhook and store the same value as `webhookSecret` in the Nango connection metadata.
+- GitLab webhook payloads do not contain a Tenklo connection ID. Append `?nangoConnectionId=<connectionId>` to the Tenklo webhook URL when registering a project or group webhook. Configure a [signing token](https://docs.gitlab.com/user/project/integrations/webhooks/#signing-tokens) on the GitLab webhook and store the same value as `webhookSecret` in the Tenklo connection metadata.
 
 ## 🧩 Pre-built syncs & actions for GitLab (Group Access Token)
 

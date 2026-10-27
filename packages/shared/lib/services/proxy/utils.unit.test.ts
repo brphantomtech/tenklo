@@ -2105,7 +2105,7 @@ describe('getProxyConfiguration', () => {
                 proxy: {
                     base_url: 'https://api.github.com'
                 },
-                docs: 'https://nango.dev/docs/api-integrations/github'
+                docs: 'https://tenklo.dev/docs/api-integrations/github'
             },
             providerName: 'github',
             providerConfigKey: 'provider-config-key-1',

@@ -121,7 +121,7 @@ const ChooseHowToStart: React.FC<{
     return (
         <div className="flex w-full min-w-0 flex-col gap-8 wrap-anywhere">
             <div className="flex flex-col gap-2">
-                <h1 className="text-heading-large text-text-strong">Your team at {teamName} already uses Nango</h1>
+                <h1 className="text-heading-large text-text-strong">Your team at {teamName} already uses Tenklo</h1>
                 <p className="text-heading-sm leading-[1.4] text-text-secondary">
                     Choose how you want to get started. You can create your own account now and still join your team later.
                 </p>
@@ -219,7 +219,7 @@ const RequestSent: React.FC<{ teamName: string; email: string | undefined; onCre
                 ) : null}
                 . You can now close this page.
             </p>
-            <p>Want it faster? Ask a teammate who manages Nango at {teamName} to approve your request.</p>
+            <p>Want it faster? Ask a teammate who manages Tenklo at {teamName} to approve your request.</p>
         </div>
         <Separator />
         <div className="flex flex-wrap items-center gap-3">

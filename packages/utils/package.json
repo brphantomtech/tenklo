@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/utils",
     "version": "1.0.0",
-    "description": "Utils for use in Nango applications",
+    "description": "Utils for use in Tenklo applications",
     "type": "module",
     "main": "./dist/index.js",
     "typings": "./dist/index.d.ts",

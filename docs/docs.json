@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Nango Docs",
+  "name": "Tenklo Docs",
   "colors": {
     "primary": "#29abe2",
     "light": "#71c0e2",
@@ -23,9 +23,9 @@
   "css": "custom.css",
   "js": "custom.js",
   "logo": {
-    "light": "/images/Nango-Light-Mode.svg",
-    "dark": "/images/Nango-Dark-Mode.svg",
-    "href": "https://nango.dev"
+    "light": "/images/Tenklo-Light-Mode.svg",
+    "dark": "/images/Tenklo-Dark-Mode.svg",
+    "href": "https://tenklo.dev"
   },
   "favicon": {
     "light": "/favicon-black.svg",
@@ -57,13 +57,13 @@
       },
       {
         "label": "Log In",
-        "href": "https://app.nango.dev"
+        "href": "https://app.tenklo.dev"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Sign Up",
-      "href": "https://app.nango.dev/signup"
+      "href": "https://app.tenklo.dev/signup"
     }
   },
   "footer": {
@@ -71,8 +71,8 @@
       "twitter": "https://twitter.com/NangoHQ",
       "linkedin": "https://www.linkedin.com/company/nangohq/",
       "github": "https://github.com/NangoHQ/nango",
-      "slack": "https://nango.dev/slack",
-      "website": "https://nango.dev/"
+      "slack": "https://tenklo.dev/slack",
+      "website": "https://tenklo.dev/"
     }
   },
   "integrations": {
@@ -2125,14 +2125,14 @@
       {
         "tab": "Support",
         "icon": "slack",
-        "href": "https://nango.dev/slack"
+        "href": "https://tenklo.dev/slack"
       }
     ]
   },
   "api": {
     "mdx": {
       "server": [
-        "https://api.nango.dev",
+        "https://api.tenklo.dev",
         "http://localhost:3003"
       ],
       "auth": {

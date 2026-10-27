@@ -8,7 +8,7 @@ Environments help you segment your integration configuration and customer data a
 
 ## Overview
 
-Each environment in your Nango account is completely isolated with its own:
+Each environment in your Tenklo account is completely isolated with its own:
 
 - Integration configurations
 - [Functions](/guides/functions/functions-guide)
@@ -16,7 +16,7 @@ Each environment in your Nango account is completely isolated with its own:
 - Environment-specific settings
 
 <Info>
-Each Nango account comes with **dev** and **prod** environments by default. Additional environments are available depending on your [pricing plan](https://www.nango.dev/pricing). Create them from the environment dropdown in the dashboard, or with the [Create an environment API](/reference/backend/http-api/environments/create).
+Each Tenklo account comes with **dev** and **prod** environments by default. Additional environments are available depending on your [pricing plan](https://www.tenklo.dev/pricing). Create them from the environment dropdown in the dashboard, or with the [Create an environment API](/reference/backend/http-api/environments/create).
 </Info>
 
 ## Production environments
@@ -40,7 +40,7 @@ Use a **shared non-production environment** (usually `dev`) for day-to-day engin
 
 ### Local webhooks on a shared environment
 
-Keep the environment webhook URL pointed at your shared app (or staging backend). To receive webhooks from Nango locally, create connections with a [per-connection `webhook_url` override](/guides/platform/webhooks-from-nango#override-webhook-urls-per-connection) pointing at your local webhook endpoint (for example via [ngrok](https://ngrok.com/)).
+Keep the environment webhook URL pointed at your shared app (or staging backend). To receive webhooks from Tenklo locally, create connections with a [per-connection `webhook_url` override](/guides/platform/webhooks-from-nango#override-webhook-urls-per-connection) pointing at your local webhook endpoint (for example via [ngrok](https://ngrok.com/)).
 
 One convenient pattern is to read the override from an optional env var, so the same connect-session code works locally and when the var is unset. For example, set `NANGO_CONNECTION_WEBHOOK_URL` in your local `.env` to that URL and leave it unset elsewhere:
 
@@ -78,7 +78,7 @@ You can give each engineer their own environment for full isolation. You then ne
 
 **Mirror your application environments**
 
-We recommend creating Nango environments that match your application's deployment stages. For example:
+We recommend creating Tenklo environments that match your application's deployment stages. For example:
 - Development / local → dev environment
 - Staging → staging environment
 - Production → prod environment
@@ -93,4 +93,4 @@ When you deploy [Functions](/guides/functions/functions-guide), you always targe
 - [API keys](/reference/backend/http-api/api-keys) - scope keys per environment.
 - [Create an environment](/reference/backend/http-api/environments/create) - create environments via API.
 - [CI/CD](/guides/functions/ci-cd) - deploy functions safely across environments.
-- [Webhooks from Nango](/guides/platform/webhooks-from-nango) - environment and per-connection webhook URLs.
+- [Webhooks from Tenklo](/guides/platform/webhooks-from-nango) - environment and per-connection webhook URLs.

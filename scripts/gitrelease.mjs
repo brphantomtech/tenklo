@@ -8,7 +8,7 @@ const nextTag = `v${nextVersion}`;
 
 echo`Publishing ${nextVersion} on branch ${branch}`;
 
-await $`git config --global user.email "contact@nango.dev"`;
+await $`git config --global user.email "contact@tenklo.dev"`;
 await $`git config --global user.name "Release Bot"`;
 
 const tagExists = await $`git tag -l ${nextTag}`;
@@ -30,7 +30,7 @@ echo`Adding file`;
 await $`git add -A package.json package-lock.json packages/**/package.json CHANGELOG.md packages/**/lib/version.ts`;
 
 echo`Creating commit`;
-await $`git commit --allow-empty --author="Release Bot <contact@nango.dev>" -m ${releaseMessage} `;
+await $`git commit --allow-empty --author="Release Bot <contact@tenklo.dev>" -m ${releaseMessage} `;
 
 echo`Creating tag`;
 await $`git tag -a ${nextTag} HEAD -m ${releaseMessage}`;

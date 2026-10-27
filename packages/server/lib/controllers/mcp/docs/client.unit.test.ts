@@ -75,7 +75,7 @@ describe('DocsMcpClient', () => {
         if (result.isErr()) {
             expect(result.error).toBeInstanceOf(PublicMcpError);
             expect(result.error.message).toBe(
-                'The Nango documentation MCP returned 429 Too Many Requests. Connect to the Nango documentation MCP directly at https://nango.dev/docs/mcp.'
+                'The Tenklo documentation MCP returned 429 Too Many Requests. Connect to the Tenklo documentation MCP directly at https://tenklo.dev/docs/mcp.'
             );
         }
         expect(connectedClient.close).toHaveBeenCalledOnce();
@@ -94,7 +94,7 @@ describe('DocsMcpClient', () => {
         expect(result.isErr()).toBe(true);
         if (result.isErr()) {
             expect(result.error.message).toContain('429 Too Many Requests');
-            expect(result.error.message).toContain('https://nango.dev/docs/mcp');
+            expect(result.error.message).toContain('https://tenklo.dev/docs/mcp');
         }
         expect(connectedClient.close).toHaveBeenCalledOnce();
     });

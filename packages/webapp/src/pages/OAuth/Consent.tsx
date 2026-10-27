@@ -145,7 +145,7 @@ export function OAuthConsent() {
     return (
         <main className="flex min-h-screen items-center justify-center bg-surface-canvas px-4 py-10 sm:px-6 sm:py-12">
             <Helmet>
-                <title>Authorize access - Nango</title>
+                <title>Authorize access - Tenklo</title>
             </Helmet>
             {state.kind !== 'loading' && (
                 <div className="w-full max-w-[520px] rounded-ds-sm bg-surface-panel px-6 py-10 shadow-container-panel ring-1 ring-inset ring-border-default sm:px-8 sm:py-10">
@@ -218,7 +218,7 @@ export function OAuthConsent() {
 
                                 <div className="flex flex-col gap-3">
                                     <p className="type-text-regular-sm text-text-secondary">
-                                        Access matches your live Nango role. If your role changes, so does what this token can reach.
+                                        Access matches your live Tenklo role. If your role changes, so does what this token can reach.
                                     </p>
                                     <Alert variant="warning" size="compact">
                                         <TriangleAlert />
@@ -226,7 +226,7 @@ export function OAuthConsent() {
                                         <AlertDescription>
                                             <span className="flex min-w-0 flex-col">
                                                 <span>
-                                                    This client is registered by {interaction.client.hostname}, not Nango. Only approve if you recognize this
+                                                    This client is registered by {interaction.client.hostname}, not Tenklo. Only approve if you recognize this
                                                     application and trust where it redirects:
                                                 </span>
                                                 <strong className="font-ds-bold text-status-warning-text break-all">{interaction.redirectUri}</strong>

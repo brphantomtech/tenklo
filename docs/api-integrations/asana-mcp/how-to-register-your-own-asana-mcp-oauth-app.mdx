@@ -1,10 +1,10 @@
 ---
 title: 'How to register your own Asana MCP OAuth app'
 sidebarTitle: 'Asana MCP Setup'
-description: 'Register an OAuth app with Asana for MCP and connect it to Nango'
+description: 'Register an OAuth app with Asana for MCP and connect it to Tenklo'
 ---
 
-This guide shows you how to register your own app with Asana to obtain your OAuth credentials (client ID and client secret) for the Asana MCP server. These are required to let your users grant your app access to their Asana account via Nango.
+This guide shows you how to register your own app with Asana to obtain your OAuth credentials (client ID and client secret) for the Asana MCP server. These are required to let your users grant your app access to their Asana account via Tenklo.
 
 <Steps>
 <Step title="Create an account">
@@ -20,7 +20,7 @@ This guide shows you how to register your own app with Asana to obtain your OAut
   </Step>
   <Step title="Configure OAuth settings">
     1. In the left sidebar, click **OAuth**.
-    2. Add your **Redirect URL**—the callback URL where Asana will send authorization codes. Use `https://api.nango.dev/oauth/callback` for Nango.
+    2. Add your **Redirect URL**—the callback URL where Asana will send authorization codes. Use `https://api.tenklo.dev/oauth/callback` for Tenklo.
   </Step>
   <Step title="Configure workspace access">
     Configure which workspaces can use your app:
@@ -33,7 +33,7 @@ This guide shows you how to register your own app with Asana to obtain your OAut
     **Important:** If you choose "Specific workspaces" but don't select any workspaces, users will see an error saying "This app is not available to your Asana workspace or organization." Make sure to select at least one workspace before testing.
   </Step>
   <Step title="Next">
-    Enter your **Client ID** and **Client secret** in the integration settings in Nango, then follow the [_Quickstart_](/getting-started/quickstart) to connect your first account.
+    Enter your **Client ID** and **Client secret** in the integration settings in Tenklo, then follow the [_Quickstart_](/getting-started/quickstart) to connect your first account.
   </Step>
 </Steps>
 

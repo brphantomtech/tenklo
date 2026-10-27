@@ -2,12 +2,12 @@
 title: 'Functions CLI'
 sidebarTitle: 'Functions CLI'
 icon: 'terminal'
-description: "Full reference of the CLI available to implement, test & deploy Nango Functions."
+description: "Full reference of the CLI available to implement, test & deploy Tenklo Functions."
 ---
 
-### Install the Nango CLI
+### Install the Tenklo CLI
 
-Install the Nango CLI globally:
+Install the Tenklo CLI globally:
 ```bash
 npm install nango -g
 ```
@@ -36,7 +36,7 @@ NANGO_SECRET_KEY_PROD='<PROD-API-KEY>'
 NANGO_SECRET_KEY_DEV='<DEV-API-KEY>'
 ```
 
-Get your `prod` and `dev` Environment API keys from [Environment Settings > API Keys](https://app.nango.dev/environment-settings#api-keys) (toggle between the `prod` and `dev` environment in the left nav bar).
+Get your `prod` and `dev` Environment API keys from [Environment Settings > API Keys](https://app.tenklo.dev/environment-settings#api-keys) (toggle between the `prod` and `dev` environment in the left nav bar).
 
 <Info>
 For self-hosting, set the `NANGO_HOSTPORT` env variable to `http://localhost:3003` (for local development) or your instance's URL.
@@ -58,7 +58,7 @@ nango [command] --help
 
 ## Interactive Mode
 
-The Nango CLI includes an interactive mode that prompts you for missing arguments. For example, if you run `nango create` without specifying the function type, integration, or name, the CLI will prompt you for them.
+The Tenklo CLI includes an interactive mode that prompts you for missing arguments. For example, if you run `nango create` without specifying the function type, integration, or name, the CLI will prompt you for them.
 
 This mode is enabled by default when you're in an interactive terminal session.
 
@@ -126,7 +126,7 @@ NANGO_SECRET_KEY_DEV=xxxx-xxx-xxxx
 NANGO_SECRET_KEY_PROD=xxxx-xxx-xxxx
 
 # Nango's instance URL (OSS: change to http://localhost:3003 or your instance URL).
-NANGO_HOSTPORT=https://api.nango.dev # Default value
+NANGO_HOSTPORT=https://api.tenklo.dev # Default value
 
 # Client certificate for a self-hosted API behind mTLS.
 # A single PEM that contains both the certificate and private key is enough.
@@ -167,12 +167,12 @@ This is especially useful when:
 In CI, dependency updates are automatically disabled to avoid hanging. Passing `--no-dependency-update` explicitly is still recommended to make intent clear and silence the warning.
 
 <Warning>
-When dependency updates are disabled, Nango will not install dependencies for you. Ensure dependencies are already installed before running commands.
+When dependency updates are disabled, Tenklo will not install dependencies for you. Ensure dependencies are already installed before running commands.
 </Warning>
 
 ## Package manager support
 
-Nango supports all major JavaScript package managers. The CLI automatically detects and uses your package manager for installs. Detection works from the current directory upward (monorepo-aware), in this order:
+Tenklo supports all major JavaScript package managers. The CLI automatically detects and uses your package manager for installs. Detection works from the current directory upward (monorepo-aware), in this order:
 
 1. `package.json` `packageManager` field (Corepack standard)
 2. lock files (`pnpm-lock.yaml`, `yarn.lock`, `bun.lockb` / `bun.lock`)
@@ -181,5 +181,5 @@ Nango supports all major JavaScript package managers. The CLI automatically dete
 Supported managers are `npm`, `pnpm`, `yarn`, and `bun`.
 
 <Tip>
-**Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+**Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>

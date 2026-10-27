@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Agiloft OAuth app'
 sidebarTitle: 'Agiloft setup'
-description: 'Register an OAuth app with Agiloft and connect it to Nango'
+description: 'Register an OAuth app with Agiloft and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Agiloft to obtain your OAuth credentials (client ID & secret). These are required to let your users grant your app access to their Agiloft account.
@@ -16,7 +16,7 @@ This guide shows you how to register your own app with Agiloft to obtain your OA
     - The account requires an **Admin** or **Standard** license.
     - Add the appropriate groups to the account to grant access to the records you plan to interact with via the API.
 
-    Note the **Contact ID** for this account — you will need it when configuring the connection in Nango.
+    Note the **Contact ID** for this account — you will need it when configuring the connection in Tenklo.
   </Step>
   <Step id="open-oauth-client-setup" title="Open the OAuth2 Client Setup">
     Log in to your Agiloft instance and go to **Setup > Integration > OAuth2 Client Setup**.
@@ -34,7 +34,7 @@ This guide shows you how to register your own app with Agiloft to obtain your OA
     - **Name**: a unique name for the application used with the REST API.
     - **Display Name**: the name shown in your Agiloft KB.
     - **Full Name**: the name of the service user account created in step 1. The **Associate this Application with Contact ID** field will be populated automatically.
-    - **Redirect URI**: enter `https://api.nango.dev/oauth/callback`.
+    - **Redirect URI**: enter `https://api.tenklo.dev/oauth/callback`.
     - **Token Expiry in Minutes**: leave at the default (15) or set a value between 1 and 60.
 
     Click **Apply Changes**.
@@ -42,10 +42,10 @@ This guide shows you how to register your own app with Agiloft to obtain your OA
   <Step id="enable-and-get-credentials" title="Enable the application and copy credentials">
     Click **Enable** to activate the application. This generates your **Client ID** and **Client Secret**.
 
-    Copy both values — you will need them when configuring the integration in Nango.
+    Copy both values — you will need them when configuring the integration in Tenklo.
   </Step>
-  <Step id="configure-nango" title="Configure the integration in Nango">
-    In Nango, when setting up the Agiloft integration, enter your **Client ID** and **Client Secret**.
+  <Step id="configure-nango" title="Configure the integration in Tenklo">
+    In Tenklo, when setting up the Agiloft integration, enter your **Client ID** and **Client Secret**.
 
     Set the **Scopes** field to `permissions_for:{contactId}`, replacing `{contactId}` with the Contact ID from the **Associate this Application with Contact ID** field in your Agiloft API application (e.g. `permissions_for:213`).
 

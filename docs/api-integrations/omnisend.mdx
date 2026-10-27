@@ -6,22 +6,22 @@ description: 'Integrate your application with the Omnisend API'
 
 ## 🚀 Quickstart
 
-Connect to Omnisend with Nango and make a read-only request in minutes. Omnisend uses a static API key generated in your Omnisend account.
+Connect to Omnisend with Tenklo and make a read-only request in minutes. Omnisend uses a static API key generated in your Omnisend account.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Omnisend_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Omnisend_.
     </Step>
     <Step title="Authorize Omnisend">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter an Omnisend API key with only the scopes your application needs. Later, your users can do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter an Omnisend API key with only the scopes your application needs. Later, your users can do the same directly from your app.
     </Step>
     <Step title="Call the Omnisend API">
-    Make a read-only request to list at most one campaign. This requires the `campaigns.read` scope on your API key. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make a read-only request to list at most one campaign. This requires the `campaigns.read` scope on your API key. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/campaigns?limit=1" \
+            curl "https://api.tenklo.dev/proxy/api/campaigns?limit=1" \
               -H "Authorization: Bearer <NANGO-SECRET-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Omnisend with Nango and make a read-only request in minutes. Omnisend
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -50,11 +50,11 @@ Connect to Omnisend with Nango and make a read-only request in minutes. Omnisend
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own Omnisend API key, follow the setup guide below.
     </Step>
@@ -62,7 +62,7 @@ Connect to Omnisend with Nango and make a read-only request in minutes. Omnisend
 
 ## 📚 Omnisend integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my Omnisend account?](/api-integrations/omnisend/connect)
 Create an Omnisend API key and connect your account

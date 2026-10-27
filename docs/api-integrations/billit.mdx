@@ -6,11 +6,11 @@ description: 'Connect to the Billit Access Point API with an API key'
 
 ## Quickstart
 
-Connect to the Billit Access Point API with Nango and make your first authenticated API request. This integration uses API key authentication, not the general Billit API's OAuth flow.
+Connect to the Billit Access Point API with Tenklo and make your first authenticated API request. This integration uses API key authentication, not the general Billit API's OAuth flow.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango, go to **Integrations**, select **Configure New Integration**, then select **Billit**.
+    In Tenklo, go to **Integrations**, select **Configure New Integration**, then select **Billit**.
     </Step>
     <Step id="authorize-billit" title="Authorize Billit">
     Go to **Connections**, select **Add Test Connection**, then enter the Billit environment, master account Party ID, and API key. See the [connect guide](/api-integrations/billit/connect) for details.
@@ -21,7 +21,7 @@ Connect to the Billit Access Point API with Nango and make your first authentica
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/einvoices/registrations" \
+            curl "https://api.tenklo.dev/proxy/v1/einvoices/registrations" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to the Billit Access Point API with Nango and make your first authentica
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -50,7 +50,7 @@ Connect to the Billit Access Point API with Nango and make your first authentica
     </Tabs>
 
     </Step>
-    <Step id="implement-nango" title="Implement Nango in your app">
+    <Step id="implement-nango" title="Implement Tenklo in your app">
     Follow the [Auth implementation guide](/guides/auth/auth-guide) to add the connection flow to your application.
     </Step>
 </Steps>

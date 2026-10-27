@@ -17,7 +17,7 @@ export const queryDocsFilesystemInputSchema = z
         command: z
             .string()
             .min(1)
-            .describe('A read-only shell command to run against the virtual Nango documentation filesystem, such as `head -80 /quickstart.mdx`.')
+            .describe('A read-only shell command to run against the virtual Tenklo documentation filesystem, such as `head -80 /quickstart.mdx`.')
     })
     .strict();
 

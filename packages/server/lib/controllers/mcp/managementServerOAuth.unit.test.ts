@@ -60,7 +60,7 @@ describe('createManagementMcpServer with OAuth', () => {
 
         try {
             expect(client.getInstructions()).toBe(
-                'Environment-bound tools operate in the Nango environment named in each call. environments_list returns environments available to the authenticated user. The server checks access and permissions for the named environment on every call.'
+                'Environment-bound tools operate in the Tenklo environment named in each call. environments_list returns environments available to the authenticated user. The server checks access and permissions for the named environment on every call.'
             );
 
             const result = await client.listTools();
@@ -106,7 +106,7 @@ describe('createManagementMcpServer with OAuth', () => {
             expect(result.tools[0]).toMatchObject({
                 name: 'environments_list',
                 title: 'List Environments',
-                description: 'Lists the Nango environments available to the authenticated user and whether each is a production environment.',
+                description: 'Lists the Tenklo environments available to the authenticated user and whether each is a production environment.',
                 annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
                 inputSchema: {
                     type: 'object',
@@ -205,8 +205,8 @@ describe('createManagementMcpServer with OAuth', () => {
             name: 'github',
             display_name: 'GitHub',
             auth_mode: 'OAUTH2' as const,
-            docs: 'https://nango.dev/docs/api-integrations/github',
-            logo_url: 'https://api.nango.dev/images/template-logos/github.svg',
+            docs: 'https://tenklo.dev/docs/api-integrations/github',
+            logo_url: 'https://api.tenklo.dev/images/template-logos/github.svg',
             templates: []
         };
         const handlerSpy = vi.spyOn(getProvidersTool, 'handler').mockResolvedValueOnce(Ok(response));
@@ -300,8 +300,8 @@ describe('createManagementMcpServer with OAuth', () => {
             name: 'github',
             display_name: 'GitHub',
             auth_mode: 'OAUTH2' as const,
-            docs: 'https://nango.dev/docs/api-integrations/github',
-            logo_url: 'https://api.nango.dev/images/template-logos/github.svg',
+            docs: 'https://tenklo.dev/docs/api-integrations/github',
+            logo_url: 'https://api.tenklo.dev/images/template-logos/github.svg',
             templates: []
         };
         const handlerSpy = vi.spyOn(getProvidersTool, 'handler').mockResolvedValueOnce(Ok(response));
@@ -337,7 +337,7 @@ describe('createManagementMcpServer with OAuth', () => {
         const { client, server, loadEnvironment } = await createTestClient({
             audit: {
                 kind: 'request',
-                actor: { type: 'user', id: '1', display: 'user@nango.dev' },
+                actor: { type: 'user', id: '1', display: 'user@tenklo.dev' },
                 context: { ip: '127.0.0.1', userAgent: 'test-client' }
             },
             requestBody: {
@@ -425,7 +425,7 @@ describe('createManagementMcpServer with OAuth', () => {
             principal: principal(['environment:settings:read'], ['env:*']),
             audit: {
                 kind: 'request',
-                actor: { type: 'user', id: '1', display: 'user@nango.dev' },
+                actor: { type: 'user', id: '1', display: 'user@tenklo.dev' },
                 context: { ip: '127.0.0.1', userAgent: 'test-client' }
             },
             requestBody: {
@@ -445,7 +445,7 @@ describe('createManagementMcpServer with OAuth', () => {
             expect(event).toMatchObject({
                 accountId: 1,
                 environment: { id: 'dev-environment', display: 'dev' },
-                actor: { type: 'user', id: '1', display: 'user@nango.dev' },
+                actor: { type: 'user', id: '1', display: 'user@tenklo.dev' },
                 resource: 'integration',
                 action: 'created',
                 targets: [],
@@ -476,7 +476,7 @@ describe('createManagementMcpServer with OAuth', () => {
             principal: principal(['environment:*'], ['env:non-production']),
             audit: {
                 kind: 'request',
-                actor: { type: 'user', id: '1', display: 'user@nango.dev' },
+                actor: { type: 'user', id: '1', display: 'user@tenklo.dev' },
                 context: { ip: '127.0.0.1', userAgent: 'test-client' }
             },
             requestBody: {
@@ -496,7 +496,7 @@ describe('createManagementMcpServer with OAuth', () => {
             expect(event).toMatchObject({
                 accountId: 1,
                 environment: { id: 'prod-environment', display: 'prod' },
-                actor: { type: 'user', id: '1', display: 'user@nango.dev' },
+                actor: { type: 'user', id: '1', display: 'user@tenklo.dev' },
                 resource: 'integration',
                 action: 'created',
                 targets: [],
@@ -564,7 +564,7 @@ async function createTestClient({
 
 function principal(can: ScopeSelector[], where: WhereSelector[]): Principal {
     return {
-        subject: { type: 'user', id: '1', display: 'user@nango.dev' },
+        subject: { type: 'user', id: '1', display: 'user@tenklo.dev' },
         accountId: 1,
         grants: [{ can, where }]
     };

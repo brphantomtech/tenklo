@@ -28,7 +28,7 @@ const nango = new Nango({ apiKey: '<API-KEY>' });
   <ResponseField name="config" type="object" required>
     <Expandable title="config" defaultOpen>
       <ResponseField name="apiKey" type="string" required>
-        Your environment API key, found in **Environment Settings > API Keys** in the Nango UI. Sent as the bearer token for API calls. This key should never be shared.
+        Your environment API key, found in **Environment Settings > API Keys** in the Tenklo UI. Sent as the bearer token for API calls. This key should never be shared.
       </ResponseField>
 
       <ResponseField name="secretKey" type="string" deprecated>
@@ -40,7 +40,7 @@ const nango = new Nango({ apiKey: '<API-KEY>' });
       </ResponseField>
 
       <ResponseField name="host" type="string">
-        Omitting the host points to Nango Cloud. For local development, use `http://localhost:3003`. Use your instance URL if self-hosting.
+        Omitting the host points to Tenklo Cloud. For local development, use `http://localhost:3003`. Use your instance URL if self-hosting.
       </ResponseField>
     </Expandable>
   </ResponseField>
@@ -48,7 +48,7 @@ const nango = new Nango({ apiKey: '<API-KEY>' });
 
 ## Rate limits
 
-The Nango SDK is rate-limited to prevent abuse and ensure fair usage across all clients. The rate limit is enforced on a per-account basis, with a fixed window of time and a maximum number of requests allowed within that window.
+The Tenklo SDK is rate-limited to prevent abuse and ensure fair usage across all clients. The rate limit is enforced on a per-account basis, with a fixed window of time and a maximum number of requests allowed within that window.
 
 If a client exceeds the rate limit, the API will respond with a 429 `Too Many Requests` status code. In this case, the `Retry-After` header is included, indicating the number of seconds the client should wait before making another request to avoid being rate-limited.
 
@@ -159,7 +159,7 @@ await nango.createIntegration({ provider: '<PROVIDER-ID>', unique_key: '<UNIQUE_
 
 <Expandable>
     <ResponseField name="provider" type="string" required>
-        The ID of the API provider in Nango (cf. [providers.yaml](https://github.com/NangoHQ/nango/blob/master/packages/providers/providers.yaml) for a list of API provider IDs.)
+        The ID of the API provider in Tenklo (cf. [providers.yaml](https://github.com/NangoHQ/nango/blob/master/packages/providers/providers.yaml) for a list of API provider IDs.)
     </ResponseField>
 
     <ResponseField name="unique_key" type="string" required>
@@ -366,7 +366,7 @@ const { data } = await nango.createConnectSession({
       }
     }
     ```
-    Available with the [Growth add-on](https://www.nango.dev/pricing).
+    Available with the [Growth add-on](https://www.tenklo.dev/pricing).
   </ResponseField>
 </Expandable>
 
@@ -377,7 +377,7 @@ const { data } = await nango.createConnectSession({
 {
     "data": {
         "token": "nango_connect_session_4603dbca8a588315ba69b5bfddde52e72d312dc2d2870bd5e45da6357333601c",
-        "connect_link": "https://connect.nango.dev/?session_token=nango_connect_session_4603dbca8a588315ba69b5bfddde52e72d312dc2d2870bd5e45da6357333601c",
+        "connect_link": "https://connect.tenklo.dev/?session_token=nango_connect_session_4603dbca8a588315ba69b5bfddde52e72d312dc2d2870bd5e45da6357333601c",
         "expires_at": "2024-09-27T19:49:51.449Z"
     }
 }
@@ -458,7 +458,7 @@ const { data } = await nango.createReconnectSession({
 {
     "data": {
         "token": "nango_connect_session_4603dbca8a588315ba69b5bfddde52e72d312dc2d2870bd5e45da6357333601c",
-        "connect_link": "https://connect.nango.dev/?session_token=nango_connect_session_4603dbca8a588315ba69b5bfddde52e72d312dc2d2870bd5e45da6357333601c",
+        "connect_link": "https://connect.tenklo.dev/?session_token=nango_connect_session_4603dbca8a588315ba69b5bfddde52e72d312dc2d2870bd5e45da6357333601c",
         "expires_at": "2024-09-27T19:49:51.449Z"
     }
 }
@@ -557,7 +557,7 @@ If you do not want to deal with collecting & injecting credentials in requests f
 </Info>
 
 <Tip>
-When you fetch the connection with this API endpoint, Nango will check if the access token has expired. If it has, it will refresh it.
+When you fetch the connection with this API endpoint, Tenklo will check if the access token has expired. If it has, it will refresh it.
 
 We recommend not caching tokens for longer than 5 minutes to ensure they are fresh.
 </Tip>
@@ -959,7 +959,7 @@ Catalog actions have `id: null`, `last_deployed: null`, `enabled: true`, and `so
 
 ### Get a function
 
-Retrieves a function available to an integration. This can be a deployed function or a Nango catalog action.
+Retrieves a function available to an integration. This can be a deployed function or a Tenklo catalog action.
 
 ```ts
 await nango.getFunction({ uniqueKey: 'github', name: 'create-issue' });
@@ -1007,7 +1007,7 @@ await nango.getFunction({ uniqueKey: 'github', name: 'issues' }, { type: 'sync' 
 
 ### Get function code
 
-Retrieves the source code of a function. For a Nango catalog action, the response contains the current catalog source even though the action has not been deployed.
+Retrieves the source code of a function. For a Tenklo catalog action, the response contains the current catalog source even though the action has not been deployed.
 
 ```ts
 await nango.getFunctionCode({ uniqueKey: 'github', name: 'create-issue' }, { type: 'action' });
@@ -1653,7 +1653,7 @@ This endpoint returns a list of records, ordered by modification date ascending.
 
 ### Prune records
 
-Prunes record payloads from Nango's cache for a given model and connection up to a specified cursor. The payload is emptied but record metadata is retained. Payload can be restored by re-syncing the data.
+Prunes record payloads from Tenklo's cache for a given model and connection up to a specified cursor. The payload is emptied but record metadata is retained. Payload can be restored by re-syncing the data.
 
 ```ts
 const result = await nango.pruneRecords({
@@ -2049,7 +2049,7 @@ await nango.deleteSyncVariant({
 
 ### Get environment variables
 
-Retrieve the environment variables as added in the Nango dashboard.
+Retrieve the environment variables as added in the Tenklo dashboard.
 
 ```js
 await nango.getEnvironmentVariables();
@@ -2249,7 +2249,7 @@ await nango.delete(config); // DELETE request
 **Response**
 
 <Expandable>
-The response from the external API is passed back to you exactly as Nango gets it:
+The response from the external API is passed back to you exactly as Tenklo gets it:
 - response code
 - response headers
 - response body
@@ -2278,7 +2278,7 @@ await nango.listProviders()
             "proxy": {
                 "base_url": "https://api.posthog.com",
             },
-            "docs": "https://nango.dev/docs/api-integrations/posthog"
+            "docs": "https://tenklo.dev/docs/api-integrations/posthog"
         }
     ]
 }
@@ -2306,7 +2306,7 @@ await nango.getProvider({ provider: <NAME> })
         "proxy": {
             "base_url": "https://api.posthog.com",
         },
-        "docs": "https://nango.dev/docs/api-integrations/posthog"
+        "docs": "https://tenklo.dev/docs/api-integrations/posthog"
     }
 }
 ```
@@ -2346,11 +2346,11 @@ await nango.getProviderTemplates({ provider: <NAME> })
 ```
 </Expandable>
 
-## Webhooks from Nango
+## Webhooks from Tenklo
 
 ### Verify Webhook Signature
 
-Asserts that a Webhook is coming from Nango's backend. Verification uses `webhookSigningKey` when the client is constructed with one, otherwise it falls back to `secretKey`. On environments created after 2026-04-20 (or any environment that later rotated its API key), the signing key differs from the API key, so construct the client with `webhookSigningKey` (from **Environment Settings > Webhooks > Signing key**).
+Asserts that a Webhook is coming from Tenklo's backend. Verification uses `webhookSigningKey` when the client is constructed with one, otherwise it falls back to `secretKey`. On environments created after 2026-04-20 (or any environment that later rotated its API key), the signing key differs from the API key, so construct the client with `webhookSigningKey` (from **Environment Settings > Webhooks > Signing key**).
 
 ```js
 const nango = new Nango({
@@ -2365,5 +2365,5 @@ async (req, res) => {
 
 
 <Tip>
-**Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+**Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>

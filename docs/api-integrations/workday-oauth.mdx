@@ -6,22 +6,22 @@ description: 'Integrate your application with the Workday API'
 
 ## 🚀 Quickstart
 
-Connect to Workday with Nango and see data flow in 2 minutes.
+Connect to Workday with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Workday (OAuth)_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Workday (OAuth)_.
     </Step>
     <Step title="Authorize Workday">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Workday. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Workday. Later, you'll let your users do the same directly from your app.
     </Step>
       <Step title="Call the Workday API">
-        Let's make your first request to the Workday API (fetch worker information). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Workday API (fetch worker information). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/v1/{connectionConfig.tenant}/workers" \
+                curl "https://api.tenklo.dev/proxy/v1/{connectionConfig.tenant}/workers" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Workday with Nango and see data flow in 2 minutes.
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
 
             ```typescript
@@ -60,14 +60,14 @@ Connect to Workday with Nango and see data flow in 2 minutes.
         </Note>
       </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
 </Steps>
 
-✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
 <Tip>
 Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Workday accounts.
@@ -75,10 +75,10 @@ Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let you
 
 ## 📚 Workday Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Workday OAuth app](/api-integrations/workday-oauth/how-to-register-your-own-workday-oauth-app)  
-Register an OAuth app with Workday and obtain credentials to connect it to Nango
+Register an OAuth app with Workday and obtain credentials to connect it to Tenklo
 
 - [How do I link my Workday account?](/api-integrations/workday-oauth/connect)  
 Learn how to authenticate with Workday and link your account
@@ -87,7 +87,7 @@ Official docs: [Workday REST Services Directory](https://community.workday.com/s
 
 ## 🚨 API Gotchas
 
-- Workday provides two APIs, a REST and a SOAP one and Nango supports them both.
+- Workday provides two APIs, a REST and a SOAP one and Tenklo supports them both.
 - Access to most of Workday's API doc resources, including detailed documentation on OAuth authentication flows, is typically restricted to Workday customers and partners. To access these resources, you can:
   1. **Sign In to Workday Community**: Visit the [Workday Community](https://community.workday.com/) and sign in with your Workday credentials. If you don't have an account, you can [request one](https://workday.my.site.com/customercenter/register).
   2. **Contact Workday Support**: If you are a customer, reach out to Workday Support for assistance in accessing specific documentation.

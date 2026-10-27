@@ -1,24 +1,24 @@
 ---
-title: 'How to setup webhooks with Streak on Nango'
+title: 'How to setup webhooks with Streak on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Streak events in your app using Nango webhooks'
+description: 'Learn how to receive real-time Streak events in your app using Tenklo webhooks'
 ---
 
-This guide shows you how to receive real-time Streak events in Nango by registering a webhook via the Streak API.
+This guide shows you how to receive real-time Streak events in Tenklo by registering a webhook via the Streak API.
 
 ## How it works
 
 Streak supports outbound webhooks triggered by pipeline or team-level automations. The flow is:
 
-1. After a connection is created, a post-connection script generates a secret token, registers a webhook with Streak (passing the Nango webhook URL as `targetUrl` and the token as `token`), and stores the token in `connection_config.streakWebhookToken`.
-2. When the specified event occurs, Streak sends a POST to Nango with the token in the `X-Streak-Webhook-Token` header.
-3. Nango matches the token against `connection_config.streakWebhookToken` to identify the correct connection and forwards the event to your app.
+1. After a connection is created, a post-connection script generates a secret token, registers a webhook with Streak (passing the Tenklo webhook URL as `targetUrl` and the token as `token`), and stores the token in `connection_config.streakWebhookToken`.
+2. When the specified event occurs, Streak sends a POST to Tenklo with the token in the `X-Streak-Webhook-Token` header.
+3. Tenklo matches the token against `connection_config.streakWebhookToken` to identify the correct connection and forwards the event to your app.
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-Copy the webhook URL from your Streak integration page in the [Nango dashboard](https://app.nango.dev/dev/integrations), under the **Webhook URL** section.
+Copy the webhook URL from your Streak integration page in the [Tenklo dashboard](https://app.tenklo.dev/dev/integrations), under the **Webhook URL** section.
 
 ### 2. Register the webhook via a post-connection script
 
@@ -64,7 +64,7 @@ Replace `event` with the Streak event type you want to subscribe to (e.g. `BOX_C
 
 ### 3. Handle forwarded webhooks
 
-When a Streak event fires, Nango matches the `X-Streak-Webhook-Token` header against `connection_config.streakWebhookToken` to identify the connection, then forwards the event to your app. Example payload structure:
+When a Streak event fires, Tenklo matches the `X-Streak-Webhook-Token` header against `connection_config.streakWebhookToken` to identify the connection, then forwards the event to your app. Example payload structure:
 
 ```json
 {
@@ -82,7 +82,7 @@ When a Streak event fires, Nango matches the `X-Streak-Webhook-Token` header aga
 ```
 
 <Note>
-If the `X-Streak-Webhook-Token` header is missing, or does not match the connection in `nangoConnectionId`, Nango rejects the request. Without `nangoConnectionId`, a token that matches no connection is dropped.
+If the `X-Streak-Webhook-Token` header is missing, or does not match the connection in `nangoConnectionId`, Tenklo rejects the request. Without `nangoConnectionId`, a token that matches no connection is dropped.
 </Note>
 
 ### 4. Delete the webhook on connection removal
@@ -115,6 +115,6 @@ export default createOnEvent({
 });
 ```
 
-<Tip>Need help getting started? Join us in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Join us in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

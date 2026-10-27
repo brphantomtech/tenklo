@@ -6,11 +6,11 @@ description: 'Keep external API data fresh for your product, RAG pipeline, or ch
 
 Many products need a local copy of customer data from CRMs, file stores, ticketing tools, billing systems, calendars, or communication apps. Doing this reliably means handling OAuth, polling, pagination, rate limits, retries, deletions, and missed webhooks for every provider.
 
-Nango gives you a function runtime for this pattern. A sync function fetches data from the external API, writes records into Nango's cache, and notifies your app when records change. Your app then reads the changed records by cursor.
+Tenklo gives you a function runtime for this pattern. A sync function fetches data from the external API, writes records into Tenklo's cache, and notifies your app when records change. Your app then reads the changed records by cursor.
 
 ## When this fits
 
-Use Nango to sync external API data when you need to:
+Use Tenklo to sync external API data when you need to:
 
 - Keep a local database or search index updated from customer tools.
 - Feed RAG pipelines with fresh external data.
@@ -20,13 +20,13 @@ Use Nango to sync external API data when you need to:
 
 For one-off reads or writes, use [Run external API operations](/getting-started/use-cases/actions).
 
-## How Nango fits in
+## How Tenklo fits in
 
-1. Your user authorizes an integration with Nango.
+1. Your user authorizes an integration with Tenklo.
 2. You enable a template sync function or deploy your own.
-3. Nango runs the sync function on its schedule, or when a provider webhook arrives.
-4. The function saves records into Nango's records cache.
-5. Nango sends your app a webhook when records change.
+3. Tenklo runs the sync function on its schedule, or when a provider webhook arrives.
+4. The function saves records into Tenklo's records cache.
+5. Tenklo sends your app a webhook when records change.
 6. Your app reads changed records with a cursor and stores them in your system.
 
 The same foundation works for classic data sync, indexing, RAG ingestion, and trigger-style workflows.

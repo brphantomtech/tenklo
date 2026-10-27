@@ -237,7 +237,7 @@ export async function exec({
                     output = await def(functionNango, inputParams);
                 }
 
-                assertOutputSizeAllowed(output, 'See the deprecation announcement: https://nango.dev/docs/updates/dev#august-22-2025');
+                assertOutputSizeAllowed(output, 'See the deprecation announcement: https://tenklo.dev/docs/updates/dev#august-22-2025');
 
                 return Ok({
                     output,
@@ -347,7 +347,7 @@ export async function exec({
                     // If the error is a rate limit error from Nango API, we return a specific type/message
                     if (err.response.status === 429 && err.response.config.url) {
                         const url = new URL(err.response.config.url);
-                        if (url.hostname === 'api.nango.dev' || url.hostname === 'localhost') {
+                        if (url.hostname === 'api.tenklo.dev' || url.hostname === 'localhost') {
                             type = 'script_api_rate_limit_error';
                         }
                     }

@@ -26,7 +26,7 @@ import type {
 export type * from './types.js';
 export * from './connectUI.js';
 
-const prodHost = 'https://api.nango.dev';
+const prodHost = 'https://api.tenklo.dev';
 const debugLogPrefix = 'NANGO DEBUG LOG: ';
 
 export type NangoOptions = {
@@ -98,7 +98,7 @@ export default class Nango {
             const websocketUrl = new URL(config.websocketsPath, baseUrl);
             this.websocketsBaseUrl = websocketUrl.toString().replace('https://', 'wss://').replace('http://', 'ws://');
         } catch {
-            throw new AuthError('Invalid URL provided for the Nango host.', 'invalid_host_url');
+            throw new AuthError('Invalid URL provided for the Tenklo host.', 'invalid_host_url');
         }
     }
 
@@ -213,7 +213,7 @@ export default class Nango {
             try {
                 url = new URL(`${this.hostBaseUrl}/oauth/connect/${providerConfigKey}${this.toQueryString(connectionId, options as ConnectionConfig)}`);
             } catch {
-                errorHandler('invalid_host_url', 'Invalid URL provided for the Nango host.');
+                errorHandler('invalid_host_url', 'Invalid URL provided for the Tenklo host.');
                 return;
             }
 

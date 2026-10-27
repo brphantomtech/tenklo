@@ -118,7 +118,7 @@ export class NangoError extends NangoInternalError {
 
             case 'only_nango_cloud':
                 this.status = 401;
-                this.message = 'This endpoint is only available for Nango Cloud.';
+                this.message = 'This endpoint is only available for Tenklo Cloud.';
                 break;
 
             case 'invalid_admin_key':
@@ -270,7 +270,7 @@ export class NangoError extends NangoInternalError {
                 this.status = 400;
                 this.message = `There is no Provider Configuration matching this key.`;
                 if (this.payload) {
-                    this.message += ` Please make sure this value exists in the Nango dashboard ${JSON.stringify(this.payload, null, 2)}`;
+                    this.message += ` Please make sure this value exists in the Tenklo dashboard ${JSON.stringify(this.payload, null, 2)}`;
                 }
                 break;
 
@@ -363,7 +363,7 @@ export class NangoError extends NangoInternalError {
                 this.status = 404;
                 this.message = `No connection matching the provided params of 'connection_id' and 'provider_config_key'.`;
                 if (this.payload) {
-                    this.message += ` Please make sure these values exist in the Nango dashboard ${JSON.stringify(this.payload, null, 2)}`;
+                    this.message += ` Please make sure these values exist in the Tenklo dashboard ${JSON.stringify(this.payload, null, 2)}`;
                 }
                 break;
 
@@ -707,7 +707,7 @@ export class NangoError extends NangoInternalError {
 
             case 'script_api_rate_limit_error':
                 this.status = 424;
-                this.message = `Script API rate limit exceeded. Your Nango scripts made too many calls to the Nango API within the allowed window. Mitigation: reduce how often scripts run (e.g. lower sync frequency, fewer actions). Need higher limits? Contact Nango support.`;
+                this.message = `Script API rate limit exceeded. Your Tenklo scripts made too many calls to the Tenklo API within the allowed window. Mitigation: reduce how often scripts run (e.g. lower sync frequency, fewer actions). Need higher limits? Contact Tenklo support.`;
                 break;
 
             case 'script_internal_error':
@@ -762,7 +762,7 @@ export class NangoError extends NangoInternalError {
 
             case 'webhook_missing_nango_connection_id':
                 this.status = 400;
-                this.message = 'Webhook is missing the Nango connection id';
+                this.message = 'Webhook is missing the Tenklo connection id';
                 break;
 
             case 'webhook_no_connection':

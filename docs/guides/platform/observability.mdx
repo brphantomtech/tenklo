@@ -1,10 +1,10 @@
 ---
 title: 'Observability'
 sidebarTitle: 'Observability'
-description: 'How Nango helps you with observability for your integrations'
+description: 'How Tenklo helps you with observability for your integrations'
 ---
 
-Nango's logs are comprehensive and give you a detailed picture of what happens in your integrations.
+Tenklo's logs are comprehensive and give you a detailed picture of what happens in your integrations.
 
 ## Our approach
 
@@ -12,25 +12,25 @@ Since integrations rely on third-party APIs, production issues are bound to happ
 
 When you encounter a problem, great observability is the difference between a week-long needle-in-a-haystack hunt and a timely resolution.
 
-We built Nango's logs based on three principles:
+We built Tenklo's logs based on three principles:
 
-- **Comprehensive**: Everything that happens in Nango for your integrations produces an "operation" in the logs
+- **Comprehensive**: Everything that happens in Tenklo for your integrations produces an "operation" in the logs
 - **Detailed**: Every operation and every log message contains detailed information about the integration, [connection](/guides/auth/auth-guide#overview), and [function](/guides/functions/functions-guide). Error messages are as detailed as the external APIs allow.
 - **Customizable**: You can easily log your own messages from functions you write ([learn more](/reference/functions/functions-sdk#logging)). To consume logs, you can either use our built-in interface or export them with our [OpenTelemetry exporter](#opentelemetry-export)
 
-## Overview of Nango logs
+## Overview of Tenklo logs
 
-<Frame caption="Nango Logs screen on a demo account (click to enlarge)">
+<Frame caption="Tenklo Logs screen on a demo account (click to enlarge)">
   ![](/images/screenshots/nango-logs-overview.png)
 </Frame>
 
 Logs are structured into:
-- Operations: High-level actions happening in your Nango account (e.g., sync executed, connection created, webhook processed)
+- Operations: High-level actions happening in your Tenklo account (e.g., sync executed, connection created, webhook processed)
 - Log messages: Nested in operations, these provide details on what happened (e.g., HTTP request executed, data validation warning, custom log message)
 
-Nango provides detailed filtering and searching of log messages by integration, connection, operation type, status, etc.
+Tenklo provides detailed filtering and searching of log messages by integration, connection, operation type, status, etc.
 
-We recommend exploring the logs in your own Nango account under **Logs**.
+We recommend exploring the logs in your own Tenklo account under **Logs**.
 
 Logs are retained for **15 days**, then permanently deleted. 
 
@@ -42,7 +42,7 @@ This helps LLMs investigate and fix integration issues automatically.
 
 ## OpenTelemetry export
 
-Nango supports exporting OpenTelemetry traces so you can monitor and analyze integration activity in your own observability stack.
+Tenklo supports exporting OpenTelemetry traces so you can monitor and analyze integration activity in your own observability stack.
 
 Use this for:
 - Advanced custom metrics
@@ -64,7 +64,7 @@ The following operations are exported as traces:
 
 <Steps>
     <Step id="access-environment-settings" title="Access your Environment settings">
-        Log into the Nango dashboard and navigate to the Environment settings page.
+        Log into the Tenklo dashboard and navigate to the Environment settings page.
     </Step>
     <Step id="configure-opentelemetry-export" title="Configure OpenTelemetry Export">
         In the Environment Settings, provide the following information:
@@ -77,5 +77,5 @@ The following operations are exported as traces:
 
 - [Function logging](/guides/functions/logging) - add custom logs from function code.
 - [Limits](/guides/platform/limits#log-retention) - log retention window.
-- [Webhooks from Nango](/guides/platform/webhooks-from-nango#webhook-retries-debugging) - debug webhook delivery.
+- [Webhooks from Tenklo](/guides/platform/webhooks-from-nango#webhook-retries-debugging) - debug webhook delivery.
 - [Common issues](/guides/platform/common-issues) - troubleshoot failed auth, sync, and proxy operations.

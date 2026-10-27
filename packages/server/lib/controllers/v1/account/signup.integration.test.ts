@@ -78,7 +78,7 @@ describe('POST /api/v1/account/signup', () => {
     });
 
     it.each([
-        { domain: 'nango.dev', isInternal: true },
+        { domain: 'tenklo.dev', isInternal: true },
         { domain: 'example.com', isInternal: false }
     ])('marks the new account internal=$isInternal for a @$domain signup', async ({ domain, isInternal }) => {
         const identifyAccountGroup = vi.spyOn(productTracking, 'identifyAccountGroup');

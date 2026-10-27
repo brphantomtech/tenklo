@@ -6,22 +6,22 @@ description: 'Integrate your application with the Discord API using a bot token'
 
 ## 🚀 Quickstart
 
-Connect to Discord with Nango and see data flow in 2 minutes.
+Connect to Discord with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Discord Bot_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Discord Bot_.
     </Step>
     <Step title="Authorize Discord Bot">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your bot token from the Discord Developer Portal. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your bot token from the Discord Developer Portal. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Discord API">
-    Make your first request to the Discord API (e.g. get your application info). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request to the Discord API (e.g. get your application info). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/v10/applications/@me" \
+            curl "https://api.tenklo.dev/proxy/api/v10/applications/@me" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Discord with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Discord with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/sdks/node#get-a-connection-with-credentials) or [API](/reference/api/connection/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain a bot token, follow the connect guide linked below.
     </Step>
@@ -79,7 +79,7 @@ Official docs: [Discord Developer Portal](https://discord.com/developers/docs/in
 
 ## API gotchas
 
-- Discord bot tokens authenticate with the `Bot` prefix (`Authorization: Bot <token>`), which Nango handles automatically. This is different from the OAuth-based [Discord](/api-integrations/discord) integration, which yields user access tokens authenticated with `Bearer`.
+- Discord bot tokens authenticate with the `Bot` prefix (`Authorization: Bot <token>`), which Tenklo handles automatically. This is different from the OAuth-based [Discord](/api-integrations/discord) integration, which yields user access tokens authenticated with `Bearer`.
 - Resetting a bot token in the Discord Developer Portal invalidates the previous token immediately.
 - Some API endpoints require privileged gateway intents to be enabled for your application in the Discord Developer Portal.
 

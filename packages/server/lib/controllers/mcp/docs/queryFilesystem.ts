@@ -6,9 +6,9 @@ import type { QueryDocsFilesystemOutput } from './schema.js';
 
 export const queryDocsFilesystemTool = defineManagementMcpTool<typeof queryDocsFilesystemInputSchema, QueryDocsFilesystemOutput>({
     name: 'docs_query_filesystem',
-    title: 'Query Nango Documentation Filesystem',
+    title: 'Query Tenklo Documentation Filesystem',
     description:
-        "Runs a read-only shell-like command against Mintlify's virtual Nango documentation filesystem to read pages, browse its structure, or search exact text. Supported commands include rg, grep, find, tree, ls, cat, head, tail, sed, awk, and jq. The filesystem is an isolated documentation sandbox, separate from the Nango server and the caller's computer.",
+        "Runs a read-only shell-like command against Mintlify's virtual Tenklo documentation filesystem to read pages, browse its structure, or search exact text. Supported commands include rg, grep, find, tree, ls, cat, head, tail, sed, awk, and jq. The filesystem is an isolated documentation sandbox, separate from the Tenklo server and the caller's computer.",
     inputSchema: queryDocsFilesystemInputSchema,
     outputSchema: queryDocsFilesystemOutputSchema,
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },

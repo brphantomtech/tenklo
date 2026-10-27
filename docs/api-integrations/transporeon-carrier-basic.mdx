@@ -6,22 +6,22 @@ description: 'Integrate your application with the Transporeon Carrier Interface 
 
 ## 🚀 Quickstart
 
-Connect to the Transporeon Carrier Interface with Nango and see data flow in 2 minutes. This API uses HTTP Basic Auth — no user redirect required.
+Connect to the Transporeon Carrier Interface with Tenklo and see data flow in 2 minutes. This API uses HTTP Basic Auth — no user redirect required.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Transporeon Carrier Interface (Basic Auth)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Transporeon Carrier Interface (Basic Auth)_.
     </Step>
     <Step title="Connect your Transporeon account">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_. Enter your Username and Password, select the API Host matching your environment (`xp.transporeon.com` for production), then save.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_. Enter your Username and Password, select the API Host matching your environment (`xp.transporeon.com` for production), then save.
     </Step>
     <Step title="Call the Transporeon Carrier Interface API">
-    Make your first request. Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request. Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/transport" \
+            curl "https://api.tenklo.dev/proxy/v1/transport" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to the Transporeon Carrier Interface with Nango and see data flow in 2 m
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to the Transporeon Carrier Interface with Nango and see data flow in 2 m
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own credentials, follow the setup guide linked below.
     </Step>
@@ -63,10 +63,10 @@ Connect to the Transporeon Carrier Interface with Nango and see data flow in 2 m
 
 ## 📚 Transporeon Carrier Interface integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my account?](/api-integrations/transporeon-carrier-basic/connect)
-Obtain your username and password from Transporeon to connect it to Nango
+Obtain your username and password from Transporeon to connect it to Tenklo
 
 Official docs: [Transporeon Carrier Standard Interface](https://xch.transporeon.com/carrier_interface/openapi/v1/swagger.json)
 

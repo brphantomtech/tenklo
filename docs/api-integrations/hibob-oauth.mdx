@@ -10,25 +10,25 @@ OAuth 2.0 is available only for approved HiBob Marketplace and technology partne
 
 ## 🚀 Quickstart
 
-Connect to HiBob with Nango and see data flow in 2 minutes.
+Connect to HiBob with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Get a client ID and secret">
-    Follow the [setup guide](/api-integrations/hibob-oauth/how-to-register-your-own-hibob-oauth-app) below to get approved as a HiBob partner and register your app in the HiBob Developer Portal. You'll need the resulting **client ID** and **client secret** before you can create the integration in Nango.
+    Follow the [setup guide](/api-integrations/hibob-oauth/how-to-register-your-own-hibob-oauth-app) below to get approved as a HiBob partner and register your app in the HiBob Developer Portal. You'll need the resulting **client ID** and **client secret** before you can create the integration in Tenklo.
     </Step>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _HiBob (OAuth)_, and enter your client ID and client secret.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _HiBob (OAuth)_, and enter your client ID and client secret.
     </Step>
     <Step title="Authorize HiBob">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to HiBob and consent to the scopes and audience for a test company. Later, your customers will do this themselves when they install your app from the Bob Marketplace.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to HiBob and consent to the scopes and audience for a test company. Later, your customers will do this themselves when they install your app from the Bob Marketplace.
     </Step>
     <Step title="Call the HiBob API">
-    Let's make your first request to the HiBob API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the HiBob API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/company/named-lists" \
+            curl "https://api.tenklo.dev/proxy/v1/company/named-lists" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -38,7 +38,7 @@ Connect to HiBob with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -57,11 +57,11 @@ Connect to HiBob with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
@@ -71,10 +71,10 @@ The API access your app has for a given connection depends on the scopes and aud
 
 ## 📚 HiBob Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own HiBob (OAuth) app](/api-integrations/hibob-oauth/how-to-register-your-own-hibob-oauth-app)
-  Get approved as a HiBob partner, register your app, and obtain OAuth credentials to connect it to Nango
+  Get approved as a HiBob partner, register your app, and obtain OAuth credentials to connect it to Tenklo
 
 Official docs: [HiBob API docs](https://apidocs.hibob.com)
 

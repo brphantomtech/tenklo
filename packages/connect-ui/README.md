@@ -1,4 +1,4 @@
-# Nango Connect
+# Tenklo Connect
 
 The UI to manage connections in your frontend.
 

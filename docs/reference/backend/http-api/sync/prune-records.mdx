@@ -13,11 +13,11 @@ Prunes synced records for a given connection and model using cursor-based pagina
 ## What is pruning?
 
 Pruning empties the record payload while preserving the record metadata.
-This is useful for compliance requirements, ensuring Nango doesn't hold onto your records data while maintaining the ability to track record state. The payload can be restored by re-syncing the data.
+This is useful for compliance requirements, ensuring Tenklo doesn't hold onto your records data while maintaining the ability to track record state. The payload can be restored by re-syncing the data.
 
 <Tip>
 Pruning is not the same as marking a record as deleted from the external API.
-This endpoint prunes data from Nango’s cache only. It does not delete anything on the external API, and it is not the same as [detecting a deletion from the source](/guides/functions/syncs/deletion-detection).
+This endpoint prunes data from Tenklo’s cache only. It does not delete anything on the external API, and it is not the same as [detecting a deletion from the source](/guides/functions/syncs/deletion-detection).
 
 If you need to tell your customers that a record was deleted on the external API while keeping its last-known payload in cache, use `batchDelete` or `trackDeletesStart`/`trackDeletesEnd` in your sync functions instead.
 </Tip>

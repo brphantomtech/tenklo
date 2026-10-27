@@ -6,22 +6,22 @@ description: 'Integrate your application with the Agentcard API'
 
 ## Quickstart
 
-Connect to Agentcard with Nango and see data flow in 2 minutes. The Agentcard API uses OAuth 2.0 client credentials, so no user redirect is required.
+Connect to Agentcard with Tenklo and see data flow in 2 minutes. The Agentcard API uses OAuth 2.0 client credentials, so no user redirect is required.
 
 <Steps>
     <Step title="Create the integration" id="create-integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Agentcard_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Agentcard_.
     </Step>
     <Step title="Connect Agentcard" id="connect-agentcard">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_. Enter your Client ID and Client Secret, then save.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_. Enter your Client ID and Client Secret, then save.
     </Step>
     <Step title="Call the Agentcard API" id="call-agentcard-api">
-    Let's make your first request to the Agentcard API: introspect the credential, which returns your organization and mode. Replace the placeholders below with your [API key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Agentcard API: introspect the credential, which returns your organization and mode. Replace the placeholders below with your [API key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/v2" \
+            curl "https://api.tenklo.dev/proxy/api/v2" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Agentcard with Nango and see data flow in 2 minutes. The Agentcard AP
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -50,11 +50,11 @@ Connect to Agentcard with Nango and see data flow in 2 minutes. The Agentcard AP
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app" id="implement-nango">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app" id="implement-nango">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -62,10 +62,10 @@ Connect to Agentcard with Nango and see data flow in 2 minutes. The Agentcard AP
 
 ## Agentcard integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to get your Agentcard OAuth client credentials](/api-integrations/agentcard/connect)
-Create an OAuth client in the Agentcard dashboard and obtain credentials to connect it to Nango
+Create an OAuth client in the Agentcard dashboard and obtain credentials to connect it to Tenklo
 
 Official docs: [Agentcard API docs](https://docs.agentcard.sh)
 

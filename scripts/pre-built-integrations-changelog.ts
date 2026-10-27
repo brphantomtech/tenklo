@@ -71,7 +71,7 @@ const latestProviders: Record<string, Provider> = yaml.load(await $`git show ${p
 
 console.log('# Pre-built Integrations Changelog');
 console.log();
-console.log(`Nango supports ${Object.keys(previousFlows).length} pre-built use cases`);
+console.log(`Tenklo supports ${Object.keys(previousFlows).length} pre-built use cases`);
 console.log();
 
 for (const [date, added] of months) {

@@ -6,14 +6,14 @@ description: 'Connect your application to read Anarlog meetings through the Mode
 
 ## Quickstart
 
-Connect to Anarlog's hosted MCP server with Nango and read meeting notes, summaries, transcripts, participants, and action items. Anarlog uses OAuth 2.1 with dynamic client registration, so no app registration is required.
+Connect to Anarlog's hosted MCP server with Tenklo and read meeting notes, summaries, transcripts, participants, and action items. Anarlog uses OAuth 2.1 with dynamic client registration, so no app registration is required.
 
 <Steps>
     <Step id="enable-cloud-access" title="Enable cloud access">
         In the Anarlog desktop app, open **Settings > Developers > Cloud API & Connectors**, review the disclosure, and enable the feature. An active Anarlog Pro subscription is required.
     </Step>
     <Step id="create-integration" title="Create the integration">
-        In Nango, open **Integrations**, select **Configure New Integration**, then choose **Anarlog (MCP)**.
+        In Tenklo, open **Integrations**, select **Configure New Integration**, then choose **Anarlog (MCP)**.
     </Step>
     <Step id="authorize-anarlog" title="Authorize Anarlog">
         Open **Connections**, select **Add Test Connection**, then authorize with the Anarlog account whose uploaded meeting snapshots you want to access.
@@ -25,7 +25,7 @@ Connect to Anarlog's hosted MCP server with Nango and read meeting notes, summar
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/mcp" \
+                curl "https://api.tenklo.dev/proxy/mcp" \
                   -X POST \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -49,7 +49,7 @@ Connect to Anarlog's hosted MCP server with Nango and read meeting notes, summar
             </Tab>
             <Tab title="Node">
 
-                Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+                Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
                 ```typescript
                 import { Nango } from '@nangohq/node';
@@ -83,13 +83,13 @@ Connect to Anarlog's hosted MCP server with Nango and read meeting notes, summar
 
         Anarlog exposes four read-only tools: `list_meetings`, `get_meeting`, `get_meeting_transcript`, and `get_recurring_meeting_history`.
     </Step>
-    <Step id="implement-auth" title="Implement Nango in your app">
+    <Step id="implement-auth" title="Implement Tenklo in your app">
         Follow the [Auth implementation guide](/guides/auth/auth-guide) to let your users connect their Anarlog accounts.
     </Step>
 </Steps>
 
 ## Anarlog MCP authorization
 
-Nango dynamically registers an OAuth client and uses PKCE. Anarlog binds access tokens to the `https://api.anarlog.so/mcp` resource and grants access only to server-readable meeting snapshots the user explicitly enabled.
+Tenklo dynamically registers an OAuth client and uses PKCE. Anarlog binds access tokens to the `https://api.anarlog.so/mcp` resource and grants access only to server-readable meeting snapshots the user explicitly enabled.
 
 Official resources: [Anarlog Cloud API and connectors](https://docs.anarlog.so/reference/api-cloud#remote-mcp)

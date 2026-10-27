@@ -7,7 +7,7 @@ describe('isDisposableEmail', () => {
         expect(isDisposableEmail(email)).toBe(true);
     });
 
-    it.each(['a@gmail.com', 'a@nango.dev', 'a@nangomailinator.com', 'a@acme.us.to', 'a'])('allows %s', (email) => {
+    it.each(['a@gmail.com', 'a@tenklo.dev', 'a@nangomailinator.com', 'a@acme.us.to', 'a'])('allows %s', (email) => {
         expect(isDisposableEmail(email)).toBe(false);
     });
 });

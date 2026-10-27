@@ -87,7 +87,7 @@ export function authHtml({ res, error, errorType = 'connection_validation_failed
 
     const resultHTML = `
 <!--
-Nango OAuth flow callback. Read more about how to use it at: https://github.com/NangoHQ/nango
+Tenklo OAuth flow callback. Read more about how to use it at: https://github.com/NangoHQ/nango
 -->
 <html>
   <head>

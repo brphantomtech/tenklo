@@ -1,14 +1,14 @@
 ---
 title: 'How to register your own Salesforce Sandbox OAuth app'
 sidebarTitle: 'Salesforce Sandbox Setup'
-description: 'Register an OAuth app with Salesforce Sandbox and connect it to Nango'
+description: 'Register an OAuth app with Salesforce Sandbox and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Salesforce Sandbox to obtain your OAuth credentials (client ID and secret). These are required so your users can grant your app access to their Salesforce Sandbox account.
 
 ## Understanding Salesforce Sandbox
 
-Salesforce Sandbox is a separate environment from Salesforce production. If you or your end-users are authorizing a Salesforce sandbox account, you must use the **`salesforce-sandbox`** integration in Nango (not `salesforce`).
+Salesforce Sandbox is a separate environment from Salesforce production. If you or your end-users are authorizing a Salesforce sandbox account, you must use the **`salesforce-sandbox`** integration in Tenklo (not `salesforce`).
 
 <Note>Your Salesforce Developer Edition account is **not** a Salesforce sandbox. Use it with the regular `salesforce` integration.</Note>
 
@@ -45,7 +45,7 @@ Use this option if your app will only be used within your own Salesforce Sandbox
    - **Icon URL (Optional)**: A direct URL to a smaller icon representing the app.
    - **Description (Optional)**: A short summary describing what the app does.
   2. Check the **API (Enable Oauth Settings)** checkbox.
-  3. For **Callback URL**, enter: `https://api.nango.dev/oauth/callback`.
+  3. For **Callback URL**, enter: `https://api.tenklo.dev/oauth/callback`.
   4. Under **Selected OAuth Scopes**, add the permissions your app needs. At minimum, add:
     - "Access and manage your data (api)"
     - "Perform requests on your behalf at any time (refresh_token, offline_access)"
@@ -61,7 +61,7 @@ Use this option if your app will only be used within your own Salesforce Sandbox
     2. Scroll down to **Oauth Settings** section.
     3. Click **Consumer Key and Secret** to view your credentials. You may be required to verify your identity.
     4. Copy the **Consumer Key** (this is your Client ID) and **Consumer Secret** (this is your Client Secret).
-    5. You will need these credentials when configuring your integration in Nango.
+    5. You will need these credentials when configuring your integration in Tenklo.
   </Step>
   <Step title="Configure token settings (recommended)">
    1. Click your app's **Policies** tab, then click the **Edit** button. Scroll down to **OAuth Policies**, and under **App Authorization**, set the **Refresh Token Policy** to "Refresh token is valid until revoked" for long-lived access.
@@ -81,9 +81,9 @@ If you previously created a **Connected App** in your Sandbox, you can migrate i
 
 <Note>All changes must be made in the new External Client App. Deleting the External Client App reactivates the original Connected App with its previous settings intact.</Note>
 
-## Connection configuration in Nango
+## Connection configuration in Tenklo
 
-Salesforce uses a different API base URL, the `instance_url`, for each customer. Nango automatically retrieves the `instance_url` from Salesforce and stores it in the connection config. If you use the Nango Proxy, it uses the correct API base URL automatically. You can also retrieve the `instance_url` via the [backend SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [Connections API](/reference/backend/http-api/connections/get).
+Salesforce uses a different API base URL, the `instance_url`, for each customer. Tenklo automatically retrieves the `instance_url` from Salesforce and stores it in the connection config. If you use the Tenklo Proxy, it uses the correct API base URL automatically. You can also retrieve the `instance_url` via the [backend SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [Connections API](/reference/backend/http-api/connections/get).
 
 ## Important considerations
 

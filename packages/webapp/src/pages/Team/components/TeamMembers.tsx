@@ -67,7 +67,7 @@ const EditRoleDialog: React.FC<{ user: ApiUser; onClose: () => void }> = ({ user
                     <DialogDescription>
                         Manage access level and permissions.{' '}
                         <Button asChild variant="link-neutral">
-                            <a href="https://nango.dev/docs/guides/platform/security#team-and-roles" target="_blank" rel="noopener noreferrer">
+                            <a href="https://tenklo.dev/docs/guides/platform/security#team-and-roles" target="_blank" rel="noopener noreferrer">
                                 Learn more
                                 <ExternalLink />
                             </a>
@@ -158,7 +158,7 @@ export const TeamMembers: React.FC = () => {
                             <div className="inline-flex items-center gap-0.5">
                                 <span>Role</span>
                                 <IconButton asChild variant="link-accent" size="xs" label="Team roles and permissions documentation">
-                                    <a href="https://nango.dev/docs/guides/platform/security#team-and-roles" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://tenklo.dev/docs/guides/platform/security#team-and-roles" target="_blank" rel="noopener noreferrer">
                                         <ExternalLink />
                                     </a>
                                 </IconButton>

@@ -6,7 +6,7 @@ description: 'Integrate your application with the Nooks Sequencing API using an 
 
 ## 🚀 Quickstart
 
-Connect to Nooks with Nango and see data flow in 2 minutes.
+Connect to Nooks with Tenklo and see data flow in 2 minutes.
 
 <Note>
 Nooks also supports **OAuth 2.0** for per-user, scope-limited access — see the [Nooks (OAuth)](/api-integrations/nooks) integration if you'd rather use that.
@@ -14,18 +14,18 @@ Nooks also supports **OAuth 2.0** for per-user, scope-limited access — see the
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Nooks (API Key)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Nooks (API Key)_.
     </Step>
     <Step title="Authorize Nooks">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Nooks API key. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Nooks API key. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Nooks API">
-    Let's make your first request to the Nooks API to list users in the workspace. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Nooks API to list users in the workspace. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1/users" \
+            curl "https://api.tenklo.dev/proxy/v1/users" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -35,7 +35,7 @@ Nooks also supports **OAuth 2.0** for per-user, scope-limited access — see the
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -55,17 +55,17 @@ Nooks also supports **OAuth 2.0** for per-user, scope-limited access — see the
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Nooks integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my account?](/api-integrations/nooks-api-key/connect)  
 Generate a Nooks API key, then connect with the Connect UI

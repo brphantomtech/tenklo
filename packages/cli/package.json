@@ -1,7 +1,7 @@
 {
     "name": "nango",
     "version": "0.71.13",
-    "description": "Nango's CLI tool.",
+    "description": "Tenklo's CLI tool.",
     "type": "module",
     "bin": {
         "nango": "./dist/index.js"
@@ -28,7 +28,7 @@
         "./package.json": "./package.json"
     },
     "keywords": [],
-    "author": "bastien@nango.dev",
+    "author": "bastien@tenklo.dev",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/NangoHQ/nango.git",

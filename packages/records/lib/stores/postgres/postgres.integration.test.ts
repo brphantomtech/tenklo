@@ -595,7 +595,7 @@ describe('PostgresStore', () => {
         const records = Array.from({ length: 2000 }, (_, i) => ({
             id: i.toString(),
             name: `record ${i}`,
-            email: `test${i}@nango.dev`,
+            email: `test${i}@tenklo.dev`,
             phone: `123-456-7890`,
             address: `1234 random st. Apt ${i}`,
             city: `RandomCity${i}`,

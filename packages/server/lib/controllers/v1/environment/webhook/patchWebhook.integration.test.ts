@@ -72,7 +72,7 @@ describe(`PATCH ${route}`, () => {
         expect(res.json.error.code).toBe('invalid_body');
     });
 
-    it('should reject nango.dev webhook URLs', async () => {
+    it('should reject tenklo.dev webhook URLs', async () => {
         const { env, user } = await seeders.seedAccountEnvAndUser();
         const session = await authenticateUser(api, user);
 
@@ -80,7 +80,7 @@ describe(`PATCH ${route}`, () => {
             method: 'PATCH',
             query: { env: env.name },
             session,
-            body: { primary_url: 'https://api.nango.dev/webhook' }
+            body: { primary_url: 'https://api.tenklo.dev/webhook' }
         });
 
         expect(res.res.status).toBe(400);

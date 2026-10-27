@@ -1,7 +1,7 @@
 ---
 title: 'How to authenticate with a User Access Token (Zapier OAuth)'
 sidebarTitle: 'Zapier Setup'
-description: 'Register an OAuth app with Zapier and connect it to Nango'
+description: 'Register an OAuth app with Zapier and connect it to Tenklo'
 ---
 
 This guide shows you how to obtain your OAuth credentials (Client ID and Client Secret) from Zapier so your users can grant your app access via the Workflow API.
@@ -14,9 +14,9 @@ You must have created an app and published it as a **public integration** in [Za
 
 <Steps>
    <Step title="Configure a redirect URI">
-     In the [Zapier Developer Platform](https://developer.zapier.com/), go to **Embed → Settings → Redirect URIs** and add your Nango callback URL:
+     In the [Zapier Developer Platform](https://developer.zapier.com/), go to **Embed → Settings → Redirect URIs** and add your Tenklo callback URL:
 
-     **`https://api.nango.dev/oauth/callback`**
+     **`https://api.tenklo.dev/oauth/callback`**
 
    </Step>
 
@@ -26,7 +26,7 @@ You must have created an app and published it as a **public integration** in [Za
    </Step>
 
    <Step title="Determine required OAuth scopes">
-     The Zapier Workflow API endpoints require different OAuth scopes. Check the [API reference](https://docs.zapier.com/powered-by-zapier/api-reference) for each endpoint you use to see which scopes are required, and configure those scopes when setting up the integration in Nango.
+     The Zapier Workflow API endpoints require different OAuth scopes. Check the [API reference](https://docs.zapier.com/powered-by-zapier/api-reference) for each endpoint you use to see which scopes are required, and configure those scopes when setting up the integration in Tenklo.
    </Step>
 
    <Step title="Next">

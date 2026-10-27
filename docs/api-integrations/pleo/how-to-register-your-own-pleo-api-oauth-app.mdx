@@ -1,7 +1,7 @@
 ---
-title: 'Set up Pleo with Nango'
+title: 'Set up Pleo with Tenklo'
 sidebarTitle: 'Pleo Setup'
-description: 'Register an OAuth app with Pleo and connect it to Nango'
+description: 'Register an OAuth app with Pleo and connect it to Tenklo'
 ---
 
 Pleo uses a partner onboarding process — credentials are not self-serve. Follow these steps to obtain your Client ID and Client Secret.
@@ -18,12 +18,12 @@ Pleo uses a partner onboarding process — credentials are not self-serve. Follo
 
     | Parameter | Value |
     |-----------|-------|
-    | Redirect URIs | `https://api.nango.dev/oauth/callback` |
+    | Redirect URIs | `https://api.tenklo.dev/oauth/callback` |
     | PKCE Support | `Supported` |
     </Step>
     <Step title="Receive Staging Credentials">
     Pleo creates a Staging company with dummy test data and shares your credentials via 1Password:
-    - **OAuth 2.0 credentials**: Client ID and Client Secret — you will need these when configuring Nango.
+    - **OAuth 2.0 credentials**: Client ID and Client Secret — you will need these when configuring Tenklo.
     - **Staging login**: for accessing the Staging environment.
     </Step>
     <Step title="Verify Staging Access">
@@ -40,6 +40,6 @@ For full registration field details, see [How to Register an OAuth 2.0 Client](h
 
 Production access is not available without prior Staging validation. Once your integration is fully tested in Staging and meets Pleo's technical and security requirements, you can [request Production](https://developers.pleo.io/docs/current/getting-started/testing-and-environments#moving-from-staging-to-production) access through the Early Access Programme (EAP).
 
-Once approved, Pleo will provide separate Production credentials (Client ID and Client Secret) via 1Password. Update your Nango integration configuration with the Production credentials to go live.
+Once approved, Pleo will provide separate Production credentials (Client ID and Client Secret) via 1Password. Update your Tenklo integration configuration with the Production credentials to go live.
 
 ---

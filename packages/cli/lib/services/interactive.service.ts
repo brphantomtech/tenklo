@@ -181,7 +181,7 @@ export async function promptForProjectPath(): Promise<string> {
         {
             type: 'input',
             name: 'pathInput',
-            message: 'Enter the path to initialize the Nango project in (defaults to nango-integrations):',
+            message: 'Enter the path to initialize the Tenklo project in (defaults to nango-integrations):',
             default: 'nango-integrations'
         }
     ]);

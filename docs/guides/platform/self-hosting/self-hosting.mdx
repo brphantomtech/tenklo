@@ -1,41 +1,41 @@
 ---
-title: 'Self-host Nango'
+title: 'Self-host Tenklo'
 sidebarTitle: 'Overview'
-description: 'Run Nango outside our cloud: BYOC or Self-Managed.'
+description: 'Run Tenklo outside our cloud: BYOC or Self-Managed.'
 ---
 
-Nango offers two ways to run outside of Nango Cloud, both on the Enterprise plan:
+Tenklo offers two ways to run outside of Tenklo Cloud, both on the Enterprise plan:
 
-- **[BYOC](/guides/platform/self-hosting/byoc)** — Nango deploys and operates your instance inside your own AWS account, GCP project or Azure subscription. Recommended for most Enterprise self-hosting customers.
-- **[Self-Managed](/guides/platform/self-hosting/self-managed)** — you deploy and operate Nango yourself, on your own infrastructure, using our Helm chart.
+- **[BYOC](/guides/platform/self-hosting/byoc)** — Tenklo deploys and operates your instance inside your own AWS account, GCP project or Azure subscription. Recommended for most Enterprise self-hosting customers.
+- **[Self-Managed](/guides/platform/self-hosting/self-managed)** — you deploy and operate Tenklo yourself, on your own infrastructure, using our Helm chart.
 
-Both run the same Nango codebase you get on Cloud, with all paid Cloud features included.
+Both run the same Tenklo codebase you get on Cloud, with all paid Cloud features included.
 
 ## Choose your path
 
 | | **BYOC** (recommended) | **Self-Managed** |
 | --- | --- | --- |
 | Runs in | Your AWS account, GCP project or Azure subscription | Your infrastructure — any cloud or on-prem |
-| Deployed by | Nango, via Terraform + GitOps | You, via the [Helm chart](https://github.com/NangoHQ/nango-helm-charts) |
-| Operated day-to-day by | Nango — upgrades, scaling, incident response | You |
-| What leaves your account | Only Datadog telemetry, for Nango to monitor instance health | Nothing |
+| Deployed by | Tenklo, via Terraform + GitOps | You, via the [Helm chart](https://github.com/NangoHQ/nango-helm-charts) |
+| Operated day-to-day by | Tenklo — upgrades, scaling, incident response | You |
+| What leaves your account | Only Datadog telemetry, for Tenklo to monitor instance health | Nothing |
 | Clouds supported today | AWS, GCP, Azure | AWS, GCP, Azure, on-prem Kubernetes |
 | Operational overhead | Low | High |
-| Best fit | Teams that want infrastructure ownership and data residency without operating Nango themselves | Teams with the platform capacity to run it, or infrastructure constraints BYOC doesn't fit yet |
+| Best fit | Teams that want infrastructure ownership and data residency without operating Tenklo themselves | Teams with the platform capacity to run it, or infrastructure constraints BYOC doesn't fit yet |
 
 <Note>
-Both paths require an [Enterprise plan](https://www.nango.dev/pricing) subscription and are intended for large and/or regulated organizations. Pricing is a fixed annual license and maintenance fee, plus a fraction of the Cloud usage-based fees, since infrastructure runs on your side either way. Talk to us at [nango.dev/contact](https://nango.dev/contact) to get started with either — or read the [BYOC](/guides/platform/self-hosting/byoc) and [Self-Managed](/guides/platform/self-hosting/self-managed) pages for the details of each.
+Both paths require an [Enterprise plan](https://www.tenklo.dev/pricing) subscription and are intended for large and/or regulated organizations. Pricing is a fixed annual license and maintenance fee, plus a fraction of the Cloud usage-based fees, since infrastructure runs on your side either way. Talk to us at [tenklo.dev/contact](https://tenklo.dev/contact) to get started with either — or read the [BYOC](/guides/platform/self-hosting/byoc) and [Self-Managed](/guides/platform/self-hosting/self-managed) pages for the details of each.
 </Note>
 
 ## Architecture overview
 
-<Frame caption="Nango's infrastructure components">
+<Frame caption="Tenklo's infrastructure components">
   <img src="/images/diagrams/nango-architecture.png" />
 </Frame>
 
 ## Architecture components
 
-Nango consists of several core services, each handling specific responsibilities:
+Tenklo consists of several core services, each handling specific responsibilities:
 
 - **Server (Node service)**: Powers the dashboard, API, proxy requests, and incoming/outgoing webhooks.
 - **Orchestrator (Node service)**: Manages task scheduling and state tracking.
@@ -47,15 +47,15 @@ Nango consists of several core services, each handling specific responsibilities
 - **ElasticSearch**: Stores customer-facing observability.
 - **Redis**: Caches system data, including socket information, token refresh locks, and rate limits.
 
-This architecture, and everything below it on this page, is identical whether you run BYOC or Self-Managed — it's the same Nango either way. What differs between the two paths is *who* deploys and operates it, and that's covered on their own pages.
+This architecture, and everything below it on this page, is identical whether you run BYOC or Self-Managed — it's the same Tenklo either way. What differs between the two paths is *who* deploys and operates it, and that's covered on their own pages.
 
 ## Cloud vs. self-hosted architecture
 
-The Nango architecture is largely the same for both Cloud and Enterprise self-hosting (BYOC or Self-Managed). This ensures self-hosted instances benefit from continuous dogfooding and load testing.
+The Tenklo architecture is largely the same for both Cloud and Enterprise self-hosting (BYOC or Self-Managed). This ensures self-hosted instances benefit from continuous dogfooding and load testing.
 
 ## Features
 
-All paid features available on Nango Cloud are also included in both BYOC and Self-Managed.
+All paid features available on Tenklo Cloud are also included in both BYOC and Self-Managed.
 
 ## Recommended configuration
 
@@ -84,7 +84,7 @@ All four of these run inside your own environment on both paths — see [What le
 
 ## Using existing data stores
 
-Yes, Nango is flexible with data store setups. However, we recommend a separate instance for independent scaling.
+Yes, Tenklo is flexible with data store setups. However, we recommend a separate instance for independent scaling.
 
 ## Internet access requirements
 
@@ -97,25 +97,25 @@ Metrics and logs can be exported to any monitoring tool you own using our OpenTe
 
 ## Email service
 
-Nango uses emails for account verification, password reset, and sending invitations, etc. Any SMTP server can be configured to be used by Nango for these email communications.
+Tenklo uses emails for account verification, password reset, and sending invitations, etc. Any SMTP server can be configured to be used by Tenklo for these email communications.
 
 ## Free self-hosting
 
-A limited free self-hosting option is available for hobby projects, separate from BYOC and Self-Managed. It is intended for lightweight deployments that need Auth and Proxy, without the managed features and support included with Enterprise self-hosting (BYOC or Self-Managed) or Nango Cloud.
+A limited free self-hosting option is available for hobby projects, separate from BYOC and Self-Managed. It is intended for lightweight deployments that need Auth and Proxy, without the managed features and support included with Enterprise self-hosting (BYOC or Self-Managed) or Tenklo Cloud.
 
 ### Trust model
 
-A self-hosted Nango instance is intended for a single organization. Accounts on the same instance keep their own data separate in normal use, but they are not designed or hardened as a security boundary between users who don't trust each other. Only give dashboard access to people you trust.
+A self-hosted Tenklo instance is intended for a single organization. Accounts on the same instance keep their own data separate in normal use, but they are not designed or hardened as a security boundary between users who don't trust each other. Only give dashboard access to people you trust.
 
 Instance-level configuration is shared across all accounts. In particular, `NANGO_SECRET_KEY_<ENV>` and `NANGO_PUBLIC_KEY_<ENV>` apply to environments by name, in any account on the instance.
 
 Signup is enabled by default. If your dashboard is reachable by anyone you don't fully trust, disable signup and protect the dashboard with basic auth (below), or keep it on a private network.
 
-For more details, see the [pricing page](https://nango.dev/pricing) or [schedule a call](https://nango.dev/contact) to discuss BYOC or Self-Managed.
+For more details, see the [pricing page](https://tenklo.dev/pricing) or [schedule a call](https://tenklo.dev/contact) to discuss BYOC or Self-Managed.
 
 ### Feature availability
 
-| Feature | Free self-hosted | Enterprise (BYOC / Self-Managed) / Nango Cloud |
+| Feature | Free self-hosted | Enterprise (BYOC / Self-Managed) / Tenklo Cloud |
 | --- | --- | --- |
 | API Auth | Yes | Yes |
 | Proxy | Yes | Yes |
@@ -130,10 +130,10 @@ For more details, see the [pricing page](https://nango.dev/pricing) or [schedule
 | Customize auth branding | No | Yes |
 | RBAC | No | Yes |
 | MFA | No | Yes |
-| SAML SSO | No | Nango Cloud and BYOC |
+| SAML SSO | No | Tenklo Cloud and BYOC |
 | Audit trail | No | Yes |
 
-### Run and update Nango
+### Run and update Tenklo
 
 To install the free self-hosted version on a VM:
 
@@ -155,7 +155,7 @@ docker-compose up -d
 The full configuration reference below (encryption, logs, Redis, hardening, and so on) also applies to a free self-hosted instance — see the [Self-Managed configuration reference](/guides/platform/self-hosting/self-managed#configuration-reference).
 
 <Tip>
-If you are interested in BYOC or Self-Managed for Enterprise self-hosting, get in touch with us in the [community](https://nango.dev/slack) or [book a call](https://nango.dev/contact).
+If you are interested in BYOC or Self-Managed for Enterprise self-hosting, get in touch with us in the [community](https://tenklo.dev/slack) or [book a call](https://tenklo.dev/contact).
 </Tip>
 
 ## Related guides

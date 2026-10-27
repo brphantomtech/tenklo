@@ -6,7 +6,7 @@ description: 'Run integration logic when a connection is validated, created, or 
 
 Some integration work should happen around the connection lifecycle rather than from a user action or schedule. For example, you may need to verify credentials before accepting a connection, register provider webhooks after authorization, or clean up subscriptions before a customer disconnects.
 
-Nango supports this with event functions. They run automatically for a specific integration and connection event.
+Tenklo supports this with event functions. They run automatically for a specific integration and connection event.
 
 ## When this fits
 
@@ -17,15 +17,15 @@ Use event functions when you need to:
 - Fetch account context and store it as connection metadata.
 - Clean up provider resources before a connection is deleted.
 
-These functions are not called by your app directly. Nango runs them when the configured lifecycle event occurs.
+These functions are not called by your app directly. Tenklo runs them when the configured lifecycle event occurs.
 
-## How Nango fits in
+## How Tenklo fits in
 
 1. Your user creates or deletes a connection.
-2. Nango detects the lifecycle event.
-3. Nango runs the event function with that connection's credentials.
+2. Tenklo detects the lifecycle event.
+3. Tenklo runs the event function with that connection's credentials.
 4. The function validates, initializes, registers, or cleans up provider-side resources.
-5. The execution appears in Nango logs.
+5. The execution appears in Tenklo logs.
 
 ## What to read next
 

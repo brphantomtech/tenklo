@@ -6,29 +6,29 @@ description: 'Integrate your application with the Workday Adaptive Planning API'
 
 ## 🚀 Quickstart
 
-Connect to Workday Adaptive Planning with Nango and see data flow in 2 minutes.
+Connect to Workday Adaptive Planning with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Workday Adaptive Planning_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Workday Adaptive Planning_.
     </Step>
     <Step title="Connect Workday Adaptive Planning">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ and fill in your credentials. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ and fill in your credentials. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Workday Adaptive Planning API">
-        The Adaptive Planning API uses XML-based requests. Authentication requires passing the `AdaptiveAPIAccessToken` (stored in your Nango connection) inside the XML `credentials` element — Basic auth with username/password won't work.
+        The Adaptive Planning API uses XML-based requests. Authentication requires passing the `AdaptiveAPIAccessToken` (stored in your Tenklo connection) inside the XML `credentials` element — Basic auth with username/password won't work.
 
-        Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
                 # Step 1: Retrieve the AdaptiveAPIAccessToken from Nango
-                TOKEN=$(curl -s "https://api.nango.dev/connection/<CONNECTION-ID>?provider_config_key=<INTEGRATION-ID>" \
+                TOKEN=$(curl -s "https://api.tenklo.dev/connection/<CONNECTION-ID>?provider_config_key=<INTEGRATION-ID>" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" | jq -r '.credentials.token')
 
                 # Step 2: Use the token in an Adaptive Planning XML API request
-                curl -X POST "https://api.nango.dev/proxy/api/v40" \
+                curl -X POST "https://api.tenklo.dev/proxy/api/v40" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>" \
@@ -44,7 +44,7 @@ Connect to Workday Adaptive Planning with Nango and see data flow in 2 minutes.
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -75,11 +75,11 @@ Connect to Workday Adaptive Planning with Nango and see data flow in 2 minutes.
 
         Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-        ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+        ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To set up your own credentials, follow the setup guide linked below.
     </Step>
@@ -91,7 +91,7 @@ Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let you
 
 ## 📚 Workday Adaptive Planning Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How do I link my Workday Adaptive Planning account?](/api-integrations/workday-adaptive-planning/connect)  
 Learn what credentials you need and how to authenticate with Workday Adaptive Planning

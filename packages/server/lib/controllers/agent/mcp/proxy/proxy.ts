@@ -68,7 +68,7 @@ export const proxyTool = defineAgentSessionMcpTool({
             trackAgentSessionProxyRequest({ session, integrationId, provider: connection.provider, method: args.method, errorCode: 'invalid_input' });
             return Err(
                 new PublicMcpError(
-                    `Nango sets these headers itself, so they cannot be passed: ${rejectedHeaders.join(', ')}. The request is authenticated with the session's connection, so drop those headers and call again.`,
+                    `Tenklo sets these headers itself, so they cannot be passed: ${rejectedHeaders.join(', ')}. The request is authenticated with the session's connection, so drop those headers and call again.`,
                     { code: 'invalid_input', integrationId }
                 )
             );

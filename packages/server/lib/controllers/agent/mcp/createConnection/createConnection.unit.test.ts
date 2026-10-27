@@ -32,7 +32,7 @@ const CONNECTIONS: AgentSessionResolvedConnections = {
 
 const SLACK_CREATED_IN_SESSION = { integrationId: 'slack', provider: 'slack', connectionId: 'slack-new', internalConnectionId: 12, configId: 22 };
 
-const CONNECT_SESSION = { token: 'nango_connect_session_abc', connectLink: 'https://connect.nango.dev/abc', expiresAt: new Date('2026-09-22T10:00:00.000Z') };
+const CONNECT_SESSION = { token: 'nango_connect_session_abc', connectLink: 'https://connect.tenklo.dev/abc', expiresAt: new Date('2026-09-22T10:00:00.000Z') };
 
 function context(createConnection: AgentSessionCreateConnectionConfig = { enabled: true, tags: {} }): AgentSessionMcpContext {
     const session: AgentSession = {
@@ -94,7 +94,7 @@ describe('createConnectionTool', () => {
         expect(result.unwrap()).toMatchObject({
             integration: 'slack',
             provider: 'slack',
-            connect_url: 'https://connect.nango.dev/abc',
+            connect_url: 'https://connect.tenklo.dev/abc',
             expires_at: '2026-09-22T10:00:00.000Z'
         });
         expect(createConnectSession).toHaveBeenCalledWith(expect.objectContaining({ allowedIntegrations: ['slack'] }));
@@ -160,7 +160,7 @@ describe('createConnectionTool', () => {
 
             const result = await callCreateConnection({ integration: 'notion', reconnect: true });
 
-            expect(result.unwrap()).toMatchObject({ integration: 'notion', connect_url: 'https://connect.nango.dev/abc' });
+            expect(result.unwrap()).toMatchObject({ integration: 'notion', connect_url: 'https://connect.tenklo.dev/abc' });
             const params = createConnectSession.mock.calls[0]?.[0];
             expect(params?.reconnect).toStrictEqual({ connectionId: 'notion-acme', integrationId: 'notion' });
             // The connection keeps its own tags instead of getting the session's.

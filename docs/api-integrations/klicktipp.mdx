@@ -6,23 +6,23 @@ description: 'Integrate your application with the KlickTipp API'
 
 ## 🚀 Quickstart
 
-Connect to KlickTipp with Nango and see data flow in 2 minutes.
+Connect to KlickTipp with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _KlickTipp_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _KlickTipp_.
     </Step>
     <Step title="Authorize KlickTipp">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your API key. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your API key. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the KlickTipp API">
-    KlickTipp requires the API key in the request body. Retrieve the stored credentials, then include the key in your call. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    KlickTipp requires the API key in the request body. Retrieve the stored credentials, then include the key in your call. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
             # 1. Retrieve the stored API key
-            curl "https://api.nango.dev/connections/<CONNECTION-ID>" \
+            curl "https://api.tenklo.dev/connections/<CONNECTION-ID>" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>"
             # → { "credentials": { "apiKey": "..." } }
@@ -37,7 +37,7 @@ Connect to KlickTipp with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -66,11 +66,11 @@ Connect to KlickTipp with Nango and see data flow in 2 minutes.
 
     </Tabs>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production API key, follow the connect guide linked below.
     </Step>
@@ -78,15 +78,15 @@ Connect to KlickTipp with Nango and see data flow in 2 minutes.
 
 ## 📚 KlickTipp Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to obtain your KlickTipp API key](/api-integrations/klicktipp/connect)
-  Get your API key to connect KlickTipp to Nango
+  Get your API key to connect KlickTipp to Tenklo
 
 Official docs: [KlickTipp API Documentation](https://developers.klicktipp.com/)
 
 <Note>
-KlickTipp authenticates via an API key sent in the request body. The Nango proxy stores the key securely; at runtime, retrieve it via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) and include it in your request body directly.
+KlickTipp authenticates via an API key sent in the request body. The Tenklo proxy stores the key securely; at runtime, retrieve it via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) and include it in your request body directly.
 </Note>
 
 ## 🧩 Pre-built syncs & actions for KlickTipp

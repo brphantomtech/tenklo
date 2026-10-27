@@ -56,7 +56,7 @@ export const getClientMetadata = asyncWrapper<GetPublicClientMetadata>(async (re
     }
 
     const storedClientUri = integration.custom?.['oauth_client_uri'];
-    const clientUri = storedClientUri && isValidUrl(storedClientUri) ? storedClientUri : 'https://nango.dev';
+    const clientUri = storedClientUri && isValidUrl(storedClientUri) ? storedClientUri : 'https://tenklo.dev';
     const storedLogoUri = integration.custom?.['oauth_client_logo_uri'];
     const logoUri = storedLogoUri && isValidUrl(storedLogoUri) ? storedLogoUri : undefined;
 
@@ -65,7 +65,7 @@ export const getClientMetadata = asyncWrapper<GetPublicClientMetadata>(async (re
     res.setHeader('Cache-Control', 'public, max-age=300');
     res.status(200).send({
         client_id: clientId,
-        client_name: integration.custom?.['oauth_client_name'] || 'Nango',
+        client_name: integration.custom?.['oauth_client_name'] || 'Tenklo',
         client_uri: clientUri,
         ...(logoUri && { logo_uri: logoUri }),
         redirect_uris: [environment.callback_url || getGlobalOAuthCallbackUrl()],

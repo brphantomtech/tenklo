@@ -16,7 +16,7 @@ describe('trackMcpServer', () => {
         const groupIdentify = vi.fn();
         productTracking.identifiedAccounts.clear();
         productTracking.client = { capture, groupIdentify } as unknown as typeof productTracking.client;
-        const server = new McpServer({ name: 'Nango Management MCP server', version: '1.0.0' });
+        const server = new McpServer({ name: 'Tenklo Management MCP server', version: '1.0.0' });
         const inputSchema = fromJsonSchema({
             type: 'object',
             properties: { secret: { type: 'string' }, ...(authType === 'oauth' ? { environment: { type: 'string' } } : {}) },
@@ -67,7 +67,7 @@ describe('trackMcpServer', () => {
                     mcp_auth_type: authType,
                     surface: 'server',
                     is_production: true,
-                    $mcp_server_name: 'Nango Management MCP server',
+                    $mcp_server_name: 'Tenklo Management MCP server',
                     $mcp_tool_name: 'example',
                     $mcp_is_error: false
                 }

@@ -92,7 +92,7 @@ describe('environments_list', () => {
 
 function principal(can: Principal['grants'][number]['can'], where: Principal['grants'][number]['where'], accountId = 42): Principal {
     return {
-        subject: { type: 'user', id: '7', display: 'user@nango.dev' },
+        subject: { type: 'user', id: '7', display: 'user@tenklo.dev' },
         accountId,
         grants: [{ can, where }]
     };

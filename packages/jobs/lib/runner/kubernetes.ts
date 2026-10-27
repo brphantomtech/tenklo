@@ -491,11 +491,11 @@ class Kubernetes {
         if (envs.RUNNER_DO_NOT_DISRUPT) {
             noDisruptSpec = {
                 nodeSelector: {
-                    'nango.dev/lifecycle': 'no-disrupt'
+                    'tenklo.dev/lifecycle': 'no-disrupt'
                 },
                 tolerations: [
                     {
-                        key: 'nango.dev/lifecycle',
+                        key: 'tenklo.dev/lifecycle',
                         operator: 'Equal',
                         value: 'no-disrupt',
                         effect: 'NoSchedule'
@@ -536,7 +536,7 @@ class Kubernetes {
             }
         };
         if (node.isProfilingEnabled || node.isTracingEnabled) {
-            deploymentManifest.spec!.template.metadata!.labels!['nango.dev/apm'] = 'enabled';
+            deploymentManifest.spec!.template.metadata!.labels!['tenklo.dev/apm'] = 'enabled';
         }
 
         try {

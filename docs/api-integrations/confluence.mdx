@@ -6,22 +6,22 @@ description: 'Integrate your application with the Confluence API'
 
 ## 🚀 Quickstart
 
-Connect to Confluence with Nango and see data flow in 2 minutes.
+Connect to Confluence with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Confluence_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Confluence_.
     </Step>
     <Step title="Authorize Confluence">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Confluence. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Confluence. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Confluence API">
-    Let's make your first request to the Confluence API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Confluence API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/wiki/rest/api/content" \
+            curl "https://api.tenklo.dev/proxy/wiki/rest/api/content" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Confluence with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -52,11 +52,11 @@ Connect to Confluence with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -64,10 +64,10 @@ Connect to Confluence with Nango and see data flow in 2 minutes.
 
 ## 📚 Confluence Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Confluence OAuth app](/api-integrations/confluence/how-to-register-your-own-confluence-api-oauth-app)  
-Register an OAuth app with Confluence and obtain credentials to connect it to Nango
+Register an OAuth app with Confluence and obtain credentials to connect it to Tenklo
 
 Official docs: [Confluence REST API Documentation](https://developer.atlassian.com/cloud/confluence/rest/intro/)
 

@@ -20,7 +20,7 @@ const STORE_DEFAULTS: StorePatch = {
     isSingleIntegration: false,
     session: null,
     nango: null,
-    apiURL: 'https://api.nango.dev',
+    apiURL: 'https://api.tenklo.dev',
     isEmbedded: false,
     isAuthLink: false,
     detectClosedAuthWindow: false,

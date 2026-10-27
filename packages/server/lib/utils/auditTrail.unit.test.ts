@@ -21,7 +21,7 @@ vi.mock('@nangohq/utils', async () => {
 });
 
 const customer = { session: {} } as Parameters<typeof canViewAuditTrail>[0];
-const operator = { session: { impersonatedBy: { accountId: 1, accountName: 'Nango', actorId: 7 } } } as Parameters<typeof canViewAuditTrail>[0];
+const operator = { session: { impersonatedBy: { accountId: 1, accountName: 'Tenklo', actorId: 7 } } } as Parameters<typeof canViewAuditTrail>[0];
 const entitled = { has_audit_trail_control_plane: true, has_audit_trail_access: true };
 const notEntitled = { has_audit_trail_control_plane: false, has_audit_trail_access: false };
 

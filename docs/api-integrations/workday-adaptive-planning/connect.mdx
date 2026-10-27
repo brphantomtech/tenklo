@@ -28,7 +28,7 @@ JWT authentication requires an X.509 certificate and the private key used to sig
 
 **You will create two files:**
 
-- **privatekey_workday.key** – Your private key (PKCS8 format). Use this as the **Private Key** in Nango.
+- **privatekey_workday.key** – Your private key (PKCS8 format). Use this as the **Private Key** in Tenklo.
 - **cert_workday.pem** – The self-signed certificate. Upload this to Workday as an X.509 Public Key.
 
 **Steps:**
@@ -43,7 +43,7 @@ JWT authentication requires an X.509 certificate and the private key used to sig
    ```
    openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in key.pem -out privatekey_workday.key
    ```
-   This creates `privatekey_workday.key` — the private key you will enter in Nango.
+   This creates `privatekey_workday.key` — the private key you will enter in Tenklo.
 
 #### Step 2: Register the certificate in Workday
 

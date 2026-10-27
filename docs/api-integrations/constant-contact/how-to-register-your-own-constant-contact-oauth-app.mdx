@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Constant Contact OAuth app'
 sidebarTitle: 'Constant Contact Setup'
-description: 'Register an OAuth app with Constant Contact and connect it to Nango'
+description: 'Register an OAuth app with Constant Contact and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Constant Contact to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Constant Contact account.
@@ -28,14 +28,14 @@ Before you begin, note the following requirements for Constant Contact API acces
   </Step>
   <Step title="Configure OAuth settings">
     1. After creating your application, click **Edit** for the app you just created
-    2. In the **Redirect URI** section, add: `https://api.nango.dev/oauth/callback`
+    2. In the **Redirect URI** section, add: `https://api.tenklo.dev/oauth/callback`
     3. Click **Save** to save your changes
   </Step>
   <Step title="Get your credentials">
     1. In your application settings, you'll find:
        - **API Key (Client ID)**: This is your `client_id` for OAuth requests
     2. Click **Generate Client Secret** to create your client secret
-    3. Copy and save both the **API Key (Client ID)** and **Client Secret** securely. You'll need them when configuring the integration in Nango.
+    3. Copy and save both the **API Key (Client ID)** and **Client Secret** securely. You'll need them when configuring the integration in Tenklo.
     
     <Warning>The client secret is only shown once when generated. Make sure to copy and save it immediately.</Warning>
   </Step>

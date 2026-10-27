@@ -1,14 +1,14 @@
 ---
 title: 'Testing integrations'
 sidebarTitle: 'Testing'
-description: 'How to test your Nango integrations using dry runs, mocks, and snapshots'
+description: 'How to test your Tenklo integrations using dry runs, mocks, and snapshots'
 ---
 
-Nango provides a comprehensive testing framework that combines dry runs with mock-based snapshot testing. This guide will walk you through testing your integrations effectively.
+Tenklo provides a comprehensive testing framework that combines dry runs with mock-based snapshot testing. This guide will walk you through testing your integrations effectively.
 
 ## Testing approach
 
-Nango's testing framework is built on three core concepts:
+Tenklo's testing framework is built on three core concepts:
 
 1. **Dry runs**: Test your integrations against live API connections without affecting production data
 2. **Mocks**: Save API responses during dry runs to create reproducible test fixtures
@@ -195,7 +195,7 @@ nango dryrun fetch-tickets abc-123 --save --metadata @fixtures/metadata.json
 
 ## Testing with Vitest
 
-Nango uses [Vitest](https://vitest.dev/) as its testing framework. Vitest is fast, has a great developer experience, and provides snapshot testing out of the box.
+Tenklo uses [Vitest](https://vitest.dev/) as its testing framework. Vitest is fast, has a great developer experience, and provides snapshot testing out of the box.
 
 ### Setup
 
@@ -235,7 +235,7 @@ npm test
 
 ### Auto-generated tests
 
-When you run `nango generate:tests`, Nango creates test files for all your integrations:
+When you run `nango generate:tests`, Tenklo creates test files for all your integrations:
 
 **Sync test example:**
 ```typescript
@@ -342,7 +342,7 @@ This will:
 3. Save the data into a new `.test.json` file.
 4. The old mock directory  (`mocks` and `fixtures`) can then be safely deleted once a clean green test run is achieved.
 
-> **Note:** This migration tool works by intercepting the mock data loaded by your existing tests. It requires that your tests are using the standard Nango mock utilities (`NangoSyncMock` or `NangoActionMock`) imported from `nango/test`.
+> **Note:** This migration tool works by intercepting the mock data loaded by your existing tests. It requires that your tests are using the standard Tenklo mock utilities (`NangoSyncMock` or `NangoActionMock`) imported from `nango/test`.
 
 <Warning>
 **Pagination Bug in Legacy Test Utilities**
@@ -364,7 +364,7 @@ The migration tool performs a **best-effort recovery**:
 
 If your tests fail after running the migration, it means one of:
 - The mock file for a paginated request doesn't exist at all (it was never recorded due to the bug)
-- The request parameters stored in the mock file don't match what Nango's pagination now sends
+- The request parameters stored in the mock file don't match what Tenklo's pagination now sends
 
 **To fix failing tests, re-record your mocks:**
 
@@ -372,7 +372,7 @@ If your tests fail after running the migration, it means one of:
 nango dryrun <sync-name> <connection-id> --save
 ```
 
-This will generate a complete `.test.json` file with all paginated responses using Nango's actual pagination implementation.
+This will generate a complete `.test.json` file with all paginated responses using Tenklo's actual pagination implementation.
 </Warning>
 
 ### Running tests
@@ -410,7 +410,7 @@ export default defineConfig({
 });
 ```
 
-The `vitest.setup.ts` file makes Nango mocks available globally:
+The `vitest.setup.ts` file makes Tenklo mocks available globally:
 
 ```typescript
 import { NangoActionMock, NangoSyncMock } from "nango/test";

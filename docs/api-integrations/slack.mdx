@@ -6,22 +6,22 @@ description: 'Integrate your application with the Slack API'
 
 ## 🚀 Quickstart
 
-Connect to Slack with Nango and see data flow in 2 minutes.
+Connect to Slack with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Slack_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Slack_.
     </Step>
     <Step title="Authorize Slack">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Slack. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Slack. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Slack API">
-    Let's make your first request to the Slack API (fetch a list of channels in a Slack team). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Slack API (fetch a list of channels in a Slack team). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/conversations.list?limit=10" \
+            curl "https://api.tenklo.dev/proxy/conversations.list?limit=10" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Slack with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,11 +53,11 @@ Connect to Slack with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -65,16 +65,16 @@ Connect to Slack with Nango and see data flow in 2 minutes.
 
 ## 📚 Slack Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Slack OAuth app](/api-integrations/slack/how-to-register-your-own-slack-api-oauth-app)  
-Register an OAuth app with Slack and obtain credentials to connect it to Nango
+Register an OAuth app with Slack and obtain credentials to connect it to Tenklo
 
-- [How to setup webhooks with Slack on Nango](/api-integrations/slack/webhooks)  
+- [How to setup webhooks with Slack on Tenklo](/api-integrations/slack/webhooks)  
 Set up Slack Events API webhooks to receive real-time workspace events
 
-- [Slack user access tokens in Nango](/api-integrations/slack/slack-user-access-tokens)  
-How to get, and use, Slack user access tokens with Nango
+- [Slack user access tokens in Tenklo](/api-integrations/slack/slack-user-access-tokens)  
+How to get, and use, Slack user access tokens with Tenklo
 
 Official docs: [Slack API docs](https://api.slack.com/web)
 

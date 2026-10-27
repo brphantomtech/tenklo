@@ -1,20 +1,20 @@
 ---
-title: 'How to set up webhooks with ConnectWise PSA on Nango'
+title: 'How to set up webhooks with ConnectWise PSA on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time ConnectWise PSA events in Nango'
+description: 'Learn how to receive real-time ConnectWise PSA events in Tenklo'
 ---
 
-This guide explains how Nango receives and routes ConnectWise PSA webhooks.
+This guide explains how Tenklo receives and routes ConnectWise PSA webhooks.
 
 ## How it works
 
-1. ConnectWise sends a signed POST request to your Nango webhook URL when a subscribed event occurs.
-2. Nango verifies the signature using the signing key referenced in the payload's `Metadata.key_url` (trusted ConnectWise cloud subdomains are accepted by default; self-hosted origins require connection metadata).
-3. Nango routes the webhook to the matching connection(s), then either forwards it to your app or runs a sync (`onWebhook`).
+1. ConnectWise sends a signed POST request to your Tenklo webhook URL when a subscribed event occurs.
+2. Tenklo verifies the signature using the signing key referenced in the payload's `Metadata.key_url` (trusted ConnectWise cloud subdomains are accepted by default; self-hosted origins require connection metadata).
+3. Tenklo routes the webhook to the matching connection(s), then either forwards it to your app or runs a sync (`onWebhook`).
 
 ## Connection routing
 
-ConnectWise webhook payloads include a `ProductInstanceId` field identifying the tenant the event belongs to. Nango routes each webhook to the connection(s) whose `metadata.productInstanceId` **exactly matches** the payload's `ProductInstanceId`.
+ConnectWise webhook payloads include a `ProductInstanceId` field identifying the tenant the event belongs to. Tenklo routes each webhook to the connection(s) whose `metadata.productInstanceId` **exactly matches** the payload's `ProductInstanceId`.
 
 <Warning>
 You must set `metadata.productInstanceId` on each connection for webhook routing to work. If it is unset (or does not match the `ProductInstanceId` in the payload), the connection receives no webhooks. The match is case-sensitive.
@@ -27,7 +27,7 @@ Set `metadata.productInstanceId` to the ConnectWise Product Instance ID for that
 Set it via the API:
 
 ```bash
-curl -X PATCH "https://api.nango.dev/connections/metadata" \
+curl -X PATCH "https://api.tenklo.dev/connections/metadata" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -58,9 +58,9 @@ Custom-origin events reach only connections with a matching Product Instance ID 
 
 Once routed to a connection, you have two options:
 
-- **Forward it to your app** — Nango verifies the signature and forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
+- **Forward it to your app** — Tenklo verifies the signature and forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
 - **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

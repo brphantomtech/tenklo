@@ -11,14 +11,14 @@ openapi: 'POST /proxy/{anyPath}'
 ### API request
 
 The path, query params, and headers you send to the Proxy are all passed on to the external API, except for the configuration headers mentioned here:
-* Authorization: See [Nango API Authentication](/reference/backend/http-api/authentication). Nango will add a new Authorization header for the external API as needed.
+* Authorization: See [Tenklo API Authentication](/reference/backend/http-api/authentication). Tenklo will add a new Authorization header for the external API as needed.
 * Provider-Config-Key
 * Connection-Id
 * Retries
 
 ### API response
 
-The response from the external API is passed back to you exactly as Nango gets it:
+The response from the external API is passed back to you exactly as Tenklo gets it:
 * Response code
 * Response headers
 * Response body

@@ -1,6 +1,6 @@
 ---
-title: 'How to set Salesforce up with Nango'
-description: 'Register your own OAuth app and configure Salesforce for production use in Nango'
+title: 'How to set Salesforce up with Tenklo'
+description: 'Register your own OAuth app and configure Salesforce for production use in Tenklo'
 ---
 
 This guide shows you how to register your application with Salesforce to obtain your OAuth credentials (client ID and secret). Once you complete this guide, your users can grant your app access to their Salesforce account. You will have access to the [Salesforce REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm), which lets you read and write data in the connected Salesforce accounts.
@@ -41,7 +41,7 @@ Use this option if your app will only be used within your own Salesforce organiz
    - **Icon URL (Optional)**: A direct URL to a smaller icon representing the app.
    - **Description (Optional)**: A short summary describing what the app does.
   2. Check the **API (Enable Oauth Settings)** checkbox.
-  3. For **Callback URL**, enter: `https://api.nango.dev/oauth/callback`.
+  3. For **Callback URL**, enter: `https://api.tenklo.dev/oauth/callback`.
   4. Under **Selected OAuth Scopes**, add the permissions your app needs. At minimum, add:
     - "Access and manage your data (api)"
     - "Perform requests on your behalf at any time (refresh_token, offline_access)"
@@ -57,7 +57,7 @@ Use this option if your app will only be used within your own Salesforce organiz
     2. Scroll down to **Oauth Settings** section.
     3. Click **Consumer Key and Secret** to view your credentials. You may be required to verify your identity.
     4. Copy the **Consumer Key** (this is your Client ID) and **Consumer Secret** (this is your Client Secret).
-    5. You will need these credentials when configuring your integration in Nango.
+    5. You will need these credentials when configuring your integration in Tenklo.
   </Step>
   <Step title="Configure token settings (recommended)">
    1. Click your app's **Policies** tab, then click the **Edit** button. Scroll down to **OAuth Policies**, and under **App Authorization**, set the **Refresh Token Policy** to "Refresh token is valid until revoked" for long-lived access.
@@ -115,7 +115,7 @@ You cannot have both Dev Hub enabled and register a namespace in the same organi
         - **Description (Optional)**: A short summary describing what the app does.
     4. Enable OAuth settings:
        - Check **API (Enable Oauth Settings)**
-       - **Callback URL**: `https://api.nango.dev/oauth/callback`
+       - **Callback URL**: `https://api.tenklo.dev/oauth/callback`
        - **Selected OAuth Scopes**: Add required scopes (minimum: "api", "refresh_token, offline_access")
        - **Flow Enablement**: Enable Authorization Code and Credentials Flow
        - Under **Security**, leave the default options selected:
@@ -126,7 +126,7 @@ You cannot have both Dev Hub enabled and register a namespace in the same organi
     6. After saving, navigate to your app **Settings** tab.
     7. Scroll down to **Oauth Settings** section.
     8. Click **Consumer Key and Secret** to view your credentials. You may be required to verify your identity.
-    9. Copy the **Consumer Key** (this is your Client ID) and **Consumer Secret** (this is your Client Secret). You will need these credentials when configuring your integration in Nango.
+    9. Copy the **Consumer Key** (this is your Client ID) and **Consumer Secret** (this is your Client Secret). You will need these credentials when configuring your integration in Tenklo.
   </Step>
   <Step title="Configure token settings (recommended)">
    1. Click your app's **Policies** tab, then click the **Edit** button. Scroll down to **OAuth Policies**, and under **App Authorization**, set the **Refresh Token Policy** to "Refresh token is valid until revoked" for long-lived access.
@@ -259,9 +259,9 @@ If you previously created a **Connected App**, you can migrate it to an **Extern
 
 <Note>All changes must be made in the new External Client App. Deleting the External Client App reactivates the original Connected App with its previous settings intact.</Note>
 
-## Connection configuration in Nango
+## Connection configuration in Tenklo
 
-Salesforce uses a different API base URL, the `instance_url`, for each customer. Nango automatically retrieves the `instance_url` from Salesforce and stores it in the connection config. If you use the Nango Proxy, it uses the correct API base URL automatically. You can also retrieve the `instance_url` via the [backend SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [Connections API](/reference/backend/http-api/connections/get).
+Salesforce uses a different API base URL, the `instance_url`, for each customer. Tenklo automatically retrieves the `instance_url` from Salesforce and stores it in the connection config. If you use the Tenklo Proxy, it uses the correct API base URL automatically. You can also retrieve the `instance_url` via the [backend SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [Connections API](/reference/backend/http-api/connections/get).
 
 ## Important considerations
 

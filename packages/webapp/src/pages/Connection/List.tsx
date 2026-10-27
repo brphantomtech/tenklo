@@ -279,7 +279,7 @@ export const ConnectionList = () => {
     return (
         <DashboardLayout fullWidth title="Connections">
             <Helmet>
-                <title>Connections - Nango</title>
+                <title>Connections - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col gap-3">
@@ -432,8 +432,8 @@ export const ConnectionList = () => {
                             <p className="text-text-secondary text-body-medium-regular">
                                 Connections can be created by using{' '}
                                 <Button asChild variant="link-accent">
-                                    <a href="https://nango.dev/docs/guides/auth/auth-guide" target="_blank" rel="noopener noreferrer">
-                                        Nango Connect
+                                    <a href="https://tenklo.dev/docs/guides/auth/auth-guide" target="_blank" rel="noopener noreferrer">
+                                        Tenklo Connect
                                         <ExternalLink />
                                     </a>
                                 </Button>

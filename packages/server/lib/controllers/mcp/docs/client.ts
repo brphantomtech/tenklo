@@ -8,9 +8,9 @@ import type { CallToolResult } from '@modelcontextprotocol/client';
 import type { Result } from '@nangohq/utils';
 
 const logger = getLogger('Server.ManagementMcp.DocsClient');
-const docsMcpUrl = new URL('https://nango.dev/docs/mcp');
+const docsMcpUrl = new URL('https://tenklo.dev/docs/mcp');
 const docsMcpTimeoutMs = 60_000;
-const docsMcpDirectAccessMessage = `Connect to the Nango documentation MCP directly at ${docsMcpUrl.toString()}`;
+const docsMcpDirectAccessMessage = `Connect to the Tenklo documentation MCP directly at ${docsMcpUrl.toString()}`;
 
 export type DocsMcpToolName = 'search_nango_docs' | 'query_docs_filesystem_nango_docs';
 
@@ -26,7 +26,7 @@ export class DocsMcpClientTransport extends StreamableHTTPClientTransport {
         try {
             await this.terminateSession();
         } catch (err) {
-            logger.error('Failed to terminate Nango documentation MCP session', { err });
+            logger.error('Failed to terminate Tenklo documentation MCP session', { err });
         }
         await super.close();
     }
@@ -58,7 +58,7 @@ export class DocsMcpClient {
                     return Err(rateLimitError());
                 }
 
-                return Err(new PublicMcpError(normalizedMessage ? message : 'The Nango documentation request failed.'));
+                return Err(new PublicMcpError(normalizedMessage ? message : 'The Tenklo documentation request failed.'));
             }
 
             return Ok(textContent);
@@ -67,14 +67,14 @@ export class DocsMcpClient {
                 return Err(rateLimitError());
             }
 
-            logger.error('Nango documentation MCP request failed', { err, toolName: name });
-            return Err(new PublicMcpError('The Nango documentation service is temporarily unavailable.'));
+            logger.error('Tenklo documentation MCP request failed', { err, toolName: name });
+            return Err(new PublicMcpError('The Tenklo documentation service is temporarily unavailable.'));
         } finally {
             if (client) {
                 try {
                     await client.close();
                 } catch (err) {
-                    logger.error('Failed to close Nango documentation MCP client', { err, toolName: name });
+                    logger.error('Failed to close Tenklo documentation MCP client', { err, toolName: name });
                 }
             }
         }
@@ -84,7 +84,7 @@ export class DocsMcpClient {
 export const docsMcpClient = new DocsMcpClient();
 
 async function connectDocsMcpClient(signal: AbortSignal): Promise<ConnectedDocsMcpClient> {
-    const client = new Client({ name: 'Nango Management MCP docs proxy', version: '1.0.0' });
+    const client = new Client({ name: 'Tenklo Management MCP docs proxy', version: '1.0.0' });
     const transport = new DocsMcpClientTransport(docsMcpUrl);
     try {
         await client.connect(transport, { signal, timeout: docsMcpTimeoutMs, maxTotalTimeout: docsMcpTimeoutMs });
@@ -122,5 +122,5 @@ function isRateLimitError(error: unknown): boolean {
 }
 
 function rateLimitError(): PublicMcpError {
-    return new PublicMcpError(`The Nango documentation MCP returned 429 Too Many Requests. ${docsMcpDirectAccessMessage}.`);
+    return new PublicMcpError(`The Tenklo documentation MCP returned 429 Too Many Requests. ${docsMcpDirectAccessMessage}.`);
 }

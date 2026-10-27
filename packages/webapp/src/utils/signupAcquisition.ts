@@ -7,8 +7,8 @@ function parseInitialPage(value: unknown): URL | undefined {
     try {
         const url = new URL(value);
         if (url.protocol !== 'https:') return;
-        const isWebsite = /^(www\.)?nango\.dev$|^([a-z0-9-]+\.)?next\.nango\.dev$/.test(url.hostname);
-        const isAppSignup = /^(?:app|app-development|pr-\d+\.app-development)\.nango\.dev$/.test(url.hostname) && /^\/signup\/?$/.test(url.pathname);
+        const isWebsite = /^(www\.)?tenklo\.dev$|^([a-z0-9-]+\.)?next\.tenklo\.dev$/.test(url.hostname);
+        const isAppSignup = /^(?:app|app-development|pr-\d+\.app-development)\.tenklo\.dev$/.test(url.hostname) && /^\/signup\/?$/.test(url.pathname);
         if (isWebsite || isAppSignup) return url;
     } catch {
         // Missing or malformed first visits stay unknown.
@@ -30,7 +30,7 @@ function readReferringDomain(value: unknown): string | undefined {
     if (typeof value !== 'string' || value === '$direct') return;
     try {
         const referrer = new URL(value);
-        if (['http:', 'https:'].includes(referrer.protocol) && !/(^|\.)nango\.dev$/.test(referrer.hostname)) {
+        if (['http:', 'https:'].includes(referrer.protocol) && !/(^|\.)tenklo\.dev$/.test(referrer.hostname)) {
             return referrer.hostname;
         }
     } catch {

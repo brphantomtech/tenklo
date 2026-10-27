@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Nooks OAuth app'
 sidebarTitle: 'Nooks Setup'
-description: 'Register an OAuth app with Nooks and connect it to Nango'
+description: 'Register an OAuth app with Nooks and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Nooks to obtain OAuth credentials (Client ID & Client Secret). These are required to let your users grant your app access to their Nooks workspace.
@@ -11,10 +11,10 @@ This guide shows you how to register your own app with Nooks to obtain OAuth cre
     In your Nooks workspace, go to **Developer**, then switch to the **OAuth** tab. Create a new OAuth app and give it a name your users will recognize when they're asked to approve access.
     </Step>
     <Step title="Configure the redirect URI">
-    Click into the app you just created and switch to its **Auth** subtab. Under **Redirect URLs**, paste `https://api.nango.dev/oauth/callback` and press **+ Add**, then **Save**. Nooks validates this on every authorization request, so it must match exactly.
+    Click into the app you just created and switch to its **Auth** subtab. Under **Redirect URLs**, paste `https://api.tenklo.dev/oauth/callback` and press **+ Add**, then **Save**. Nooks validates this on every authorization request, so it must match exactly.
     </Step>
     <Step title="Get your Client ID and Client Secret">
-    Copy the app's **Client ID** and **Client Secret**. You'll need these when configuring the Nooks integration in Nango.
+    Copy the app's **Client ID** and **Client Secret**. You'll need these when configuring the Nooks integration in Tenklo.
     </Step>
     <Step title="Review scopes">
     Select the scopes your integration needs (e.g. `prospects:read`, `sequences:write`).

@@ -136,7 +136,7 @@ function preBuiltToolingSnippet(providerConfig: Provider, useCases: any, isAlias
         `| Pre-built integrations | ${hasUseCases ? '✅' : '🚫 (time to contribute: &lt;48h)'} |`,
         `| API unification | ✅ |`,
         `| 2-way sync | ✅ |`,
-        `| Webhooks from Nango on data modifications | ✅ |`,
+        `| Webhooks from Tenklo on data modifications | ✅ |`,
         `| Real-time webhooks from 3rd-party API | ${hasWebHooks ? '✅' : '🚫 (time to contribute: &lt;48h)'} |`,
         `| Proxy requests | ✅ |`,
         `</Accordion>`,

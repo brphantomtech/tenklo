@@ -10,11 +10,11 @@ export const Signup: React.FC = () => {
     return (
         <DefaultLayout className="gap-5">
             <Helmet>
-                <title>Sign up - Nango</title>
+                <title>Sign up - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col gap-3 items-center">
-                <h2 className="text-title-group text-text-strong">Sign up to Nango</h2>
+                <h2 className="text-title-group text-text-strong">Sign up to Tenklo</h2>
                 <span className="text-body-medium-regular text-text-muted">
                     Already have an account?{' '}
                     <Button asChild variant="link-accent">

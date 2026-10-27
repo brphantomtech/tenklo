@@ -49,7 +49,7 @@ import type {
 } from '@nangohq/types';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-export const prodHost = 'https://api.nango.dev';
+export const prodHost = 'https://api.tenklo.dev';
 
 export * from './types.js';
 export { getUserAgent } from './utils.js';
@@ -107,7 +107,7 @@ export class Nango {
         try {
             new URL(this.serverUrl);
         } catch {
-            throw new Error(`Invalid URL provided for the Nango host: ${this.serverUrl}`);
+            throw new Error(`Invalid URL provided for the Tenklo host: ${this.serverUrl}`);
         }
 
         this.apiKey = apiKey;

@@ -1,7 +1,7 @@
 ---
 title: 'Customize Connect UI'
 sidebarTitle: 'Customize Connect UI'
-description: 'Guide to branding Nango Connect UI, overriding setup links, or building a headless auth flow with your own UI.'
+description: 'Guide to branding Tenklo Connect UI, overriding setup links, or building a headless auth flow with your own UI.'
 ---
 
 <Info>
@@ -10,30 +10,30 @@ Pre-requisites:
 - generate a [Connect session token](/guides/auth/auth-guide#guide)
 </Info>
 
-Nango's pre-built [Connect UI](/guides/auth/auth-guide) is the recommended way to let users authorize integrations. It generates the right form for each API, validates required inputs, tests credentials when supported, and shows users where to find API keys or other required values.
+Tenklo's pre-built [Connect UI](/guides/auth/auth-guide) is the recommended way to let users authorize integrations. It generates the right form for each API, validates required inputs, tests credentials when supported, and shows users where to find API keys or other required values.
 
-You can customize that pre-built UI with your own branding. If you need full control over every screen, you can also skip Connect UI and use Nango in a **headless auth** mode.
+You can customize that pre-built UI with your own branding. If you need full control over every screen, you can also skip Connect UI and use Tenklo in a **headless auth** mode.
 
 ## Customize the pre-built Connect UI
 
-You can customize the Connect UI theme from the Nango dashboard:
+You can customize the Connect UI theme from the Tenklo dashboard:
 
 1. Open **Environment Settings**.
 2. Go to the **Connect UI** tab.
 3. Choose the theme: light, dark, or system.
 4. Set the primary color for the light theme.
 5. Set the primary color for the dark theme.
-6. Optionally remove the **Secured by Nango** mention.
+6. Optionally remove the **Secured by Tenklo** mention.
 
 These settings apply to the pre-built Connect UI that you open with [`nango.openConnectUI()`](/reference/frontend/frontend-sdk#connect-using-nango-connect-ui).
 
-<Note>Connect UI branding customization is available with the [Growth add-on](https://www.nango.dev/pricing).</Note>
+<Note>Connect UI branding customization is available with the [Growth add-on](https://www.tenklo.dev/pricing).</Note>
 
 ## Override documentation links
 
-By default, the Connect UI displays info icons that link to the Nango documentation. If you are embedding Connect UI in a customer-facing application and want these links to point to your own documentation instead, override them per integration using the `overrides` parameter when [creating a Connect session](/reference/backend/http-api/connect/sessions/create).
+By default, the Connect UI displays info icons that link to the Tenklo documentation. If you are embedding Connect UI in a customer-facing application and want these links to point to your own documentation instead, override them per integration using the `overrides` parameter when [creating a Connect session](/reference/backend/http-api/connect/sessions/create).
 
-<Note>This feature is available with the [Growth add-on](https://www.nango.dev/pricing).</Note>
+<Note>This feature is available with the [Growth add-on](https://www.tenklo.dev/pricing).</Note>
 
 <Tabs>
 
@@ -71,7 +71,7 @@ See the full [API reference](/reference/backend/http-api/connect/sessions/create
 
 ```bash
 curl --request POST \
-  --url https://api.nango.dev/connect/sessions \
+  --url https://api.tenklo.dev/connect/sessions \
   --header 'Authorization: Bearer <NANGO-API-KEY>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -94,15 +94,15 @@ Replace `<INTEGRATION-ID>` with the unique name of the integration, for example 
 
 ## Build your own auth UI
 
-Headless auth means you build the user-facing setup UI yourself and use the frontend SDK to pass the required values to Nango.
+Headless auth means you build the user-facing setup UI yourself and use the frontend SDK to pass the required values to Tenklo.
 
 Headless auth still uses Nango for the backend parts of auth: Nango stores credentials, refreshes OAuth tokens, manages connection records, sends auth webhooks, and lets you call APIs through the proxy or from functions. What changes is the setup experience your user sees before the connection is created.
 
 ## What changes with headless auth
 
-For OAuth APIs, calling `nango.auth()` opens the external API's login popup directly. Your user skips the Nango pre-authorization screen. This is useful when you want a shorter flow, but it also means you must collect any provider-specific inputs that the Nango Connect UI would normally ask for first.
+For OAuth APIs, calling `nango.auth()` opens the external API's login popup directly. Your user skips the Tenklo pre-authorization screen. This is useful when you want a shorter flow, but it also means you must collect any provider-specific inputs that the Tenklo Connect UI would normally ask for first.
 
-For API key, Basic Auth, and other non-OAuth flows, there is no external login popup. You must build the form that collects the user's credentials, validate field formats in your own UI, and pass the credentials to `nango.auth()`. Nango can still reject invalid credentials when the integration supports credential checks, but your UI owns the input fields, error messages, and setup guidance.
+For API key, Basic Auth, and other non-OAuth flows, there is no external login popup. You must build the form that collects the user's credentials, validate field formats in your own UI, and pass the credentials to `nango.auth()`. Tenklo can still reject invalid credentials when the integration supports credential checks, but your UI owns the input fields, error messages, and setup guidance.
 
 Some APIs also require **connection configuration** in addition to credentials. For example, an API might need a subdomain, domain, tenant ID, region, or account-specific base URL to build the authorization URL or make future API requests. Connect UI collects these fields automatically. With headless auth, your UI must collect them and pass them programmatically.
 
@@ -110,7 +110,7 @@ See [Connection tags, configuration, and metadata](/guides/auth/connection-tags-
 
 ## Use the frontend SDK for headless auth
 
-In your frontend, initiate Nango ([reference](/reference/frontend/frontend-sdk#instantiate-the-frontend-sdk)):
+In your frontend, initiate Tenklo ([reference](/reference/frontend/frontend-sdk#instantiate-the-frontend-sdk)):
 
 ```ts
 import Nango from '@nangohq/frontend';
@@ -141,7 +141,7 @@ nango
 
 <Tab title="API key">
 
-For API key auth, collect the API key in your own UI, then pass it to Nango.
+For API key auth, collect the API key in your own UI, then pass it to Tenklo.
 
 ```js
 nango
@@ -162,7 +162,7 @@ nango
 
 <Tab title="Basic Auth">
 
-For Basic Auth, collect the username and password in your own UI, then pass them to Nango.
+For Basic Auth, collect the username and password in your own UI, then pass them to Tenklo.
 
 ```js
 nango
@@ -189,7 +189,7 @@ Some APIs require connection-specific configuration to authorize or make API req
 
 `https://<USER-SUBDOMAIN>.zendesk.com/oauth/authorizations/new`
 
-With Connect UI, Nango asks for this value in an automatically generated form. With headless auth, collect it in your own UI and pass it as `params`:
+With Connect UI, Tenklo asks for this value in an automatically generated form. With headless auth, collect it in your own UI and pass it as `params`:
 
 ```js
 nango.auth('zendesk', {
@@ -221,7 +221,7 @@ const { data } = await nango.createConnectSession({
 
 ```bash
 curl --request POST \
-  --url https://api.nango.dev/connect/sessions \
+  --url https://api.tenklo.dev/connect/sessions \
   --header 'Authorization: Bearer <NANGO-API-KEY>' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -247,14 +247,14 @@ nango.auth('<INTEGRATION-ID>', {
 });
 ```
 
-Nango stores this connection configuration on the connection. You can retrieve it with the SDK ([reference](/reference/backend/backend-sdk/node#get-a-connection-with-credentials)) or API ([reference](/reference/backend/http-api/connections/get)), or see it in connection details in the Nango UI.
+Tenklo stores this connection configuration on the connection. You can retrieve it with the SDK ([reference](/reference/backend/backend-sdk/node#get-a-connection-with-credentials)) or API ([reference](/reference/backend/http-api/connections/get)), or see it in connection details in the Tenklo UI.
 
 ## Next
 
 Once authorization succeeds, [_save the connection ID_](/guides/auth/auth-guide#guide).
 
 <Tip>
-    **Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+    **Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>
 
 ## Related guides

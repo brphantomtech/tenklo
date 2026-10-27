@@ -87,7 +87,7 @@ export const getOAuthConsentInteraction: RequestHandler = async (req, res, next)
             data: {
                 client: context.client,
                 redirectUri: context.redirectUri,
-                account: { name: boundedText(context.account.name, 120, 'Nango account') },
+                account: { name: boundedText(context.account.name, 120, 'Tenklo account') },
                 resource: {
                     hostname: context.resource.hostname,
                     scopes: context.resource.scopes
@@ -463,7 +463,7 @@ function publicErrorMessage(code: OAuthConsentErrorCode): string {
             return 'Sign in to continue';
         case 'user_suspended':
         case 'account_unavailable':
-            return 'Your Nango account is not available';
+            return 'Your Tenklo account is not available';
         case 'invalid_origin':
         case 'interaction_invalid':
             return 'This authorization request is invalid';

@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/lambda-runner",
     "version": "1.0.0",
-    "description": "Lambda functions for Nango",
+    "description": "Lambda functions for Tenklo",
     "type": "module",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",

@@ -12059,7 +12059,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Calendar name. Example: \"Nango API\""
+                                                "description": "Calendar name. Example: \"Tenklo API\""
                                             },
                                             "email": {
                                                 "type": "string"
@@ -23440,7 +23440,7 @@
                                 },
                                 "text": {
                                     "type": "string",
-                                    "description": "Comment text. Example: \"Hello from Nango!\""
+                                    "description": "Comment text. Example: \"Hello from Tenklo!\""
                                 }
                             },
                             "required": ["base_id", "table_id_or_name", "record_id", "text"],
@@ -26689,7 +26689,7 @@
                                 },
                                 "text": {
                                     "type": "string",
-                                    "description": "Comment text. Example: \"Hello from Nango!\""
+                                    "description": "Comment text. Example: \"Hello from Tenklo!\""
                                 }
                             },
                             "required": ["base_id", "table_id_or_name", "record_id", "text"],
@@ -45865,7 +45865,7 @@
                                     }
                                 },
                                 "q_organization_domains_list": {
-                                    "description": "Organization domains to filter by. Example: [\"apollo.io\", \"nango.dev\"]",
+                                    "description": "Organization domains to filter by. Example: [\"apollo.io\", \"tenklo.dev\"]",
                                     "type": "array",
                                     "items": {
                                         "type": "string"
@@ -50432,7 +50432,7 @@
                                     }
                                 },
                                 "q_organization_domains_list": {
-                                    "description": "Organization domains to filter by. Example: [\"apollo.io\", \"nango.dev\"]",
+                                    "description": "Organization domains to filter by. Example: [\"apollo.io\", \"tenklo.dev\"]",
                                     "type": "array",
                                     "items": {
                                         "type": "string"
@@ -123264,7 +123264,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Webhook name. Example: \"Nango Registry Test Webhook\""
+                                    "description": "Webhook name. Example: \"Tenklo Registry Test Webhook\""
                                 },
                                 "url": {
                                     "type": "string",
@@ -125450,7 +125450,7 @@
                                     "type": "string"
                                 },
                                 "query": {
-                                    "description": "Filter webhooks by name, id, url, or associated form_id. Example: \"Nango\"",
+                                    "description": "Filter webhooks by name, id, url, or associated form_id. Example: \"Tenklo\"",
                                     "type": "string"
                                 }
                             },
@@ -148509,7 +148509,7 @@
                                             },
                                             "email": {
                                                 "type": "string",
-                                                "description": "Verified from email address of the sender. Example: \"api@nango.dev\"."
+                                                "description": "Verified from email address of the sender. Example: \"api@tenklo.dev\"."
                                             },
                                             "active": {
                                                 "type": "boolean",
@@ -150028,7 +150028,7 @@
                                     "type": "object",
                                     "properties": {
                                         "name": {
-                                            "description": "Display name of the sender. Example: \"Nango\"",
+                                            "description": "Display name of the sender. Example: \"Tenklo\"",
                                             "type": "string"
                                         },
                                         "email": {
@@ -150994,11 +150994,11 @@
                                             ]
                                         },
                                         "name": {
-                                            "description": "Sender name shown as the \"From\" name, e.g. \"Nango Test\"",
+                                            "description": "Sender name shown as the \"From\" name, e.g. \"Tenklo Test\"",
                                             "type": "string"
                                         },
                                         "email": {
-                                            "description": "Sender email address used as the \"From\" address, e.g. \"api@nango.dev\"",
+                                            "description": "Sender email address used as the \"From\" address, e.g. \"api@tenklo.dev\"",
                                             "type": "string"
                                         }
                                     },
@@ -210998,7 +210998,7 @@
                                             },
                                             "email_address": {
                                                 "type": "string",
-                                                "description": "The registered email address. Example: \"api@nango.dev\""
+                                                "description": "The registered email address. Example: \"api@tenklo.dev\""
                                             },
                                             "confirm_status": {
                                                 "description": "Confirmation status of the address. Always \"CONFIRMED\", since this action only returns confirmed addresses.",
@@ -212034,7 +212034,7 @@
                             "type": "object",
                             "properties": {
                                 "first_name": {
-                                    "description": "First name of the account contact. Example: \"Nango\"",
+                                    "description": "First name of the account contact. Example: \"Tenklo\"",
                                     "type": "string"
                                 },
                                 "last_name": {
@@ -212042,7 +212042,7 @@
                                     "type": "string"
                                 },
                                 "organization_name": {
-                                    "description": "Name of the organization on the account. Example: \"Nango\"",
+                                    "description": "Name of the organization on the account. Example: \"Tenklo\"",
                                     "type": "string"
                                 },
                                 "organization_phone": {
@@ -212073,7 +212073,7 @@
                             "type": "object",
                             "properties": {
                                 "contact_email": {
-                                    "description": "Email address of the account contact. Example: \"api@nango.dev\"",
+                                    "description": "Email address of the account contact. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "contact_phone": {
@@ -212107,7 +212107,7 @@
                                     "type": "string"
                                 },
                                 "first_name": {
-                                    "description": "First name of the account contact, or null when not set. Example: \"Nango\"",
+                                    "description": "First name of the account contact, or null when not set. Example: \"Tenklo\"",
                                     "anyOf": [
                                         {
                                             "type": "string"
@@ -212129,7 +212129,7 @@
                                     ]
                                 },
                                 "organization_name": {
-                                    "description": "Name of the organization on the account, or null when not set. Example: \"Nango\"",
+                                    "description": "Name of the organization on the account, or null when not set. Example: \"Tenklo\"",
                                     "anyOf": [
                                         {
                                             "type": "string"
@@ -213071,7 +213071,7 @@
                                     "type": "string"
                                 },
                                 "from_email": {
-                                    "description": "Sender email address of the primary_email campaign activity. Example: \"api@nango.dev\".",
+                                    "description": "Sender email address of the primary_email campaign activity. Example: \"api@tenklo.dev\".",
                                     "type": "string"
                                 },
                                 "from_name": {
@@ -213826,7 +213826,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name for the new API key. Example: \"Nango Integration Key\""
+                                    "description": "Name for the new API key. Example: \"Tenklo Integration Key\""
                                 }
                             },
                             "required": ["name"],
@@ -213872,7 +213872,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Project name. Example: \"Nango Registry Test Project\""
+                                    "description": "Project name. Example: \"Tenklo Registry Test Project\""
                                 },
                                 "key": {
                                     "type": "string",
@@ -214675,7 +214675,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the On-Call schedule. Example: \"Nango Registry Test Schedule 2\""
+                                    "description": "Name of the On-Call schedule. Example: \"Tenklo Registry Test Schedule 2\""
                                 },
                                 "time_zone": {
                                     "description": "Time zone for the schedule. Example: \"UTC\"",
@@ -214853,7 +214853,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the role to create. Example: \"Nango Registry Test Role\""
+                                    "description": "Name of the role to create. Example: \"Tenklo Registry Test Role\""
                                 }
                             },
                             "required": ["name"],
@@ -215901,7 +215901,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the synthetic test. Example: \"Nango Registry Test Synthetic\""
+                                    "description": "Name of the synthetic test. Example: \"Tenklo Registry Test Synthetic\""
                                 },
                                 "request_method": {
                                     "description": "HTTP method for the test request. Example: \"GET\"",
@@ -225381,7 +225381,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name for the new API key. Example: \"Nango Integration Key\""
+                                    "description": "Name for the new API key. Example: \"Tenklo Integration Key\""
                                 }
                             },
                             "required": ["name"],
@@ -225427,7 +225427,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Project name. Example: \"Nango Registry Test Project\""
+                                    "description": "Project name. Example: \"Tenklo Registry Test Project\""
                                 },
                                 "key": {
                                     "type": "string",
@@ -226230,7 +226230,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the On-Call schedule. Example: \"Nango Registry Test Schedule 2\""
+                                    "description": "Name of the On-Call schedule. Example: \"Tenklo Registry Test Schedule 2\""
                                 },
                                 "time_zone": {
                                     "description": "Time zone for the schedule. Example: \"UTC\"",
@@ -226408,7 +226408,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the role to create. Example: \"Nango Registry Test Role\""
+                                    "description": "Name of the role to create. Example: \"Tenklo Registry Test Role\""
                                 }
                             },
                             "required": ["name"],
@@ -227456,7 +227456,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the synthetic test. Example: \"Nango Registry Test Synthetic\""
+                                    "description": "Name of the synthetic test. Example: \"Tenklo Registry Test Synthetic\""
                                 },
                                 "request_method": {
                                     "description": "HTTP method for the test request. Example: \"GET\"",
@@ -246685,7 +246685,7 @@
                                         "properties": {
                                             "groupName": {
                                                 "type": "string",
-                                                "description": "Name of the custom group to create. Example: \"Nango Test Group\""
+                                                "description": "Name of the custom group to create. Example: \"Tenklo Test Group\""
                                             },
                                             "groupType": {
                                                 "description": "Type of group. Defaults to \"customGroup\". System groups cannot be created via API.",
@@ -251952,7 +251952,7 @@
                             "type": "object",
                             "properties": {
                                 "email": {
-                                    "description": "Filter by email address. Example: \"api@nango.dev\"",
+                                    "description": "Filter by email address. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "status": {
@@ -254824,7 +254824,7 @@
                                         "properties": {
                                             "groupName": {
                                                 "type": "string",
-                                                "description": "Name of the custom group to create. Example: \"Nango Test Group\""
+                                                "description": "Name of the custom group to create. Example: \"Tenklo Test Group\""
                                             },
                                             "groupType": {
                                                 "description": "Type of group. Defaults to \"customGroup\". System groups cannot be created via API.",
@@ -260091,7 +260091,7 @@
                             "type": "object",
                             "properties": {
                                 "email": {
-                                    "description": "Filter by email address. Example: \"api@nango.dev\"",
+                                    "description": "Filter by email address. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "status": {
@@ -273136,7 +273136,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the platform token. Example: \"Nango Test Token\""
+                                    "description": "Name of the platform token. Example: \"Tenklo Test Token\""
                                 },
                                 "scope": {
                                     "type": "array",
@@ -273200,7 +273200,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Policy name. Example: \"Nango Registry Test Policy\""
+                                    "description": "Policy name. Example: \"Tenklo Registry Test Policy\""
                                 },
                                 "description": {
                                     "description": "Policy description.",
@@ -273319,10 +273319,10 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the service user. Example: \"Nango Registry Test SU 3\""
+                                    "description": "Name of the service user. Example: \"Tenklo Registry Test SU 3\""
                                 },
                                 "description": {
-                                    "description": "Description of the service user. Example: \"Test service user for Nango registry\"",
+                                    "description": "Description of the service user. Example: \"Test service user for Tenklo registry\"",
                                     "type": "string"
                                 },
                                 "accountUuid": {
@@ -298873,7 +298873,7 @@
                                 },
                                 "lname": {
                                     "type": "string",
-                                    "description": "Last name. Example: \"Nango\""
+                                    "description": "Last name. Example: \"Tenklo\""
                                 },
                                 "email": {
                                     "type": "string",
@@ -323286,7 +323286,7 @@
             },
             {
                 "type": "action",
-                "description": "Get the API endpoint URL for a workflow job log download. Due to Nango proxy limitations with 302 redirects, this returns the API endpoint rather than the actual download URL.",
+                "description": "Get the API endpoint URL for a workflow job log download. Due to Tenklo proxy limitations with 302 redirects, this returns the API endpoint rather than the actual download URL.",
                 "endpoint": null,
                 "input": "ActionInput_github_getjoblogsdownloadurl",
                 "name": "get-job-logs-download-url",
@@ -323322,7 +323322,7 @@
                             "properties": {
                                 "download_url": {
                                     "type": "string",
-                                    "description": "The API endpoint URL for job logs. Note: Due to Nango proxy limitations with 302 redirects, this returns the API endpoint rather than the actual download URL. Users should make a direct request to this URL with their GitHub token to receive the 302 redirect and extract the Location header."
+                                    "description": "The API endpoint URL for job logs. Note: Due to Tenklo proxy limitations with 302 redirects, this returns the API endpoint rather than the actual download URL. Users should make a direct request to this URL with their GitHub token to receive the 302 redirect and extract the Location header."
                                 }
                             },
                             "required": ["download_url"],
@@ -332531,7 +332531,7 @@
             },
             {
                 "type": "action",
-                "description": "Get the API endpoint URL for a workflow job log download. Due to Nango proxy limitations with 302 redirects, this returns the API endpoint rather than the actual download URL.",
+                "description": "Get the API endpoint URL for a workflow job log download. Due to Tenklo proxy limitations with 302 redirects, this returns the API endpoint rather than the actual download URL.",
                 "endpoint": null,
                 "input": "ActionInput_github_app_oauth_getjoblogsdownloadurl",
                 "name": "get-job-logs-download-url",
@@ -332566,7 +332566,7 @@
                             "properties": {
                                 "download_url": {
                                     "type": "string",
-                                    "description": "The API endpoint URL for the job logs. Note: due to Nango proxy limitations with 302 redirects, this is the API endpoint rather than the actual pre-signed download URL. Make a direct, authenticated request to this URL to receive the 302 redirect and extract the Location header for the actual log content."
+                                    "description": "The API endpoint URL for the job logs. Note: due to Tenklo proxy limitations with 302 redirects, this is the API endpoint rather than the actual pre-signed download URL. Make a direct, authenticated request to this URL to receive the 302 redirect and extract the Location header for the actual log content."
                                 }
                             },
                             "required": ["download_url"],
@@ -340584,7 +340584,7 @@
                                     ]
                                 },
                                 "homepage": {
-                                    "description": "Repository homepage URL. Example: \"https://nango.dev\". Pass null to clear it.",
+                                    "description": "Repository homepage URL. Example: \"https://tenklo.dev\". Pass null to clear it.",
                                     "anyOf": [
                                         {
                                             "type": "string"
@@ -353081,7 +353081,7 @@
                                     "type": "string",
                                     "format": "email",
                                     "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
-                                    "description": "The email address of the user who created the meeting. Example: \"api@nango.dev\""
+                                    "description": "The email address of the user who created the meeting. Example: \"api@tenklo.dev\""
                                 }
                             },
                             "required": ["meetingId", "organizerEmail"],
@@ -360122,7 +360122,7 @@
                             "properties": {
                                 "flowOwnerEmail": {
                                     "type": "string",
-                                    "description": "Email address of the user who owns the flows. Example: \"api@nango.dev\""
+                                    "description": "Email address of the user who owns the flows. Example: \"api@tenklo.dev\""
                                 },
                                 "cursor": {
                                     "description": "Pagination cursor from the previous response. Omit for the first page.",
@@ -361662,7 +361662,7 @@
                                     "description": "The type of the event, e.g., \"link clicked\", \"page viewed\". Example: \"page viewed\""
                                 },
                                 "actorEmail": {
-                                    "description": "The email address of the person who performed the event. Example: \"api@nango.dev\"",
+                                    "description": "The email address of the person who performed the event. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "actorName": {
@@ -361701,7 +361701,7 @@
                                     "description": "The content the person looked at"
                                 },
                                 "sourceSystemName": {
-                                    "description": "The name of the technology partner or company setting up the integration. Example: \"Nango\"",
+                                    "description": "The name of the technology partner or company setting up the integration. Example: \"Tenklo\"",
                                     "type": "string"
                                 },
                                 "sessionId": {
@@ -366449,7 +366449,7 @@
                                     "type": "string",
                                     "format": "email",
                                     "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
-                                    "description": "The email address of the user who created the meeting. Example: \"api@nango.dev\""
+                                    "description": "The email address of the user who created the meeting. Example: \"api@tenklo.dev\""
                                 }
                             },
                             "required": ["meetingId", "organizerEmail"],
@@ -373490,7 +373490,7 @@
                             "properties": {
                                 "flowOwnerEmail": {
                                     "type": "string",
-                                    "description": "Email address of the user who owns the flows. Example: \"api@nango.dev\""
+                                    "description": "Email address of the user who owns the flows. Example: \"api@tenklo.dev\""
                                 },
                                 "cursor": {
                                     "description": "Pagination cursor from the previous response. Omit for the first page.",
@@ -375030,7 +375030,7 @@
                                     "description": "The type of the event, e.g., \"link clicked\", \"page viewed\". Example: \"page viewed\""
                                 },
                                 "actorEmail": {
-                                    "description": "The email address of the person who performed the event. Example: \"api@nango.dev\"",
+                                    "description": "The email address of the person who performed the event. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "actorName": {
@@ -375069,7 +375069,7 @@
                                     "description": "The content the person looked at"
                                 },
                                 "sourceSystemName": {
-                                    "description": "The name of the technology partner or company setting up the integration. Example: \"Nango\"",
+                                    "description": "The name of the technology partner or company setting up the integration. Example: \"Tenklo\"",
                                     "type": "string"
                                 },
                                 "sessionId": {
@@ -391908,7 +391908,7 @@
                                 },
                                 "searchText": {
                                     "type": "string",
-                                    "description": "The text to search for, or a regex pattern if regex is true. Example: \"Nango\""
+                                    "description": "The text to search for, or a regex pattern if regex is true. Example: \"Tenklo\""
                                 },
                                 "replacementText": {
                                     "type": "string",
@@ -401443,7 +401443,7 @@
                             "properties": {
                                 "sendAsEmail": {
                                     "type": "string",
-                                    "description": "The send-as alias email address to verify. Example: \"api+test@nango.dev\""
+                                    "description": "The send-as alias email address to verify. Example: \"api+test@tenklo.dev\""
                                 },
                                 "userId": {
                                     "description": "The user ID. Defaults to \"me\" for the authenticated user.",
@@ -405082,11 +405082,11 @@
                                 "searchText": {
                                     "type": "string",
                                     "minLength": 1,
-                                    "description": "Literal text to find. Example: \"Nango Composite Title\""
+                                    "description": "Literal text to find. Example: \"Tenklo Composite Title\""
                                 },
                                 "replaceText": {
                                     "type": "string",
-                                    "description": "Text that replaces every occurrence of searchText. Example: \"Nango Composite Heading\""
+                                    "description": "Text that replaces every occurrence of searchText. Example: \"Tenklo Composite Heading\""
                                 },
                                 "matchCase": {
                                     "description": "Whether the search is case-sensitive. Defaults to false (case-insensitive).",
@@ -406629,7 +406629,7 @@
                                 },
                                 "searchText": {
                                     "type": "string",
-                                    "description": "The text to search for, or a regular expression pattern when regex is true. Example: \"Nango\""
+                                    "description": "The text to search for, or a regular expression pattern when regex is true. Example: \"Tenklo\""
                                 },
                                 "replacementText": {
                                     "type": "string",
@@ -447549,7 +447549,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the custom value. Example: \"Nango Test CV\""
+                                    "description": "Name of the custom value. Example: \"Tenklo Test CV\""
                                 },
                                 "value": {
                                     "type": "string",
@@ -453208,7 +453208,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Client name. Example: \"Nango Registry Test Client 3\""
+                                    "description": "Client name. Example: \"Tenklo Registry Test Client 3\""
                                 }
                             },
                             "required": ["organization_id", "name"],
@@ -467768,7 +467768,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Contract name. Example: \"Nango Test Contract\""
+                                    "description": "Contract name. Example: \"Tenklo Test Contract\""
                                 },
                                 "project_id": {
                                     "type": "string",
@@ -468608,7 +468608,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the project. Example: \"Nango Registry Test Project\""
+                                    "description": "Name of the project. Example: \"Tenklo Registry Test Project\""
                                 },
                                 "base_currency": {
                                     "type": "string",
@@ -468659,7 +468659,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "Title of the punch item. Example: \"Nango Registry Test Punch Item\""
+                                    "description": "Title of the punch item. Example: \"Tenklo Registry Test Punch Item\""
                                 },
                                 "status": {
                                     "type": "string",
@@ -468947,7 +468947,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "The title/name of the submittal type. Example: \"Nango Registry Test Submittal Type\""
+                                    "description": "The title/name of the submittal type. Example: \"Tenklo Registry Test Submittal Type\""
                                 },
                                 "is_required_for_material_release": {
                                     "type": "boolean",
@@ -469036,7 +469036,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "The title of the submittal. Example: \"Nango Registry Test Submittal\""
+                                    "description": "The title of the submittal. Example: \"Tenklo Registry Test Submittal\""
                                 },
                                 "description": {
                                     "description": "Additional information further describing the submittal.",
@@ -478285,7 +478285,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Contract name. Example: \"Nango Test Contract\""
+                                    "description": "Contract name. Example: \"Tenklo Test Contract\""
                                 },
                                 "project_id": {
                                     "type": "string",
@@ -479125,7 +479125,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the project. Example: \"Nango Registry Test Project\""
+                                    "description": "Name of the project. Example: \"Tenklo Registry Test Project\""
                                 },
                                 "base_currency": {
                                     "type": "string",
@@ -479176,7 +479176,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "Title of the punch item. Example: \"Nango Registry Test Punch Item\""
+                                    "description": "Title of the punch item. Example: \"Tenklo Registry Test Punch Item\""
                                 },
                                 "status": {
                                     "type": "string",
@@ -479464,7 +479464,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "The title/name of the submittal type. Example: \"Nango Registry Test Submittal Type\""
+                                    "description": "The title/name of the submittal type. Example: \"Tenklo Registry Test Submittal Type\""
                                 },
                                 "is_required_for_material_release": {
                                     "type": "boolean",
@@ -479553,7 +479553,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "The title of the submittal. Example: \"Nango Registry Test Submittal\""
+                                    "description": "The title of the submittal. Example: \"Tenklo Registry Test Submittal\""
                                 },
                                 "description": {
                                     "description": "Additional information further describing the submittal.",
@@ -521087,7 +521087,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the category. Example: \"Nango Test Category\""
+                                    "description": "Display name of the category. Example: \"Tenklo Test Category\""
                                 },
                                 "catalog_type": {
                                     "description": "Catalog type. Defaults to \"$default\".",
@@ -521149,7 +521149,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "Catalog item title. Example: 'Nango Test Item'"
+                                    "description": "Catalog item title. Example: 'Tenklo Test Item'"
                                 },
                                 "description": {
                                     "type": "string",
@@ -527046,7 +527046,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the category. Example: \"Nango Test Category\""
+                                    "description": "Display name of the category. Example: \"Tenklo Test Category\""
                                 },
                                 "catalog_type": {
                                     "description": "Catalog type. Defaults to \"$default\".",
@@ -527108,7 +527108,7 @@
                                 },
                                 "title": {
                                     "type": "string",
-                                    "description": "Catalog item title. Example: 'Nango Test Item'"
+                                    "description": "Catalog item title. Example: 'Tenklo Test Item'"
                                 },
                                 "description": {
                                     "type": "string",
@@ -614479,7 +614479,7 @@
                             "properties": {
                                 "userId": {
                                     "type": "string",
-                                    "description": "User ID or user principal name. Example: \"api@nango.dev\""
+                                    "description": "User ID or user principal name. Example: \"api@tenklo.dev\""
                                 }
                             },
                             "required": ["userId"],
@@ -616385,7 +616385,7 @@
                             "properties": {
                                 "userId": {
                                     "type": "string",
-                                    "description": "User ID or user principal name. Example: \"api@nango.dev\""
+                                    "description": "User ID or user principal name. Example: \"api@tenklo.dev\""
                                 }
                             },
                             "required": ["userId"],
@@ -617632,7 +617632,7 @@
                                 "name": {
                                     "type": "string",
                                     "minLength": 1,
-                                    "description": "Name of the new workspace. Example: \"Nango Test Workspace\""
+                                    "description": "Name of the new workspace. Example: \"Tenklo Test Workspace\""
                                 }
                             },
                             "required": ["name"],
@@ -620016,7 +620016,7 @@
                             "properties": {
                                 "userId": {
                                     "type": "string",
-                                    "description": "User ID or user principal name. Example: \"test_api@nango.dev\""
+                                    "description": "User ID or user principal name. Example: \"test_api@tenklo.dev\""
                                 }
                             },
                             "required": ["userId"],
@@ -625236,7 +625236,7 @@
                                     "type": "string"
                                 },
                                 "search": {
-                                    "description": "OData $search expression. Example: \"api@nango.dev\"",
+                                    "description": "OData $search expression. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "top": {
@@ -626766,7 +626766,7 @@
                                     "type": "string"
                                 },
                                 "search": {
-                                    "description": "OData $search expression. Example: \"api@nango.dev\"",
+                                    "description": "OData $search expression. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "top": {
@@ -655561,7 +655561,7 @@
                                     "description": "Odoo model name. Example: \"res.partner\""
                                 },
                                 "domain": {
-                                    "description": "Odoo search domain filter. Example: [[\"name\", \"ilike\", \"Nango\"]]",
+                                    "description": "Odoo search domain filter. Example: [[\"name\", \"ilike\", \"Tenklo\"]]",
                                     "type": "array",
                                     "items": {}
                                 }
@@ -655752,7 +655752,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Partial name to search for. Example: \"Nango\""
+                                    "description": "Partial name to search for. Example: \"Tenklo\""
                                 },
                                 "args": {
                                     "description": "Optional extra Odoo domain filter. Example: [[\"is_company\", \"=\", true]]",
@@ -655922,7 +655922,7 @@
                                     "description": "Odoo model name. Example: \"res.partner\""
                                 },
                                 "domain": {
-                                    "description": "Search domain filter. Example: [[\"name\", \"ilike\", \"Nango\"]]",
+                                    "description": "Search domain filter. Example: [[\"name\", \"ilike\", \"Tenklo\"]]",
                                     "type": "array",
                                     "items": {}
                                 },
@@ -655981,7 +655981,7 @@
                                     "description": "Odoo model name. Example: \"res.partner\""
                                 },
                                 "domain": {
-                                    "description": "Odoo search domain filter. Example: [[\"name\",\"like\",\"Nango Test\"]]",
+                                    "description": "Odoo search domain filter. Example: [[\"name\",\"like\",\"Tenklo Test\"]]",
                                     "type": "array",
                                     "items": {}
                                 },
@@ -657761,7 +657761,7 @@
                                 },
                                 "displayName": {
                                     "type": "string",
-                                    "description": "Human-readable display name. Example: \"Nango Test Create\""
+                                    "description": "Human-readable display name. Example: \"Tenklo Test Create\""
                                 },
                                 "description": {
                                     "type": "string",
@@ -658704,7 +658704,7 @@
                                 },
                                 "label": {
                                     "type": "string",
-                                    "description": "User-facing label. Example: \"Nango Test Bookmark App\""
+                                    "description": "User-facing label. Example: \"Tenklo Test Bookmark App\""
                                 },
                                 "status": {
                                     "type": "string",
@@ -659516,7 +659516,7 @@
                             "properties": {
                                 "userId": {
                                     "type": "string",
-                                    "description": "Okta user ID or login/email. Example: \"00u14u78lfuUpDWf0698\" or \"api+dev@nango.dev\""
+                                    "description": "Okta user ID or login/email. Example: \"00u14u78lfuUpDWf0698\" or \"api+dev@tenklo.dev\""
                                 }
                             },
                             "required": ["userId"],
@@ -664043,7 +664043,7 @@
                                 },
                                 "displayName": {
                                     "type": "string",
-                                    "description": "Human-readable display name. Example: \"Nango Test Create\""
+                                    "description": "Human-readable display name. Example: \"Tenklo Test Create\""
                                 },
                                 "description": {
                                     "type": "string",
@@ -664986,7 +664986,7 @@
                                 },
                                 "label": {
                                     "type": "string",
-                                    "description": "User-facing label. Example: \"Nango Test Bookmark App\""
+                                    "description": "User-facing label. Example: \"Tenklo Test Bookmark App\""
                                 },
                                 "status": {
                                     "type": "string",
@@ -665798,7 +665798,7 @@
                             "properties": {
                                 "userId": {
                                     "type": "string",
-                                    "description": "Okta user ID or login/email. Example: \"00u14u78lfuUpDWf0698\" or \"api+dev@nango.dev\""
+                                    "description": "Okta user ID or login/email. Example: \"00u14u78lfuUpDWf0698\" or \"api+dev@tenklo.dev\""
                                 }
                             },
                             "required": ["userId"],
@@ -670325,7 +670325,7 @@
                                 },
                                 "displayName": {
                                     "type": "string",
-                                    "description": "Human-readable display name. Example: \"Nango Test Create\""
+                                    "description": "Human-readable display name. Example: \"Tenklo Test Create\""
                                 },
                                 "description": {
                                     "type": "string",
@@ -671268,7 +671268,7 @@
                                 },
                                 "label": {
                                     "type": "string",
-                                    "description": "User-facing label. Example: \"Nango Test Bookmark App\""
+                                    "description": "User-facing label. Example: \"Tenklo Test Bookmark App\""
                                 },
                                 "status": {
                                     "type": "string",
@@ -672080,7 +672080,7 @@
                             "properties": {
                                 "userId": {
                                     "type": "string",
-                                    "description": "Okta user ID or login/email. Example: \"00u14u78lfuUpDWf0698\" or \"api+dev@nango.dev\""
+                                    "description": "Okta user ID or login/email. Example: \"00u14u78lfuUpDWf0698\" or \"api+dev@tenklo.dev\""
                                 }
                             },
                             "required": ["userId"],
@@ -711652,7 +711652,7 @@
                                     "properties": {
                                         "subject": {
                                             "type": "string",
-                                            "description": "The subject of the message. Example: \"Hello from Nango\""
+                                            "description": "The subject of the message. Example: \"Hello from Tenklo\""
                                         },
                                         "body": {
                                             "type": "object",
@@ -712710,7 +712710,7 @@
                                 },
                                 "from_email": {
                                     "type": "string",
-                                    "description": "The email address of the user making the request, required by PagerDuty for incident write endpoints. Example: \"api@nango.dev\""
+                                    "description": "The email address of the user making the request, required by PagerDuty for incident write endpoints. Example: \"api@tenklo.dev\""
                                 }
                             },
                             "required": ["incident_id", "subscribers", "from_email"],
@@ -714461,7 +714461,7 @@
                                 },
                                 "from_email": {
                                     "type": "string",
-                                    "description": "The email address of the user making the request, required by PagerDuty as the From header. Example: \"api@nango.dev\""
+                                    "description": "The email address of the user making the request, required by PagerDuty as the From header. Example: \"api@tenklo.dev\""
                                 }
                             },
                             "required": ["incident_id", "message", "from_email"],
@@ -715400,7 +715400,7 @@
                                         },
                                         "address": {
                                             "type": "string",
-                                            "description": "The contact address. Example: \"api@nango.dev\""
+                                            "description": "The contact address. Example: \"api@tenklo.dev\""
                                         }
                                     },
                                     "required": ["user_id", "type", "label", "address"],
@@ -761632,7 +761632,7 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "description": "Ad account name. Example: \"Nango Seed Ad Account\""
+                                    "description": "Ad account name. Example: \"Tenklo Seed Ad Account\""
                                 },
                                 "country": {
                                     "type": "string",
@@ -908367,7 +908367,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Project display name. Example: \"Nango Seed Project\""
+                                    "description": "Project display name. Example: \"Tenklo Seed Project\""
                                 },
                                 "platform": {
                                     "description": "Project platform key. Omitted when the project has no platform set. Example: \"node\"",
@@ -908422,7 +908422,7 @@
                                         },
                                         "name": {
                                             "type": "string",
-                                            "description": "Team display name. Example: \"Nango Seed Team\""
+                                            "description": "Team display name. Example: \"Tenklo Seed Team\""
                                         },
                                         "slug": {
                                             "type": "string",
@@ -908443,7 +908443,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Team display name. Example: \"Nango Seed Team\""
+                                                "description": "Team display name. Example: \"Tenklo Seed Team\""
                                             },
                                             "slug": {
                                                 "type": "string",
@@ -909456,7 +909456,7 @@
                                         },
                                         "name": {
                                             "type": "string",
-                                            "description": "Display name of the project the monitor is associated with. Example: \"Nango Seed Project\""
+                                            "description": "Display name of the project the monitor is associated with. Example: \"Tenklo Seed Project\""
                                         }
                                     },
                                     "required": ["id", "slug", "name"],
@@ -909567,7 +909567,7 @@
                                     "description": "ID or slug of the project the key is created for. Example: \"nango-seed-project\""
                                 },
                                 "name": {
-                                    "description": "Human-readable name of the key. Auto-generated by Sentry when omitted. Example: \"Nango Seed Key\"",
+                                    "description": "Human-readable name of the key. Auto-generated by Sentry when omitted. Example: \"Tenklo Seed Key\"",
                                     "type": "string"
                                 },
                                 "rateLimit": {
@@ -909609,7 +909609,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the key. Example: \"Nango Seed Key\""
+                                    "description": "Name of the key. Example: \"Tenklo Seed Key\""
                                 },
                                 "label": {
                                     "type": "string",
@@ -909781,7 +909781,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the created project. Example: \"Nango Seed Project\""
+                                    "description": "Name of the created project. Example: \"Tenklo Seed Project\""
                                 },
                                 "platform": {
                                     "description": "The platform for the project, if one was set. Example: \"node\"",
@@ -909813,7 +909813,7 @@
                                         },
                                         "name": {
                                             "type": "string",
-                                            "description": "Name of the team. Example: \"Nango Seed Team\""
+                                            "description": "Name of the team. Example: \"Tenklo Seed Team\""
                                         },
                                         "slug": {
                                             "type": "string",
@@ -909834,7 +909834,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Name of the team. Example: \"Nango Seed Team\""
+                                                "description": "Name of the team. Example: \"Tenklo Seed Team\""
                                             },
                                             "slug": {
                                                 "type": "string",
@@ -910127,7 +910127,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the project. Example: \"Nango Seed Project\""
+                                                "description": "Display name of the project. Example: \"Tenklo Seed Project\""
                                             },
                                             "platform": {
                                                 "description": "Primary platform of the project, when set. Example: \"node\"",
@@ -914248,7 +914248,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the project. Example: \"Nango Seed Project\""
+                                    "description": "Display name of the project. Example: \"Tenklo Seed Project\""
                                 },
                                 "dateCreated": {
                                     "type": "string",
@@ -914356,7 +914356,7 @@
                                                 },
                                                 "name": {
                                                     "type": "string",
-                                                    "description": "Display name of the team. Example: \"Nango Seed Team\""
+                                                    "description": "Display name of the team. Example: \"Tenklo Seed Team\""
                                                 },
                                                 "slug": {
                                                     "type": "string",
@@ -914383,7 +914383,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the team. Example: \"Nango Seed Team\""
+                                                "description": "Display name of the team. Example: \"Tenklo Seed Team\""
                                             },
                                             "slug": {
                                                 "type": "string",
@@ -915598,7 +915598,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Human-readable name of the tag value. Example: \"Nango\"."
+                                                "description": "Human-readable name of the tag value. Example: \"Tenklo\"."
                                             },
                                             "value": {
                                                 "description": "The raw tag value. Example: \"nango\".",
@@ -916339,7 +916339,7 @@
                                                     },
                                                     "name": {
                                                         "type": "string",
-                                                        "description": "Project name. Example: \"Nango Seed Project\"."
+                                                        "description": "Project name. Example: \"Tenklo Seed Project\"."
                                                     },
                                                     "slug": {
                                                         "type": "string",
@@ -916823,7 +916823,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Human-readable organization name. Example: \"Nango Dev\""
+                                                "description": "Human-readable organization name. Example: \"Tenklo Dev\""
                                             },
                                             "status": {
                                                 "type": "object",
@@ -917899,7 +917899,7 @@
                                                         },
                                                         "name": {
                                                             "type": "string",
-                                                            "description": "Project name. Example: \"Nango Seed Project\""
+                                                            "description": "Project name. Example: \"Tenklo Seed Project\""
                                                         },
                                                         "newGroups": {
                                                             "type": "number",
@@ -918151,7 +918151,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Project display name. Example: \"Nango Seed Project\""
+                                                "description": "Project display name. Example: \"Tenklo Seed Project\""
                                             },
                                             "platform": {
                                                 "description": "Project platform key. Omitted when no platform is set. Example: \"node\"",
@@ -918190,7 +918190,7 @@
                                                     },
                                                     "name": {
                                                         "type": "string",
-                                                        "description": "Team display name. Example: \"Nango Seed Team\""
+                                                        "description": "Team display name. Example: \"Tenklo Seed Team\""
                                                     },
                                                     "slug": {
                                                         "type": "string",
@@ -918211,7 +918211,7 @@
                                                         },
                                                         "name": {
                                                             "type": "string",
-                                                            "description": "Team display name. Example: \"Nango Seed Team\""
+                                                            "description": "Team display name. Example: \"Tenklo Seed Team\""
                                                         },
                                                         "slug": {
                                                             "type": "string",
@@ -919055,7 +919055,7 @@
                                             },
                                             "email": {
                                                 "type": "string",
-                                                "description": "Email address of the member. Example: \"api@nango.dev\"."
+                                                "description": "Email address of the member. Example: \"api@tenklo.dev\"."
                                             },
                                             "name": {
                                                 "type": "string",
@@ -919211,7 +919211,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the project. Example: \"Nango Seed Project\"."
+                                                "description": "Display name of the project. Example: \"Tenklo Seed Project\"."
                                             },
                                             "platform": {
                                                 "description": "Primary SDK platform of the project. Omitted when the project has no platform. Example: \"node\".",
@@ -919256,7 +919256,7 @@
                                                         },
                                                         "name": {
                                                             "type": "string",
-                                                            "description": "Display name of the team. Example: \"Nango Seed Team\"."
+                                                            "description": "Display name of the team. Example: \"Tenklo Seed Team\"."
                                                         },
                                                         "slug": {
                                                             "type": "string",
@@ -921267,7 +921267,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the project. Example: \"Nango Seed Project\""
+                                    "description": "Display name of the project. Example: \"Tenklo Seed Project\""
                                 },
                                 "platform": {
                                     "anyOf": [
@@ -921861,7 +921861,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the team after the update. Example: \"Nango Seed Team\"."
+                                    "description": "Display name of the team after the update. Example: \"Tenklo Seed Team\"."
                                 },
                                 "dateCreated": {
                                     "description": "ISO 8601 timestamp of when the team was created. Example: \"2026-09-29T14:26:48.828608Z\".",
@@ -922674,7 +922674,7 @@
                                 },
                                 "email": {
                                     "type": "string",
-                                    "description": "Email address the membership is bound to, e.g. api@nango.dev."
+                                    "description": "Email address the membership is bound to, e.g. api@tenklo.dev."
                                 },
                                 "name": {
                                     "type": "string",
@@ -922730,7 +922730,7 @@
                                                 },
                                                 "email": {
                                                     "type": "string",
-                                                    "description": "Email address of the user, e.g. api@nango.dev."
+                                                    "description": "Email address of the user, e.g. api@tenklo.dev."
                                                 },
                                                 "avatarUrl": {
                                                     "type": "string",
@@ -924037,7 +924037,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Project display name. Example: \"Nango Seed Project\""
+                                    "description": "Project display name. Example: \"Tenklo Seed Project\""
                                 },
                                 "platform": {
                                     "description": "Project platform key. Omitted when the project has no platform set. Example: \"node\"",
@@ -924092,7 +924092,7 @@
                                         },
                                         "name": {
                                             "type": "string",
-                                            "description": "Team display name. Example: \"Nango Seed Team\""
+                                            "description": "Team display name. Example: \"Tenklo Seed Team\""
                                         },
                                         "slug": {
                                             "type": "string",
@@ -924113,7 +924113,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Team display name. Example: \"Nango Seed Team\""
+                                                "description": "Team display name. Example: \"Tenklo Seed Team\""
                                             },
                                             "slug": {
                                                 "type": "string",
@@ -925126,7 +925126,7 @@
                                         },
                                         "name": {
                                             "type": "string",
-                                            "description": "Display name of the project the monitor is associated with. Example: \"Nango Seed Project\""
+                                            "description": "Display name of the project the monitor is associated with. Example: \"Tenklo Seed Project\""
                                         }
                                     },
                                     "required": ["id", "slug", "name"],
@@ -925237,7 +925237,7 @@
                                     "description": "ID or slug of the project the key is created for. Example: \"nango-seed-project\""
                                 },
                                 "name": {
-                                    "description": "Human-readable name of the key. Auto-generated by Sentry when omitted. Example: \"Nango Seed Key\"",
+                                    "description": "Human-readable name of the key. Auto-generated by Sentry when omitted. Example: \"Tenklo Seed Key\"",
                                     "type": "string"
                                 },
                                 "rateLimit": {
@@ -925279,7 +925279,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the key. Example: \"Nango Seed Key\""
+                                    "description": "Name of the key. Example: \"Tenklo Seed Key\""
                                 },
                                 "label": {
                                     "type": "string",
@@ -925451,7 +925451,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Name of the created project. Example: \"Nango Seed Project\""
+                                    "description": "Name of the created project. Example: \"Tenklo Seed Project\""
                                 },
                                 "platform": {
                                     "description": "The platform for the project, if one was set. Example: \"node\"",
@@ -925483,7 +925483,7 @@
                                         },
                                         "name": {
                                             "type": "string",
-                                            "description": "Name of the team. Example: \"Nango Seed Team\""
+                                            "description": "Name of the team. Example: \"Tenklo Seed Team\""
                                         },
                                         "slug": {
                                             "type": "string",
@@ -925504,7 +925504,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Name of the team. Example: \"Nango Seed Team\""
+                                                "description": "Name of the team. Example: \"Tenklo Seed Team\""
                                             },
                                             "slug": {
                                                 "type": "string",
@@ -925797,7 +925797,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the project. Example: \"Nango Seed Project\""
+                                                "description": "Display name of the project. Example: \"Tenklo Seed Project\""
                                             },
                                             "platform": {
                                                 "description": "Primary platform of the project, when set. Example: \"node\"",
@@ -929918,7 +929918,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the project. Example: \"Nango Seed Project\""
+                                    "description": "Display name of the project. Example: \"Tenklo Seed Project\""
                                 },
                                 "dateCreated": {
                                     "type": "string",
@@ -930026,7 +930026,7 @@
                                                 },
                                                 "name": {
                                                     "type": "string",
-                                                    "description": "Display name of the team. Example: \"Nango Seed Team\""
+                                                    "description": "Display name of the team. Example: \"Tenklo Seed Team\""
                                                 },
                                                 "slug": {
                                                     "type": "string",
@@ -930053,7 +930053,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the team. Example: \"Nango Seed Team\""
+                                                "description": "Display name of the team. Example: \"Tenklo Seed Team\""
                                             },
                                             "slug": {
                                                 "type": "string",
@@ -931268,7 +931268,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Human-readable name of the tag value. Example: \"Nango\"."
+                                                "description": "Human-readable name of the tag value. Example: \"Tenklo\"."
                                             },
                                             "value": {
                                                 "description": "The raw tag value. Example: \"nango\".",
@@ -932009,7 +932009,7 @@
                                                     },
                                                     "name": {
                                                         "type": "string",
-                                                        "description": "Project name. Example: \"Nango Seed Project\"."
+                                                        "description": "Project name. Example: \"Tenklo Seed Project\"."
                                                     },
                                                     "slug": {
                                                         "type": "string",
@@ -932493,7 +932493,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Human-readable organization name. Example: \"Nango Dev\""
+                                                "description": "Human-readable organization name. Example: \"Tenklo Dev\""
                                             },
                                             "status": {
                                                 "type": "object",
@@ -933569,7 +933569,7 @@
                                                         },
                                                         "name": {
                                                             "type": "string",
-                                                            "description": "Project name. Example: \"Nango Seed Project\""
+                                                            "description": "Project name. Example: \"Tenklo Seed Project\""
                                                         },
                                                         "newGroups": {
                                                             "type": "number",
@@ -933821,7 +933821,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Project display name. Example: \"Nango Seed Project\""
+                                                "description": "Project display name. Example: \"Tenklo Seed Project\""
                                             },
                                             "platform": {
                                                 "description": "Project platform key. Omitted when no platform is set. Example: \"node\"",
@@ -933860,7 +933860,7 @@
                                                     },
                                                     "name": {
                                                         "type": "string",
-                                                        "description": "Team display name. Example: \"Nango Seed Team\""
+                                                        "description": "Team display name. Example: \"Tenklo Seed Team\""
                                                     },
                                                     "slug": {
                                                         "type": "string",
@@ -933881,7 +933881,7 @@
                                                         },
                                                         "name": {
                                                             "type": "string",
-                                                            "description": "Team display name. Example: \"Nango Seed Team\""
+                                                            "description": "Team display name. Example: \"Tenklo Seed Team\""
                                                         },
                                                         "slug": {
                                                             "type": "string",
@@ -934725,7 +934725,7 @@
                                             },
                                             "email": {
                                                 "type": "string",
-                                                "description": "Email address of the member. Example: \"api@nango.dev\"."
+                                                "description": "Email address of the member. Example: \"api@tenklo.dev\"."
                                             },
                                             "name": {
                                                 "type": "string",
@@ -934881,7 +934881,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the project. Example: \"Nango Seed Project\"."
+                                                "description": "Display name of the project. Example: \"Tenklo Seed Project\"."
                                             },
                                             "platform": {
                                                 "description": "Primary SDK platform of the project. Omitted when the project has no platform. Example: \"node\".",
@@ -934926,7 +934926,7 @@
                                                         },
                                                         "name": {
                                                             "type": "string",
-                                                            "description": "Display name of the team. Example: \"Nango Seed Team\"."
+                                                            "description": "Display name of the team. Example: \"Tenklo Seed Team\"."
                                                         },
                                                         "slug": {
                                                             "type": "string",
@@ -936937,7 +936937,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the project. Example: \"Nango Seed Project\""
+                                    "description": "Display name of the project. Example: \"Tenklo Seed Project\""
                                 },
                                 "platform": {
                                     "anyOf": [
@@ -937531,7 +937531,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Display name of the team after the update. Example: \"Nango Seed Team\"."
+                                    "description": "Display name of the team after the update. Example: \"Tenklo Seed Team\"."
                                 },
                                 "dateCreated": {
                                     "description": "ISO 8601 timestamp of when the team was created. Example: \"2026-09-29T14:26:48.828608Z\".",
@@ -938344,7 +938344,7 @@
                                 },
                                 "email": {
                                     "type": "string",
-                                    "description": "Email address the membership is bound to, e.g. api@nango.dev."
+                                    "description": "Email address the membership is bound to, e.g. api@tenklo.dev."
                                 },
                                 "name": {
                                     "type": "string",
@@ -938400,7 +938400,7 @@
                                                 },
                                                 "email": {
                                                     "type": "string",
-                                                    "description": "Email address of the user, e.g. api@nango.dev."
+                                                    "description": "Email address of the user, e.g. api@tenklo.dev."
                                                 },
                                                 "avatarUrl": {
                                                     "type": "string",
@@ -974019,7 +974019,7 @@
                                     "properties": {
                                         "title": {
                                             "type": "string",
-                                            "description": "The title of the smart collection. Example: \"Nango Test Smart Collection\""
+                                            "description": "The title of the smart collection. Example: \"Tenklo Test Smart Collection\""
                                         },
                                         "rules": {
                                             "type": "array",
@@ -974036,7 +974036,7 @@
                                                     },
                                                     "condition": {
                                                         "type": "string",
-                                                        "description": "The value to match against the column. Example: \"Nango Test\""
+                                                        "description": "The value to match against the column. Example: \"Tenklo Test\""
                                                     },
                                                     "condition_object_id": {
                                                         "description": "The ID of the object the condition refers to, if applicable.",
@@ -974132,7 +974132,7 @@
                                                     },
                                                     "condition": {
                                                         "type": "string",
-                                                        "description": "The value to match against the column. Example: \"Nango Test\""
+                                                        "description": "The value to match against the column. Example: \"Tenklo Test\""
                                                     },
                                                     "condition_object_id": {
                                                         "description": "The ID of the object the condition refers to, if applicable.",
@@ -982730,7 +982730,7 @@
                                     "description": "The ID of the inventory item to update. Example: \"7683107486941858849\""
                                 },
                                 "tracked": {
-                                    "description": "Whether Nango should track inventory quantities for this item. Setting to true is required before inventory_levels adjust or set will succeed.",
+                                    "description": "Whether Tenklo should track inventory quantities for this item. Setting to true is required before inventory_levels adjust or set will succeed.",
                                     "type": "boolean"
                                 },
                                 "cost": {
@@ -1122205,7 +1122205,7 @@
                                 },
                                 "name": {
                                     "type": "string",
-                                    "description": "Client name. Example: \"Nango Developer\""
+                                    "description": "Client name. Example: \"Tenklo Developer\""
                                 },
                                 "color": {
                                     "description": "Hex color assigned to the client in Timely, without the leading \"#\", or null when unset. Example: \"1976d2\"",
@@ -1122740,7 +1122740,7 @@
                                     "description": "Unix timestamp when the entry was last updated."
                                 },
                                 "created_from": {
-                                    "description": "Source the entry was created from, e.g. \"Web\" or \"Nango\", when known.",
+                                    "description": "Source the entry was created from, e.g. \"Web\" or \"Tenklo\", when known.",
                                     "anyOf": [
                                         {
                                             "type": "string"
@@ -1125233,7 +1125233,7 @@
                                     },
                                     "name": {
                                         "type": "string",
-                                        "description": "Account display name. Example: \"Nango Developer\""
+                                        "description": "Account display name. Example: \"Tenklo Developer\""
                                     },
                                     "color": {
                                         "type": "string",
@@ -1126012,7 +1126012,7 @@
                                                 "description": "Unix timestamp (seconds) when the entry was last updated."
                                             },
                                             "created_from": {
-                                                "description": "Source the entry was created from, e.g. \"Web\" or \"Nango\", when known.",
+                                                "description": "Source the entry was created from, e.g. \"Web\" or \"Tenklo\", when known.",
                                                 "anyOf": [
                                                     {
                                                         "type": "string"
@@ -1126329,7 +1126329,7 @@
                                                             },
                                                             "name": {
                                                                 "type": "string",
-                                                                "description": "Client name. Example: \"Nango Developer\""
+                                                                "description": "Client name. Example: \"Tenklo Developer\""
                                                             },
                                                             "color": {
                                                                 "description": "Client color as a hex code without the leading \"#\", or null when unset. Example: \"1976d2\"",
@@ -1127829,7 +1127829,7 @@
                                             "type": "null"
                                         }
                                     ],
-                                    "description": "Source that created the event (e.g. Web, Nango), or null when unknown."
+                                    "description": "Source that created the event (e.g. Web, Tenklo), or null when unknown."
                                 },
                                 "updated_from": {
                                     "anyOf": [
@@ -1127840,7 +1127840,7 @@
                                             "type": "null"
                                         }
                                     ],
-                                    "description": "Source that last updated the event (e.g. Web, Nango), or null when unknown."
+                                    "description": "Source that last updated the event (e.g. Web, Tenklo), or null when unknown."
                                 },
                                 "creator_id": {
                                     "type": "number",
@@ -1128518,7 +1128518,7 @@
                                 },
                                 "created_from": {
                                     "type": "string",
-                                    "description": "Source the project was created from, for example \"Nango\"."
+                                    "description": "Source the project was created from, for example \"Tenklo\"."
                                 },
                                 "allow_only_one_tag": {
                                     "type": "boolean",
@@ -1129023,7 +1129023,7 @@
                                     "description": "Department ID to assign the user to. Example: 248819"
                                 },
                                 "emailAddress": {
-                                    "description": "Email address; must match a verified organisation domain. Example: \"jane.doe@nango.dev\"",
+                                    "description": "Email address; must match a verified organisation domain. Example: \"jane.doe@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "leaveYearStart": {
@@ -1146320,12 +1146320,12 @@
                                     "description": "The ID of the card to attach to. Example: \"5abbe4b7ddc1b351ef961414\""
                                 },
                                 "name": {
-                                    "description": "The name of the attachment. Example: \"Nango Docs\"",
+                                    "description": "The name of the attachment. Example: \"Tenklo Docs\"",
                                     "type": "string"
                                 },
                                 "url": {
                                     "type": "string",
-                                    "description": "The URL of the attachment. Example: \"https://docs.nango.dev\""
+                                    "description": "The URL of the attachment. Example: \"https://docs.tenklo.dev\""
                                 },
                                 "mimeType": {
                                     "description": "The MIME type of the attachment. Example: \"text/html\"",
@@ -1214605,7 +1214605,7 @@
                                         "required": ["accountId", "email", "role", "admin", "owner", "active"],
                                         "additionalProperties": false
                                     },
-                                    "description": "Account profiles for the authenticated user. A Nango connection maps to exactly one Wrike account, so this normally contains a single entry for the connection account."
+                                    "description": "Account profiles for the authenticated user. A Tenklo connection maps to exactly one Wrike account, so this normally contains a single entry for the connection account."
                                 }
                             },
                             "required": ["id", "type", "me", "profiles"],
@@ -1236640,7 +1236640,7 @@
                                                             "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                         },
                                                         "name": {
-                                                            "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                            "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string"
@@ -1236651,7 +1236651,7 @@
                                                             ]
                                                         },
                                                         "email": {
-                                                            "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                            "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string"
@@ -1236681,7 +1236681,7 @@
                                                             "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                         },
                                                         "name": {
-                                                            "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                            "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string"
@@ -1236692,7 +1236692,7 @@
                                                             ]
                                                         },
                                                         "email": {
-                                                            "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                            "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string"
@@ -1236722,7 +1236722,7 @@
                                                             "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                         },
                                                         "name": {
-                                                            "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                            "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string"
@@ -1236733,7 +1236733,7 @@
                                                             ]
                                                         },
                                                         "email": {
-                                                            "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                            "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string"
@@ -1236909,7 +1236909,7 @@
                                                                     "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                                 },
                                                                 "name": {
-                                                                    "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                                    "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                                     "anyOf": [
                                                                         {
                                                                             "type": "string"
@@ -1236920,7 +1236920,7 @@
                                                                     ]
                                                                 },
                                                                 "email": {
-                                                                    "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                                    "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                                     "anyOf": [
                                                                         {
                                                                             "type": "string"
@@ -1236950,7 +1236950,7 @@
                                                                     "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                                 },
                                                                 "name": {
-                                                                    "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                                    "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                                     "anyOf": [
                                                                         {
                                                                             "type": "string"
@@ -1236961,7 +1236961,7 @@
                                                                     ]
                                                                 },
                                                                 "email": {
-                                                                    "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                                    "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                                     "anyOf": [
                                                                         {
                                                                             "type": "string"
@@ -1236991,7 +1236991,7 @@
                                                                     "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                                 },
                                                                 "name": {
-                                                                    "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                                    "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                                     "anyOf": [
                                                                         {
                                                                             "type": "string"
@@ -1237002,7 +1237002,7 @@
                                                                     ]
                                                                 },
                                                                 "email": {
-                                                                    "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                                    "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                                     "anyOf": [
                                                                         {
                                                                             "type": "string"
@@ -1237074,7 +1237074,7 @@
                                                 "description": "Bigin product ID. Example: \"7618134000000647020\"."
                                             },
                                             "Product_Name": {
-                                                "description": "Product name. Example: \"Nango Test Product\".",
+                                                "description": "Product name. Example: \"Tenklo Test Product\".",
                                                 "anyOf": [
                                                     {
                                                         "type": "string"
@@ -1237150,7 +1237150,7 @@
                                                                 "description": "Owner or user ID. Example: \"7618134000000627001\"."
                                                             },
                                                             "name": {
-                                                                "description": "Owner or user display name. Example: \"Nango Developer\".",
+                                                                "description": "Owner or user display name. Example: \"Tenklo Developer\".",
                                                                 "anyOf": [
                                                                     {
                                                                         "type": "string"
@@ -1237161,7 +1237161,7 @@
                                                                 ]
                                                             },
                                                             "email": {
-                                                                "description": "Owner or user email address. Example: \"api@nango.dev\".",
+                                                                "description": "Owner or user email address. Example: \"api@tenklo.dev\".",
                                                                 "anyOf": [
                                                                     {
                                                                         "type": "string"
@@ -1237345,14 +1237345,14 @@
                                     "properties": {
                                         "name": {
                                             "type": "string",
-                                            "description": "Display name of the contact owner. Example: \"Nango Developer\""
+                                            "description": "Display name of the contact owner. Example: \"Tenklo Developer\""
                                         },
                                         "id": {
                                             "type": "string",
                                             "description": "Record ID of the contact owner. Example: \"7618134000000627001\""
                                         },
                                         "email": {
-                                            "description": "Email address of the contact owner. Example: \"api@nango.dev\"",
+                                            "description": "Email address of the contact owner. Example: \"api@tenklo.dev\"",
                                             "type": "string"
                                         }
                                     },
@@ -1238565,7 +1238565,7 @@
                                     "description": "Unique ID of the Bigin user. Example: \"7618134000000627001\"."
                                 },
                                 "full_name": {
-                                    "description": "Full display name of the user. Example: \"Nango Developer\".",
+                                    "description": "Full display name of the user. Example: \"Tenklo Developer\".",
                                     "type": "string"
                                 },
                                 "first_name": {
@@ -1239114,7 +1239114,7 @@
                                                         "description": "User ID. Example: \"7618134000000627001\""
                                                     },
                                                     "name": {
-                                                        "description": "User display name. Example: \"Nango Developer\"",
+                                                        "description": "User display name. Example: \"Tenklo Developer\"",
                                                         "anyOf": [
                                                             {
                                                                 "type": "string"
@@ -1239125,7 +1239125,7 @@
                                                         ]
                                                     },
                                                     "email": {
-                                                        "description": "User email address. Example: \"api@nango.dev\"",
+                                                        "description": "User email address. Example: \"api@tenklo.dev\"",
                                                         "anyOf": [
                                                             {
                                                                 "type": "string"
@@ -1239148,7 +1239148,7 @@
                                                         "description": "User ID. Example: \"7618134000000627001\""
                                                     },
                                                     "name": {
-                                                        "description": "User display name. Example: \"Nango Developer\"",
+                                                        "description": "User display name. Example: \"Tenklo Developer\"",
                                                         "anyOf": [
                                                             {
                                                                 "type": "string"
@@ -1239159,7 +1239159,7 @@
                                                         ]
                                                     },
                                                     "email": {
-                                                        "description": "User email address. Example: \"api@nango.dev\"",
+                                                        "description": "User email address. Example: \"api@tenklo.dev\"",
                                                         "anyOf": [
                                                             {
                                                                 "type": "string"
@@ -1239182,7 +1239182,7 @@
                                                         "description": "User ID. Example: \"7618134000000627001\""
                                                     },
                                                     "name": {
-                                                        "description": "User display name. Example: \"Nango Developer\"",
+                                                        "description": "User display name. Example: \"Tenklo Developer\"",
                                                         "anyOf": [
                                                             {
                                                                 "type": "string"
@@ -1239193,7 +1239193,7 @@
                                                         ]
                                                     },
                                                     "email": {
-                                                        "description": "User email address. Example: \"api@nango.dev\"",
+                                                        "description": "User email address. Example: \"api@tenklo.dev\"",
                                                         "anyOf": [
                                                             {
                                                                 "type": "string"
@@ -1239396,7 +1239396,7 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "name": {
-                                                        "description": "Display name of the user. Example: \"Nango Developer\".",
+                                                        "description": "Display name of the user. Example: \"Tenklo Developer\".",
                                                         "type": "string"
                                                     },
                                                     "id": {
@@ -1239404,7 +1239404,7 @@
                                                         "type": "string"
                                                     },
                                                     "email": {
-                                                        "description": "Email address of the user. Example: \"api@nango.dev\".",
+                                                        "description": "Email address of the user. Example: \"api@tenklo.dev\".",
                                                         "type": "string"
                                                     }
                                                 },
@@ -1239415,7 +1239415,7 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "name": {
-                                                        "description": "Display name of the user. Example: \"Nango Developer\".",
+                                                        "description": "Display name of the user. Example: \"Tenklo Developer\".",
                                                         "type": "string"
                                                     },
                                                     "id": {
@@ -1239423,7 +1239423,7 @@
                                                         "type": "string"
                                                     },
                                                     "email": {
-                                                        "description": "Email address of the user. Example: \"api@nango.dev\".",
+                                                        "description": "Email address of the user. Example: \"api@tenklo.dev\".",
                                                         "type": "string"
                                                     }
                                                 },
@@ -1239434,7 +1239434,7 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "name": {
-                                                        "description": "Display name of the user. Example: \"Nango Developer\".",
+                                                        "description": "Display name of the user. Example: \"Tenklo Developer\".",
                                                         "type": "string"
                                                     },
                                                     "id": {
@@ -1239442,7 +1239442,7 @@
                                                         "type": "string"
                                                     },
                                                     "email": {
-                                                        "description": "Email address of the user. Example: \"api@nango.dev\".",
+                                                        "description": "Email address of the user. Example: \"api@tenklo.dev\".",
                                                         "type": "string"
                                                     }
                                                 },
@@ -1244821,7 +1244821,7 @@
                                                     "description": "Unique id of the Bigin user. Example: 7618134000000627001"
                                                 },
                                                 "email": {
-                                                    "description": "Email address of the Bigin user. Example: api@nango.dev",
+                                                    "description": "Email address of the Bigin user. Example: api@tenklo.dev",
                                                     "anyOf": [
                                                         {
                                                             "type": "string"
@@ -1244863,7 +1244863,7 @@
                                                     "description": "Unique id of the Bigin user. Example: 7618134000000627001"
                                                 },
                                                 "email": {
-                                                    "description": "Email address of the Bigin user. Example: api@nango.dev",
+                                                    "description": "Email address of the Bigin user. Example: api@tenklo.dev",
                                                     "anyOf": [
                                                         {
                                                             "type": "string"
@@ -1244905,7 +1244905,7 @@
                                                     "description": "Unique id of the Bigin user. Example: 7618134000000627001"
                                                 },
                                                 "email": {
-                                                    "description": "Email address of the Bigin user. Example: api@nango.dev",
+                                                    "description": "Email address of the Bigin user. Example: api@tenklo.dev",
                                                     "anyOf": [
                                                         {
                                                             "type": "string"
@@ -1244947,7 +1244947,7 @@
                                                     "description": "Unique id of the Bigin user. Example: 7618134000000627001"
                                                 },
                                                 "email": {
-                                                    "description": "Email address of the Bigin user. Example: api@nango.dev",
+                                                    "description": "Email address of the Bigin user. Example: api@tenklo.dev",
                                                     "anyOf": [
                                                         {
                                                             "type": "string"
@@ -1272254,7 +1272254,7 @@
                                     "description": "ID of the customer that made the payment. Example: \"260815000000161104\""
                                 },
                                 "customer_name": {
-                                    "description": "Name of the customer that made the payment. Example: \"Nango CCP Test Customer\"",
+                                    "description": "Name of the customer that made the payment. Example: \"Tenklo CCP Test Customer\"",
                                     "type": "string"
                                 },
                                 "unused_amount": {
@@ -1275849,7 +1275849,7 @@
                                     "type": "string"
                                 },
                                 "name": {
-                                    "description": "Organization name. Example: \"Nango Dev\"",
+                                    "description": "Organization name. Example: \"Tenklo Dev\"",
                                     "type": "string"
                                 },
                                 "first_name": {
@@ -1275916,7 +1275916,7 @@
                                     "type": "number"
                                 },
                                 "primary_domain_name": {
-                                    "description": "Primary domain name of the organization. Example: \"nango.dev\"",
+                                    "description": "Primary domain name of the organization. Example: \"tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "is_public_domain": {
@@ -1276130,7 +1276130,7 @@
                                     "type": "string"
                                 },
                                 "email": {
-                                    "description": "Primary email address of the organization. Example: \"api@nango.dev\"",
+                                    "description": "Primary email address of the organization. Example: \"api@tenklo.dev\"",
                                     "type": "string"
                                 },
                                 "unverified_emails_count": {
@@ -1279395,7 +1279395,7 @@
                                             },
                                             "name": {
                                                 "type": "string",
-                                                "description": "Display name of the organization. Example: \"Nango Dev\""
+                                                "description": "Display name of the organization. Example: \"Tenklo Dev\""
                                             },
                                             "org_alias_name": {
                                                 "description": "Alias name of the organization.",
@@ -1284126,7 +1284126,7 @@
                                     "type": "string"
                                 },
                                 "created_by": {
-                                    "description": "Name of the user who created the bill. Example: \"Nango Developer\".",
+                                    "description": "Name of the user who created the bill. Example: \"Tenklo Developer\".",
                                     "type": "string"
                                 },
                                 "last_modified_by": {

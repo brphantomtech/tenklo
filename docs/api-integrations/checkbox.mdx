@@ -6,22 +6,22 @@ description: 'Integrate your application with the Checkbox API'
 
 ## 🚀 Quickstart
 
-Connect to Checkbox with Nango and see data flow in 2 minutes.
+Connect to Checkbox with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Checkbox_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Checkbox_.
     </Step>
     <Step title="Authorize Checkbox">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then select your Checkbox environment (production or sandbox) and enter your Checkbox Partner API key. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then select your Checkbox environment (production or sandbox) and enter your Checkbox Partner API key. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Checkbox API">
-    Let's make your first request to the Checkbox API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Checkbox API. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/partner/api/v1/ticketing/boards?limit=50" \
+            curl "https://api.tenklo.dev/proxy/partner/api/v1/ticketing/boards?limit=50" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Checkbox with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,11 +53,11 @@ Connect to Checkbox with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own Partner API key, follow the setup guide linked below.
     </Step>
@@ -65,7 +65,7 @@ Connect to Checkbox with Nango and see data flow in 2 minutes.
 
 ## 📚 Checkbox Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to obtain your Checkbox Partner API key](/api-integrations/checkbox/connect)
 Choose your environment, create a Partner API key in Checkbox, and optionally add your Create Assessment account ID and base URL
@@ -74,10 +74,10 @@ Official docs: [Checkbox](https://www.checkbox.ai) (API documentation is provide
 
 ## 🔌 Calling the Create Assessment API
 
-Checkbox has two APIs, and one API key and one Nango connection cover both:
+Checkbox has two APIs, and one API key and one Tenklo connection cover both:
 
-- **Matter Management (Partner API)** is served under `/partner/api/v1/ticketing` from the connection's environment: `https://app.checkbox.ai` for production or `https://sandbox.checkbox-app.com` for sandbox. Nango uses this base URL by default, so no extra setup is needed.
-- **Create Assessment** (`POST /restapi/v1/assessments`) is served from the same base URL that Checkbox assigns to each environment. Nango adds the `X-Consumer-Custom-Id` header automatically when the connection's **Account ID** is set.
+- **Matter Management (Partner API)** is served under `/partner/api/v1/ticketing` from the connection's environment: `https://app.checkbox.ai` for production or `https://sandbox.checkbox-app.com` for sandbox. Tenklo uses this base URL by default, so no extra setup is needed.
+- **Create Assessment** (`POST /restapi/v1/assessments`) is served from the same base URL that Checkbox assigns to each environment. Tenklo adds the `X-Consumer-Custom-Id` header automatically when the connection's **Account ID** is set.
 
 ```typescript
 const connection = await nango.getConnection('<INTEGRATION-ID>', '<CONNECTION-ID>');

@@ -917,7 +917,7 @@ describe('integrationService', () => {
                 expect(createSpy).not.toHaveBeenCalled();
             });
 
-            it('registers a CIMD client_id when Nango is reachable over HTTPS', async () => {
+            it('registers a CIMD client_id when Tenklo is reachable over HTTPS', async () => {
                 vi.spyOn(shared, 'getProvider').mockReturnValue(mcpProviderFixture('cimd'));
                 vi.spyOn(shared.configService, 'getProviderConfig').mockResolvedValue(null);
                 vi.spyOn(shared, 'getGlobalClientMetadataDocumentUrl').mockImplementation(
@@ -943,7 +943,7 @@ describe('integrationService', () => {
                 );
             });
 
-            it('rejects creating a CIMD integration when Nango is not reachable over HTTPS', async () => {
+            it('rejects creating a CIMD integration when Tenklo is not reachable over HTTPS', async () => {
                 vi.spyOn(shared, 'getProvider').mockReturnValue(mcpProviderFixture('cimd'));
                 vi.spyOn(shared.configService, 'getProviderConfig').mockResolvedValue(null);
                 vi.spyOn(shared, 'getGlobalClientMetadataDocumentUrl').mockReturnValue(null);
@@ -1328,7 +1328,7 @@ describe('integrationService', () => {
                 expect(editSpy).toHaveBeenCalledWith(expect.objectContaining({ oauth_client_secret: 'new-secret' }), mcpProviderFixture('static'));
             });
 
-            it('keeps a CIMD client_id in sync when the integration is renamed and Nango is reachable over HTTPS', async () => {
+            it('keeps a CIMD client_id in sync when the integration is renamed and Tenklo is reachable over HTTPS', async () => {
                 const integration = integrationFixture({
                     uniqueKey: 'mcp3',
                     provider: 'mcp3',
@@ -1360,7 +1360,7 @@ describe('integrationService', () => {
                 );
             });
 
-            it('rejects renaming a CIMD integration when Nango is not reachable over HTTPS, instead of leaving a stale client_id', async () => {
+            it('rejects renaming a CIMD integration when Tenklo is not reachable over HTTPS, instead of leaving a stale client_id', async () => {
                 const integration = integrationFixture({
                     uniqueKey: 'mcp3',
                     provider: 'mcp3',

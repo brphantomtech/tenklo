@@ -1,10 +1,10 @@
 ---
 title: 'Event functions'
 sidebarTitle: 'Event functions'
-description: 'Run function logic automatically when Nango connection lifecycle events happen.'
+description: 'Run function logic automatically when Tenklo connection lifecycle events happen.'
 ---
 
-Event functions run automatically when Nango reaches a connection lifecycle event. They are defined with `createOnEvent()`.
+Event functions run automatically when Tenklo reaches a connection lifecycle event. They are defined with `createOnEvent()`.
 
 Use them to validate credentials, register provider webhooks, seed connection-specific metadata, or clean up external resources before a connection is deleted.
 
@@ -119,12 +119,12 @@ import './salesforce/on-events/validate-connection';
 On first connect, validation passes when metadata has no locked org yet; the setup function records `organization_id` after auth succeeds. On reconnect, validation compares the new credentials against the saved org ID and rejects the attempt if they differ.
 
 <Info>
-Compare the locked value in **metadata** to a live value from the provider API. Do not compare `connection_config` fields: on reconnect, Nango upserts the new credentials and overwrites `connection_config` **before** `validate-connection` runs, so config already reflects the account the user just authenticated with.
+Compare the locked value in **metadata** to a live value from the provider API. Do not compare `connection_config` fields: on reconnect, Tenklo upserts the new credentials and overwrites `connection_config` **before** `validate-connection` runs, so config already reflects the account the user just authenticated with.
 </Info>
 
 ## Create a cleanup function
 
-If the provider webhook is registered per connection, clean it up before the Nango connection is deleted:
+If the provider webhook is registered per connection, clean it up before the Tenklo connection is deleted:
 
 ```typescript salesforce/on-events/pre-connection-cleanup.ts
 import { createOnEvent } from 'nango';

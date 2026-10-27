@@ -144,8 +144,8 @@ Available environment variables:
 NANGO_SECRET_KEY_DEV=xxxx-xxx-xxxx
 NANGO_SECRET_KEY_PROD=xxxx-xxx-xxxx
 
-# Nango's instance URL (OSS: change to http://localhost:3003 or your instance URL).
-NANGO_HOSTPORT=https://api.nango.dev # Default value
+# Tenklo's instance URL (OSS: change to http://localhost:3003 or your instance URL).
+NANGO_HOSTPORT=https://api.tenklo.dev # Default value
 
 # Client certificate for a self-hosted API behind mTLS.
 # A single PEM that contains both the certificate and private key is enough.
@@ -164,16 +164,16 @@ NANGO_DEPLOY_AUTO_CONFIRM=false # Default value
 NANGO_CLI_DEPENDENCY_UPDATE=true # Default value
 `
     )
-    .version(getVersionOutput(), '-v, --version', 'Print the version of the Nango CLI and Nango Server.');
+    .version(getVersionOutput(), '-v, --version', 'Print the version of the Tenklo CLI and Tenklo Server.');
 
 // don't allow global options to leak into sub commands
 program.enablePositionalOptions(true);
 
-program.addHelpText('before', chalk.green(figlet.textSync('Nango CLI')));
+program.addHelpText('before', chalk.green(figlet.textSync('Tenklo CLI')));
 
 program
     .command('version')
-    .description('Print the version of the Nango CLI and Nango Server.')
+    .description('Print the version of the Tenklo CLI and Tenklo Server.')
     .action(function (this: Command) {
         const versionOutput = getVersionOutput();
         console.log(versionOutput);
@@ -181,7 +181,7 @@ program
 
 program
     .command('init')
-    .argument('[path]', 'Optional: The path to initialize the Nango project in. Defaults to the current directory.')
+    .argument('[path]', 'Optional: The path to initialize the Tenklo project in. Defaults to the current directory.')
     .description('Initialize a new Nango project')
     .option('--copy', 'Optional: Only copy files, will not npm install or pre-compile', false)
     .action(async function (this: Command) {
@@ -201,7 +201,7 @@ program
 
         const check = await verificationService.preCheck({ fullPath: absolutePath, debug });
         if (check.isZeroYaml) {
-            console.log(chalk.red(`The path provided is already a Nango integrations folder.`));
+            console.log(chalk.red(`The path provided is already a Tenklo integrations folder.`));
             return;
         }
 
@@ -211,7 +211,7 @@ program
             return;
         }
 
-        console.log(chalk.green(`Nango integrations initialized in ${absolutePath}`));
+        console.log(chalk.green(`Tenklo integrations initialized in ${absolutePath}`));
         return;
     });
 
@@ -288,7 +288,7 @@ program
     .description('Dry run a sync, action, or function against an existing connection in cloud.')
     .argument('[name]', 'The name of the sync, action, or function to run.')
     .argument('[connection_id]', 'The ID of the connection to use.')
-    .option('-e, --environment [environment]', 'The Nango environment. If not provided, you will be prompted to select one.')
+    .option('-e, --environment [environment]', 'The Tenklo environment. If not provided, you will be prompted to select one.')
     .option(
         '-l, --lastSyncDate [lastSyncDate]',
         'Optional (for syncs only): last sync date to retrieve records greater than this date. The format is any string that can be successfully parsed by `new Date()` in JavaScript'
@@ -489,7 +489,7 @@ program
 
 program
     .command('deploy')
-    .description('Deploy a Nango integration')
+    .description('Deploy a Tenklo integration')
     .argument('[environment]', 'The target environment (e.g., "dev" or "prod")')
     .option('-v, --version [version]', 'Optional: Set a version of this deployment to tag this integration with.')
     .option('-s, --sync [syncName]', 'Optional deploy only this sync name.')

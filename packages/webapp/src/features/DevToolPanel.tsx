@@ -18,14 +18,14 @@ const PlanOverrideContent = lazy(() => import('./PlanOverrideOverlay').then((m) 
 /**
  * True when the dev tool panel is available based on the current hostname:
  * - local Vite dev server
- * - *.app-development.nango.dev (development deployment and PR previews)
- * - app-staging.nango.dev (staging deployment)
+ * - *.app-development.tenklo.dev (development deployment and PR previews)
+ * - app-staging.tenklo.dev (staging deployment)
  */
 const isDevToolsEnabledByHostname =
     import.meta.env.DEV ||
-    window.location.hostname === 'app-development.nango.dev' ||
-    window.location.hostname.endsWith('.app-development.nango.dev') ||
-    window.location.hostname === 'app-staging.nango.dev';
+    window.location.hostname === 'app-development.tenklo.dev' ||
+    window.location.hostname.endsWith('.app-development.tenklo.dev') ||
+    window.location.hostname === 'app-staging.tenklo.dev';
 
 export function useIsDevToolsEnabled(): boolean {
     const env = useStore((s) => s.env);

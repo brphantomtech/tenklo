@@ -416,7 +416,7 @@ export async function compileFunction({
         const relPath = path.relative(projectRootPath, entryPoint).replace(/\.js$/, '.ts');
         console.warn(
             chalk.yellow(
-                `\nWarning: Function '${relPath}' contains console statements (console.log, console.warn, etc.). These logs will not appear in the Nango dashboard. Use await nango.log() instead to see logs in the dashboard.`
+                `\nWarning: Function '${relPath}' contains console statements (console.log, console.warn, etc.). These logs will not appear in the Tenklo dashboard. Use await nango.log() instead to see logs in the dashboard.`
             )
         );
     }

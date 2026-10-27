@@ -7,7 +7,7 @@ async function bootstrap() {
         await loadRuntimeEnv();
         await import('./main');
     } catch (err) {
-        console.error('Failed to bootstrap Nango webapp', err);
+        console.error('Failed to bootstrap Tenklo webapp', err);
         document.body.innerHTML = '<p>Failed to load application configuration. Please refresh the page.</p>';
     }
 }

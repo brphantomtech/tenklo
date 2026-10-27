@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own GitHub App'
 sidebarTitle: 'GitHub App Setup'
-description: 'Register a GitHub App and obtain credentials to connect it to Nango'
+description: 'Register a GitHub App and obtain credentials to connect it to Tenklo'
 ---
 
 This guide shows you how to register your own GitHub App to obtain your OAuth credentials (App ID and Private Key). These are required to let your users grant your app access to their GitHub account.
@@ -29,7 +29,7 @@ This guide shows you how to register your own GitHub App to obtain your OAuth cr
     <Step id="configure-callback-url" title="Configure callback URL">
         If your app needs to act on behalf of a user (generate a user access token):
 
-        1. Under **Callback URL**, enter `https://api.nango.dev/oauth/callback`.
+        1. Under **Callback URL**, enter `https://api.tenklo.dev/oauth/callback`.
         2. You can add up to 10 callback URLs by clicking **Add callback URL**.
 
         This field is required if you plan to select **Request user authorization (OAuth) during installation** in the next step, because that flow completes through the callback URL. It can be left blank otherwise.
@@ -40,31 +40,31 @@ This guide shows you how to register your own GitHub App to obtain your OAuth cr
         3. If you want to use device flow to generate a user access token, select **Enable Device Flow**.
 
         <Note>
-        Item 2 decides which Nango integration you set up, and the next step depends on it. Leave it unselected for **GitHub (App)**. Select it for [**GitHub (App OAuth)**](/api-integrations/github-app-oauth/how-to-register-your-own-github-app-api-oauth-app), which authorizes the user and installs the app in one flow.
+        Item 2 decides which Tenklo integration you set up, and the next step depends on it. Leave it unselected for **GitHub (App)**. Select it for [**GitHub (App OAuth)**](/api-integrations/github-app-oauth/how-to-register-your-own-github-app-api-oauth-app), which authorizes the user and installs the app in one flow.
         </Note>
     </Step>
     <Step id="configure-setup-url" title="Configure setup URL">
         What you do here depends on the previous step.
 
-        If you left **Request user authorization (OAuth) during installation** unselected, under **Setup URL** enter `https://api.nango.dev/app-auth/connect`. If you use a custom callback URL, take that URL and replace `oauth/callback` with `app-auth/connect`. Nango also shows the exact value on the integration page once you create it.
+        If you left **Request user authorization (OAuth) during installation** unselected, under **Setup URL** enter `https://api.tenklo.dev/app-auth/connect`. If you use a custom callback URL, take that URL and replace `oauth/callback` with `app-auth/connect`. Tenklo also shows the exact value on the integration page once you create it.
 
         If you selected **Request user authorization (OAuth) during installation**, GitHub disables the **Setup URL** field. There is nothing to enter, the connection completes through the callback URL and the installation webhook instead. Keep going with this guide, the remaining steps apply to both flows.
 
         In both cases, select **Redirect on update** under **Post installation**.
 
         <Warning>
-        When the setup URL field is available, it is what completes the connection. GitHub sends the installation ID there after an install, and without it the app installs on GitHub but no connection appears in Nango.
+        When the setup URL field is available, it is what completes the connection. GitHub sends the installation ID there after an install, and without it the app installs on GitHub but no connection appears in Tenklo.
         </Warning>
 
         <Note>The Setup URL is not to be confused with the Callback URL from the earlier step.</Note>
     </Step>
     <Step id="defer-webhook-settings" title="Configure webhook settings">
-        Leave webhooks off for now. The webhook URL and secret both come from your Nango integration, and that integration needs the App ID and private key you generate later in this guide.
+        Leave webhooks off for now. The webhook URL and secret both come from your Tenklo integration, and that integration needs the App ID and private key you generate later in this guide.
 
         1. Clear the **Active** checkbox. GitHub requires a webhook URL while **Active** is selected.
         2. Under **SSL verification**, keep **Enable SSL verification** selected (recommended).
 
-        You turn webhooks on in the last step, once Nango can show you both values.
+        You turn webhooks on in the last step, once Tenklo can show you both values.
     </Step>
     <Step title="Set app permissions">
         1. Under **Permissions**, choose the permissions your app needs. For each permission, select the dropdown menu and click **Read-only**, **Read & write**, or **No access**.
@@ -96,30 +96,30 @@ This guide shows you how to register your own GitHub App to obtain your OAuth cr
         1. On your GitHub App's settings page, scroll down to the **Private keys** section.
         2. Click **Generate a private key**.
         3. A private key file will be downloaded to your computer. Store this file securely as GitHub will not store a copy.
-        4. This private key will be needed when configuring your integration in Nango.
+        4. This private key will be needed when configuring your integration in Tenklo.
 
         <Note>The App Private Key needs to be generated in your GitHub App settings (not to be confused with the Client Secrets).</Note>
     </Step>
     <Step title="Note your App ID and installation URL">
         1. On your GitHub App's settings page, note the **App ID** at the top of the page.
         2. Also note your **App Public Link** (e.g., https://github.com/apps/your-app-name).
-        3. You'll need both of these when configuring your integration in Nango.
+        3. You'll need both of these when configuring your integration in Tenklo.
 
         <Note>When setting up a GitHub App, the App ID is made of numbers (e.g. 401953) and the App Public Link is the URL to your Github App public page (e.g. https://github.com/apps/nango-github-app).</Note>
     </Step>
-    <Step id="create-nango-integration" title="Set up the integration in Nango">
-        Create the integration in Nango and fill in the **App ID**, **App Private Key** and **App Public Link** you just collected. Use **GitHub (App)** if you left user authorization during installation unselected, and **GitHub (App OAuth)** if you selected it.
+    <Step id="create-nango-integration" title="Set up the integration in Tenklo">
+        Create the integration in Tenklo and fill in the **App ID**, **App Private Key** and **App Public Link** you just collected. Use **GitHub (App)** if you left user authorization during installation unselected, and **GitHub (App OAuth)** if you selected it.
 
         GitHub (App OAuth) also needs the client ID and client secret. See [GitHub App OAuth setup](/api-integrations/github-app-oauth/how-to-register-your-own-github-app-api-oauth-app) for those.
 
-        Saving these lets Nango derive the webhook secret, which it cannot do before the integration exists.
+        Saving these lets Tenklo derive the webhook secret, which it cannot do before the integration exists.
     </Step>
     <Step id="enable-webhooks" title="Enable webhooks on your GitHub App">
-        On your Nango integration page, copy the value under **Webhook URL** and the value under **Webhook Secret**. Then go back to your GitHub App settings:
+        On your Tenklo integration page, copy the value under **Webhook URL** and the value under **Webhook Secret**. Then go back to your GitHub App settings:
 
         1. Select the **Active** checkbox under **Webhooks**.
-        2. Under **Webhook URL**, paste the webhook URL from Nango.
-        3. Under **Webhook secret**, paste the webhook secret from Nango. This is required. GitHub only signs payloads when the secret is set, and Nango verifies every payload it receives. Keep it secure and never expose it publicly.
+        2. Under **Webhook URL**, paste the webhook URL from Tenklo.
+        3. Under **Webhook secret**, paste the webhook secret from Tenklo. This is required. GitHub only signs payloads when the secret is set, and Tenklo verifies every payload it receives. Keep it secure and never expose it publicly.
 
            <img src="/api-integrations/github-app/webhook-secret.png" style={{ maxWidth: "500px" }} />
 
@@ -127,7 +127,7 @@ This guide shows you how to register your own GitHub App to obtain your OAuth cr
         5. Save the changes.
 
         <Warning>
-        Nango rejects a webhook that arrives with no `x-hub-signature-256` header, and it is not forwarded to your app. An app set up without the webhook secret looks correctly configured on GitHub but delivers nothing.
+        Tenklo rejects a webhook that arrives with no `x-hub-signature-256` header, and it is not forwarded to your app. An app set up without the webhook secret looks correctly configured on GitHub but delivers nothing.
         </Warning>
     </Step>
     <Step title="Next">
@@ -137,25 +137,25 @@ This guide shows you how to register your own GitHub App to obtain your OAuth cr
 
 ## Add the webhook secret to an existing GitHub App
 
-If your GitHub App sends webhooks to Nango without a webhook secret, GitHub does not sign the payloads and Nango cannot verify them. Add the secret to start sending signed payloads. This applies to both **GitHub (App)** and **GitHub (App OAuth)** integrations.
+If your GitHub App sends webhooks to Tenklo without a webhook secret, GitHub does not sign the payloads and Tenklo cannot verify them. Add the secret to start sending signed payloads. This applies to both **GitHub (App)** and **GitHub (App OAuth)** integrations.
 
 The secret is set once on the GitHub App and covers every installation. Your existing connections keep working, and your users don't need to reinstall or reauthorize anything.
 
-1. On your Nango integration page, copy the value under **Webhook Secret**.
+1. On your Tenklo integration page, copy the value under **Webhook Secret**.
 2. In your GitHub App settings, under **Webhook**, paste it into **Secret** and click **Save changes**.
 
    <img src="/api-integrations/github-app/webhook-secret.png" style={{ maxWidth: "500px" }} />
 
-3. To confirm, open the **Advanced** tab of your GitHub App settings. New entries under **Recent Deliveries** should include an `X-Hub-Signature-256` header and a `200` response from Nango.
+3. To confirm, open the **Advanced** tab of your GitHub App settings. New entries under **Recent Deliveries** should include an `X-Hub-Signature-256` header and a `200` response from Tenklo.
 
 <Note>
-Nango derives the webhook secret from the App ID, App Private Key and App Public Link. If you change any of them in Nango, copy the new **Webhook Secret** to your GitHub App again.
+Tenklo derives the webhook secret from the App ID, App Private Key and App Public Link. If you change any of them in Tenklo, copy the new **Webhook Secret** to your GitHub App again.
 </Note>
 
 ## Important considerations
 
 - There are certain API methods that only work with an OAuth App that will not work with a GitHub App. Please check the Github documentation and look for a "Works with Github Apps" header under the endpoint.
-- Nango supports initiating a connection with a GitHub App using the frontend SDK, but not directly from the [GitHub Marketplace](https://github.com/marketplace). Therefore, you should encourage users to install your GitHub App from your product, rather than from the GitHub Marketplace directly. This is a limitation we plan to fix in the future.
+- Tenklo supports initiating a connection with a GitHub App using the frontend SDK, but not directly from the [GitHub Marketplace](https://github.com/marketplace). Therefore, you should encourage users to install your GitHub App from your product, rather than from the GitHub Marketplace directly. This is a limitation we plan to fix in the future.
 - GitHub Apps can use both REST and GraphQL APIs, but the available endpoints depend on the permissions configured for the app.
 - When making API requests with a GitHub App, you need to authenticate as the app installation, not as the app itself.
 - Rate limits for GitHub Apps are higher than for OAuth Apps and are based on the installation, not the user.

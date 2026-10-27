@@ -122,7 +122,7 @@ export const AuditShow: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Audit trail">
                 <Helmet>
-                    <title>Audit trail - Nango</title>
+                    <title>Audit trail - Tenklo</title>
                 </Helmet>
                 <div className="flex gap-2 flex-col border border-border-muted rounded-md items-center text-text-strong text-center p-10 py-20">
                     <h2 className="text-xl text-center">Audit trail not enabled</h2>
@@ -136,7 +136,7 @@ export const AuditShow: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Audit trail">
                 <Helmet>
-                    <title>Audit trail - Nango</title>
+                    <title>Audit trail - Tenklo</title>
                 </Helmet>
                 <div className="flex gap-2 flex-col border border-border-muted rounded-md items-center text-text-strong text-center p-10 py-20">
                     <h2 className="text-xl text-center">Access denied</h2>
@@ -156,7 +156,7 @@ export const AuditShow: React.FC = () => {
     return (
         <DashboardLayout fullWidth title="Audit trail" titleActions={resultCount}>
             <Helmet>
-                <title>Audit trail - Nango</title>
+                <title>Audit trail - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col gap-5">

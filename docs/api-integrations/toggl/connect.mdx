@@ -5,7 +5,7 @@ sidebarTitle: Toggl Track
 
 ## Overview
 
-The [Toggl Track API](https://developers.track.toggl.com/docs/introduction) authenticates with **HTTP Basic Auth**. Nango stores a username and password pair that map to one of two supported combinations:
+The [Toggl Track API](https://developers.track.toggl.com/docs/introduction) authenticates with **HTTP Basic Auth**. Tenklo stores a username and password pair that map to one of two supported combinations:
 
 1. **Email and password** — `username` is your Toggl Track account email and `password` is your account password.
 2. **API token** — `username` is your [personal API token](https://track.toggl.com/profile) and `password` must be the literal string `api_token`.
@@ -27,7 +27,7 @@ Use the same email and password you use to sign in to Toggl Track.
 1. Sign in to Toggl Track and open your [profile](https://track.toggl.com/profile).
 2. Find your **API token** (personal token) and copy it.
 <img src="/api-integrations/toggl/api_key.png"/>
-3. In Nango, set **Email or API token** to the token value.
+3. In Tenklo, set **Email or API token** to the token value.
 4. Set **Password or api_token** to exactly `api_token` (the word `api_token`, not your account password).
 
 <Tip>Using an API token avoids storing your main account password and can be rotated independently. See [Toggl’s authentication documentation](https://developers.track.toggl.com/docs/authentication).</Tip>

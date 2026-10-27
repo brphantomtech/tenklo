@@ -17,7 +17,7 @@ const es: Translation = {
         title: 'Seleccionar Integración',
         description: 'Por favor, selecciona una integración de API de la lista a continuación.',
         noIntegrations: 'No se encontró ninguna integración.',
-        noIntegrationsDescription: 'No has configurado ninguna integración en este entorno. Agrega tu primera integración en el panel de Nango.',
+        noIntegrationsDescription: 'No has configurado ninguna integración en este entorno. Agrega tu primera integración en el panel de Tenklo.',
         connectTo: 'Conectar a {provider}',
         error: 'Ocurrió un error al cargar la configuración'
     },

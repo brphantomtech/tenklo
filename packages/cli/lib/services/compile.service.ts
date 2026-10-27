@@ -112,7 +112,7 @@ export async function compileAllFiles({
     }
 
     if (allSuccess) {
-        console.log(chalk.green('Successfully compiled all files present in the Nango YAML config file.'));
+        console.log(chalk.green('Successfully compiled all files present in the Tenklo YAML config file.'));
     }
 
     return { success: allSuccess, failedFiles };

@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own eWay-CRM OAuth app'
 sidebarTitle: 'eWay-CRM setup'
-description: 'Get OAuth credentials from eWay-CRM support and connect them to Nango'
+description: 'Get OAuth credentials from eWay-CRM support and connect them to Tenklo'
 ---
 
 This guide shows you how to obtain OAuth credentials (Client ID & Client Secret) for eWay-CRM. These are required to let your users grant your app access to their eWay-CRM account.
@@ -14,13 +14,13 @@ This guide shows you how to obtain OAuth credentials (Client ID & Client Secret)
 
     Include the redirect URL in your request:
     ```
-    https://api.nango.dev/oauth/callback
+    https://api.tenklo.dev/oauth/callback
     ```
 
     eWay-CRM support will reply with your **Client ID** and **Client Secret**.
   </Step>
-  <Step id="configure-nango" title="Configure the integration in Nango">
-    In Nango, when setting up the eWay-CRM integration, enter your **Client ID** and **Client Secret**.
+  <Step id="configure-nango" title="Configure the integration in Tenklo">
+    In Tenklo, when setting up the eWay-CRM integration, enter your **Client ID** and **Client Secret**.
 
     Then follow the [connect guide](/api-integrations/eway-crm/connect) to find your Service URL and connect your first account.
   </Step>

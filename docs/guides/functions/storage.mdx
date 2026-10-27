@@ -10,7 +10,7 @@ For the product-level workflow, see [Customize per customer](/getting-started/us
 
 ## Connection metadata
 
-Connection metadata is the default blob storage for Nango Functions. It is a JSON object stored on a Nango connection and available to action functions, sync functions, webhook functions, and event functions.
+Connection metadata is the default blob storage for Tenklo Functions. It is a JSON object stored on a Tenklo connection and available to action functions, sync functions, webhook functions, and event functions.
 
 Use metadata for:
 
@@ -44,7 +44,7 @@ Set metadata after the customer chooses integration settings during onboarding o
   <Tab title="Set with REST API">
   ```bash
   curl --request POST \
-    --url https://api.nango.dev/connection/<CONNECTION-ID>/metadata \
+    --url https://api.tenklo.dev/connection/<CONNECTION-ID>/metadata \
     --header 'Authorization: Bearer <ENV-SECRET-KEY>' \
     --header 'Provider-Config-Key: <INTEGRATION-ID>' \
     --header 'Content-Type: application/json' \
@@ -69,7 +69,7 @@ Set metadata after the customer chooses integration settings during onboarding o
   <Tab title="Update with REST API">
   ```bash
   curl --request PATCH \
-    --url https://api.nango.dev/connection/<CONNECTION-ID>/metadata \
+    --url https://api.tenklo.dev/connection/<CONNECTION-ID>/metadata \
     --header 'Authorization: Bearer <ENV-SECRET-KEY>' \
     --header 'Provider-Config-Key: <INTEGRATION-ID>' \
     --header 'Content-Type: application/json' \
@@ -94,7 +94,7 @@ You can also fetch the connection with the REST API:
 
 ```bash
 curl --request GET \
-  --url 'https://api.nango.dev/connection/<CONNECTION-ID>?provider_config_key=<INTEGRATION-ID>' \
+  --url 'https://api.tenklo.dev/connection/<CONNECTION-ID>?provider_config_key=<INTEGRATION-ID>' \
   --header 'Authorization: Bearer <ENV-SECRET-KEY>'
 ```
 

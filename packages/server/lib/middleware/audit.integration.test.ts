@@ -619,7 +619,7 @@ describe('audit middleware — live-stack contract', () => {
             envs.NANGO_ADMIN_UUID = adminUuid;
         });
 
-        it('marks what an impersonated session does as reached through Nango', async () => {
+        it('marks what an impersonated session does as reached through Tenklo', async () => {
             const admin = await seeders.seedAccountEnvAndUser();
             const target = await seeders.seedAccountEnvAndUser({ plan: { has_rbac: true, has_audit_trail_control_plane: true } });
             flags.hasAdminCapabilities = true;

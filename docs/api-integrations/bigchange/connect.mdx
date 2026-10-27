@@ -6,10 +6,10 @@ sidebarTitle: BigChange
 ## Overview
 
 To authenticate with BigChange, you will need:
-1. **Partner API Client ID and Client Secret** — issued by BigChange to the integrator (set once per Nango integration).
-2. **Customer ID** — the numeric Customer ID for the BigChange tenant you are connecting (per Nango connection).
+1. **Partner API Client ID and Client Secret** — issued by BigChange to the integrator (set once per Tenklo integration).
+2. **Customer ID** — the numeric Customer ID for the BigChange tenant you are connecting (per Tenklo connection).
 
-BigChange uses OAuth 2.0 Client Credentials authentication: a single Partner API `client_id` and `client_secret` are configured at the Nango integration level, and each individual BigChange customer is identified by their numeric Customer ID, passed in the `customer-id` request header.
+BigChange uses OAuth 2.0 Client Credentials authentication: a single Partner API `client_id` and `client_secret` are configured at the Tenklo integration level, and each individual BigChange customer is identified by their numeric Customer ID, passed in the `customer-id` request header.
 
 ### Prerequisites:
 
@@ -24,7 +24,7 @@ BigChange uses OAuth 2.0 Client Credentials authentication: a single Partner API
 2. Navigate to **API Key Management**.
 3. Click **Create new API Key**, give it a descriptive name, and confirm. BigChange will issue a `client_id` and `client_secret`.
 4. Copy both values. The `client_secret` is shown only once.
-5. In your Nango BigChange integration settings, paste the `client_id` and `client_secret` into the **Client ID** and **Client Secret** fields. These are shared across every BigChange tenant you connect.
+5. In your Tenklo BigChange integration settings, paste the `client_id` and `client_secret` into the **Client ID** and **Client Secret** fields. These are shared across every BigChange tenant you connect.
 
 #### Step 2: Find your BigChange Customer ID
 

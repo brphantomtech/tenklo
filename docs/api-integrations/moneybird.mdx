@@ -6,16 +6,16 @@ description: 'Connect to the Moneybird API with OAuth 2.0'
 
 ## Quickstart
 
-Connect to Moneybird with Nango and see data flow in 2 minutes.
+Connect to Moneybird with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango, go to **Integrations**, select **Configure New Integration**, then select **Moneybird**. Enter the Client ID and Client Secret from your Moneybird OAuth application.
+    In Tenklo, go to **Integrations**, select **Configure New Integration**, then select **Moneybird**. Enter the Client ID and Client Secret from your Moneybird OAuth application.
 
     If you do not specify scopes, Moneybird grants `sales_invoices` by default.
     </Step>
     <Step id="authorize-moneybird" title="Authorize Moneybird">
-    Go to **Connections**, select **Add Test Connection**, then authorize access in Moneybird. Moneybird redirects back to Nango and Nango stores the access and refresh tokens for the connection.
+    Go to **Connections**, select **Add Test Connection**, then authorize access in Moneybird. Moneybird redirects back to Tenklo and Tenklo stores the access and refresh tokens for the connection.
     </Step>
     <Step id="call-moneybird-api" title="Call the Moneybird API">
     Let's make your first request to the Moneybird API by listing the administrations available to the connected user. Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), integration ID, and connection ID:
@@ -23,7 +23,7 @@ Connect to Moneybird with Nango and see data flow in 2 minutes.
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v2/administrations.json" \
+            curl "https://api.tenklo.dev/proxy/v2/administrations.json" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -33,7 +33,7 @@ Connect to Moneybird with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,9 +51,9 @@ Connect to Moneybird with Nango and see data flow in 2 minutes.
         </Tab>
     </Tabs>
 
-    Nango adds the Moneybird Bearer token to the upstream request, so your application does not need to handle the Moneybird access token. Check the **Logs** tab in Nango to inspect the request.
+    Tenklo adds the Moneybird Bearer token to the upstream request, so your application does not need to handle the Moneybird access token. Check the **Logs** tab in Tenklo to inspect the request.
     </Step>
-    <Step id="implement-nango" title="Implement Nango in your app">
+    <Step id="implement-nango" title="Implement Tenklo in your app">
     Follow the [Auth implementation guide](/guides/auth/auth-guide) to add the authorization flow to your application.
 
     To obtain your own production credentials, follow the setup guide linked below.
@@ -70,7 +70,7 @@ Accessing contacts requires at least one of `sales_invoices`, `documents`, `esti
 
 Nango-maintained guides for common use cases.
 
-- [How to register your own Moneybird OAuth app](/api-integrations/moneybird/how-to-register-your-own-moneybird-oauth-app): Register an external OAuth application, configure its redirect URI, and add its credentials to Nango.
+- [How to register your own Moneybird OAuth app](/api-integrations/moneybird/how-to-register-your-own-moneybird-oauth-app): Register an external OAuth application, configure its redirect URI, and add its credentials to Tenklo.
 
 Official docs: [Moneybird authentication](https://developer.moneybird.com/authentication) and [Moneybird API reference](https://developer.moneybird.com/).
 

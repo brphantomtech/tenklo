@@ -6,9 +6,9 @@ import type { SearchDocsOutput } from './schema.js';
 
 export const searchDocsTool = defineManagementMcpTool<typeof searchDocsInputSchema, SearchDocsOutput>({
     name: 'docs_search',
-    title: 'Search Nango Documentation',
+    title: 'Search Tenklo Documentation',
     description:
-        'Searches the Nango documentation for guides, API references, and examples. Returns contextual snippets with titles and links; docs_query_filesystem can return full pages.',
+        'Searches the Tenklo documentation for guides, API references, and examples. Returns contextual snippets with titles and links; docs_query_filesystem can return full pages.',
     inputSchema: searchDocsInputSchema,
     outputSchema: searchDocsOutputSchema,
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },

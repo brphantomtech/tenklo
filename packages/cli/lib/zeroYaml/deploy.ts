@@ -709,7 +709,7 @@ async function handleLegacyConfirmation({
     let deletedSyncsConnectionsCount = 0;
 
     console.log('');
-    console.log('', chalk.underline('Nango will perform this plan:'));
+    console.log('', chalk.underline('Tenklo will perform this plan:'));
 
     // Syncs
     if (newSyncs.length > 0 || deletedSyncs.length > 0) {
@@ -869,7 +869,7 @@ async function handleFunctionsConfirmation({
     const { created, updated, deleted } = confirmation;
 
     console.log('');
-    console.log('', chalk.underline('Nango will perform this plan:'));
+    console.log('', chalk.underline('Tenklo will perform this plan:'));
 
     if (created.length + updated.length + deleted.length === 0) {
         console.log('');

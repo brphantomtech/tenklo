@@ -1,17 +1,17 @@
 ---
-title: 'How to set up webhooks with Outlook on Nango'
+title: 'How to set up webhooks with Outlook on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Outlook events in your app using Nango webhooks'
+description: 'Learn how to receive real-time Outlook events in your app using Tenklo webhooks'
 ---
 
-Outlook webhooks are delivered through [Microsoft Graph change notifications](https://learn.microsoft.com/en-us/graph/change-notifications-overview): you create a subscription on a mailbox resource (messages, events, or contacts) with your Nango webhook URL as the `notificationUrl`, and Microsoft Graph posts a notification there whenever that resource changes.
+Outlook webhooks are delivered through [Microsoft Graph change notifications](https://learn.microsoft.com/en-us/graph/change-notifications-overview): you create a subscription on a mailbox resource (messages, events, or contacts) with your Tenklo webhook URL as the `notificationUrl`, and Microsoft Graph posts a notification there whenever that resource changes.
 
 ## How it works
 
-1. You create a Microsoft Graph subscription for the resource you want to watch (e.g. inbox messages), passing your Nango webhook URL as `notificationUrl` and a `clientState` secret.
-2. Microsoft Graph validates the URL by sending it a `validationToken` — Nango handles this handshake automatically, so you don't need to implement it yourself.
-3. When the resource changes, Microsoft Graph sends a POST request with one or more notifications to your Nango webhook URL, each carrying the `clientState` you set, the `subscriptionId` you got back when creating the subscription, and a `resource` path identifying what changed.
-4. Nango verifies `clientState` against your integration's **Webhook secret**, matches the notification to a connection using its `subscriptionId`, and forwards the event to your app.
+1. You create a Microsoft Graph subscription for the resource you want to watch (e.g. inbox messages), passing your Tenklo webhook URL as `notificationUrl` and a `clientState` secret.
+2. Microsoft Graph validates the URL by sending it a `validationToken` — Tenklo handles this handshake automatically, so you don't need to implement it yourself.
+3. When the resource changes, Microsoft Graph sends a POST request with one or more notifications to your Tenklo webhook URL, each carrying the `clientState` you set, the `subscriptionId` you got back when creating the subscription, and a `resource` path identifying what changed.
+4. Tenklo verifies `clientState` against your integration's **Webhook secret**, matches the notification to a connection using its `subscriptionId`, and forwards the event to your app.
 
 <Note>
 Connection routing relies on the subscription's `id` being recorded in **`metadata.subscriptionIds`** on the connection — the automation in [step 3](#3-create-a-subscription-watch-a-resource) below does this for you. See [Connection matching](#connection-matching) for details.
@@ -19,22 +19,22 @@ Connection routing relies on the subscription's `id` being recorded in **`metada
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-In the Nango dashboard, open your Outlook integration and copy the **Webhook URL**.
+In the Tenklo dashboard, open your Outlook integration and copy the **Webhook URL**.
 
-### 2. Set a required webhook secret in Nango
+### 2. Set a required webhook secret in Tenklo
 
-1. In the Nango dashboard, open your Outlook integration and go to the **Settings** tab.
+1. In the Tenklo dashboard, open your Outlook integration and go to the **Settings** tab.
 2. Enter a secret string in the **Webhook Secret** field. You'll pass this same value as `clientState` when creating subscriptions in the next step.
 
 <Warning>
-Nango rejects any webhook received where the `clientState` does not match the integration **Webhook Secret**.
+Tenklo rejects any webhook received where the `clientState` does not match the integration **Webhook Secret**.
 </Warning>
 
 ### 3. Create a subscription (watch a resource)
 
-Subscribing requires the same delegated permission you'd need to read the resource directly (e.g., `Mail.Read` for messages, `Calendars.Read` for events, `Contacts.Read` for contacts). Add the scope to your Outlook integration's **Scopes** field in the Nango dashboard and re-authorize the connection if it was created before the scope was added.
+Subscribing requires the same delegated permission you'd need to read the resource directly (e.g., `Mail.Read` for messages, `Calendars.Read` for events, `Contacts.Read` for contacts). Add the scope to your Outlook integration's **Scopes** field in the Tenklo dashboard and re-authorize the connection if it was created before the scope was added.
 
 You can automate creating the subscription for new connections with a [post-connection-creation script](/guides/functions/event-functions). 
 
@@ -94,7 +94,7 @@ export default createOnEvent({
 You can also do this manually:
 
 ```bash
-curl -X POST "https://api.nango.dev/proxy/v1.0/subscriptions" \
+curl -X POST "https://api.tenklo.dev/proxy/v1.0/subscriptions" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Provider-Config-Key: <INTEGRATION-ID>" \
   -H "Connection-Id: <CONNECTION-ID>" \
@@ -110,7 +110,7 @@ curl -X POST "https://api.nango.dev/proxy/v1.0/subscriptions" \
 
 Replace:
 
-- **notificationUrl** — Your Nango webhook URL from the dashboard.
+- **notificationUrl** — Your Tenklo webhook URL from the dashboard.
 - **resource** — The mailbox resource to watch. Common values: `me/mailFolders('inbox')/messages` (inbox messages), `me/messages` (all messages), `me/events` (calendar events), `me/contacts` (contacts).
 - **clientState** — The webhook secret from [step 2](#2-set-a-required-webhook-secret-in-nango).
 - **expirationDateTime** — An ISO 8601 timestamp. Messages, events, and contacts support a maximum of **10,070 minutes** from the time of subscription.
@@ -122,7 +122,7 @@ See the [API reference](https://learn.microsoft.com/en-us/graph/api/subscription
 
 Microsoft Graph does **not** renew subscriptions automatically. Before a subscription expires, send a `PATCH` request with a new `expirationDateTime`; the subscription `id` and `clientState` stay the same. See [Renew subscription](https://learn.microsoft.com/en-us/graph/api/subscription-update).
 
-You can use a Nango sync with a suitable frequency to renew subscriptions before they expire:
+You can use a Tenklo sync with a suitable frequency to renew subscriptions before they expire:
 
 ```typescript
 import { createSync, ProxyConfiguration } from 'nango';
@@ -180,7 +180,7 @@ export default createSync({
 
 ### 5. Delete the subscription on connection deletion
 
-If a connection is deleted in Nango but the subscription remains active, Microsoft Graph keeps sending notifications until it expires. To stop them immediately, delete the subscription before the connection is removed.
+If a connection is deleted in Tenklo but the subscription remains active, Microsoft Graph keeps sending notifications until it expires. To stop them immediately, delete the subscription before the connection is removed.
 
 You can automate this with a `pre-connection-deletion` lifecycle event:
 
@@ -218,7 +218,7 @@ export default createOnEvent({
 
 Once routed to a connection, you have two options:
 
-- **Forward it to your app** — Nango forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
+- **Forward it to your app** — Tenklo forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
 - **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
 A single delivery's body is a `changeNotificationCollection` — an array of notifications under `value`, since Microsoft Graph batches notifications for the same `notificationUrl`:
@@ -247,7 +247,7 @@ Notifications carry only the id of the changed object, not its content — call 
 
 ## Supported events
 
-Nango can route any subscription on the **messages**, **events**, or **contacts** resources. `changeType` (used as the webhook type for `webhookSubscriptions`/`onWebhook`) is one of:
+Tenklo can route any subscription on the **messages**, **events**, or **contacts** resources. `changeType` (used as the webhook type for `webhookSubscriptions`/`onWebhook`) is one of:
 
 | Event | Sent when |
 | --- | --- |
@@ -259,12 +259,12 @@ For the full list of watchable resources (including shared mailboxes and other M
 
 ## Connection matching
 
-Every Microsoft Graph notification carries the `subscriptionId` of the subscription it came from. Nango matches that value against **`metadata.subscriptionIds`** — a customer-controlled array on the connection, since a single connection can have more than one active subscription (e.g. one for messages, one for events). The automation in [step 3](#3-create-a-subscription-watch-a-resource) (and [step 4](#4-renew-the-subscription)) appends to this array automatically, so no manual setup is needed as long as you use it.
+Every Microsoft Graph notification carries the `subscriptionId` of the subscription it came from. Tenklo matches that value against **`metadata.subscriptionIds`** — a customer-controlled array on the connection, since a single connection can have more than one active subscription (e.g. one for messages, one for events). The automation in [step 3](#3-create-a-subscription-watch-a-resource) (and [step 4](#4-renew-the-subscription)) appends to this array automatically, so no manual setup is needed as long as you use it.
 
 If you created subscriptions another way (e.g. manually, or before adopting this array), add the subscription id to the connection's metadata yourself:
 
 ```bash
-curl -X PATCH "https://api.nango.dev/connection/metadata" \
+curl -X PATCH "https://api.tenklo.dev/connection/metadata" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -281,7 +281,7 @@ Setting `metadata.subscriptionIds` **replaces** the array — if the connection 
 </Warning>
 
 <Warning>
-If Nango cannot match the incoming notification's `subscriptionId` to a connection, the webhook is still forwarded but won't include a `connectionId` in the payload. If more than one connection lists the same subscription id, the webhook is forwarded once per matching connection.
+If Tenklo cannot match the incoming notification's `subscriptionId` to a connection, the webhook is still forwarded but won't include a `connectionId` in the payload. If more than one connection lists the same subscription id, the webhook is forwarded once per matching connection.
 </Warning>
 
 ## Rollback strategy
@@ -289,7 +289,7 @@ If Nango cannot match the incoming notification's `subscriptionId` to a connecti
 To stop webhooks, delete the subscription using the `id` Microsoft Graph returned when you created it:
 
 ```bash
-curl -X DELETE "https://api.nango.dev/proxy/v1.0/subscriptions/<SUBSCRIPTION-ID>" \
+curl -X DELETE "https://api.tenklo.dev/proxy/v1.0/subscriptions/<SUBSCRIPTION-ID>" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Provider-Config-Key: <INTEGRATION-ID>" \
   -H "Connection-Id: <CONNECTION-ID>"
@@ -297,4 +297,4 @@ curl -X DELETE "https://api.nango.dev/proxy/v1.0/subscriptions/<SUBSCRIPTION-ID>
 
 Or let the subscription expire by not renewing it. Either way, also remove the id from **`metadata.subscriptionIds`** (and `metadata.subscriptionExpirations`) so the renewal sync stops trying to renew the subscription. Re-enable notifications by creating a new subscription with the steps above.
 
-<Tip>Need help getting started? Join us in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Join us in the [community](https://tenklo.dev/slack).</Tip>

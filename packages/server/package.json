@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/nango-server",
     "version": "1.0.0",
-    "description": "Nango OAuth's server.",
+    "description": "Tenklo OAuth's server.",
     "type": "module",
     "main": "dist/server.js",
     "typings": "dist/index.d.ts",

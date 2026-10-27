@@ -64,7 +64,7 @@ Sentry.init({
             matchRoutes
         })
     ],
-    tracePropagationTargets: [/^https:\/\/api.nango\.dev/],
+    tracePropagationTargets: [/^https:\/\/api.tenklo\.dev/],
     tracesSampleRate: 0.1,
     maxBreadcrumbs: 50,
     sendDefaultPii: false,

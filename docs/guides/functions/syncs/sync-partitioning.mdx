@@ -6,7 +6,7 @@ description: 'Spawn multiple independent sync processes inside a single connecti
 
 Sync variants let you spawn multiple independent sync processes **inside a single connection** — one per mailbox, file folder, Slack channel, repo, or any other sub-resource the end-user has access to. Each variant runs on its own schedule, with its own checkpoint and records cache, so a slow partition doesn't block a fast one.
 
-Nango is already multi-tenant by default — every sync function executes in the context of an end-user [Connection](/guides/auth/auth-guide#overview), and runs independently for each connection. Variants are for the next level down: fan-out *within* one connection.
+Tenklo is already multi-tenant by default — every sync function executes in the context of an end-user [Connection](/guides/auth/auth-guide#overview), and runs independently for each connection. Variants are for the next level down: fan-out *within* one connection.
 
 ## Overview
 
@@ -22,7 +22,7 @@ Key benefits:
 
 - By default, a sync is associated with a base variant.
 - You can create additional sync variants programmatically using the API or SDK.
-- Each variant is treated as a separate sync in the Nango UI.
+- Each variant is treated as a separate sync in the Tenklo UI.
 - Sync webhooks include a variant field to identify which variant was executed.
 - External webhooks (e.g., from Airtable) are always processed by the base variant.
 - If a sync variant needs additional context (e.g., filtering parameters), store/retrieve it using the connection metadata, namespaced with the variant ID.
@@ -33,7 +33,7 @@ Key benefits:
 Each sync can have a maximum of **100 variants** per connection. For heavier workloads, reach out to increase this limit.
 </Note>
 
-To create a sync variant, use the Nango API or SDK. The variant must have a unique name and cannot be "base" (reserved).
+To create a sync variant, use the Tenklo API or SDK. The variant must have a unique name and cannot be "base" (reserved).
 
 <Tabs>
   <Tab title="Node">
@@ -50,7 +50,7 @@ To create a sync variant, use the Nango API or SDK. The variant must have a uniq
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/sync/sync-orders/variant/high-value-orders \
+      --url https://api.tenklo.dev/sync/sync-orders/variant/high-value-orders \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -91,7 +91,7 @@ export default createSync({
 
 ## Fetching data for a variant
 
-Use the `variant` query parameter when retrieving records from the Nango API.
+Use the `variant` query parameter when retrieving records from the Tenklo API.
 
 <Tabs>
   <Tab title="Node">
@@ -107,7 +107,7 @@ Use the `variant` query parameter when retrieving records from the Nango API.
   <Tab title="cURL">
     ```bash
     curl --request GET \
-      --url "https://api.nango.dev/records?model=Order&variant=high-value-orders" \
+      --url "https://api.tenklo.dev/records?model=Order&variant=high-value-orders" \
       --header 'Authorization: Bearer <NANGO-API-KEY>'
     ```
   </Tab>
@@ -132,7 +132,7 @@ Storing metadata:
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/metadata \
+      --url https://api.tenklo.dev/metadata \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{

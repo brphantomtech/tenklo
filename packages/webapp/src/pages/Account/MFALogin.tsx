@@ -39,7 +39,7 @@ export const MFALogin: React.FC = () => {
     return (
         <DefaultLayout className="gap-10">
             <Helmet>
-                <title>Verify your sign-in - Nango</title>
+                <title>Verify your sign-in - Tenklo</title>
             </Helmet>
             <div className="flex flex-col items-center gap-3">
                 <h2 className="text-title-group text-text-strong">Verify your sign-in</h2>

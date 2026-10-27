@@ -1,7 +1,7 @@
 ---
-title: Set up Dropbox with Nango
+title: Set up Dropbox with Tenklo
 sidebarTitle: Dropbox Setup
-description: Register an OAuth app with Dropbox and connect it to Nango
+description: Register an OAuth app with Dropbox and connect it to Tenklo
 ---
 
 This guide shows you how to register your own app with Dropbox to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Dropbox account.
@@ -23,7 +23,7 @@ This guide shows you how to register your own app with Dropbox to obtain your OA
 
    <Step title="Configure OAuth settings">
      In your app's settings:
-     1. Add your **OAuth Redirect URI**: `https://api.nango.dev/oauth/callback`
+     1. Add your **OAuth Redirect URI**: `https://api.tenklo.dev/oauth/callback`
      2. Note your **App key** (Client ID) and **App secret** (Client Secret)
    </Step>
 
@@ -39,9 +39,9 @@ This guide shows you how to register your own app with Dropbox to obtain your OA
      <Note>Changes to permissions require users to re-authorize your app to grant the new scopes.</Note>
    </Step>
 
-   <Step title="Add credentials to Nango">
-     In Nango:
-     1. Go to the [Integrations](https://app.nango.dev/dev/integrations) page
+   <Step title="Add credentials to Tenklo">
+     In Tenklo:
+     1. Go to the [Integrations](https://app.tenklo.dev/dev/integrations) page
      2. Find and select **Dropbox**
      3. Enter your **App key** as the Client ID
      4. Enter your **App secret** as the Client Secret

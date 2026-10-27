@@ -47,7 +47,7 @@ export const CreateIntegration = () => {
         return (
             <DashboardLayout>
                 <Helmet>
-                    <title>Create integration - Nango</title>
+                    <title>Create integration - Tenklo</title>
                 </Helmet>
 
                 <CardLayout>
@@ -74,7 +74,7 @@ export const CreateIntegration = () => {
     return (
         <DashboardLayout>
             <Helmet>
-                <title>Create integration - Nango</title>
+                <title>Create integration - Tenklo</title>
             </Helmet>
 
             <CardLayout>

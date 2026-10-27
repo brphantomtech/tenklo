@@ -11,7 +11,7 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import type { PostOnboardingHearAboutUs } from '@nangohq/types';
 
 const HEAR_ABOUT_OPTIONS: { label: string; value: PostOnboardingHearAboutUs['Body']['source'] }[] = [
-    { label: 'My team is already using Nango', value: 'my_team_already_using' },
+    { label: 'My team is already using Tenklo', value: 'my_team_already_using' },
     { label: 'Recommended by someone I know', value: 'recommended' },
     { label: 'Search engine (Google, etc.)', value: 'search_engine' },
     { label: 'LLM search (ChatGPT, Claude, etc.)', value: 'llm_search' },
@@ -49,7 +49,7 @@ export const HearAboutUs: React.FC = () => {
         return (
             <DefaultLayout className="gap-10">
                 <Helmet>
-                    <title>How did you hear about Nango? - Nango</title>
+                    <title>How did you hear about Tenklo? - Tenklo</title>
                 </Helmet>
 
                 <Skeleton className="h-6 w-80 bg-surface-panel-inset" />
@@ -68,10 +68,10 @@ export const HearAboutUs: React.FC = () => {
     return (
         <DefaultLayout className="gap-10">
             <Helmet>
-                <title>How did you hear about Nango? - Nango</title>
+                <title>How did you hear about Tenklo? - Tenklo</title>
             </Helmet>
 
-            <h2 className="text-center text-title-group text-text-strong">How did you hear about Nango?</h2>
+            <h2 className="text-center text-title-group text-text-strong">How did you hear about Tenklo?</h2>
 
             <div className="flex w-full flex-col gap-4">
                 {HEAR_ABOUT_OPTIONS.map(({ label, value }) => (

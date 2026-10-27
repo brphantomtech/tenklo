@@ -71,7 +71,7 @@ export function resolveCimdUrl(environmentUuid: string, uniqueKey: string): Resu
         return Err(
             new McpClientRegistrationError(
                 'cimd_url_unavailable',
-                'Client ID metadata documents require your Nango instance to be reachable at a public HTTPS URL'
+                'Client ID metadata documents require your Tenklo instance to be reachable at a public HTTPS URL'
             )
         );
     }

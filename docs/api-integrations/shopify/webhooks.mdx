@@ -1,26 +1,26 @@
 ---
-title: 'How to set up webhooks with Shopify on Nango'
+title: 'How to set up webhooks with Shopify on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Shopify events in your app using Nango webhooks'
+description: 'Learn how to receive real-time Shopify events in your app using Tenklo webhooks'
 ---
 
-Shopify webhooks notify your app when something changes in a store — an order is created, a product is updated, a customer is deleted. You register webhooks against Shopify's Admin API with the callback address set to your Nango webhook URL; Nango verifies the request and routes it to the right connection.
+Shopify webhooks notify your app when something changes in a store — an order is created, a product is updated, a customer is deleted. You register webhooks against Shopify's Admin API with the callback address set to your Tenklo webhook URL; Tenklo verifies the request and routes it to the right connection.
 
 ## How it works
 
-1. You register a webhook via Shopify's Admin API (REST or GraphQL), pointing the callback address at your Nango webhook URL.
+1. You register a webhook via Shopify's Admin API (REST or GraphQL), pointing the callback address at your Tenklo webhook URL.
 2. Shopify sends a POST request to that URL when the subscribed event occurs, signing it with `X-Shopify-Hmac-Sha256` and including the `X-Shopify-Topic` and `X-Shopify-Shop-Domain` headers.
-3. Nango verifies the signature, matches the shop domain in `X-Shopify-Shop-Domain` to the connection's `subdomain`, and forwards the event to your app.
+3. Tenklo verifies the signature, matches the shop domain in `X-Shopify-Shop-Domain` to the connection's `subdomain`, and forwards the event to your app.
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-In the Nango dashboard, open your Shopify integration and copy the **Webhook URL**.
+In the Tenklo dashboard, open your Shopify integration and copy the **Webhook URL**.
 
 ### 2. Register the webhook in Shopify
 
-Registering a webhook for a topic requires the scope that grants read access to the underlying resource (for example, `read_orders` for `orders/create`). Add the scope to your Shopify integration's **Scopes** field in the Nango dashboard and re-authorize the connection if it was created before the scope was added.
+Registering a webhook for a topic requires the scope that grants read access to the underlying resource (for example, `read_orders` for `orders/create`). Add the scope to your Shopify integration's **Scopes** field in the Tenklo dashboard and re-authorize the connection if it was created before the scope was added.
 
 <Note>
 Shopify's REST Admin API has been legacy since October 2024, and public (OAuth) apps created after April 2025 must use the GraphQL Admin API — the REST tab below still works for existing apps and for the API Key (custom app) auth mode, but prefer GraphQL for any new OAuth integration.
@@ -29,7 +29,7 @@ Shopify's REST Admin API has been legacy since October 2024, and public (OAuth) 
 <Tabs>
   <Tab title="REST API">
     ```bash
-    curl -X POST "https://api.nango.dev/proxy/admin/api/2025-01/webhooks.json" \
+    curl -X POST "https://api.tenklo.dev/proxy/admin/api/2025-01/webhooks.json" \
       -H "Authorization: Bearer <NANGO-API-KEY>" \
       -H "Provider-Config-Key: <INTEGRATION-ID>" \
       -H "Connection-Id: <CONNECTION-ID>" \
@@ -45,7 +45,7 @@ Shopify's REST Admin API has been legacy since October 2024, and public (OAuth) 
   </Tab>
   <Tab title="GraphQL">
     ```bash
-    curl -X POST "https://api.nango.dev/proxy/admin/api/2025-01/graphql.json" \
+    curl -X POST "https://api.tenklo.dev/proxy/admin/api/2025-01/graphql.json" \
       -H "Authorization: Bearer <NANGO-API-KEY>" \
       -H "Provider-Config-Key: <INTEGRATION-ID>" \
       -H "Connection-Id: <CONNECTION-ID>" \
@@ -100,7 +100,7 @@ Every delivery also includes these headers:
 
 ## Connection matching
 
-Nango matches an incoming webhook to a connection using the shop domain in the `X-Shopify-Shop-Domain` header against the connection's `subdomain`. No extra configuration is needed on the connection.
+Tenklo matches an incoming webhook to a connection using the shop domain in the `X-Shopify-Shop-Domain` header against the connection's `subdomain`. No extra configuration is needed on the connection.
 
 <Warning>
 If no connection's `subdomain` matches the shop domain in `X-Shopify-Shop-Domain`, the webhook is not routed to any connection.
@@ -109,18 +109,18 @@ If no connection's `subdomain` matches the shop domain in `X-Shopify-Shop-Domain
 ## Signature verification
 
 - **Shopify (OAuth)**: Nango verifies `X-Shopify-Hmac-Sha256` automatically using your integration's client secret — no extra setup needed.
-- **Shopify (API Key)**: set a **Webhook Secret** on the integration in the Nango dashboard, matching the secret configured when you subscribed the webhook, so Nango can verify the signature against it.
+- **Shopify (API Key)**: set a **Webhook Secret** on the integration in the Tenklo dashboard, matching the secret configured when you subscribed the webhook, so Tenklo can verify the signature against it.
 
 ## Handle the webhook
 
 Once routed to a connection, you have two options:
 
-- **Forward it to your app** — Nango forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
+- **Forward it to your app** — Tenklo forwards the event to your webhook URL with connection attribution. See [External webhook forwarding](/guides/platform/webhook-forwarding).
 - **Process it in a sync** — run a sync when the webhook arrives using `webhookSubscriptions` and `onWebhook` in a sync script. See [Real-time syncs](/guides/functions/syncs/realtime-syncs).
 
 ## Supported events
 
-Nango can route any topic Shopify delivers, since routing only depends on the `X-Shopify-Shop-Domain` header. Common topics:
+Tenklo can route any topic Shopify delivers, since routing only depends on the `X-Shopify-Shop-Domain` header. Common topics:
 
 | Topic | Description | Required scope |
 | --- | --- | --- |
@@ -144,6 +144,6 @@ To stop webhooks, delete the subscription using the `id` Shopify returned when y
 
 Deleting a subscription stops delivery immediately. Re-create it with the steps above to resume.
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

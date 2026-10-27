@@ -43,7 +43,7 @@ export class OAuth1Client {
         this.config = config;
 
         this.authConfig = provider as ProviderOAuth1;
-        const headers = { 'User-Agent': 'Nango' };
+        const headers = { 'User-Agent': 'Tenklo' };
 
         this.requestTokenUrl = this.authConfig.request_url;
         this.accessTokenUrl = typeof this.authConfig.token_url === 'string' ? this.authConfig.token_url : (this.authConfig.token_url?.['OAUTH1'] as string);

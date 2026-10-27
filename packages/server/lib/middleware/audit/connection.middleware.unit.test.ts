@@ -15,14 +15,14 @@ describe('connection audit middleware (unit)', () => {
         resetAuditMocks();
     });
 
-    it('marks an event reached through an impersonation session, naming the Nango account', async () => {
+    it('marks an event reached through an impersonation session, naming the Tenklo account', async () => {
         const req = fakeReq({
             params: { connectionId: 'conn-1' },
             query: { provider_config_key: 'algolia' },
-            session: { impersonatedBy: { accountId: 1, accountName: 'Nango', actorId: 7 } }
+            session: { impersonatedBy: { accountId: 1, accountName: 'Tenklo', actorId: 7 } }
         });
         const event = await runAudit(auditConnectionUpdated, req, fakeRes(locals));
-        expect(event).toMatchObject({ accountId: 42, via: [{ type: 'impersonation', id: '1', display: 'Nango', actorId: '7' }] });
+        expect(event).toMatchObject({ accountId: 42, via: [{ type: 'impersonation', id: '1', display: 'Tenklo', actorId: '7' }] });
         expect(event?.via?.[0]).not.toHaveProperty('actorDisplay');
     });
 
@@ -31,7 +31,7 @@ describe('connection audit middleware (unit)', () => {
             params: { connectionId: 'conn-1' },
             query: { provider_config_key: 'algolia' },
             // locals.account is 42, so this is Nango acting on Nango — nothing to say.
-            session: { impersonatedBy: { accountId: 42, accountName: 'Nango' } }
+            session: { impersonatedBy: { accountId: 42, accountName: 'Tenklo' } }
         });
         const event = await runAudit(auditConnectionUpdated, req, fakeRes(locals));
         expect(event).toMatchObject({ accountId: 42 });

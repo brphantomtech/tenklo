@@ -1,27 +1,27 @@
 ---
-title: 'How to set up webhooks with Folk on Nango'
+title: 'How to set up webhooks with Folk on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to receive real-time Folk events in Nango'
+description: 'Learn how to receive real-time Folk events in Tenklo'
 ---
 
-This guide shows you how to receive real-time Folk webhooks in Nango using [Folk's webhook support](https://developer.folk.app/webhooks/create-webhooks).
+This guide shows you how to receive real-time Folk webhooks in Tenklo using [Folk's webhook support](https://developer.folk.app/webhooks/create-webhooks).
 
 ## How it works
 
-1. You create a webhook in Folk pointing to your Nango webhook URL
-2. When a subscribed event occurs, Folk sends a signed POST request to Nango
-3. Nango verifies the signature and forwards it to your app
+1. You create a webhook in Folk pointing to your Tenklo webhook URL
+2. When a subscribed event occurs, Folk sends a signed POST request to Tenklo
+3. Tenklo verifies the signature and forwards it to your app
 
 ## Setup
 
-### 1. Get your Nango webhook URL
+### 1. Get your Tenklo webhook URL
 
-In the Nango dashboard, open your Folk integration and copy the **Webhook URL**.
+In the Tenklo dashboard, open your Folk integration and copy the **Webhook URL**.
 
-Folk's webhook payload does not identify which account triggered the event, so Nango cannot route it to a specific connection automatically. Append `?nangoConnectionId=<connectionId>` to the URL to target a specific connection:
+Folk's webhook payload does not identify which account triggered the event, so Tenklo cannot route it to a specific connection automatically. Append `?nangoConnectionId=<connectionId>` to the URL to target a specific connection:
 
 ```
-https://api.nango.dev/webhook/folk?nangoConnectionId=my-connection-id
+https://api.tenklo.dev/webhook/folk?nangoConnectionId=my-connection-id
 ```
 
 If you have multiple Folk accounts connected, create one webhook per account in Folk using a different `nangoConnectionId` for each.
@@ -83,7 +83,7 @@ export default createOnEvent({
 
 ### 3. Delete the webhook on connection deletion
 
-If a connection is deleted in Nango but the Folk webhook remains active, Folk will continue sending notifications until you manually remove it. You can automate cleanup with a `pre-connection-deletion` event function using the `folkWebhookId` stored in metadata during creation (step 2):
+If a connection is deleted in Tenklo but the Folk webhook remains active, Folk will continue sending notifications until you manually remove it. You can automate cleanup with a `pre-connection-deletion` event function using the `folkWebhookId` stored in metadata during creation (step 2):
 
 ```typescript
 import { createOnEvent, ProxyConfiguration } from 'nango';
@@ -108,13 +108,13 @@ export default createOnEvent({
 });
 ```
 
-### 4. Configure the webhook secret in Nango
+### 4. Configure the webhook secret in Tenklo
 
-In the Nango dashboard, open your Folk integration settings and paste the webhook secret into the **Webhook Secret** field.
+In the Tenklo dashboard, open your Folk integration settings and paste the webhook secret into the **Webhook Secret** field.
 
 ### 5. Handle forwarded webhooks
 
-When a Folk event arrives, Nango verifies the signature and forwards it to your system. The forwarded payload looks like this:
+When a Folk event arrives, Tenklo verifies the signature and forwards it to your system. The forwarded payload looks like this:
 
 ```json
 {
@@ -136,7 +136,7 @@ When a Folk event arrives, Nango verifies the signature and forwards it to your 
 Once you receive the webhook, trigger your existing sync for that connection:
 
 ```bash
-curl -X POST "https://api.nango.dev/sync/trigger" \
+curl -X POST "https://api.tenklo.dev/sync/trigger" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -150,7 +150,7 @@ curl -X POST "https://api.nango.dev/sync/trigger" \
 With webhooks driving real-time updates, you can reduce your sync frequency (`1d`/`1h`) as a safety net for missed webhooks.
 
 <Note>
-If you prefer Nango to automatically run a sync when the webhook arrives (instead of forwarding it to your app), you can enable webhook processing in a sync script using `webhookSubscriptions` and `onWebhook`.
+If you prefer Tenklo to automatically run a sync when the webhook arrives (instead of forwarding it to your app), you can enable webhook processing in a sync script using `webhookSubscriptions` and `onWebhook`.
 
 See: [Real-time syncs](/implementation-guides/use-cases/syncs/realtime-syncs)
 </Note>
@@ -159,6 +159,6 @@ See: [Real-time syncs](/implementation-guides/use-cases/syncs/realtime-syncs)
 
 See the full list of available event types in the [Folk webhook events & payloads docs](https://developer.folk.app/webhooks/events-and-payloads).
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

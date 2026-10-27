@@ -1,7 +1,7 @@
 ---
-title: 'Slack user access tokens in Nango'
+title: 'Slack user access tokens in Tenklo'
 sidebarTitle: 'Slack User Tokens'
-description: 'How to get, and use, Slack user access tokens with Nango'
+description: 'How to get, and use, Slack user access tokens with Tenklo'
 ---
 
 Slack issues two separate access tokens during OAuth:
@@ -9,7 +9,7 @@ Slack issues two separate access tokens during OAuth:
 - **Bot Token** (starts with `xoxb-`): Used for actions performed by your app's bot
 - **User Token** (starts with `xoxp-`): Used for actions performed on behalf of the authorizing user
 
-**Important:** By default, Nango uses the bot token as the primary access token. This means when you make API calls through Nango's proxy, it will use the bot token by default.
+**Important:** By default, Tenklo uses the bot token as the primary access token. This means when you make API calls through Tenklo's proxy, it will use the bot token by default.
 
 ## When You Need the User Token
 
@@ -50,7 +50,7 @@ const response = await nango.get({
 
 The SDK forwards these headers to Slack, replacing the default bot token. The same `headers` option works with `nango.proxy` inside functions. If you call the proxy over HTTP directly, send the header as `Nango-Proxy-Authorization`.
 
-## When Creating Connections in Nango
+## When Creating Connections in Tenklo
 
 If you need user tokens for your integration, you can specify [user scopes](/reference/api/connect/sessions/create#body-integrations-config-defaults-key-user_scopes) when creating a connect session:
 

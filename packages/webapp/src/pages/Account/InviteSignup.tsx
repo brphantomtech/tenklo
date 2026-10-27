@@ -54,7 +54,7 @@ export const InviteSignup: React.FC = () => {
         return (
             <DefaultLayout className="gap-5">
                 <Helmet>
-                    <title>Invitation Error - Nango</title>
+                    <title>Invitation Error - Tenklo</title>
                 </Helmet>
 
                 <h2 className="text-title-group text-text-strong">Invitation error</h2>
@@ -79,7 +79,7 @@ export const InviteSignup: React.FC = () => {
         return (
             <DefaultLayout className="gap-10">
                 <Helmet>
-                    <title>Invitation Error - Nango</title>
+                    <title>Invitation Error - Tenklo</title>
                 </Helmet>
 
                 <div className="flex flex-col gap-5 items-center">
@@ -101,7 +101,7 @@ export const InviteSignup: React.FC = () => {
         return (
             <DefaultLayout className="gap-10">
                 <Helmet>
-                    <title>Invitation Error - Nango</title>
+                    <title>Invitation Error - Tenklo</title>
                 </Helmet>
 
                 <div className="flex flex-col gap-5 items-center">
@@ -131,7 +131,7 @@ export const InviteSignup: React.FC = () => {
         return (
             <DefaultLayout className="gap-10">
                 <Helmet>
-                    <title>Join a team - Nango</title>
+                    <title>Join a team - Tenklo</title>
                 </Helmet>
 
                 <AlertDialog open onOpenChange={() => {}}>
@@ -161,7 +161,7 @@ export const InviteSignup: React.FC = () => {
     return (
         <DefaultLayout className="gap-10">
             <Helmet>
-                <title>Join a team - Nango</title>
+                <title>Join a team - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col gap-5 items-center">

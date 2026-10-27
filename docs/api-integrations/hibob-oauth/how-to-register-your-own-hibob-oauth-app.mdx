@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own HiBob (OAuth) app'
 sidebarTitle: 'HiBob (OAuth) Setup'
-description: 'Register an OAuth app with HiBob and connect it to Nango'
+description: 'Register an OAuth app with HiBob and connect it to Tenklo'
 ---
 
 <Note>
@@ -21,13 +21,13 @@ This guide shows you how to register your own app with HiBob to obtain your OAut
     In the HiBob Developer Portal, create a new app and provide:
     - Your installation mode: select **Install from your landing page** (set on Basic information, in the Installing your app section)
     - Your list of required scopes
-    - Your redirect URI: `https://api.nango.dev/oauth/callback`
+    - Your redirect URI: `https://api.tenklo.dev/oauth/callback`
     - A Landing page URL (HTTPS)
 
     HiBob will provide you with a **client ID**, **client secret**, and an **App installation URL for testing**.
   </Step>
-  <Step id="configure-in-nango" title="Configure the integration in Nango">
-    In Nango, go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _HiBob (OAuth)_, and enter the **client ID** and **client secret** you received.
+  <Step id="configure-in-nango" title="Configure the integration in Tenklo">
+    In Tenklo, go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _HiBob (OAuth)_, and enter the **client ID** and **client secret** you received.
   </Step>
   <Step id="quickstart-next" title="Next">
     Follow the [_Quickstart_](/getting-started/quickstart) to connect your first test company.

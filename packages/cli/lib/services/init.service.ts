@@ -66,7 +66,7 @@ export function init({ absolutePath, debug = false }: { absolutePath: string; de
         fs.writeFileSync(yamlPath, yamlData);
     } else {
         if (debug) {
-            printDebug(`Nango config file already exists at ${yamlPath} so not creating a new one`);
+            printDebug(`Tenklo config file already exists at ${yamlPath} so not creating a new one`);
         }
     }
 
@@ -81,8 +81,8 @@ export function init({ absolutePath, debug = false }: { absolutePath: string; de
 #NANGO_SECRET_KEY_DEV=xxxx-xxx-xxxx
 #NANGO_SECRET_KEY_PROD=xxxx-xxx-xxxx
 
-# Nango's instance URL (OSS: change to http://localhost:3003 or your instance URL).
-NANGO_HOSTPORT=https://api.nango.dev # Default value
+# Tenklo's instance URL (OSS: change to http://localhost:3003 or your instance URL).
+NANGO_HOSTPORT=https://api.tenklo.dev # Default value
 
 # How to handle CLI upgrades ("prompt", "auto" or "ignore").
 NANGO_CLI_UPGRADE_MODE=prompt # Default value

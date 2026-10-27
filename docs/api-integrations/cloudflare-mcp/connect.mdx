@@ -14,9 +14,9 @@ This guide will walk you through finding your worker URL and authorizing access.
 ### Prerequisites
 
 - A deployed Cloudflare Worker MCP server. See [Cloudflare's guide](https://developers.cloudflare.com/agents/guides/remote-mcp-server/) for how to build and deploy one.
-- Your worker's OAuth authorization server must allow the Nango callback URL as a redirect URI:
-  - **Production:** `https://api.nango.dev/oauth/callback`
-- Your worker's OAuth authorization server must support the `offline_access` scope. Enable it in your OAuth provider settings to allow Nango to obtain a refresh token and keep the connection alive without re-authenticating.
+- Your worker's OAuth authorization server must allow the Tenklo callback URL as a redirect URI:
+  - **Production:** `https://api.tenklo.dev/oauth/callback`
+- Your worker's OAuth authorization server must support the `offline_access` scope. Enable it in your OAuth provider settings to allow Tenklo to obtain a refresh token and keep the connection alive without re-authenticating.
 
 ### Instructions
 

@@ -86,7 +86,7 @@ export default function ResetPassword() {
     return (
         <DefaultLayout className="gap-5">
             <Helmet>
-                <title>Reset Password - Nango</title>
+                <title>Reset Password - Tenklo</title>
             </Helmet>
             <h2 className="text-title-group text-text-strong">Reset password</h2>
 

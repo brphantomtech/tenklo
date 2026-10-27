@@ -1,12 +1,12 @@
 ---
 title: 'Billit - How do I link my account?'
 sidebarTitle: 'Billit'
-description: 'Find your Billit Access Point API key and master account Party ID, then connect to Nango'
+description: 'Find your Billit Access Point API key and master account Party ID, then connect to Tenklo'
 ---
 
 ## Overview
 
-To connect the Billit Access Point API in Nango, provide:
+To connect the Billit Access Point API in Tenklo, provide:
 
 1. **Environment** — The Billit sandbox or production API host.
 2. **Master Account Party ID** — The Registration ID of your Billit master account.
@@ -34,7 +34,7 @@ Create a [sandbox account](https://my.sandbox.billit.be/Account/Register) for te
 
 <img src="/api-integrations/billit/api-key.png" alt="Billit My profile page showing the masked API key in the API section" style={{maxWidth: "700px" }} />
 
-Keep the API key secret. If it is exposed, renew it in Billit and update the Nango connection.
+Keep the API key secret. If it is exposed, renew it in Billit and update the Tenklo connection.
 
 ### Step 3: Find your master account Party ID
 
@@ -50,12 +50,12 @@ This is the master account's Registration ID, sent as the **Party ID** in API re
 Use the master account Registration ID, not the Registration ID of an entity or subaccount referenced in an API path. Billit requires the master account Party ID for every production API call and for KYC identification calls in both environments.
 </Warning>
 
-### Step 4: Connect Billit in Nango
+### Step 4: Connect Billit in Tenklo
 
-1. Open the Nango Connect form.
+1. Open the Tenklo Connect form.
 2. Select the **Environment** matching your credentials.
 3. Enter the **Master Account Party ID**.
 4. Enter the **API Key**.
 5. Submit the form.
 
-<img src="/api-integrations/billit/form.png" alt="Nango Connect UI form with Environment, Master Account Party ID, and API Key fields for Billit" style={{maxWidth: "450px" }}/>
+<img src="/api-integrations/billit/form.png" alt="Tenklo Connect UI form with Environment, Master Account Party ID, and API Key fields for Billit" style={{maxWidth: "450px" }}/>

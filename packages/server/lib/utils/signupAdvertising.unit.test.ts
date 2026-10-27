@@ -79,7 +79,7 @@ describe('optional signup ad context', () => {
         envs.SIGNUP_AD_CONTEXT_ENABLED = true;
         expect(signupAdvertisingFromRequest(req, 'creator@example.invalid')).toBeDefined();
         expect(signupAdvertisingFromRequest({ ...req, headers: { 'sec-gpc': '1' } }, 'creator@example.invalid')).toBeUndefined();
-        expect(signupAdvertisingFromRequest(req, 'creator@NANGO.DEV')).toBeUndefined();
+        expect(signupAdvertisingFromRequest(req, 'creator@TENKLO.DEV')).toBeUndefined();
         envs.SIGNUP_AD_CONTEXT_COOKIE_NAME = 'nango_signup_ads_prod';
         expect(signupAdvertisingFromRequest(req, 'creator@example.invalid')).toBeUndefined();
         expect(

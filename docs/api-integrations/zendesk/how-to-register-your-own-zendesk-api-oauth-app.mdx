@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Zendesk OAuth app'
 sidebarTitle: 'Zendesk Setup'
-description: 'Register an OAuth app with Zendesk and connect it to Nango'
+description: 'Register an OAuth app with Zendesk and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Zendesk to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Zendesk account.
@@ -25,11 +25,11 @@ This guide is for the Helpdesk app, used by this `zendesk` integration. For Zend
     2. Click **Add OAuth Client**.
   </Step>
   <Step title="Configure your OAuth client">
-    1. Fill in all the required details. For **Client kind** select **Confidential** and for **Redirect URLs** enter `https://api.nango.dev/oauth/callback`.
+    1. Fill in all the required details. For **Client kind** select **Confidential** and for **Redirect URLs** enter `https://api.tenklo.dev/oauth/callback`.
     2. Click **Save** to create your OAuth client.
   </Step>
   <Step title="Obtain OAuth credentials">
-    1. After creating your OAuth client, you'll receive a **Secret** (your **Client Secret**). It will not be shown again, so be sure to store it securely. The **Client ID** is the same **Identifier** you provided earlier when configuring your OAuth client. Keep both credentials safe, as you'll need them when setting up your integration in Nango.
+    1. After creating your OAuth client, you'll receive a **Secret** (your **Client Secret**). It will not be shown again, so be sure to store it securely. The **Client ID** is the same **Identifier** you provided earlier when configuring your OAuth client. Keep both credentials safe, as you'll need them when setting up your integration in Tenklo.
   </Step>
 </Steps>
 
@@ -48,7 +48,7 @@ If your application needs to connect to multiple Zendesk instances, you should r
   <Step title="Prepare your OAuth client">
     1. From the same app you created earlier, ensure your **Identifier** is prefixed with "zdg-" (e.g., "zdg-your-app-name").
     2. Complete all fields in the OAuth client configuration, including any that were left blank during the initial setup.
-    3. When your app is ready to be used across multiple Zendesk accounts, note down the **Identifier** and **Secret** as you'll need them when setting up your integration in Nango. You will lose access to the client administration page once the local client is converted to a global client.
+    3. When your app is ready to be used across multiple Zendesk accounts, note down the **Identifier** and **Secret** as you'll need them when setting up your integration in Tenklo. You will lose access to the client administration page once the local client is converted to a global client.
   </Step>
   <Step title="Submit global OAuth request">
     1. Sign in to the [Zendesk Marketplace](https://apps.zendesk.com/) portal, select **Organization** from the left-hand menu, and then navigate to the **Global OAuth Request** tab.

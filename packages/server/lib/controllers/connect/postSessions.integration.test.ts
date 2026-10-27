@@ -56,7 +56,7 @@ describe(`POST ${endpoint}`, () => {
             session: dashboardSession,
             body: {
                 is_preview: true,
-                end_user: { id: 'preview-user', email: 'preview@nango.dev' }
+                end_user: { id: 'preview-user', email: 'preview@tenklo.dev' }
             }
         });
         isSuccess(previewSession.json);
@@ -158,7 +158,7 @@ describe(`POST ${endpoint}`, () => {
         const res = await api.fetch(endpoint, {
             method: 'POST',
             token: seed.apiKey.secret,
-            body: { end_user: { id: endUserId, email: 'a@b.com' }, overrides: { random: { docs_connect: 'https://nango.dev/docs' } } }
+            body: { end_user: { id: endUserId, email: 'a@b.com' }, overrides: { random: { docs_connect: 'https://tenklo.dev/docs' } } }
         });
         isError(res.json);
         expect(res.json).toStrictEqual({

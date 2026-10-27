@@ -23,7 +23,7 @@ Start the databases and queue:
 npm run dev:docker
 ```
 
-Run Nango in two separate terminals:
+Run Tenklo in two separate terminals:
 
 ```sh
 npm run dev:watch
@@ -52,4 +52,4 @@ Set `NANGO_SECRET_KEY_DEV` and `NANGO_HOSTPORT` in `.env`, then deploy:
 nango deploy dev
 ```
 
-See the [CLI documentation](https://nango.dev/docs/reference/functions/functions-cli) for more information.
+See the [CLI documentation](https://tenklo.dev/docs/reference/functions/functions-cli) for more information.

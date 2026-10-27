@@ -90,7 +90,7 @@ export const AppAuthCreateForm: React.FC<{ provider: ApiProviderListItem; onSubm
                                 </NavigationTrigger>
                             </span>
                         </TooltipTrigger>
-                        <TooltipContent side="bottom">Nango doesn&apos;t have a managed app for this API yet</TooltipContent>
+                        <TooltipContent side="bottom">Tenklo doesn&apos;t have a managed app for this API yet</TooltipContent>
                     </Tooltip>
                 )}
                 <NavigationTrigger value="custom">Custom app</NavigationTrigger>
@@ -100,7 +100,7 @@ export const AppAuthCreateForm: React.FC<{ provider: ApiProviderListItem; onSubm
                     <Alert variant="info">
                         <AlertDescription>Pre-approved apps that work in production. Review the trade-offs before you go live.</AlertDescription>
                         <AlertActions>
-                            <AlertButtonLink to="https://nango.dev/docs/guides/auth/auth-guide#nango-managed-oauth-apps" target="_blank">
+                            <AlertButtonLink to="https://tenklo.dev/docs/guides/auth/auth-guide#nango-managed-oauth-apps" target="_blank">
                                 Read the trade-offs <ExternalLinkIcon />
                             </AlertButtonLink>
                         </AlertActions>

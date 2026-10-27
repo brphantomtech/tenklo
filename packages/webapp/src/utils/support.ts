@@ -5,5 +5,5 @@ export function openSupportChat() {
         window.Plain.open();
         return;
     }
-    window.open('https://nango.dev/slack', '_blank', 'noopener,noreferrer');
+    window.open('https://tenklo.dev/slack', '_blank', 'noopener,noreferrer');
 }

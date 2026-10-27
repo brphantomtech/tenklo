@@ -1,18 +1,18 @@
 ---
 title: 'Limits'
 sidebarTitle: 'Limits'
-description: 'Overview of resource limits on Nango Cloud.'
+description: 'Overview of resource limits on Tenklo Cloud.'
 ---
 
-Nango Cloud has several resource limits to ensure platform stability and fair usage across all customers.
+Tenklo Cloud has several resource limits to ensure platform stability and fair usage across all customers.
 
 <Note>
-For plan-specific limits, refer to the [pricing page](https://www.nango.dev/pricing) and the Usage & Billing page in your account.
+For plan-specific limits, refer to the [pricing page](https://www.tenklo.dev/pricing) and the Usage & Billing page in your account.
 </Note>
 
 ## API rate limits
 
-Rate limits apply to API requests from your application to Nango:
+Rate limits apply to API requests from your application to Tenklo:
 
 | Plan | Requests per Minute |
 | - | - |
@@ -55,28 +55,28 @@ Action functions have a maximum output payload size of **2MB**. For large payloa
 
 ## Data retention policies
 
-Nango automatically manages data retention for records in the sync cache:
+Tenklo automatically manages data retention for records in the sync cache:
 
 ### Payload pruning (30 days)
 
-If a record hasn't been updated for **30 days**, Nango automatically prunes its payload while preserving:
+If a record hasn't been updated for **30 days**, Tenklo automatically prunes its payload while preserving:
 - Record ID
 - Sync state
 - Payload hash (for change detection)
 
-The record still exists and Nango can detect future changes, but the data fields are no longer retrievable from the cache.
+The record still exists and Tenklo can detect future changes, but the data fields are no longer retrievable from the cache.
 
 ### Hard deletion (60 days)
 
 If a sync hasn't executed for **60 days**, all associated records (payload + metadata) are permanently deleted.
 
 <Note>
-These policies ensure sensitive data isn't stored indefinitely. If you need to access record payloads long after updates (30+ days), please reach out in the [Slack community](https://nango.dev/slack).
+These policies ensure sensitive data isn't stored indefinitely. If you need to access record payloads long after updates (30+ days), please reach out in the [Slack community](https://tenklo.dev/slack).
 </Note>
 
 ## Webhook limits
 
-Webhooks sent from Nango to your application have the following limits:
+Webhooks sent from Tenklo to your application have the following limits:
 
 - **Timeout**: 20 seconds
 - **Retries**: 2 attempts
@@ -90,5 +90,5 @@ These limits apply to all webhook types: auth, sync function completion, async a
 - [Security](/guides/platform/security) - review retention and access constraints.
 
 <Tip>
-**Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+**Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>

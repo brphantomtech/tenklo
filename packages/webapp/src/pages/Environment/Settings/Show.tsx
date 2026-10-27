@@ -44,7 +44,7 @@ export const EnvironmentSettings: React.FC = () => {
         return (
             <DashboardLayout fullWidth title="Environment settings" className="flex flex-col gap-8">
                 <Helmet>
-                    <title>Environment Settings - Nango</title>
+                    <title>Environment Settings - Tenklo</title>
                 </Helmet>
                 <div className="flex gap-6 h-[280px]">
                     <Skeleton className="w-[209px]" />
@@ -63,7 +63,7 @@ export const EnvironmentSettings: React.FC = () => {
             className="flex flex-col gap-8"
         >
             <Helmet>
-                <title>Environment Settings - Nango</title>
+                <title>Environment Settings - Tenklo</title>
             </Helmet>
 
             <div className="flex h-fit justify-center" key={env}>

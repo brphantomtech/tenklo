@@ -10,22 +10,22 @@ The Astro MCP server is an Astronomer **Labs** feature. Contact your Astronomer 
 
 ## 🚀 Quickstart
 
-Connect to the Astro MCP server with Nango and call MCP tools in minutes. Astro MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required — it signs you in with your own Astro credentials and respects your existing permissions.
+Connect to the Astro MCP server with Tenklo and call MCP tools in minutes. Astro MCP uses OAuth 2.0 with **dynamic client registration**, so no app registration is required — it signs you in with your own Astro credentials and respects your existing permissions.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Astro (MCP)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Astro (MCP)_.
     </Step>
     <Step title="Authorize">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in with your Astro credentials. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in with your Astro credentials. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call an Astro MCP tool">
-    Make your first MCP request (initialize handshake). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first MCP request (initialize handshake). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v1alpha1/astro/mcp" \
+            curl "https://api.tenklo.dev/proxy/v1alpha1/astro/mcp" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -50,7 +50,7 @@ Connect to the Astro MCP server with Nango and call MCP tools in minutes. Astro 
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -80,17 +80,17 @@ Connect to the Astro MCP server with Nango and call MCP tools in minutes. Astro 
         ```
         </Tab>
     </Tabs>
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Astro (MCP) guides
 
-Nango uses **dynamic client registration** with Astronomer's MCP OAuth server. You do not need to register an MCP application.
+Tenklo uses **dynamic client registration** with Astronomer's MCP OAuth server. You do not need to register an MCP application.
 
 The Astro MCP server currently provides read access to Deployments, Workspaces, environment objects (connections and variables), and Organization settings, plus Otto skills like Airflow upgrade planning.
 

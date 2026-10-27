@@ -1,12 +1,12 @@
 ---
 title: 'Run external API operations'
 sidebarTitle: 'Run external API operations'
-description: 'Use Nango functions to read, write, and automate external APIs on demand.'
+description: 'Use Tenklo functions to read, write, and automate external APIs on demand.'
 ---
 
 Some integration work needs to happen immediately: create a CRM contact, send a Slack message, fetch the latest account settings, or run a multi-step workflow after a user clicks a button.
 
-Nango handles these on-demand operations with Action functions. You write the API logic once, Nango runs it with the right connection credentials, and your app calls the function from any backend or agent framework.
+Tenklo handles these on-demand operations with Action functions. You write the API logic once, Tenklo runs it with the right connection credentials, and your app calls the function from any backend or agent framework.
 
 ## When this fits
 
@@ -20,12 +20,12 @@ Use Action functions when you need to:
 
 For continuously replicated data, use [Sync external API data](/getting-started/use-cases/syncs) instead.
 
-## How Nango fits in
+## How Tenklo fits in
 
-1. Your user authorizes an integration with Nango.
+1. Your user authorizes an integration with Tenklo.
 2. You call a catalog action directly or deploy your own action.
 3. Your app calls the function with an input payload.
-4. Nango executes the provider API calls with the user's credentials.
+4. Tenklo executes the provider API calls with the user's credentials.
 5. Your app receives the result, or polls/listens for completion if the function runs asynchronously.
 
 These functions are the technical foundation behind on-demand API operations, unified APIs, and AI tool calls.
@@ -39,5 +39,5 @@ These functions are the technical foundation behind on-demand API operations, un
 - [Functions SDK reference](/reference/functions/functions-sdk) - runtime methods available inside function code.
 
 <Note>
-  You can use actions from the [template catalog](https://www.nango.dev/templates) without writing code. See the [Functions guide](/guides/functions/functions-guide#catalog-action-stability) to choose between a catalog action and your own.
+  You can use actions from the [template catalog](https://www.tenklo.dev/templates) without writing code. See the [Functions guide](/guides/functions/functions-guide#catalog-action-stability) to choose between a catalog action and your own.
 </Note>

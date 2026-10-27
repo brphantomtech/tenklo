@@ -299,7 +299,7 @@ export class DryRunService {
             printDebug(`Provider found: ${provider}`);
         }
 
-        if (resolveHostport().endsWith('.nango.dev')) {
+        if (resolveHostport().endsWith('.tenklo.dev')) {
             process.env['NANGO_CLOUD'] = 'true';
         }
 
@@ -428,7 +428,7 @@ export class DryRunService {
             };
             const sdkLogger: SdkLogger = { level: 'debug' };
             if (debug) {
-                printDebug(`Nango logger.level is set to '${sdkLogger.level}'`);
+                printDebug(`Tenklo logger.level is set to '${sdkLogger.level}'`);
             }
             const nangoProps: NangoProps = {
                 isCLI: true,
@@ -689,7 +689,7 @@ export class DryRunService {
                             case 'botbuilder':
                                 if (!preloaded[moduleName]) {
                                     throw new Error(
-                                        `Module '${moduleName}' needs to be installed on your side in a package.json. You can also test using the Nango dashboard`
+                                        `Module '${moduleName}' needs to be installed on your side in a package.json. You can also test using the Tenklo dashboard`
                                     );
                                 }
                                 return preloaded[moduleName];

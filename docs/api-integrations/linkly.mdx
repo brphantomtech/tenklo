@@ -8,22 +8,22 @@ Linkly is a URL shortener with click tracking: branded short links, UTM tagging,
 
 ## 🚀 Quickstart
 
-Connect to Linkly with Nango and see data flow in 2 minutes.
+Connect to Linkly with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Linkly_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Linkly_.
     </Step>
     <Step id="authorize-linkly" title="Connect Linkly">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Linkly_ -> enter your API key and click _Authorize_. See the [connect guide](/api-integrations/linkly/connect) for how to obtain a key.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Linkly_ -> enter your API key and click _Authorize_. See the [connect guide](/api-integrations/linkly/connect) for how to obtain a key.
     </Step>
     <Step id="call-linkly-api" title="Call the Linkly API">
-    Let's make your first request to the Linkly API. Replace the placeholders below with your [secret key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Linkly API. Replace the placeholders below with your [secret key](https://app.tenklo.dev/dev/environment-settings), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/v1/workspaces" \
+            curl "https://api.tenklo.dev/proxy/api/v1/workspaces" \
               -H "Authorization: Bearer <NANGO-SECRET-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -33,7 +33,7 @@ Connect to Linkly with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -53,18 +53,18 @@ Connect to Linkly with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-nango" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step id="implement-nango" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Linkly integration guides
 
 - [Connect to Linkly](/api-integrations/linkly/connect)
-Obtain your Linkly API key and connect it to Nango.
+Obtain your Linkly API key and connect it to Tenklo.
 
 Official docs: [Linkly API docs](https://linklyhq.com/support/short-link-creation-api) · [OpenAPI spec](https://api.linklyhq.com/api/openapi)
 

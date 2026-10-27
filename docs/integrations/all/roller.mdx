@@ -12,10 +12,10 @@ import PreBuiltUseCases from "/snippets/generated/roller/PreBuiltUseCases.mdx"
 <PreBuiltUseCases />
 
 <Tip>
-  Roller uses the <strong>OAuth 2.0 Client Credentials</strong> flow via <strong>Nango Connect UI</strong> (no end‑user login).
+  Roller uses the <strong>OAuth 2.0 Client Credentials</strong> flow via <strong>Tenklo Connect UI</strong> (no end‑user login).
 </Tip>
 
-This page documents how to connect to **Roller** using **Nango Connect UI** with the **OAuth 2.0 Client Credentials** grant.
+This page documents how to connect to **Roller** using **Tenklo Connect UI** with the **OAuth 2.0 Client Credentials** grant.
 
 > **Why this page?** Roller is a machine‑to‑machine integration (no end‑user login). Following the Connect UI pattern keeps it consistent with other CC integrations.
 
@@ -30,7 +30,7 @@ This page documents how to connect to **Roller** using **Nango Connect UI** with
    - Use your preferred backend language; follow the standard Connect Session flow used by other CC integrations.
 
 3. **Launch Connect UI in your frontend**
-   - Instantiate the Nango Frontend SDK with the session token and open the UI. The user will select **Roller** and enter **Client ID / Client Secret**.
+   - Instantiate the Tenklo Frontend SDK with the session token and open the UI. The user will select **Roller** and enter **Client ID / Client Secret**.
 
 ```js
 import Nango from '@nangohq/frontend';
@@ -45,7 +45,7 @@ await nango.openConnectUI({ sessionToken: connectSessionToken });
 ```
 
 4. **Use the connection in your backend**
-   - Call Roller endpoints through your backend using Nango’s Proxy. Re‑use the connection you created in step 3.
+   - Call Roller endpoints through your backend using Tenklo’s Proxy. Re‑use the connection you created in step 3.
 
 ---
 
@@ -55,7 +55,7 @@ await nango.openConnectUI({ sessionToken: connectSessionToken });
 - **Frontend SDK (Connect UI API)**: /reference/sdks/frontend
 - **Quickstart: Embed in your app (connect session token)**: /guides/primitives/auth
 - **Authorize in your app (default UI)**: /guides/api-authorization/authorize-in-your-app-default-ui
-- **Proxy requests** (server-side calls through Nango): /guides/proxy-requests
+- **Proxy requests** (server-side calls through Tenklo): /guides/proxy-requests
 
 ---
 

@@ -8,17 +8,17 @@ description: 'Access the Atlassian API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Atlassian_. Nango doesn't provide a test OAuth app for Atlassian yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Atlassian_. Tenklo doesn't provide a test OAuth app for Atlassian yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Atlassian">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Atlassian. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Atlassian. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Atlassian API">
-        Let's make your first request to the Atlassian API (fetch accessible resources). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Atlassian API (fetch accessible resources). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/oauth/token/accessible-resources" \
+                curl "https://api.tenklo.dev/proxy/oauth/token/accessible-resources" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the Atlassian API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -51,7 +51,7 @@ description: 'Access the Atlassian API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Atlassian accounts.
@@ -71,7 +71,7 @@ description: 'Access the Atlassian API in 2 minutes 💨'
       <Step title="Configure OAuth 2.0 (3LO)">
         1. In the left sidebar, select **Authorization**.
         2. Next to OAuth 2.0 (3LO), click **Add**.
-        3. Enter `https://api.nango.dev/oauth/callback` as the **Callback URL**.
+        3. Enter `https://api.tenklo.dev/oauth/callback` as the **Callback URL**.
         4. Click **Save Changes** to save your changes.
       </Step>
       <Step title="Add API permissions">
@@ -82,7 +82,7 @@ description: 'Access the Atlassian API in 2 minutes 💨'
       </Step>
       <Step title="Obtain your client credentials">
         1. In the left sidebar, select **Settings**.
-        2. Copy both the **Client ID** and **Secret** by clicking the copy buttons next to them, as you'll need them when configuring your integration in Nango.
+        2. Copy both the **Client ID** and **Secret** by clicking the copy buttons next to them, as you'll need them when configuring your integration in Tenklo.
       </Step>
       <Step title="Make your app available to users">
         1. In the left sidebar, select **Distribution**.
@@ -134,5 +134,5 @@ description: 'Access the Atlassian API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

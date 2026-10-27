@@ -91,7 +91,7 @@ export const Layout: React.FC = () => {
                                 <div className="p-5 w-full text-center">
                                     <a
                                         className="shrink-0 text-xs text-text-tertiary"
-                                        href="https://www.nango.dev?utm_source=connectui"
+                                        href="https://www.tenklo.dev?utm_source=connectui"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
@@ -138,7 +138,7 @@ export const Layout: React.FC = () => {
                                 <div className="p-5 w-full text-center">
                                     <a
                                         className="shrink-0 text-xs text-text-tertiary"
-                                        href="https://www.nango.dev?utm_source=connectui"
+                                        href="https://www.tenklo.dev?utm_source=connectui"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >

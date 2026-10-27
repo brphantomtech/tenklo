@@ -55,7 +55,7 @@ export interface CreateSyncProps<TModels extends Record<string, ZodModel>, TMeta
      * endpoints: [{ method: 'GET', path: '/github/issues' }],
      * ```
      * ```ts
-     * const res = await fetch('https://api.nango.dev/github/issues');
+     * const res = await fetch('https://api.tenklo.dev/github/issues');
      * ```
      */
     endpoints?: NangoSyncEndpointV2[];
@@ -244,7 +244,7 @@ export interface CreateActionProps<
      * endpoint: { method: 'POST', path: '/github/issues' },
      * ```
      * ```ts
-     * const res = await fetch('https://api.nango.dev/github/issues', {
+     * const res = await fetch('https://api.tenklo.dev/github/issues', {
      *     method: 'POST',
      *     body: JSON.stringify({
      *         title: 'New Issue',

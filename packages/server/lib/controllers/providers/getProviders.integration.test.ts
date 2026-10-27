@@ -61,7 +61,7 @@ describe(`GET ${route}`, () => {
             data: [
                 {
                     display_name: 'Outreach',
-                    docs: 'https://nango.dev/docs/integrations/all/outreach',
+                    docs: 'https://tenklo.dev/docs/integrations/all/outreach',
                     logo_url: 'http://localhost:3003/images/template-logos/outreach.svg',
                     name: 'outreach',
                     auth_mode: 'OAUTH2'

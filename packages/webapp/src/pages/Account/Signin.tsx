@@ -47,7 +47,7 @@ export const Signin: React.FC = () => {
             return 'Your SSO session has expired or is invalid. Please try again.';
         }
         if (error === 'oauth_signup_not_allowed') {
-            return 'This Google account does not have a Nango account. Sign up separately, then restart the authorization request.';
+            return 'This Google account does not have a Tenklo account. Sign up separately, then restart the authorization request.';
         }
         if (error === 'disposable_email') {
             return 'Please sign up with a permanent email address.';
@@ -129,12 +129,12 @@ export const Signin: React.FC = () => {
     return (
         <DefaultLayout className="gap-10">
             <Helmet>
-                <title>Sign in - Nango</title>
+                <title>Sign in - Tenklo</title>
             </Helmet>
 
             <div className="flex flex-col items-center gap-5 w-full">
                 <div className="flex flex-col gap-3 items-center">
-                    <h2 className="text-title-group text-text-strong">Log in to Nango</h2>
+                    <h2 className="text-title-group text-text-strong">Log in to Tenklo</h2>
                     {!consentDestination &&
                         (hasLocalAuth ? (
                             <span className="text-body-medium-regular text-text-muted">
@@ -144,7 +144,7 @@ export const Signin: React.FC = () => {
                                 </Button>
                             </span>
                         ) : (
-                            <span className="text-body-medium-regular text-text-muted">Continue with Google to access your Nango workspace.</span>
+                            <span className="text-body-medium-regular text-text-muted">Continue with Google to access your Tenklo workspace.</span>
                         ))}
                 </div>
 
@@ -250,13 +250,13 @@ export const Signin: React.FC = () => {
                 <span className="text-center w-full text-body-medium-regular text-text-muted">
                     By signing in, you agree to our <br />{' '}
                     <Button asChild variant="link-neutral">
-                        <a href="https://www.nango.dev/terms" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.tenklo.dev/terms" target="_blank" rel="noopener noreferrer">
                             Terms of Service
                         </a>
                     </Button>{' '}
                     and{' '}
                     <Button asChild variant="link-neutral">
-                        <a href="https://www.nango.dev/privacy-policy" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.tenklo.dev/privacy-policy" target="_blank" rel="noopener noreferrer">
                             Privacy Policy
                         </a>
                     </Button>

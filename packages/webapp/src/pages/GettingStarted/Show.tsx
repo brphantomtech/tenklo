@@ -41,10 +41,10 @@ export const GettingStarted: React.FC = () => {
     return (
         <DashboardLayout title="Getting started" className="flex flex-col gap-10">
             <Helmet>
-                <title>Getting Started - Nango</title>
+                <title>Getting Started - Tenklo</title>
             </Helmet>
             <header className="flex flex-col gap-3.5">
-                <p className="text-text-secondary text-sm">Try connecting Nango with Github to see how integrations work.</p>
+                <p className="text-text-secondary text-sm">Try connecting Tenklo with Github to see how integrations work.</p>
             </header>
             <div className="flex flex-row gap-10 min-w-0">
                 <VerticalSteps
@@ -118,34 +118,34 @@ export const GettingStarted: React.FC = () => {
 
                     <div className="flex flex-col gap-5">
                         <DocCard
-                            to="https://nango.dev/docs/guides/auth/auth-guide"
+                            to="https://tenklo.dev/docs/guides/auth/auth-guide"
                             icon={CodeXml}
                             title="Embed in your app"
                             description="Let your users authorize 3rd-party APIs seamlessly."
                         />
                         <DocCard
-                            to="https://nango.dev/docs/guides/platform/proxy-requests"
+                            to="https://tenklo.dev/docs/guides/platform/proxy-requests"
                             icon={Waypoints}
                             title="Proxy"
                             description="Run authenticated API requests to external APIs."
                         />
                         <DocCard
-                            to="https://nango.dev/docs/guides/functions/syncs/sync-functions"
+                            to="https://tenklo.dev/docs/guides/functions/syncs/sync-functions"
                             icon={RefreshCcw}
                             title="Syncs"
                             description="Continously sync data from external APIs."
                         />
                         <DocCard
-                            to="https://nango.dev/docs/getting-started/use-cases/webhooks-from-external-apis"
+                            to="https://tenklo.dev/docs/getting-started/use-cases/webhooks-from-external-apis"
                             icon={Webhook}
                             title="Webhooks"
                             description="Listen to webhooks from external APIs."
                         />
                         <DocCard
-                            to="https://nango.dev/slack"
+                            to="https://tenklo.dev/slack"
                             icon={SlackIcon}
                             title="Join the Slack community"
-                            description="Seek help from the Nango team and the community."
+                            description="Seek help from the Tenklo team and the community."
                         />
                     </div>
                 </div>

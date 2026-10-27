@@ -6,22 +6,22 @@ description: 'Integrate your application with the eWay-CRM API using OAuth2'
 
 ## 🚀 Quickstart
 
-Connect to eWay-CRM with Nango and see data flow in 2 minutes.
+Connect to eWay-CRM with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _eWay-CRM_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _eWay-CRM_.
     </Step>
     <Step id="authorize-eway-crm" title="Authorize eWay-CRM">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Service URL and log in to eWay-CRM. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Service URL and log in to eWay-CRM. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-the-api" title="Call the eWay-CRM API">
-    Make your first request — a simple connectivity check. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request — a simple connectivity check. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/CheckStatus" \
+            curl "https://api.tenklo.dev/proxy/CheckStatus" \
               -X GET \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -34,7 +34,7 @@ Connect to eWay-CRM with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -56,11 +56,11 @@ Connect to eWay-CRM with Nango and see data flow in 2 minutes.
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -68,7 +68,7 @@ Connect to eWay-CRM with Nango and see data flow in 2 minutes.
 
 ## 📚 eWay-CRM Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own eWay-CRM API OAuth app](/api-integrations/eway-crm/how-to-register-your-own-eway-crm-api-oauth-app)  
 Get your Client ID and Client Secret from eWay-CRM support

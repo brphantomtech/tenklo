@@ -879,7 +879,7 @@
     {
       "method": "POST",
       "path": "/github/create-demo-issue",
-      "description": "Create a GitHub issue in Nango's showcase repository.\n",
+      "description": "Create a GitHub issue in Tenklo's showcase repository.\n",
       "script": "github/actions/create-demo-issue"
     }
   ],

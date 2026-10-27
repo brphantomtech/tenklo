@@ -87,7 +87,7 @@ export function accountGroupProperties(team: TrackedTeam, plan: TrackedPlan | nu
 }
 
 export function isInternalAccount(users: Pick<DBUser, 'email'>[]): boolean {
-    return users.length > 0 && users.every((user) => user.email.toLowerCase().endsWith('@nango.dev'));
+    return users.length > 0 && users.every((user) => user.email.toLowerCase().endsWith('@tenklo.dev'));
 }
 
 function commonProperties(surface: 'server' | 'cli'): Record<string, unknown> {

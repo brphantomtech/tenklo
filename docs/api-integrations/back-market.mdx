@@ -6,22 +6,22 @@ description: 'Integrate your application with the Back Market API'
 
 ## 🚀 Quickstart
 
-Connect to Back Market with Nango and see data flow in 2 minutes.
+Connect to Back Market with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create an integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Back Market_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Back Market_.
     </Step>
     <Step title="Authorize Back Market">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your platform and API token. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your platform and API token. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Back Market API">
-    Let's make your first request to the Back Market API (list your listings). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Back Market API (list your listings). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/ws/listings" \
+            curl "https://api.tenklo.dev/proxy/ws/listings" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Back Market with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Back Market with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials dynamically via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
@@ -75,7 +75,7 @@ Back Market runs three separate platforms — EU (`backmarket.fr`), US/NA (`back
 <a id="country-code-and-user-agent"></a>
 ## ⚙️ Country code and user-agent
 
-The Country Code and User-Agent aren't something Nango asks each seller for — they belong to your app, not to any individual Back Market seller account. Set them once as [connection config defaults](/reference/backend/http-api/connect/sessions/create) instead:
+The Country Code and User-Agent aren't something Tenklo asks each seller for — they belong to your app, not to any individual Back Market seller account. Set them once as [connection config defaults](/reference/backend/http-api/connect/sessions/create) instead:
 
 ```json
 {

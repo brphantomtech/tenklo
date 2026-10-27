@@ -1,13 +1,13 @@
 ---
 title: 'How to register your own eClinicalWorks app'
 sidebarTitle: 'eClinicalWorks Setup'
-description: 'Register with the eClinicalWorks Dev Portal and connect it to Nango'
+description: 'Register with the eClinicalWorks Dev Portal and connect it to Tenklo'
 ---
 
 This guide covers the one-time setup for eClinicalWorks' [SMART Backend Services](https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/backend/authentication) flow. You do this once for your whole application — every connection you create afterward (one per practice) reuses the same Client ID and key.
 
 <Note>
-Backend Services authenticates your application, not an individual end user — there's no OAuth redirect or login screen. eClinicalWorks verifies a JWT that Nango signs on your behalf, checking it against a public key you publish yourself. Nango signs with `RS384`, so the private key you generate and give Nango must be an RSA key — the same key type eClinicalWorks verifies against.
+Backend Services authenticates your application, not an individual end user — there's no OAuth redirect or login screen. eClinicalWorks verifies a JWT that Tenklo signs on your behalf, checking it against a public key you publish yourself. Tenklo signs with `RS384`, so the private key you generate and give Tenklo must be an RSA key — the same key type eClinicalWorks verifies against.
 </Note>
 
 <Steps>
@@ -22,10 +22,10 @@ Backend Services authenticates your application, not an individual end user — 
     openssl rsa -in privatekey.pem -pubout -out publickey.pem
     ```
 
-    Keep `privatekey.pem` secret — you'll paste its contents into Nango in a later step. Never commit it to source control or share it outside Nango.
+    Keep `privatekey.pem` secret — you'll paste its contents into Tenklo in a later step. Never commit it to source control or share it outside Tenklo.
   </Step>
   <Step id="host-jwks-file" title="Host a JWKS file with your public key">
-    Convert your public key to JWK format and publish it as a JWKS document at a stable, publicly reachable URL you control (e.g. `https://your-domain.com/.well-known/eclinicalworks-jwks.json`). Assign a unique `kid` (key ID) to the key entry — you'll need this exact value in Nango.
+    Convert your public key to JWK format and publish it as a JWKS document at a stable, publicly reachable URL you control (e.g. `https://your-domain.com/.well-known/eclinicalworks-jwks.json`). Assign a unique `kid` (key ID) to the key entry — you'll need this exact value in Tenklo.
 
     ```json
     {
@@ -49,12 +49,12 @@ Backend Services authenticates your application, not an individual end user — 
 
     <Note>Include `system/Group.read` in your scope request only if you need bulk `Group/$export` access — omit it if you only need the Backend Single Patient API.</Note>
   </Step>
-  <Step id="enter-credentials-in-nango" title="Enter your credentials in Nango">
-    1. In Nango, go to **Integrations** → your eClinicalWorks (FHIR) integration → **Settings** tab.
+  <Step id="enter-credentials-in-nango" title="Enter your credentials in Tenklo">
+    1. In Tenklo, go to **Integrations** → your eClinicalWorks (FHIR) integration → **Settings** tab.
     2. Enter:
         - **Client ID** — from the previous step
         - **Key ID** — the `kid` from your JWKS entry
-        - **Private Key** — the full contents of `privatekey.pem`, the RSA private key you generated in step 2. Nango signs with `RS384`, so this must be an RSA key — an EC key won't work.
+        - **Private Key** — the full contents of `privatekey.pem`, the RSA private key you generated in step 2. Tenklo signs with `RS384`, so this must be an RSA key — an EC key won't work.
         - **Scope** — the SMART Backend Services scope(s) eClinicalWorks granted your app (e.g. `system/Patient.read`)
 
     Each field saves as soon as you leave it. Every connection you create under this integration reuses these values automatically — you won't be asked for them again per practice.

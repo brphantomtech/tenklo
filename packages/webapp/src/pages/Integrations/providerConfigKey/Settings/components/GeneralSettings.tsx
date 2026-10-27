@@ -161,7 +161,7 @@ export const GeneralSettings: React.FC<{ data: GetIntegration['Success']['data']
                             htmlFor="allow_unverified_webhooks"
                             info={
                                 <InfoTooltip size="sm">
-                                    Process webhooks that are missing a signature or that Nango cannot verify. Webhooks with an invalid signature are always
+                                    Process webhooks that are missing a signature or that Tenklo cannot verify. Webhooks with an invalid signature are always
                                     rejected.
                                 </InfoTooltip>
                             }

@@ -14,7 +14,7 @@ Each session has three parts:
 
 Your backend creates the session and exposes it to the agent as an MCP server. The agent never sees raw credentials, and cannot change the scope of its own session.
 
-The available toolset can include Nango catalog actions, action functions you manage yourself, and the tools of [MCP servers](#mcp-server-tools) your tenant has connected. Catalog actions are available out of the box and update automatically.
+The available toolset can include Tenklo catalog actions, action functions you manage yourself, and the tools of [MCP servers](#mcp-server-tools) your tenant has connected. Catalog actions are available out of the box and update automatically.
 
 Example sessions:
 - A sales agent with a user's personal Gmail & Google Calendar, and a read-only org-wide Salesforce connection
@@ -34,7 +34,7 @@ Example sessions:
   To define the tenant, select the connections the agent may use with tag selectors:
   ```bash
   curl --request POST \
-    --url 'https://api.nango.dev/sessions' \
+    --url 'https://api.tenklo.dev/sessions' \
     --header 'Authorization: Bearer <NANGO-API-KEY>' \
     --header 'Content-Type: application/json' \
     --data '{
@@ -54,7 +54,7 @@ Example sessions:
     "data": {
       "session_id": "0f4a...",
       "session_token": "nango_agent_session_...",
-      "mcp_url": "https://api.nango.dev/session/0f4a.../mcp",
+      "mcp_url": "https://api.tenklo.dev/session/0f4a.../mcp",
       "expires_at": "2026-09-15T10:00:00.000Z",
       "toolset": {
         "notion": { "connected": true, "tools_pinned": 0, "tools_searchable": 12 },
@@ -257,7 +257,7 @@ Create a session with the tools and access your agent needs.
 }
 ```
 
-Creation fails if your tenant selectors are [not unique](#resolving-ambiguity), or if a toolset or tool doesn't exist in your Nango environment.
+Creation fails if your tenant selectors are [not unique](#resolving-ambiguity), or if a toolset or tool doesn't exist in your Tenklo environment.
 
 Each session gets a unique `session_id` and `session_token`. The token is a scoped access token for that session — treat it as a secret, and keep session durations as short as your use case allows.
 
@@ -273,7 +273,7 @@ Sessions are immutable and cannot be extended. They expire on their own once `ex
 
 ```bash
 curl --request DELETE \
-  --url 'https://api.nango.dev/sessions/0f4a...' \
+  --url 'https://api.tenklo.dev/sessions/0f4a...' \
   --header 'Authorization: Bearer <NANGO-API-KEY>'
 ```
 
@@ -299,7 +299,7 @@ Recreate the session with the same parameters if you need it again.
 
 The tenant defines on whose behalf the agent may act. For example: use a specific user's Gmail credentials, but the org-wide credentials for Salesforce.
 
-You express this with [Connection tag](/guides/auth/connection-tags-configuration-metadata#connection-tags) selectors under `any`, which the session resolves to the right Connections in Nango. Tags within one entry are ANDed, entries are ORed, up to 10 entries.
+You express this with [Connection tag](/guides/auth/connection-tags-configuration-metadata#connection-tags) selectors under `any`, which the session resolves to the right Connections in Tenklo. Tags within one entry are ANDed, entries are ORed, up to 10 entries.
 
 Here, `organization_id`, `workspace`, and `user_id` are Connection tags we set up for our application.
 
@@ -367,7 +367,7 @@ What that error tells the agent to do next depends on whether [`nango_create_con
 
 `toolset` defines which tools are available to the agent.
 
-The toolset is a subset of the Integrations that are enabled in your Nango environment.
+The toolset is a subset of the Integrations that are enabled in your Tenklo environment.
 
 ```json
 {
@@ -411,7 +411,7 @@ A pinned tool must be in the toolset, otherwise creation fails with `tool_not_in
 
 Integrations for MCP servers, such as [Notion (MCP)](/api-integrations/notion-mcp) or [Linear (MCP)](/api-integrations/linear-mcp), bring the server's own tools into the session. There is nothing to deploy and nothing to turn on. Include the integration in the toolset like any other and give the tenant a connection to it.
 
-When the session is created, Nango lists the tools of each connected MCP server in the toolset and adds them alongside its actions. From then on they work like any other tool:
+When the session is created, Tenklo lists the tools of each connected MCP server in the toolset and adds them alongside its actions. From then on they work like any other tool:
 
 - `nango_tool_search` finds them, with the input schema the server gave
 - Pinned, they are listed with that input schema and the server's annotations
@@ -448,7 +448,7 @@ A server that fails or does not answer `tools/list` within 10 seconds does not f
 
 #### Running MCP server tools
 
-Every call goes through the [Nango proxy](/guides/platform/proxy-requests), so Nango applies and refreshes the connection's credentials, and the call shows up in Nango logs as a proxy operation.
+Every call goes through the [Tenklo proxy](/guides/platform/proxy-requests), so Tenklo applies and refreshes the connection's credentials, and the call shows up in Tenklo logs as a proxy operation.
 
 A result the server marks with `isError` reaches the agent unchanged. When the call itself fails, the agent gets an error that says what to do next:
 
@@ -458,7 +458,7 @@ A result the server marks with `isError` reaches the agent unchanged. When the c
 
 ## Meta tools
 
-Meta tools are Nango's own tools. They are always pinned to the MCP server's tool list.
+Meta tools are Tenklo's own tools. They are always pinned to the MCP server's tool list.
 
 | Tool | What it does |
 | --- | --- |
@@ -493,7 +493,7 @@ Runs one of the session's tools by name, on the connection the session resolved 
 { "tool": "notion__read_doc", "input": { "doc_id": "abc" } }
 ```
 
-Execution is synchronous and goes through the same path as [triggering an action function](/reference/backend/http-api/action/trigger), so it is capped by the synchronous execution limit and appears in Nango logs like any other function run.
+Execution is synchronous and goes through the same path as [triggering an action function](/reference/backend/http-api/action/trigger), so it is capped by the synchronous execution limit and appears in Tenklo logs like any other function run.
 
 ### nango_proxy
 
@@ -503,7 +503,7 @@ The escape hatch for when no tool in the session covers what the agent needs. It
 { "integration": "notion", "method": "POST", "path": "/v1/search", "body": { "query": "roadmap" } }
 ```
 
-It also takes `query_params` and `headers`. Nango authenticates the request from the session's connection, so credential headers are rejected rather than forwarded, including the provider's own (`x-api-key` and the like) alongside `authorization`.
+It also takes `query_params` and `headers`. Tenklo authenticates the request from the session's connection, so credential headers are rejected rather than forwarded, including the provider's own (`x-api-key` and the like) alongside `authorization`.
 
 The integration has to be one in the session's toolset with a resolved connection, but the path is not restricted to what the toolset exposes. That is why `nango_proxy` is off by default: turning it on lets the agent reach any endpoint of a connected integration.
 
@@ -522,14 +522,14 @@ Lets the agent get the user to connect an integration that has none, instead of 
   "guidance": "Give this link to the user and wait...",
   "integration": "notion",
   "provider": "notion",
-  "connect_url": "https://connect.nango.dev/?session_token=...",
+  "connect_url": "https://connect.tenklo.dev/?session_token=...",
   "expires_at": "2026-09-21T17:06:41.145Z"
 }
 ```
 
 The agent passes the link to the user, who authorizes it the same way as any [connect link](/guides/auth/share-connect-link), and the tools for that integration work for the rest of the session once the connection is created.
 
-Nango tags the new connection with `nango/agent_session` so the session can find it. You can configure the tool to add your own tags, allowing the next session to use tag selectors to include the connection:
+Tenklo tags the new connection with `nango/agent_session` so the session can find it. You can configure the tool to add your own tags, allowing the next session to use tag selectors to include the connection:
 
 ```json
 { "meta_tools": { "nango_create_connection": { "enabled": true, "tags": { "organization_id": "acme" } } } }

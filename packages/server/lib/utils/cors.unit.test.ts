@@ -14,34 +14,34 @@ afterEach(() => {
 });
 
 describe('isAllowedWebCorsOrigin — cloud (isLocal=false)', () => {
-    const utils = { basePublicUrl: 'https://app-development.nango.dev', baseUrl: 'https://api-development.nango.dev', isLocal: false };
+    const utils = { basePublicUrl: 'https://app-development.tenklo.dev', baseUrl: 'https://api-development.tenklo.dev', isLocal: false };
 
     it('allows exact basePublicUrl', async () => {
-        expect((await loadIsAllowed(utils))('https://app-development.nango.dev')).toBe(true);
+        expect((await loadIsAllowed(utils))('https://app-development.tenklo.dev')).toBe(true);
     });
 
     it('allows exact baseUrl', async () => {
-        expect((await loadIsAllowed(utils))('https://api-development.nango.dev')).toBe(true);
+        expect((await loadIsAllowed(utils))('https://api-development.tenklo.dev')).toBe(true);
     });
 
     it('allows PR preview subdomains', async () => {
         const isAllowed = await loadIsAllowed(utils);
-        expect(isAllowed('https://pr-123.app-development.nango.dev')).toBe(true);
-        expect(isAllowed('https://pr-0.app-development.nango.dev')).toBe(true);
-        expect(isAllowed('https://pr-99999.app-development.nango.dev')).toBe(true);
+        expect(isAllowed('https://pr-123.app-development.tenklo.dev')).toBe(true);
+        expect(isAllowed('https://pr-0.app-development.tenklo.dev')).toBe(true);
+        expect(isAllowed('https://pr-99999.app-development.tenklo.dev')).toBe(true);
     });
 
     it('blocks non-pr-N subdomains', async () => {
         const isAllowed = await loadIsAllowed(utils);
-        expect(isAllowed('https://evil.app-development.nango.dev')).toBe(false);
-        expect(isAllowed('https://pr-abc.app-development.nango.dev')).toBe(false);
-        expect(isAllowed('https://pr-.app-development.nango.dev')).toBe(false);
+        expect(isAllowed('https://evil.app-development.tenklo.dev')).toBe(false);
+        expect(isAllowed('https://pr-abc.app-development.tenklo.dev')).toBe(false);
+        expect(isAllowed('https://pr-.app-development.tenklo.dev')).toBe(false);
     });
 
     it('blocks subdomains of a different host', async () => {
         const isAllowed = await loadIsAllowed(utils);
-        expect(isAllowed('https://pr-123.evil.nango.dev')).toBe(false);
-        expect(isAllowed('https://pr-123.nango.dev')).toBe(false);
+        expect(isAllowed('https://pr-123.evil.tenklo.dev')).toBe(false);
+        expect(isAllowed('https://pr-123.tenklo.dev')).toBe(false);
     });
 
     it('allows requests with no origin (same-origin / server-to-server)', async () => {
@@ -53,15 +53,15 @@ describe('isAllowedWebCorsOrigin — cloud (isLocal=false)', () => {
     });
 
     it('blocks non-https preview origins', async () => {
-        expect((await loadIsAllowed(utils))('http://pr-123.app-development.nango.dev')).toBe(false);
+        expect((await loadIsAllowed(utils))('http://pr-123.app-development.tenklo.dev')).toBe(false);
     });
 
     it('blocks preview origins with non-standard ports', async () => {
-        expect((await loadIsAllowed(utils))('https://pr-123.app-development.nango.dev:444')).toBe(false);
+        expect((await loadIsAllowed(utils))('https://pr-123.app-development.tenklo.dev:444')).toBe(false);
     });
 
     it('blocks multi-label preview origins (e.g. pr-123.foo.publicHost)', async () => {
-        expect((await loadIsAllowed(utils))('https://pr-123.foo.app-development.nango.dev')).toBe(false);
+        expect((await loadIsAllowed(utils))('https://pr-123.foo.app-development.tenklo.dev')).toBe(false);
     });
 
     it('blocks localhost origins when not local (proxy/rewrite territory, not direct)', async () => {
@@ -92,7 +92,7 @@ describe('isAllowedWebCorsOrigin — local dev (isLocal=true)', () => {
     it('still blocks non-localhost origins', async () => {
         const isAllowed = await loadIsAllowed(utils);
         expect(isAllowed('http://evil.com')).toBe(false);
-        expect(isAllowed('https://evil.nango.dev')).toBe(false);
+        expect(isAllowed('https://evil.tenklo.dev')).toBe(false);
     });
 
     it('still blocks localhost-lookalike hosts', async () => {

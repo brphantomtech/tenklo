@@ -8,7 +8,7 @@ description: "Use tags, connection configuration, and metadata for the right con
   Pre-requisite: complete the [Set up an integration](/guides/auth/auth-guide#guide) section of the Auth guide.
 </Info>
 
-A Nango connection can store several kinds of information besides credentials. Use the right field depending on what the data does.
+A Tenklo connection can store several kinds of information besides credentials. Use the right field depending on what the data does.
 
 | Field | Use it for | Example |
 | --- | --- | --- |
@@ -18,9 +18,9 @@ A Nango connection can store several kinds of information besides credentials. U
 
 ## Connection tags
 
-Tags are small key/value strings you attach to a Connect session. Nango copies them to the resulting connection and includes them in auth webhooks.
+Tags are small key/value strings you attach to a Connect session. Tenklo copies them to the resulting connection and includes them in auth webhooks.
 
-Their primary purpose is **attribution**. Nango uses random UUIDs as connection IDs, so tags are the bridge between a Nango connection and the user, organization, workspace, or other entity in your system.
+Their primary purpose is **attribution**. Tenklo uses random UUIDs as connection IDs, so tags are the bridge between a Tenklo connection and the user, organization, workspace, or other entity in your system.
 
 Most apps start with these tags:
 
@@ -31,7 +31,7 @@ Most apps start with these tags:
 Then add whatever additional routing identifiers you need, such as `workspace_id`, `project_id`, or `plan`.
 
 <Tip>
-  To make connections easier to identify in the Nango dashboard, set `end_user_display_name` and `end_user_email`. Nango uses these reserved UI tag keys to populate the connections list and connection detail page.
+  To make connections easier to identify in the Tenklo dashboard, set `end_user_display_name` and `end_user_email`. Tenklo uses these reserved UI tag keys to populate the connections list and connection detail page.
 </Tip>
 
 <Note>
@@ -40,7 +40,7 @@ Then add whatever additional routing identifiers you need, such as `workspace_id
 
 ### Add tags when creating a Connect session
 
-When requesting a new Connect session token from Nango, pass a `tags` object:
+When requesting a new Connect session token from Tenklo, pass a `tags` object:
 
 <Tabs>
   <Tab title="Node">
@@ -66,7 +66,7 @@ When requesting a new Connect session token from Nango, pass a `tags` object:
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/connect/sessions \
+      --url https://api.tenklo.dev/connect/sessions \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -85,7 +85,7 @@ When requesting a new Connect session token from Nango, pass a `tags` object:
 
 ### Read tags from the auth webhook
 
-These tags appear in successful auth webhooks sent by Nango:
+These tags appear in successful auth webhooks sent by Tenklo:
 
 ```json
 {
@@ -105,7 +105,7 @@ Use these values to reconcile the generated `connectionId` with the user, organi
 
 ### Read and filter connections by tags
 
-Nango stores tags on the connection itself.
+Tenklo stores tags on the connection itself.
 
 <Tabs>
   <Tab title="Read with Node">
@@ -138,7 +138,7 @@ Nango stores tags on the connection itself.
   <Tab title="Filter with cURL">
     ```bash
     curl --request GET \
-      --url 'https://api.nango.dev/connections?tags[end_user_id]=<END-USER-ID>&tags[organization_id]=<ORGANIZATION-ID>' \
+      --url 'https://api.tenklo.dev/connections?tags[end_user_id]=<END-USER-ID>&tags[organization_id]=<ORGANIZATION-ID>' \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json'
     ```
@@ -177,7 +177,7 @@ If you need to update tags after a connection is created, patch the connection:
   <Tab title="cURL">
     ```bash
     curl --request PATCH \
-      --url 'https://api.nango.dev/connections/<CONNECTION-ID>?provider_config_key=<INTEGRATION-ID>' \
+      --url 'https://api.tenklo.dev/connections/<CONNECTION-ID>?provider_config_key=<INTEGRATION-ID>' \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -198,7 +198,7 @@ If you need to update tags after a connection is created, patch the connection:
 
 ### Reserved UI tag keys
 
-Two tag keys are reserved for improving the Nango dashboard UI:
+Two tag keys are reserved for improving the Tenklo dashboard UI:
 
 - `end_user_display_name` - shown instead of the connection ID in the connections list, making it easier to identify who a connection belongs to.
 - `end_user_email` - shown alongside `end_user_display_name` in the connections list. The domain from the email address is also used to display the end user's company logo on the connection detail page.
@@ -230,11 +230,11 @@ It can be required to:
 - build an OAuth authorization URL, such as a Zendesk subdomain
 - choose the correct API base URL, such as a region or account-specific host
 - call API endpoints later, such as a tenant ID, account ID, portal ID, or workspace ID
-- store values Nango discovers during authorization, such as an API instance URL or provider account ID
+- store values Tenklo discovers during authorization, such as an API instance URL or provider account ID
 
 Use connection configuration when the value is part of the connection's validity. If the value is missing, the connection may fail to authorize, fail credential checks, or be unusable for API requests.
 
-When you use the pre-built [Connect UI](/guides/auth/auth-guide), Nango generates the required forms for the integration and stores the submitted values as connection configuration.
+When you use the pre-built [Connect UI](/guides/auth/auth-guide), Tenklo generates the required forms for the integration and stores the submitted values as connection configuration.
 
 When you use [headless auth with a custom UI](/guides/auth/customize-connect-ui#build-your-own-auth-ui), you must collect required connection configuration in your own UI and pass it to `nango.auth()`:
 
@@ -264,7 +264,7 @@ You can also set defaults when creating a Connect session:
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/connect/sessions \
+      --url https://api.tenklo.dev/connect/sessions \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -293,7 +293,7 @@ For the REST API response shape, see [Get a connection](/reference/backend/http-
 
 ## Connection metadata
 
-Metadata is arbitrary JSON storage on the connection. Use it for information your app or Nango functions need, but that is not a condition for the connection itself to exist.
+Metadata is arbitrary JSON storage on the connection. Use it for information your app or Tenklo functions need, but that is not a condition for the connection itself to exist.
 
 Good metadata examples:
 
@@ -325,7 +325,7 @@ Set metadata after a connection is created:
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/connections/metadata \
+      --url https://api.tenklo.dev/connections/metadata \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{

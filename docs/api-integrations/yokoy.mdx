@@ -6,22 +6,22 @@ description: 'Integrate your application with the Yokoy API'
 
 ## 🚀 Quickstart
 
-Connect to Yokoy with Nango and see data flow in 2 minutes. Yokoy uses OAuth 2.0 client credentials — no user redirect required.
+Connect to Yokoy with Tenklo and see data flow in 2 minutes. Yokoy uses OAuth 2.0 client credentials — no user redirect required.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Yokoy_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Yokoy_.
     </Step>
     <Step title="Connect your Yokoy account">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_. Enter your Client ID, Client Secret, Organization ID, and environment, then save.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_. Enter your Client ID, Client Secret, Organization ID, and environment, then save.
     </Step>
     <Step title="Call the Yokoy API">
-    Make your first request. Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first request. Replace the placeholders with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl 'https://api.nango.dev/proxy/v1/organizations/${connectionConfig.organizationId}/expenses' \
+            curl 'https://api.tenklo.dev/proxy/v1/organizations/${connectionConfig.organizationId}/expenses' \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Yokoy with Nango and see data flow in 2 minutes. Yokoy uses OAuth 2.0
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -52,14 +52,14 @@ Connect to Yokoy with Nango and see data flow in 2 minutes. Yokoy uses OAuth 2.0
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
     <Note>
-        `${connectionConfig.organizationId}` is a template Nango resolves automatically using the Organization ID you set on the connection — you don't need to replace it yourself.
+        `${connectionConfig.organizationId}` is a template Tenklo resolves automatically using the Organization ID you set on the connection — you don't need to replace it yourself.
     </Note>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own credentials, follow the setup guide linked below.
     </Step>
@@ -67,10 +67,10 @@ Connect to Yokoy with Nango and see data flow in 2 minutes. Yokoy uses OAuth 2.0
 
 ## 📚 Yokoy integration guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to generate your Yokoy API credentials](/api-integrations/yokoy/connect)  
-Generate OAuth client credentials in Yokoy and obtain the values needed to connect it to Nango
+Generate OAuth client credentials in Yokoy and obtain the values needed to connect it to Tenklo
 
 Official docs: [Yokoy API docs](https://developer.yokoy.ai/docs/overview/getting-started)
 

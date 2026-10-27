@@ -12,7 +12,7 @@ An **incremental sync** fetches only records that changed since the previous run
 
 A **full sync** fetches the whole dataset every run, then saves or compares the complete result.
 
-Incremental syncs are usually an order of magnitude more efficient than full syncs. They reduce provider API calls, function runtime, memory usage, Nango compute, records churn, and downstream writes in your app.
+Incremental syncs are usually an order of magnitude more efficient than full syncs. They reduce provider API calls, function runtime, memory usage, Tenklo compute, records churn, and downstream writes in your app.
 
 Full syncs can be acceptable for small datasets or low-frequency jobs. For large datasets, they can become plainly unrealistic: expensive to run, slow to finish, more likely to crash, more likely to hit provider rate limits, and less reliable when a run needs to process thousands or millions of records every time.
 
@@ -23,7 +23,7 @@ Full syncs can be acceptable for small datasets or low-frequency jobs. For large
 
 This choice is constrained by the external API shape. To benefit from incremental syncing, the provider usually needs a parameter such as `updated_at`, `updated_since`, `modified_after`, a cursor, a sequence ID, or an event stream that lets you ask for only changed records.
 
-The hardest case is a large dataset where the API does not support incremental filters. Often, that happens because the provider expects you to use webhooks instead. In Nango, use [webhook functions](/guides/functions/webhook-functions), [webhook forwarding](/guides/platform/webhook-forwarding), or [real-time syncs](/guides/functions/syncs/realtime-syncs) to process provider events and avoid polling the entire dataset.
+The hardest case is a large dataset where the API does not support incremental filters. Often, that happens because the provider expects you to use webhooks instead. In Tenklo, use [webhook functions](/guides/functions/webhook-functions), [webhook forwarding](/guides/platform/webhook-forwarding), or [real-time syncs](/guides/functions/syncs/realtime-syncs) to process provider events and avoid polling the entire dataset.
 
 The risky combination is: **large dataset + no incremental API + high freshness requirement**. If you need to run a full sync frequently to keep data fresh, the design is usually unrealistic in terms of cost, runtime, reliability, and rate limits. Look for a webhook strategy, reduce freshness requirements, partition the dataset, or narrow the scope of synced data.
 
@@ -61,15 +61,15 @@ This pattern keeps memory bounded and lets the next run resume from the last sav
 
 ## Keep records small
 
-Only fetch and save fields your app needs. Smaller records reduce external API usage, Nango compute, cache size, downstream processing, and cost.
+Only fetch and save fields your app needs. Smaller records reduce external API usage, Tenklo compute, cache size, downstream processing, and cost.
 
-Keep records steady too. During full syncs, Nango can process unchanged records faster when the saved record payload stays identical between runs. Avoid adding fields that change on every fetch even when the underlying external record did not change, such as `lastFetchedAt`, request timestamps, random IDs, or transient API metadata. Volatile fields make the record look changed every run, which forces extra processing and downstream updates.
+Keep records steady too. During full syncs, Tenklo can process unchanged records faster when the saved record payload stays identical between runs. Avoid adding fields that change on every fetch even when the underlying external record did not change, such as `lastFetchedAt`, request timestamps, random IDs, or transient API metadata. Volatile fields make the record look changed every run, which forces extra processing and downstream updates.
 
 ## Filter unnecessary data early
 
-Filter data as early as possible, either by using filters provided by the external API or by discarding records before calling `batchSave()`. This keeps the external system as the source of truth while reducing provider API usage, Nango compute, cache size, and downstream processing.
+Filter data as early as possible, either by using filters provided by the external API or by discarding records before calling `batchSave()`. This keeps the external system as the source of truth while reducing provider API usage, Tenklo compute, cache size, and downstream processing.
 
-Prefer provider-side filters such as selected folders, projects, accounts, regions, statuses, or `updated_after` parameters. If the provider cannot filter server-side, map and filter each page before saving so Nango and your app only process records that matter.
+Prefer provider-side filters such as selected folders, projects, accounts, regions, statuses, or `updated_after` parameters. If the provider cannot filter server-side, map and filter each page before saving so Tenklo and your app only process records that matter.
 
 Use [connection metadata](/guides/functions/storage#connection-metadata) for per-customer filters. For example, store selected project IDs, folder IDs, regions, pipelines, or custom field mappings on the connection, then read that metadata inside the sync and pass it to the provider API.
 
@@ -100,9 +100,9 @@ If you need additional data later, update the sync function and trigger a run wi
 
 ## Consume changes promptly
 
-Nango's records cache is a delivery mechanism, not your app's long-term data store. Configure [webhooks from Nango](/guides/platform/webhooks-from-nango), fetch changed records from the [records API](/reference/backend/http-api/sync/records-list), store them in your system, and persist the last processed cursor.
+Tenklo's records cache is a delivery mechanism, not your app's long-term data store. Configure [webhooks from Tenklo](/guides/platform/webhooks-from-nango), fetch changed records from the [records API](/reference/backend/http-api/sync/records-list), store them in your system, and persist the last processed cursor.
 
-When reading records from Nango, keep page sizes modest. A page size around `100` records is a good default: it keeps payloads quick to transfer, reduces memory spikes in your worker, and makes retries less expensive when a downstream write fails.
+When reading records from Tenklo, keep page sizes modest. A page size around `100` records is a good default: it keeps payloads quick to transfer, reduces memory spikes in your worker, and makes retries less expensive when a downstream write fails.
 
 Read [Records cache](/guides/functions/syncs/records-cache) for cursor behavior, payload shape, and retention details.
 

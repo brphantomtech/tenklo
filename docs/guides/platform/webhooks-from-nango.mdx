@@ -1,30 +1,30 @@
 ---
-title: 'Receive webhooks from Nango'
-sidebarTitle: 'Webhooks from Nango'
-description: 'Reference for the webhooks Nango sends to your app — setup, types, payloads, signature verification, and retries.'
+title: 'Receive webhooks from Tenklo'
+sidebarTitle: 'Webhooks from Tenklo'
+description: 'Reference for the webhooks Tenklo sends to your app — setup, types, payloads, signature verification, and retries.'
 ---
 
-Nango POSTs webhooks to your app to notify it of important events: a new connection was created, a sync run finished, an async action completed, or an external webhook was forwarded. This page covers how to receive and verify webhooks from Nango, plus the payloads for auth, sync, and async action webhooks.
+Tenklo POSTs webhooks to your app to notify it of important events: a new connection was created, a sync run finished, an async action completed, or an external webhook was forwarded. This page covers how to receive and verify webhooks from Tenklo, plus the payloads for auth, sync, and async action webhooks.
 
 <Info>
-To process webhooks coming **from external APIs** (not from Nango), see [Process external webhooks](/getting-started/use-cases/webhooks-from-external-apis). To forward external API webhooks through Nango to your app, see [Webhook forwarding](/guides/platform/webhook-forwarding).
+To process webhooks coming **from external APIs** (not from Tenklo), see [Process external webhooks](/getting-started/use-cases/webhooks-from-external-apis). To forward external API webhooks through Tenklo to your app, see [Webhook forwarding](/guides/platform/webhook-forwarding).
 </Info>
 
-## Set up webhooks from Nango
+## Set up webhooks from Tenklo
 
 <Note>
-    Webhook settings in Nango are specific to each [environment](/guides/platform/environments).
+    Webhook settings in Tenklo are specific to each [environment](/guides/platform/environments).
 </Note>
 
-To subscribe to Nango webhooks:
+To subscribe to Tenklo webhooks:
 
-1. Set up a `POST` endpoint in your app to receive the Nango webhooks
-2. Input the endpoint's URL in your _Environment Settings_, under _Webhook URLs_ ([direct link for your dev environment](https://app.nango.dev/dev/environment-settings#notification))
-3. Implement [verify incoming webhooks](#verifying-webhooks-from-nango) to ensure sure only authentic Nango webhooks are processed
-4. Implement processing logic for each [webhook type](#types-of-nango-webhooks) from Nango you want to handle
+1. Set up a `POST` endpoint in your app to receive the Tenklo webhooks
+2. Input the endpoint's URL in your _Environment Settings_, under _Webhook URLs_ ([direct link for your dev environment](https://app.tenklo.dev/dev/environment-settings#notification))
+3. Implement [verify incoming webhooks](#verifying-webhooks-from-nango) to ensure sure only authentic Tenklo webhooks are processed
+4. Implement processing logic for each [webhook type](#types-of-nango-webhooks) from Tenklo you want to handle
     - Make sure your processing logic handles the webhooks you have enabled in the environment settings
 
-You can configure up to two webhook URLs per environment. Nango webhooks will be sent to both. A single connection can [override these with its own URL](#override-webhook-urls-per-connection).
+You can configure up to two webhook URLs per environment. Tenklo webhooks will be sent to both. A single connection can [override these with its own URL](#override-webhook-urls-per-connection).
 
 To test webhooks locally, use a webhook forwarding service like [ngrok](https://dev.to/mmascioni/testing-and-debugging-webhooks-with-ngrok-4alp), or [webhook.site](https://webhook.site/).
 
@@ -48,7 +48,7 @@ Set `webhook_url_override` when creating a [connect session](/reference/backend/
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/connect/sessions \
+      --url https://api.tenklo.dev/connect/sessions \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -61,7 +61,7 @@ Set `webhook_url_override` when creating a [connect session](/reference/backend/
 
 You can also set or edit `webhook_url_override` from:
 
-- The **Create connection** flow in the Nango dashboard (advanced configuration), or later on the connection's **Settings** tab
+- The **Create connection** flow in the Tenklo dashboard (advanced configuration), or later on the connection's **Settings** tab
 - `PATCH /connections/{connectionId}` with a `webhook_url_override` field (see [Patch a connection](/reference/backend/http-api/connections/patch))
 
 <Note>
@@ -72,14 +72,14 @@ You can also set or edit `webhook_url_override` from:
     **Local development:** set a connection's `webhook_url_override` to your local webhook endpoint (for example via [ngrok](https://ngrok.com/) or [webhook.site](https://webhook.site/)) to receive that connection's webhooks on your machine — without changing the shared environment webhook URLs. See [Engineering collaboration](/guides/platform/environments#engineering-collaboration) for the shared-environment workflow.
 </Tip>
 
-## Verifying webhooks from Nango
+## Verifying webhooks from Tenklo
 
-Validate webhooks from Nango by looking at the `X-Nango-Hmac-Sha256` header.
+Validate webhooks from Tenklo by looking at the `X-Nango-Hmac-Sha256` header.
 
-It's an HMAC-SHA256 hash of the webhook payload, using the webhook signing key found in **Environment Settings > Webhooks > Signing key** in the Nango UI.
+It's an HMAC-SHA256 hash of the webhook payload, using the webhook signing key found in **Environment Settings > Webhooks > Signing key** in the Tenklo UI.
 
 <Warning>
-Nango webhook requests include an `X-Nango-Hmac-Sha256` header for secure verification. A legacy `X-Nango-Signature` header (using plain SHA-256) is also sent for backwards compatibility but should not be used. If you're currently using `X-Nango-Signature`, migrate to `X-Nango-Hmac-Sha256` for improved security.
+Tenklo webhook requests include an `X-Nango-Hmac-Sha256` header for secure verification. A legacy `X-Nango-Signature` header (using plain SHA-256) is also sent for backwards compatibility but should not be used. If you're currently using `X-Nango-Signature`, migrate to `X-Nango-Hmac-Sha256` for improved security.
 </Warning>
 
 The webhook signature can be verified with the following code:
@@ -218,13 +218,13 @@ Rotate the key from **Environment Settings > Webhooks > Signing key** with **Rot
 
 For up to 5 minutes after a rotation, webhooks are signed with either the old or the new key. Accept both during that window, then drop the old key.
 
-## Types of Nango webhooks
+## Types of Tenklo webhooks
 
 <Warning>
-  New Nango webhook types are added regularly, without considering this a breaking change. Your webhook handling logic should gracefully support receiving new types of webhooks by simply ignoring them.
+  New Tenklo webhook types are added regularly, without considering this a breaking change. Your webhook handling logic should gracefully support receiving new types of webhooks by simply ignoring them.
 </Warning>
 
-All webhooks from Nango are POST requests.
+All webhooks from Tenklo are POST requests.
 
 The exact webhook type definitions can be found [here](https://github.com/NangoHQ/nango/blob/master/packages/types/lib/webhooks/api.ts).
 
@@ -292,10 +292,10 @@ Payload received following a refresh token error:
 ```
 
 <Note>
-  Webhooks are only sent for certain connection creation errors. For example, during the OAuth flow, some errors are reported locally in the OAuth modal by the external API. Since Nango does not receive these errors, it cannot trigger a webhook for them.
+  Webhooks are only sent for certain connection creation errors. For example, during the OAuth flow, some errors are reported locally in the OAuth modal by the external API. Since Tenklo does not receive these errors, it cannot trigger a webhook for them.
 </Note>
 
-Nango retries refreshing on its periodic cycle, so a single refresh failure doesn't necessarily mean the connection needs re-authorization. When a connection recovers — i.e. a refresh succeeds after a previous refresh failure — Nango sends a follow-up webhook with `"success": true`:
+Tenklo retries refreshing on its periodic cycle, so a single refresh failure doesn't necessarily mean the connection needs re-authorization. When a connection recovers — i.e. a refresh succeeds after a previous refresh failure — Tenklo sends a follow-up webhook with `"success": true`:
 
 ```json
 {
@@ -387,10 +387,10 @@ const isFullSync = !checkpoints || checkpoints.from === null;
 - **Webhook-triggered runs** (deprecated `syncType: "WEBHOOK"`): always treat these as incremental merges, regardless of `checkpoints.from`. A webhook-triggered run processes a single incoming external event on top of already-synced data — it never represents a full resync.
 
 <Warning>
-**Fetch records promptly**: Due to Nango's [data retention policies](/guides/platform/security#synced-records-retention), you should fetch and store synced records in your own system promptly after receiving webhook notifications. Records not updated for 30 days will have their payload pruned, and sync functions not executed for 60 days will have all records deleted.
+**Fetch records promptly**: Due to Tenklo's [data retention policies](/guides/platform/security#synced-records-retention), you should fetch and store synced records in your own system promptly after receiving webhook notifications. Records not updated for 30 days will have their payload pruned, and sync functions not executed for 60 days will have all records deleted.
 </Warning>
 
-By default, Nango sends a webhook even if no modified data was detected in the last sync execution (referred as an "empty" sync), but this is configurable in your _Environment Settings_. In case of an empty sync, the `responseResults` would be:
+By default, Tenklo sends a webhook even if no modified data was detected in the last sync execution (referred as an "empty" sync), but this is configurable in your _Environment Settings_. In case of an empty sync, the `responseResults` would be:
 ```json
 {
     "added": 0,
@@ -426,25 +426,25 @@ Payload received following a failed sync execution:
 
 ### External webhook forwarding
 
-Forwarded external webhooks use the same webhook URLs, signing, retries, and logs as other Nango webhooks. See [Webhook forwarding](/guides/platform/webhook-forwarding) for setup, routing behavior, and payload shapes.
+Forwarded external webhooks use the same webhook URLs, signing, retries, and logs as other Tenklo webhooks. See [Webhook forwarding](/guides/platform/webhook-forwarding) for setup, routing behavior, and payload shapes.
 
 ## Webhook retries & debugging
 
-Nango retries each webhook with non-2xx responses 2 times with exponential backoff (starting delay: 100ms, time multiple: 2, view details in the [code](https://github.com/NangoHQ/nango/blob/master/packages/webhooks/lib/utils.ts)).
+Tenklo retries each webhook with non-2xx responses 2 times with exponential backoff (starting delay: 100ms, time multiple: 2, view details in the [code](https://github.com/NangoHQ/nango/blob/master/packages/webhooks/lib/utils.ts)).
 
 Webhooks time out after 20 seconds.
 
-Each webhook attempt is logged in Nango's [logs](/guides/platform/observability).
+Each webhook attempt is logged in Tenklo's [logs](/guides/platform/observability).
 
-You can also use the [OpenTelemetry exporter](/guides/platform/observability#opentelemetry-export) to monitor Nango webhooks in your own observability stack.
+You can also use the [OpenTelemetry exporter](/guides/platform/observability#opentelemetry-export) to monitor Tenklo webhooks in your own observability stack.
 
 <Tip>
-  **Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+  **Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>
 
 ## Related guides
 
-- [Webhook forwarding](/guides/platform/webhook-forwarding) - forward external provider webhooks through Nango.
-- [Webhook functions](/guides/functions/webhook-functions) - process provider webhooks inside Nango.
+- [Webhook forwarding](/guides/platform/webhook-forwarding) - forward external provider webhooks through Tenklo.
+- [Webhook functions](/guides/functions/webhook-functions) - process provider webhooks inside Tenklo.
 - [Event functions](/guides/functions/event-functions) - react to connection lifecycle events.
 - [Observability](/guides/platform/observability) - monitor webhook operations and retries.

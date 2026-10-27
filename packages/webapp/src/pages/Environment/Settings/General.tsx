@@ -117,7 +117,7 @@ export const General: React.FC = () => {
                     <div className="flex items-center gap-1.5">
                         <span>Production environment</span>
                         <DocsIconLink
-                            href="https://nango.dev/docs/guides/platform/environments#production-environments"
+                            href="https://tenklo.dev/docs/guides/platform/environments#production-environments"
                             label="Production environments documentation"
                         />
                     </div>
@@ -148,7 +148,7 @@ export const General: React.FC = () => {
                                         confirmVariant: 'danger',
                                         docs: {
                                             title: 'Learn more',
-                                            url: 'https://nango.dev/docs/guides/platform/environments#production-environments'
+                                            url: 'https://tenklo.dev/docs/guides/platform/environments#production-environments'
                                         }
                                     })
                                 }

@@ -8,17 +8,17 @@ description: 'Access the Adobe Workfront API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Adobe Workfront_. Nango doesn't provide a test OAuth app for Adobe Workfront yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID and secret in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Adobe Workfront_. Tenklo doesn't provide a test OAuth app for Adobe Workfront yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID and secret in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Adobe Workfront">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Adobe Workfront. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Adobe Workfront. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Adobe Workfront API">
-        Let's make your first request to the Adobe Workfront API (fetch a specific project using its projectId). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Adobe Workfront API (fetch a specific project using its projectId). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/v15.0/project/{projectId}" \
+                curl "https://api.tenklo.dev/proxy/v15.0/project/{projectId}" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the Adobe Workfront API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -51,7 +51,7 @@ description: 'Access the Adobe Workfront API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Adobe Workfront accounts.
@@ -73,13 +73,13 @@ description: 'Access the Adobe Workfront API in 2 minutes 💨'
       </Step>
       <Step title="Configure OAuth2 application">
         Fill in all the required fields for the new app, for the following fields 
-        - **Redirect URLs**: Enter `https://api.nango.dev/oauth/callback`
+        - **Redirect URLs**: Enter `https://api.tenklo.dev/oauth/callback`
         - **Refresh token rotation**: Enable this option to issue a new refresh token whenever the refresh token is used.
         - **Absolute refresh token expiration**: Select "No expiration" for this field.
       </Step>
       <Step title="Save and obtain credentials">
         1. Click **Save**.
-        2. Copy both the **Client ID** and **Client Secret** as you'll need them when configuring your integration in Nango.
+        2. Copy both the **Client ID** and **Client Secret** as you'll need them when configuring your integration in Tenklo.
       </Step>
       <Step title="Next">
         Follow the [_Quickstart_](/getting-started/quickstart).
@@ -103,11 +103,11 @@ description: 'Access the Adobe Workfront API in 2 minutes 💨'
   <Tab title="🚨 API gotchas">
 
     - Adobe Workfront uses different [API versions](https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-notes/api-version-support-schedule) (v15.0, v16.0, etc.). Make sure you're using the correct version for your needs.
-    - You can leave the scopes field empty when configuring in Nango as it's not needed.
+    - You can leave the scopes field empty when configuring in Tenklo as it's not needed.
     <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/adobe-workfront.mdx)</Note>
   </Tab>
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

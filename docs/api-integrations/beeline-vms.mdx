@@ -6,22 +6,22 @@ description: 'Integrate your application with Beeline VMS APIs using OAuth2 clie
 
 ## 🚀 Quickstart
 
-Connect to Beeline VMS with Nango using client credentials and see data flow in 2 minutes.
+Connect to Beeline VMS with Tenklo using client credentials and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Beeline VMS_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Beeline VMS_.
     </Step>
     <Step id="authorize-beeline" title="Authorize Beeline VMS">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Client ID, Client Secret, Authorization Server Region, Audience, and Client Site ID — see the [connect guide](/api-integrations/beeline-vms/connect) for where to find each one. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Client ID, Client Secret, Authorization Server Region, Audience, and Client Site ID — see the [connect guide](/api-integrations/beeline-vms/connect) for where to find each one. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-the-api" title="Call the Beeline VMS API">
-    Make your first request. This example uses the Client APIs (the Audience you set determines which API product your requests can reach — see the [connect guide](/api-integrations/beeline-vms/connect)). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections), and your **Client Site ID** in the path:
+    Make your first request. This example uses the Client APIs (the Audience you set determines which API product your requests can reach — see the [connect guide](/api-integrations/beeline-vms/connect)). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections), and your **Client Site ID** in the path:
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/sites/<CLIENT-SITE-ID>/sows" \
+            curl "https://api.tenklo.dev/proxy/sites/<CLIENT-SITE-ID>/sows" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Beeline VMS with Nango using client credentials and see data flow in 
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Beeline VMS with Nango using client credentials and see data flow in 
 
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-in-app" title="Implement Nango in your app">
-        Follow our [quickstart](/getting-started/quickstart) to integrate Nango in your app.
+    <Step id="implement-in-app" title="Implement Tenklo in your app">
+        Follow our [quickstart](/getting-started/quickstart) to integrate Tenklo in your app.
     </Step>
 </Steps>
 

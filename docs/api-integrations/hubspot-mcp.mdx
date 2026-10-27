@@ -6,22 +6,22 @@ description: 'Integrate your application with the HubSpot MCP API'
 
 ## 🚀 Quickstart
 
-Connect to HubSpot (MCP) with Nango and start calling tools in minutes.
+Connect to HubSpot (MCP) with Tenklo and start calling tools in minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _HubSpot (MCP)_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _HubSpot (MCP)_.
     </Step>
     <Step title="Authorize HubSpot">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to HubSpot. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to HubSpot. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call a HubSpot MCP tool">
-    Make your first MCP request to HubSpot (e.g. fetch user details). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Make your first MCP request to HubSpot (e.g. fetch user details). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy//" \
+            curl "https://api.tenklo.dev/proxy//" \
               -X POST \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
@@ -44,7 +44,7 @@ Connect to HubSpot (MCP) with Nango and start calling tools in minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -71,11 +71,11 @@ Connect to HubSpot (MCP) with Nango and start calling tools in minutes.
         </Tab>
 
     </Tabs>
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -86,7 +86,7 @@ Connect to HubSpot (MCP) with Nango and start calling tools in minutes.
 Nango-maintained guides for common MCP use cases.
 
 - [How to register your own HubSpot MCP OAuth app](/api-integrations/hubspot-mcp/how-to-register-your-own-hubspot-mcp-api-oauth-app)  
-Register an MCP auth app with HubSpot and obtain credentials to connect it to Nango.
+Register an MCP auth app with HubSpot and obtain credentials to connect it to Tenklo.
 
 Official docs: [HubSpot MCP server](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server)
 

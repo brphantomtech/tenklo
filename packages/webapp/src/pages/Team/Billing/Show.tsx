@@ -98,7 +98,7 @@ export const TeamBilling: React.FC = () => {
     return (
         <DashboardLayout ref={scrollRef} fullWidth centered title="Billing & usage" titleActions={<BillingHeaderAction />}>
             <Helmet>
-                <title>Billing & usage - Nango</title>
+                <title>Billing & usage - Tenklo</title>
             </Helmet>
             <div className="flex flex-col gap-8">
                 {/* Legacy, enterprise and free-uncapped get no strip, but can still owe an invoice. */}
@@ -131,7 +131,7 @@ export const TeamBilling: React.FC = () => {
                     <div className="flex items-center justify-between gap-4">
                         <span className="text-text-strong text-body-medium-medium">Plans</span>
                         <Button asChild variant="link-accent">
-                            <a href="https://nango.dev/pricing" target="_blank" rel="noopener noreferrer">
+                            <a href="https://tenklo.dev/pricing" target="_blank" rel="noopener noreferrer">
                                 View full pricing detail
                                 <ExternalLink />
                             </a>

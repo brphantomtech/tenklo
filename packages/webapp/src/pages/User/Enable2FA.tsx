@@ -87,7 +87,7 @@ export const Enable2FA: React.FC = () => {
     return (
         <DashboardLayout fullWidth>
             <Helmet>
-                <title>Enable 2FA - Nango</title>
+                <title>Enable 2FA - Tenklo</title>
             </Helmet>
             <div className="mx-auto flex max-w-[640px] flex-col gap-8 py-4">
                 <MfaStepper current={step} />

@@ -421,8 +421,8 @@ html:not(.dark) #table-of-contents:not(:has(.toc-item[data-active="true"])) .toc
  * Mintlify ships the logo with Tailwind `h-7` (28px) plus
  * `max-w-[100%]`, which renders small next to the marketing site.
  *
- * Earlier this rule targeted `a[href="https://www.nango.dev"] img`,
- * but the href in docs.json was switched to `https://nango.dev`
+ * Earlier this rule targeted `a[href="https://www.tenklo.dev"] img`,
+ * but the href in docs.json was switched to `https://tenklo.dev`
  * (no `www`), so the selector silently stopped matching — that's
  * why subsequent height bumps had no effect.
  *
@@ -623,8 +623,8 @@ html:not(.dark) li[data-active="true"] > a { border-radius: 4px !important; }
 /* ══ NAVBAR BUTTONS ══════════════════════════════════════════════ */
 
 /* Shared button sizing — applies to both Log In and Sign Up */
-#navbar a[href="https://app.nango.dev"],
-#navbar a[href="https://app.nango.dev/signup"] {
+#navbar a[href="https://app.tenklo.dev"],
+#navbar a[href="https://app.tenklo.dev/signup"] {
   padding: 7px 16px !important;
   font-size: 0.875rem !important;
   font-weight: 500 !important;
@@ -633,11 +633,11 @@ html:not(.dark) li[data-active="true"] > a { border-radius: 4px !important; }
 }
 
 /* Tighten gap between the two buttons */
-#navbar a[href="https://app.nango.dev"] { margin-right: -8px !important; }
-#navbar a[href="https://app.nango.dev/signup"] { margin-left: -8px !important; }
+#navbar a[href="https://app.tenklo.dev"] { margin-right: -8px !important; }
+#navbar a[href="https://app.tenklo.dev/signup"] { margin-left: -8px !important; }
 
 /* Log In — dark */
-.dark #navbar a[href="https://app.nango.dev"] {
+.dark #navbar a[href="https://app.tenklo.dev"] {
   display: inline-flex !important;
   align-items: center !important;
   background-color: transparent !important;
@@ -645,7 +645,7 @@ html:not(.dark) li[data-active="true"] > a { border-radius: 4px !important; }
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   text-decoration: none !important;
 }
-.dark #navbar a[href="https://app.nango.dev"]:hover {
+.dark #navbar a[href="https://app.tenklo.dev"]:hover {
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -663,18 +663,18 @@ html:not(.dark) li[data-active="true"] > a { border-radius: 4px !important; }
  * mobile variant has no overlay span, so display:none on the
  * span is a no-op there and the anchor bg wins by default.
  */
-#navbar a[href="https://app.nango.dev/signup"] {
+#navbar a[href="https://app.tenklo.dev/signup"] {
   background-color: #29abe3 !important;
   background-image: none !important;
   border: 1px solid #29abe3 !important;
   color: #ffffff !important;
 }
-#navbar a[href="https://app.nango.dev/signup"] > span:first-child,
-#navbar a[href="https://app.nango.dev/signup"] span.absolute,
-#navbar a[href="https://app.nango.dev/signup"] span[class*="bg-primary"] {
+#navbar a[href="https://app.tenklo.dev/signup"] > span:first-child,
+#navbar a[href="https://app.tenklo.dev/signup"] span.absolute,
+#navbar a[href="https://app.tenklo.dev/signup"] span[class*="bg-primary"] {
   display: none !important;
 }
-#navbar a[href="https://app.nango.dev/signup"]:hover {
+#navbar a[href="https://app.tenklo.dev/signup"]:hover {
   background-color: #217ea6 !important;
   border-color: #217ea6 !important;
   color: #ffffff !important;

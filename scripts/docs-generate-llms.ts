@@ -7,7 +7,7 @@ import yaml from 'js-yaml';
 const docsRoot = 'docs';
 const docsJsonPath = path.join(docsRoot, 'docs.json');
 const providersPath = 'packages/providers/providers.yaml';
-const baseUrl = 'https://nango.dev/docs';
+const baseUrl = 'https://tenklo.dev/docs';
 
 interface ResourceLink {
     title: string;
@@ -18,23 +18,23 @@ interface ResourceLink {
 const resourceLinks: ResourceLink[] = [
     {
         title: 'Blog',
-        url: 'https://nango.dev/blog',
-        description: 'Articles, product updates, and integration deep-dives from the Nango team.'
+        url: 'https://tenklo.dev/blog',
+        description: 'Articles, product updates, and integration deep-dives from the Tenklo team.'
     },
     {
         title: 'Pricing',
-        url: 'https://nango.dev/pricing',
-        description: 'Plans and pricing for Nango Cloud.'
+        url: 'https://tenklo.dev/pricing',
+        description: 'Plans and pricing for Tenklo Cloud.'
     },
     {
         title: 'Talk to the team',
-        url: 'https://nango.dev/contact',
-        description: 'Book a call with Nango for sales, onboarding, or technical questions.'
+        url: 'https://tenklo.dev/contact',
+        description: 'Book a call with Tenklo for sales, onboarding, or technical questions.'
     },
     {
         title: 'Community Slack',
-        url: 'https://nango.dev/slack',
-        description: 'Get help, share feedback, and connect with other Nango developers.'
+        url: 'https://tenklo.dev/slack',
+        description: 'Get help, share feedback, and connect with other Tenklo developers.'
     }
 ];
 
@@ -144,9 +144,9 @@ function isApiCatalogGroup(group: NavGroup): boolean {
 
 async function renderLlmsTxt(documentation: NavGroup, apiOverview: NavGroup, changelogRoutes: string[], catalog: CatalogEntry[]): Promise<string> {
     const lines = [
-        '# Nango Docs',
+        '# Tenklo Docs',
         '',
-        '> Nango is the integration layer for AI-built, code-owned product integrations. These files are curated for agents: core docs are listed directly, while provider-specific API pages live in a compact catalog.',
+        '> Tenklo is the integration layer for AI-built, code-owned product integrations. These files are curated for agents: core docs are listed directly, while provider-specific API pages live in a compact catalog.',
         '',
         `Full core-docs context: ${baseUrl}/llms-full.txt`,
         `API and integration catalog: ${baseUrl}/api-catalog.txt`,
@@ -171,7 +171,7 @@ async function renderLlmsTxt(documentation: NavGroup, apiOverview: NavGroup, cha
     lines.push(
         `- [API catalog](${baseUrl}/api-catalog.txt): ${catalog.length} provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.`
     );
-    lines.push('- Provider-specific pages are intentionally not expanded here so core Nango guides remain easy for agents to find.');
+    lines.push('- Provider-specific pages are intentionally not expanded here so core Tenklo guides remain easy for agents to find.');
     lines.push('');
 
     lines.push('## Resources', '');
@@ -216,9 +216,9 @@ async function renderNavBullets(group: NavGroup, prefix = ''): Promise<string[]>
 
 async function renderLlmsFullTxt(routes: string[], catalog: CatalogEntry[]): Promise<string> {
     const lines = [
-        '# Nango Docs',
+        '# Tenklo Docs',
         '',
-        '> Curated full-text context for Nango core docs. Provider-specific API pages are excluded to keep this file focused; use the API catalog section at the end to discover supported provider slugs.',
+        '> Curated full-text context for Tenklo core docs. Provider-specific API pages are excluded to keep this file focused; use the API catalog section at the end to discover supported provider slugs.',
         ''
     ];
 
@@ -321,7 +321,7 @@ function selectConnectRoute(providerRoute: string | undefined, docsRoute: string
 
 function renderApiCatalog(catalog: CatalogEntry[]): string {
     return [
-        '# Nango API and Integration Catalog',
+        '# Tenklo API and Integration Catalog',
         '',
         '> Compact provider slug catalog for agents. Use the slug to reconstruct provider-specific docs URLs only when needed.',
         '',

@@ -1,7 +1,7 @@
 {
     "name": "@nangohq/node",
     "version": "0.71.13",
-    "description": "Nango's Node client.",
+    "description": "Tenklo's Node client.",
     "type": "module",
     "main": "dist/index.js",
     "module": "./dist/index.js",

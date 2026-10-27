@@ -6,11 +6,11 @@ description: 'Normalize several external APIs behind your own stable product int
 
 API unification means turning several provider-specific APIs into one interface your product can use consistently. For example, your app might expose one `create-contact` operation even though Salesforce, HubSpot, Attio, and Pipedrive each model contacts differently.
 
-Nango helps you build unified APIs with functions you control. You define the model that fits your product, then implement provider-specific functions that map to and from that model.
+Tenklo helps you build unified APIs with functions you control. You define the model that fits your product, then implement provider-specific functions that map to and from that model.
 
 ## When this fits
 
-Use Nango for API unification when:
+Use Tenklo for API unification when:
 
 - Your customers use different tools for the same business object.
 - Your product wants one internal model for reads and writes.
@@ -25,13 +25,13 @@ Some APIs expose concepts that do not map neatly to other providers. Notion's bl
 
 Design the unified model around your product's needs, not around an abstract lowest common denominator. Expect optional fields, explicit fallbacks, and customer-specific configuration for custom fields or statuses.
 
-## How Nango fits in
+## How Tenklo fits in
 
 1. You define the model your product wants to use.
 2. Each provider gets functions that translate between the provider API and that model.
 3. Sync functions read external data into your model.
 4. Action functions write changes back through provider-specific logic.
-5. Your app calls the stable Nango function interface instead of branching across providers.
+5. Your app calls the stable Tenklo function interface instead of branching across providers.
 
 Use [data validation](/guides/functions/data-validation) to keep provider mappings honest and catch drift close to the external API.
 

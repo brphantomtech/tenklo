@@ -56,7 +56,7 @@ Add a `tags` object when creating a Connect session token in your backend:
   <Tab title="cURL">
     ```bash
     curl --request POST \
-      --url https://api.nango.dev/connect/sessions \
+      --url https://api.tenklo.dev/connect/sessions \
       --header 'Authorization: Bearer <NANGO-API-KEY>' \
       --header 'Content-Type: application/json' \
       --data '{
@@ -99,9 +99,9 @@ function resolveOwnerFromWebhook(payload: any) {
 
 You do not need to patch anything.
 
-Nango has already backfilled standard tags (like `end_user_id`, `end_user_email`, `organization_id`) onto existing connections based on your legacy end-user fields.
+Tenklo has already backfilled standard tags (like `end_user_id`, `end_user_email`, `organization_id`) onto existing connections based on your legacy end-user fields.
 
-During the deprecation period, if you still create new connections using the deprecated `end_user` / `organization` fields, Nango will also populate connection tags automatically using the same translation logic:
+During the deprecation period, if you still create new connections using the deprecated `end_user` / `organization` fields, Tenklo will also populate connection tags automatically using the same translation logic:
 
 - `end_user.id` -> `tags.end_user_id`
 - `end_user.email` (if present) -> `tags.end_user_email`
@@ -117,11 +117,11 @@ If you provide both deprecated end-user fields and a top-level `tags` object, th
 Once your code relies on `tags`, stop sending or reading the deprecated `end_user` and `organization` fields.
 
 <Tip>
-  **Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).
+  **Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).
 </Tip>
 
 ## Related guides
 
 - [Connection tags, configuration, and metadata](/guides/auth/connection-tags-configuration-metadata) - use tags for connection attribution.
 - [Auth guide](/guides/auth/auth-guide) - create connect sessions with tags.
-- [Webhooks from Nango](/guides/platform/webhooks-from-nango#auth-webhooks) - reconcile auth webhooks with tags.
+- [Webhooks from Tenklo](/guides/platform/webhooks-from-nango#auth-webhooks) - reconcile auth webhooks with tags.

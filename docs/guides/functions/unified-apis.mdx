@@ -6,7 +6,7 @@ description: 'Build provider-specific functions behind one stable model and oper
 
 API unification is the process of standardizing multiple provider APIs behind one interface that your product can use consistently.
 
-In Nango, unification is optional and code-first. You define the models and operations that fit your product, then implement provider-specific functions that translate to and from each external API.
+In Tenklo, unification is optional and code-first. You define the models and operations that fit your product, then implement provider-specific functions that translate to and from each external API.
 
 ## When to unify
 
@@ -141,7 +141,7 @@ await nango.triggerAction(integrationId, connectionId, 'create-user', {
 
 ## Implement unified syncs
 
-Sync functions are where read-side unification usually lives. Fetch provider records, map each page into your unified model, then save those records to Nango's records cache:
+Sync functions are where read-side unification usually lives. Fetch provider records, map each page into your unified model, then save those records to Tenklo's records cache:
 
 ```ts hubspot/syncs/users.ts
 import { createSync } from 'nango';

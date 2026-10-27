@@ -104,7 +104,7 @@ describe(`POST ${endpoint}`, () => {
         expect(res.json).toStrictEqual({
             error: {
                 code: 'unknown_connection',
-                message: `Connection with connection id ${connection_id} and provider config key ${provider_config_key} not found. Please make sure the connection exists in the Nango dashboard`
+                message: `Connection with connection id ${connection_id} and provider config key ${provider_config_key} not found. Please make sure the connection exists in the Tenklo dashboard`
             }
         });
         expect(res.res.status).toBe(404);
@@ -129,7 +129,7 @@ describe(`POST ${endpoint}`, () => {
         expect(res.json).toStrictEqual({
             error: {
                 code: 'unknown_connection',
-                message: `Connection with connection id ${connection_id[0]} and provider config key ${provider_config_key} not found. Please make sure the connection exists in the Nango dashboard. No actions were taken on any of the connections as a result of this failure.`
+                message: `Connection with connection id ${connection_id[0]} and provider config key ${provider_config_key} not found. Please make sure the connection exists in the Tenklo dashboard. No actions were taken on any of the connections as a result of this failure.`
             }
         });
         expect(res.res.status).toBe(404);

@@ -93,7 +93,7 @@ describe('deliver request shape', () => {
         expect(postSpy).toHaveBeenNthCalledWith(2, 'https://example.com/secondary', bodyString, expect.objectContaining({ headers: expectedHeaders }));
     });
 
-    it('drops a caller supplied unverified header and keeps the one Nango sets', async () => {
+    it('drops a caller supplied unverified header and keeps the one Tenklo sets', async () => {
         await deliver({
             webhooks: [{ url: 'https://example.com/primary', type: 'primary' }],
             body: { hello: 'world' },
@@ -150,7 +150,7 @@ describe('deliver request shape', () => {
         expect(config.httpsAgent).toBe(allowAll.agents.httpsAgent);
     });
 
-    it('never forwards the Nango webhook secret, in any casing', async () => {
+    it('never forwards the Tenklo webhook secret, in any casing', async () => {
         await deliver({
             webhooks: [{ url: 'https://example.com/primary', type: 'primary' }],
             body: { hello: 'world' },

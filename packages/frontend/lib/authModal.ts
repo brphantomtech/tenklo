@@ -136,7 +136,7 @@ export class AuthorizationModal {
                 break;
             default:
                 if (this.debug) {
-                    console.log(debugLogPrefix, 'Unknown message type received from Nango server. Ignoring...');
+                    console.log(debugLogPrefix, 'Unknown message type received from Tenklo server. Ignoring...');
                 }
                 return;
         }

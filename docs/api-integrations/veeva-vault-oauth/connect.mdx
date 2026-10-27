@@ -23,7 +23,7 @@ This guide walks you through configuring these on your identity provider and in 
 
 #### Step 1: Configuring a client credentials application in your identity provider
 
-1. In your identity provider, register a new application using the **client credentials** OAuth 2.0 grant type. Nango authenticates to the token endpoint using HTTP Basic authentication (client ID and secret in the `Authorization` header) — make sure your application is configured to accept this method.
+1. In your identity provider, register a new application using the **client credentials** OAuth 2.0 grant type. Tenklo authenticates to the token endpoint using HTTP Basic authentication (client ID and secret in the `Authorization` header) — make sure your application is configured to accept this method.
 2. Note the application's **Client ID** and **Client Secret**.
 3. Note the identity provider's **OAuth 2.0 token endpoint** (e.g. `https://{your-okta-domain}/oauth2/default/v1/token` for Okta).
 
@@ -37,7 +37,7 @@ This guide walks you through configuring these on your identity provider and in 
 4. Provision a Vault **service account user** for this integration, then set the profile's **Identity Claim** to map to that service account rather than an individual human user. A client credentials token represents the application, not a person, so it typically has no meaningful `sub` claim — select **Identity is in another claim** and enter the claim your identity provider uses to identify the client application (e.g. `azp` or `client_id`), and make sure the corresponding **User ID Type** (Vault User Name or Federated ID) resolves to that service account.
 5. Save the profile, then note its **profile ID** — this is the identifier used in the profile's session URL (e.g. `.../auth/oauth/session/{oauth_oidc_profile_id}`).
 
-<Warning>This profile is normally used for human SSO login, where the Identity Claim maps a real user's `sub` claim to their Vault account. Since Nango authenticates with a client credentials grant instead, skipping this service-account mapping step will cause Vault to reject the token at the session endpoint with no indication from Nango's side of why.</Warning>
+<Warning>This profile is normally used for human SSO login, where the Identity Claim maps a real user's `sub` claim to their Vault account. Since Tenklo authenticates with a client credentials grant instead, skipping this service-account mapping step will cause Vault to reject the token at the session endpoint with no indication from Tenklo's side of why.</Warning>
 
 <Tip>See [Vault Help: Configuring OAuth 2.0 / OpenID Connect Profiles](https://vaulthelp.veeva.com/doc/Content/VaultHelp/OpenIDConnect/ConfiguringOAuthOIDCProfiles.htm) for full configuration details, including audience restriction validation and client ID mapping.</Tip>
 

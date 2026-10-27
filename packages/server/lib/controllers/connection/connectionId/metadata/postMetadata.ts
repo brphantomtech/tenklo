@@ -46,7 +46,7 @@ export const postPublicMetadata = asyncWrapperWithEnvironment<SetMetadata>(async
         const { success, response: connection } = await connectionService.getConnection(connectionId, providerConfigKey, environment.id);
 
         if (!success || !connection || !connection.id) {
-            const baseMessage = `Connection with connection id ${connectionId} and provider config key ${providerConfigKey} not found. Please make sure the connection exists in the Nango dashboard`;
+            const baseMessage = `Connection with connection id ${connectionId} and provider config key ${providerConfigKey} not found. Please make sure the connection exists in the Tenklo dashboard`;
             const error: ApiError<'unknown_connection'> =
                 connectionIds.length > 1
                     ? {

@@ -427,7 +427,7 @@ const TriggerSyncDialog = ({
                             <Checkbox checked={emptyCache} onCheckedChange={(e) => setEmptyCache(e === true)} />
                             <span className="text-text-strong text-body-medium-medium">Empty cache</span>
                             <InfoTooltip icon={<Info />} side="bottom">
-                                All records will be reported as new by Nango. Record cursors will be invalidated. Your backend should reprocess all records.
+                                All records will be reported as new by Tenklo. Record cursors will be invalidated. Your backend should reprocess all records.
                             </InfoTooltip>
                         </div>
                     </div>

@@ -11,7 +11,7 @@ import type { Result } from '@nangohq/utils';
 export const listEnvironmentsTool = {
     name: 'environments_list',
     title: 'List Environments',
-    description: 'Lists the Nango environments available to the authenticated user and whether each is a production environment.',
+    description: 'Lists the Tenklo environments available to the authenticated user and whether each is a production environment.',
     inputSchema: listEnvironmentsInputSchema,
     outputSchema: listEnvironmentsOutputSchema,
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },

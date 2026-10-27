@@ -17,7 +17,7 @@ describe('Connection service integration tests', () => {
         await seeders.createConfigSeeds(env);
     });
 
-    describe('Nango object tests', () => {
+    describe('Tenklo object tests', () => {
         it('Should retrieve connections correctly if different connection credentials are passed in', async () => {
             const connections = await seeders.createConnectionSeeds(env);
 

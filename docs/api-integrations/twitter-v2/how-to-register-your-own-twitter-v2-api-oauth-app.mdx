@@ -1,12 +1,12 @@
 ---
-title: 'Set up Twitter v2 with Nango'
+title: 'Set up Twitter v2 with Tenklo'
 sidebarTitle: 'Twitter v2 Setup'
-description: 'Register an OAuth app with Twitter and connect it to Nango'
+description: 'Register an OAuth app with Twitter and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Twitter to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Twitter account.
 
-<Note>The OAuth1 and OAuth2 APIs give access to different data. Both are supported by Nango. This guide covers OAuth 2.0.</Note>
+<Note>The OAuth1 and OAuth2 APIs give access to different data. Both are supported by Tenklo. This guide covers OAuth 2.0.</Note>
 
 ## Creating a Twitter OAuth 2.0 App
 
@@ -28,7 +28,7 @@ This guide shows you how to register your own app with Twitter to obtain your OA
      2. Click **Set up** to configure OAuth 2.0
      3. Select **OAuth 2.0** as the authentication type
      4. Choose the appropriate **Type of App** (typically Web App, Automated App or Bot, or Native App)
-     5. Add your callback URL from Nango (find this in your [Nango integration settings](https://app.nango.dev/dev/integrations))
+     5. Add your callback URL from Tenklo (find this in your [Tenklo integration settings](https://app.tenklo.dev/dev/integrations))
    </Step>
 
    <Step title="Get your OAuth 2.0 credentials">
@@ -49,8 +49,8 @@ This guide shows you how to register your own app with Twitter to obtain your OA
      For a complete list of available scopes, see [Twitter's OAuth 2.0 scopes documentation](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code#:~:text=a%20public%20client.-,Scopes,-Scopes%20allow%20you).
    </Step>
 
-   <Step title="Add credentials to Nango">
-     In your [Nango integration settings](https://app.nango.dev/dev/integrations):
+   <Step title="Add credentials to Tenklo">
+     In your [Tenklo integration settings](https://app.tenklo.dev/dev/integrations):
      1. Find your Twitter v2 integration
      2. Add your **Client ID** and **Client Secret**
      3. Configure any required OAuth scopes
@@ -58,7 +58,7 @@ This guide shows you how to register your own app with Twitter to obtain your OA
    </Step>
 </Steps>
 
-<Note>Twitter also offers a client credentials flow that authorizes as an app instead of a user. This is listed under `twitter-oauth2-cc` in Nango. For more details, check [Twitter's client credentials flow documentation](https://developer.x.com/en/docs/authentication/oauth-2-0/application-only).</Note>
+<Note>Twitter also offers a client credentials flow that authorizes as an app instead of a user. This is listed under `twitter-oauth2-cc` in Tenklo. For more details, check [Twitter's client credentials flow documentation](https://developer.x.com/en/docs/authentication/oauth-2-0/application-only).</Note>
 
 ## Access Requirements
 
@@ -72,7 +72,7 @@ Twitter's access levels and requirements vary by use case:
 | App review | ❓ | Required for certain access levels |
 | Security audit | ❓ | |
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 For more details on Twitter's OAuth 2.0 implementation, see [Twitter's OAuth 2.0 documentation](https://developer.twitter.com/en/docs/authentication/oauth-2-0/user-access-token).
 

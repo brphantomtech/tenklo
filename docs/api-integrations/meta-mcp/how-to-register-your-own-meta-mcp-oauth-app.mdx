@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Meta Ads MCP OAuth app'
 sidebarTitle: 'Meta Ads MCP Setup'
-description: 'Register an OAuth app with Meta for the Ads MCP server and connect it to Nango'
+description: 'Register an OAuth app with Meta for the Ads MCP server and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Meta to obtain your OAuth credentials (App ID and App Secret) for the Ads MCP server. These are required to let your users grant your app access to their Meta ad accounts through MCP.
@@ -31,9 +31,9 @@ This guide shows you how to register your own app with Meta to obtain your OAuth
     1. From **Facebook Login for Business** > **Settings**, enable:
        - **Client OAuth Login** ✅
        - **Web OAuth Login** ✅
-    2. In **Valid OAuth Redirect URIs**, add: `https://api.nango.dev/oauth/callback`
+    2. In **Valid OAuth Redirect URIs**, add: `https://api.tenklo.dev/oauth/callback`
     3. Click **Save Changes**.
-    <Note>Meta also lets you authenticate by passing a pre-obtained access token instead of OAuth. Nango's Ads MCP integration uses OAuth for automatic token handling and refresh, so choose OAuth here.</Note>
+    <Note>Meta also lets you authenticate by passing a pre-obtained access token instead of OAuth. Tenklo's Ads MCP integration uses OAuth for automatic token handling and refresh, so choose OAuth here.</Note>
   </Step>
   <Step title="Request the Ads MCP permissions">
     In **App Review** > **Permissions and Features**, request:
@@ -47,7 +47,7 @@ This guide shows you how to register your own app with Meta to obtain your OAuth
     <Note>Some [permissions](https://developers.facebook.com/docs/facebook-login/guides/permissions/review) may require App Review before going live.</Note>
   </Step>
   <Step title="Obtain your App credentials">
-    Go to **App Settings** > **Basic** in the left sidebar, then copy your **App ID** (this is your **Client ID**) and **App Secret** (this is your **Client Secret**). You'll need these when configuring the integration in Nango.
+    Go to **App Settings** > **Basic** in the left sidebar, then copy your **App ID** (this is your **Client ID**) and **App Secret** (this is your **Client Secret**). You'll need these when configuring the integration in Tenklo.
   </Step>
 
   <Step title="Next">

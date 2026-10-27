@@ -6,22 +6,22 @@ description: 'Integrate your application with the Constant Contact API'
 
 ## 🚀 Quickstart
 
-Connect to Constant Contact with Nango and see data flow in 2 minutes.
+Connect to Constant Contact with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create an integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Constant Contact_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Constant Contact_.
     </Step>
     <Step title="Authorize Constant Contact">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Constant Contact. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Constant Contact. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Constant Contact API">
-    Let's make your first request to the Constant Contact API (Get contacts). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the Constant Contact API (Get contacts). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v3/contact_lists" \
+            curl "https://api.tenklo.dev/proxy/v3/contact_lists" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Constant Contact with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to Constant Contact with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials dynamically via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -63,10 +63,10 @@ Connect to Constant Contact with Nango and see data flow in 2 minutes.
 
 ## 📚 Constant Contact Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
 - [How to register your own Constant Contact OAuth app](/api-integrations/constant-contact/how-to-register-your-own-constant-contact-oauth-app)  
-Register an OAuth app with Constant Contact and obtain credentials to connect it to Nango
+Register an OAuth app with Constant Contact and obtain credentials to connect it to Tenklo
 
 Official docs: [Constant Contact V3 API documentation](https://developer.constantcontact.com/api_guide/index.html)
 

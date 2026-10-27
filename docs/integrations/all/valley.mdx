@@ -9,18 +9,18 @@ description: 'Access the Valley API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Valley_.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Valley_.
       </Step>
       <Step title="Authorize Valley">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Valley email and password. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Valley email and password. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Valley API">
-        Let's make your first request to the Valley API (fetch a list of campaigns). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Valley API (fetch a list of campaigns). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
 
                 ```bash
-                curl "https://api.nango.dev/proxy/v1/campaigns/get-all?limit=10" \
+                curl "https://api.tenklo.dev/proxy/v1/campaigns/get-all?limit=10" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -30,7 +30,7 @@ description: 'Access the Valley API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -57,7 +57,7 @@ description: 'Access the Valley API in 2 minutes 💨'
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Valley accounts.
@@ -82,6 +82,6 @@ description: 'Access the Valley API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>
 

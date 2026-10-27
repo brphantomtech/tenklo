@@ -11,7 +11,7 @@ const UUID = '8f14e45f-ceea-467a-9b0d-1e0a1b2c3d4e';
 
 describe('redactSensitiveText', () => {
     it('redacts the reset password token from a full url', () => {
-        expect(redactSensitiveText(`https://app.nango.dev/reset-password/${JWT}`)).toBe('https://app.nango.dev/reset-password/[redacted]');
+        expect(redactSensitiveText(`https://app.tenklo.dev/reset-password/${JWT}`)).toBe('https://app.tenklo.dev/reset-password/[redacted]');
     });
 
     it('redacts the reset password token from a bare pathname', () => {
@@ -19,8 +19,8 @@ describe('redactSensitiveText', () => {
     });
 
     it('keeps the query string and hash', () => {
-        expect(redactSensitiveText(`https://app.nango.dev/reset-password/${JWT}?foo=bar#top`)).toBe(
-            'https://app.nango.dev/reset-password/[redacted]?foo=bar#top'
+        expect(redactSensitiveText(`https://app.tenklo.dev/reset-password/${JWT}?foo=bar#top`)).toBe(
+            'https://app.tenklo.dev/reset-password/[redacted]?foo=bar#top'
         );
     });
 
@@ -50,7 +50,7 @@ describe('redactSensitiveText', () => {
     });
 
     it('redacts tokens from the api urls the auth pages call', () => {
-        expect(redactSensitiveText(`https://api.nango.dev/api/v1/invite/${UUID}`)).toBe('https://api.nango.dev/api/v1/invite/[redacted]');
+        expect(redactSensitiveText(`https://api.tenklo.dev/api/v1/invite/${UUID}`)).toBe('https://api.tenklo.dev/api/v1/invite/[redacted]');
         expect(redactSensitiveText('/api/v1/account/email/expired-token/tok')).toBe('/api/v1/account/email/expired-token/[redacted]');
         expect(redactSensitiveText(`/api/v1/account/email/${UUID}`)).toBe('/api/v1/account/email/[redacted]');
         expect(redactSensitiveText('/api/v1/invite?env=dev')).toBe('/api/v1/invite?env=dev');
@@ -111,14 +111,14 @@ describe('redactSensitiveText', () => {
 
     it('returns unrelated strings untouched', () => {
         expect(redactSensitiveText('')).toBe('');
-        expect(redactSensitiveText('https://app.nango.dev/integrations/github')).toBe('https://app.nango.dev/integrations/github');
+        expect(redactSensitiveText('https://app.tenklo.dev/integrations/github')).toBe('https://app.tenklo.dev/integrations/github');
     });
 });
 
 describe('maskCapturedNetworkRequest', () => {
     it('redacts the token in a recorded network request and keeps the other fields', () => {
         const request: CapturedNetworkRequest = {
-            name: `https://api.nango.dev/api/v1/invite/${UUID}`,
+            name: `https://api.tenklo.dev/api/v1/invite/${UUID}`,
             entryType: 'resource',
             startTime: 10,
             duration: 5,
@@ -127,12 +127,12 @@ describe('maskCapturedNetworkRequest', () => {
             initiatorType: 'fetch'
         };
 
-        expect(maskCapturedNetworkRequest(request)).toStrictEqual({ ...request, name: 'https://api.nango.dev/api/v1/invite/[redacted]' });
+        expect(maskCapturedNetworkRequest(request)).toStrictEqual({ ...request, name: 'https://api.tenklo.dev/api/v1/invite/[redacted]' });
     });
 
     it('redacts the recording url, which PostHog passes as a bare name', () => {
-        expect(maskCapturedNetworkRequest({ name: `https://app.nango.dev/reset-password/${JWT}` } as CapturedNetworkRequest)).toStrictEqual({
-            name: 'https://app.nango.dev/reset-password/[redacted]'
+        expect(maskCapturedNetworkRequest({ name: `https://app.tenklo.dev/reset-password/${JWT}` } as CapturedNetworkRequest)).toStrictEqual({
+            name: 'https://app.tenklo.dev/reset-password/[redacted]'
         });
     });
 });
@@ -140,7 +140,7 @@ describe('maskCapturedNetworkRequest', () => {
 describe('redactSensitiveProperties', () => {
     it('redacts url properties and autocapture element hrefs', () => {
         const properties: Record<string, unknown> = {
-            $current_url: `https://app.nango.dev/reset-password/${JWT}`,
+            $current_url: `https://app.tenklo.dev/reset-password/${JWT}`,
             $pathname: `/reset-password/${JWT}`,
             $referrer: '/signin?next=/signup/invite-token',
             $elements_chain: `a:href="/reset-password/${JWT}"`,
@@ -151,7 +151,7 @@ describe('redactSensitiveProperties', () => {
         redactSensitiveProperties(properties);
 
         expect(properties).toStrictEqual({
-            $current_url: 'https://app.nango.dev/reset-password/[redacted]',
+            $current_url: 'https://app.tenklo.dev/reset-password/[redacted]',
             $pathname: '/reset-password/[redacted]',
             $referrer: '/signin?next=/signup/[redacted]',
             $elements_chain: 'a:href="/reset-password/[redacted]"',

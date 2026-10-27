@@ -36,7 +36,7 @@ export class LogsNotFoundError extends Error {
 
 export class LogsDisabledError extends Error {
     constructor() {
-        super('Nango logs are disabled');
+        super('Tenklo logs are disabled');
         this.name = 'LogsDisabledError';
     }
 }

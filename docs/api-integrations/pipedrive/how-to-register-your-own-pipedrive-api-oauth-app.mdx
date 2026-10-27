@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Pipedrive OAuth app'
 sidebarTitle: 'Pipedrive Setup'
-description: 'Register an OAuth app with Pipedrive and obtain credentials to connect it to Nango'
+description: 'Register an OAuth app with Pipedrive and obtain credentials to connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Pipedrive to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Pipedrive account.
@@ -25,10 +25,10 @@ This guide shows you how to register your own app with Pipedrive to obtain your 
    </Step>
 
    <Step title="Set up OAuth redirect URI">
-     In the OAuth settings, add your Nango OAuth redirect URI:
+     In the OAuth settings, add your Tenklo OAuth redirect URI:
 
      ```
-     https://api.nango.dev/oauth/callback
+     https://api.tenklo.dev/oauth/callback
      ```
 
      For local development, you may also need to add:
@@ -43,12 +43,12 @@ This guide shows you how to register your own app with Pipedrive to obtain your 
      - **Client ID**: Your OAuth client identifier
      - **Client Secret**: Your OAuth client secret
 
-     Copy these credentials - you'll need them to configure your integration in Nango.
+     Copy these credentials - you'll need them to configure your integration in Tenklo.
    </Step>
 
-   <Step title="Configure the integration in Nango">
-     In the Nango dashboard:
-     1. Go to [Integrations](https://app.nango.dev/dev/integrations)
+   <Step title="Configure the integration in Tenklo">
+     In the Tenklo dashboard:
+     1. Go to [Integrations](https://app.tenklo.dev/dev/integrations)
      2. Find and select Pipedrive
      3. Enter your Client ID and Client Secret
      4. Save the configuration
@@ -67,9 +67,9 @@ For a complete list of available scopes and their permissions, see [Pipedrive's 
 
 ## Connection configuration
 
-Pipedrive requires an `api_domain` parameter that is returned during the OAuth flow. Nango automatically extracts and stores this value from the token response, so you don't need to configure it manually.
+Pipedrive requires an `api_domain` parameter that is returned during the OAuth flow. Tenklo automatically extracts and stores this value from the token response, so you don't need to configure it manually.
 
-When making API calls through Nango's proxy, the correct API domain will be used automatically based on the connection.
+When making API calls through Tenklo's proxy, the correct API domain will be used automatically based on the connection.
 
 For more information on Pipedrive's OAuth implementation and API concepts, see [Pipedrive's API documentation](https://pipedrive.readme.io/docs/core-api-concepts-about-pipedrive-api).
 

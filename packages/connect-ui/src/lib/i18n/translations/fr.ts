@@ -18,7 +18,7 @@ const fr: Translation = {
         description: 'Veuillez sélectionner une intégration API dans la liste ci-dessous.',
         noIntegrations: 'Aucune intégration trouvée.',
         noIntegrationsDescription:
-            "Vous n'avez pas configuré d'intégration dans cet environnement. Ajoutez votre première intégration dans le tableau de bord Nango.",
+            "Vous n'avez pas configuré d'intégration dans cet environnement. Ajoutez votre première intégration dans le tableau de bord Tenklo.",
         connectTo: 'Se connecter à {provider}',
         error: 'Une erreur est survenue lors du chargement de la configuration'
     },

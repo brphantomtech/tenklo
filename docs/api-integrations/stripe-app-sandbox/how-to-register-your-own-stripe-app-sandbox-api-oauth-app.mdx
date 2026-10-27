@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Stripe App Sandbox OAuth app'
 sidebarTitle: 'Stripe App Sandbox setup'
-description: 'Register an OAuth app with Stripe App Sandbox and connect it to Nango'
+description: 'Register an OAuth app with Stripe App Sandbox and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own Stripe App to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Stripe account. Stripe App Sandbox is a test environment that simulates real installs and OAuth flows without affecting live data, so use it for development and testing before you publish your app. You'll need an activated Stripe account (business info submitted, no charges required) to get started.
@@ -41,7 +41,7 @@ This guide shows you how to register your own Stripe App to obtain your OAuth cr
     Open the **stripe-app.json** file and update these fields:
     - **stripe_api_access_type**: Set to **oauth**
     - **distribution_type**: Set to **public**
-    - **allowed_redirect_uris**: Add your redirect URI as **https://api.nango.dev/oauth/callback**
+    - **allowed_redirect_uris**: Add your redirect URI as **https://api.tenklo.dev/oauth/callback**
     - **sandbox_install_compatible**: Set to **true**
     Example:
     ```json
@@ -55,7 +55,7 @@ This guide shows you how to register your own Stripe App to obtain your OAuth cr
       "distribution_type": "public",
       "sandbox_install_compatible": true,
       "allowed_redirect_uris": [
-        "https://api.nango.dev/oauth/callback"
+        "https://api.tenklo.dev/oauth/callback"
       ]
     }
     ```
@@ -90,13 +90,13 @@ This guide shows you how to register your own Stripe App to obtain your OAuth cr
     5. To obtain your <strong>Client Secret</strong>, go to the <strong>API Keys</strong> page in the Stripe Dashboard and copy your <strong>Secret key</strong> (starts with <code>sk_test_...</code>).
 
     ⚠️ Make sure that your <strong>client_id</strong> and <strong>secret key</strong> come from the same Stripe sandbox account and environment. Mixing keys from different environments or accounts will result in authorization errors like <em>"Authorization code provided does not belong to you."</em>
-    Save these credentials securely as you'll need them when configuring your integration in Nango.
+    Save these credentials securely as you'll need them when configuring your integration in Tenklo.
   </Step>
 
   <Step id="find-app-domain" title="Find your App Domain">
     Your App Domain comes from the same **Test OAuth** section you used to find your Client ID — see [Finding your App Domain](/api-integrations/stripe-app-sandbox/connect#step-1-finding-your-app-domain) for the lookup steps.
 
-    This value is the same for every connection made through this integration, so set it once on the integration itself rather than per connection: enter it in the **App Domain** field when creating the `stripe-app-sandbox` integration in Nango, or later from the integration's settings page. If you skip it here, Connect falls back to asking each end user for it instead.
+    This value is the same for every connection made through this integration, so set it once on the integration itself rather than per connection: enter it in the **App Domain** field when creating the `stripe-app-sandbox` integration in Tenklo, or later from the integration's settings page. If you skip it here, Connect falls back to asking each end user for it instead.
   </Step>
 
   <Step title="Next">
@@ -104,7 +104,7 @@ This guide shows you how to register your own Stripe App to obtain your OAuth cr
   </Step>
 </Steps>
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 For more on building Stripe Apps, see [Stripe's Apps documentation](https://docs.stripe.com/stripe-apps).
 

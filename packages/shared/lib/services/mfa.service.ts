@@ -13,7 +13,7 @@ import type { Knex } from 'knex';
 const FACTORS_TABLE = 'user_mfa_factors';
 const RECOVERY_CODES_TABLE = 'user_mfa_recovery_codes';
 const RECOVERY_CODE_COUNT = 10;
-const TOTP_ISSUER = 'Nango';
+const TOTP_ISSUER = 'Tenklo';
 const TOTP_PERIOD_SECONDS = 30;
 const TOTP_WINDOW = 2;
 const TOTP_ENROLLMENT_WINDOW = 5;

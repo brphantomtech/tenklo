@@ -6,22 +6,22 @@ description: 'Integrate your application with the Microsoft Teams Bot Framework'
 
 ## 🚀 Quickstart
 
-Connect to Microsoft Teams Bot with Nango and see data flow in 2 minutes.
+Connect to Microsoft Teams Bot with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Microsoft Teams Bot_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Microsoft Teams Bot_.
     </Step>
     <Step title="Authorize Microsoft Teams Bot">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, enter your **Tenant ID** then log in to Microsoft. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, enter your **Tenant ID** then log in to Microsoft. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step title="Call the Bot / Microsoft API">
-    Use the proxy to call the [Bot Framework Connector](https://learn.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-api-reference) or Microsoft Graph. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Use the proxy to call the [Bot Framework Connector](https://learn.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-api-reference) or Microsoft Graph. Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/v3/conversations" \
+            curl "https://api.tenklo.dev/proxy/v3/conversations" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to Microsoft Teams Bot with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,21 +51,21 @@ Connect to Microsoft Teams Bot with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials dynamically via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step title="Implement Nango in your app">
-    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Nango in your app.
+    <Step title="Implement Tenklo in your app">
+    Follow our [Auth implementation guide](/guides/primitives/auth) to integrate Tenklo in your app.
     </Step>
 </Steps>
 
 ## 📚 Microsoft Teams Integration Guides
 
-Nango maintained guides for common use cases.
+Tenklo maintained guides for common use cases.
 
-- [How to register your own Microsoft Teams Bot](/api-integrations/microsoft-teams-bot/how-to-register-your-own-microsoft-teams-bot-oauth-app) — Create an Azure Bot resource and get credentials to connect it to Nango.
+- [How to register your own Microsoft Teams Bot](/api-integrations/microsoft-teams-bot/how-to-register-your-own-microsoft-teams-bot-oauth-app) — Create an Azure Bot resource and get credentials to connect it to Tenklo.
 - [Connect: Tenant ID](/api-integrations/microsoft-teams-bot/connect) — Find your Tenant ID and enter it in the Connect UI when creating a connection.
-- [How to set up webhooks with Microsoft Teams Bot on Nango](/api-integrations/microsoft-teams-bot/webhooks) — Point your bot's messaging endpoint at Nango to receive Teams activities.
+- [How to set up webhooks with Microsoft Teams Bot on Tenklo](/api-integrations/microsoft-teams-bot/webhooks) — Point your bot's messaging endpoint at Tenklo to receive Teams activities.
 
 Official docs: [Microsoft Graph API docs](https://learn.microsoft.com/en-us/graph/overview)
 

@@ -1,8 +1,8 @@
 # wrap-dek
 
-Wraps the Nango global DEK (`NANGO_ENCRYPTION_KEY`) with a KMS master key, producing the value for `NANGO_ENCRYPTION_KEY_WRAPPED`. With `--decrypt`, it unwraps an existing value so you can check it.
+Wraps the Tenklo global DEK (`NANGO_ENCRYPTION_KEY`) with a KMS master key, producing the value for `NANGO_ENCRYPTION_KEY_WRAPPED`. With `--decrypt`, it unwraps an existing value so you can check it.
 
-It runs the keyrings straight from the `packages/kms` source, so there's nothing to build. Run it inside a Nango checkout after `npm install` at the repo root. The commands below run from the repo root.
+It runs the keyrings straight from the `packages/kms` source, so there's nothing to build. Run it inside a Tenklo checkout after `npm install` at the repo root. The commands below run from the repo root.
 
 ## Pick the master key
 
@@ -37,7 +37,7 @@ echo -n "$NANGO_ENCRYPTION_KEY" | npx tsx scripts/wrap-dek/wrap-dek.ts --key-arn
   --context purpose=global_dek --context app=nango > dek-wrapped.b64
 ```
 
-Nango rejects a wrapped DEK unless its context includes `purpose=global_dek` and `app=nango`.
+Tenklo rejects a wrapped DEK unless its context includes `purpose=global_dek` and `app=nango`.
 
 **2. Verify the round trip**
 
@@ -48,4 +48,4 @@ Nango rejects a wrapped DEK unless its context includes `purpose=global_dek` and
 
 **3. Deploy**
 
-Set `NANGO_ENCRYPTION_KEY_WRAPPED` to the contents of `dek-wrapped.b64`, set the runtime variable for your provider, and remove `NANGO_ENCRYPTION_KEY`. Nango refuses to start when both are set. Then delete `dek-wrapped.b64`.
+Set `NANGO_ENCRYPTION_KEY_WRAPPED` to the contents of `dek-wrapped.b64`, set the runtime variable for your provider, and remove `NANGO_ENCRYPTION_KEY`. Tenklo refuses to start when both are set. Then delete `dek-wrapped.b64`.

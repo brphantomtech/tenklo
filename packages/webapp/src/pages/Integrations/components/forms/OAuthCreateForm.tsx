@@ -119,7 +119,7 @@ export const OAuthCreateForm: React.FC<Props> = ({ provider, onSubmit }) => {
                         <TooltipContent side="bottom">
                             {hasIntegrationConfig
                                 ? 'This integration requires configuration only available with your own OAuth app'
-                                : "Nango doesn't have a managed app for this API yet"}
+                                : "Tenklo doesn't have a managed app for this API yet"}
                         </TooltipContent>
                     </Tooltip>
                 )}
@@ -130,7 +130,7 @@ export const OAuthCreateForm: React.FC<Props> = ({ provider, onSubmit }) => {
                     <Alert variant="info">
                         <AlertDescription>Pre-approved apps that work in production. Review the trade-offs before you go live.</AlertDescription>
                         <AlertActions>
-                            <AlertButtonLink to="https://nango.dev/docs/guides/auth/auth-guide#nango-managed-oauth-apps" target="_blank">
+                            <AlertButtonLink to="https://tenklo.dev/docs/guides/auth/auth-guide#nango-managed-oauth-apps" target="_blank">
                                 Read the trade-offs <ExternalLinkIcon />
                             </AlertButtonLink>
                         </AlertActions>

@@ -5,9 +5,9 @@ import type { ApiProviderListItem, PostIntegration } from '@nangohq/types';
 const getInfoMessage = (provider: ApiProviderListItem): string | null => {
     switch (provider.authMode) {
         case 'BASIC':
-            return "This API uses basic auth. Nothing to configure here, Nango will ask for the user's basic credentials as part of the auth flow.";
+            return "This API uses basic auth. Nothing to configure here, Tenklo will ask for the user's basic credentials as part of the auth flow.";
         case 'API_KEY':
-            return 'This API uses API key auth. Nothing to configure here, Nango will ask the user for an API key as part of the auth flow.';
+            return 'This API uses API key auth. Nothing to configure here, Tenklo will ask the user for an API key as part of the auth flow.';
     }
 
     return `Nothing to configure here.`;

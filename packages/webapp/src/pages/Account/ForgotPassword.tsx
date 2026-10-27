@@ -52,7 +52,7 @@ export default function Signin() {
     return (
         <DefaultLayout className="gap-5">
             <Helmet>
-                <title>Forgot Password - Nango</title>
+                <title>Forgot Password - Tenklo</title>
             </Helmet>
 
             <h2 className="text-title-group text-text-strong">Request password reset</h2>

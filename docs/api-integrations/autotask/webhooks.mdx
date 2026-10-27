@@ -1,28 +1,28 @@
 ---
-title: 'How to setup webhooks with Autotask on Nango'
+title: 'How to setup webhooks with Autotask on Tenklo'
 sidebarTitle: 'Webhooks'
-description: 'Learn how to set up Autotask webhooks with Nango for real-time ticket sync'
+description: 'Learn how to set up Autotask webhooks with Tenklo for real-time ticket sync'
 ---
 
-This guide shows you how to receive real-time Autotask webhooks in Nango using [Autotask's REST API webhook support](https://www.autotask.net/help/developerhelp/Content/APIs/Webhooks/WEBHOOKS.htm).
+This guide shows you how to receive real-time Autotask webhooks in Tenklo using [Autotask's REST API webhook support](https://www.autotask.net/help/developerhelp/Content/APIs/Webhooks/WEBHOOKS.htm).
 
 ## How it works
 
 Autotask supports webhooks for various entity types (Tickets, Companies, Contacts, etc.). The flow is:
 
-1. You create a webhook in Autotask via the REST API, pointing to your Nango webhook URL
-2. When the watched entity changes, Autotask sends a signed POST request to Nango
-3. Nango verifies the HMAC-SHA1 signature, matches the webhook to the correct connection using the `Guid` field, and triggers any matching sync `onWebhook` handlers
+1. You create a webhook in Autotask via the REST API, pointing to your Tenklo webhook URL
+2. When the watched entity changes, Autotask sends a signed POST request to Tenklo
+3. Tenklo verifies the HMAC-SHA1 signature, matches the webhook to the correct connection using the `Guid` field, and triggers any matching sync `onWebhook` handlers
 
 ## Setup
 
 ### 1. Configure the webhook secret
 
-In the Nango dashboard, go to your Autotask integration settings and enter the webhook secret key. This is the same `SecretKey` you will use when creating the webhook in Autotask. Nango uses this to verify the `x-hook-signature` HMAC-SHA1 signature on incoming webhooks.
+In the Tenklo dashboard, go to your Autotask integration settings and enter the webhook secret key. This is the same `SecretKey` you will use when creating the webhook in Autotask. Tenklo uses this to verify the `x-hook-signature` HMAC-SHA1 signature on incoming webhooks.
 
 ### 2. Get your webhook URL
 
-Copy the webhook URL from your Autotask integration page in the Nango dashboard, under the **Webhook URL** section.
+Copy the webhook URL from your Autotask integration page in the Tenklo dashboard, under the **Webhook URL** section.
 
 ### 3. Create the webhook in Autotask
 
@@ -81,10 +81,10 @@ Should show `isActive: true` and `isReady: true`.
 
 ### 6. Set the webhook GUID on the connection
 
-Each Autotask webhook has a unique `Guid`. Nango uses this to route webhooks to the correct connection. Use the `webhookGUID` value from step 5 to set the `webhookGuid` in the connection's `connectionConfig`:
+Each Autotask webhook has a unique `Guid`. Tenklo uses this to route webhooks to the correct connection. Use the `webhookGUID` value from step 5 to set the `webhookGuid` in the connection's `connectionConfig`:
 
 ```bash
-curl -X PATCH "https://api.nango.dev/connection/<CONNECTION_ID>/config" \
+curl -X PATCH "https://api.tenklo.dev/connection/<CONNECTION_ID>/config" \
   -H "Authorization: Bearer <NANGO-API-KEY>" \
   -H "Provider-Config-Key: autotask" \
   -H "Content-Type: application/json" \
@@ -120,7 +120,7 @@ When a ticket event occurs, Autotask sends:
 
 ## Connection matching
 
-Nango matches incoming webhooks to connections using the `Guid` field from the payload against the `webhookGuid` stored in the connection's `connectionConfig`.
+Tenklo matches incoming webhooks to connections using the `Guid` field from the payload against the `webhookGuid` stored in the connection's `connectionConfig`.
 
 <Warning>
     If the connection's `connectionConfig` does not have a `webhookGuid` set, or if it doesn't match the payload's `Guid`, the webhook will not be routed to
@@ -129,10 +129,10 @@ Nango matches incoming webhooks to connections using the `Guid` field from the p
 
 ## Signature verification
 
-Autotask signs webhook payloads using HMAC-SHA1 with the `SecretKey` configured on the webhook. The signature is sent in the `x-hook-signature` header as `sha1=<base64-encoded-hash>`. Nango verifies this signature using the webhook secret configured in the integration settings.
+Autotask signs webhook payloads using HMAC-SHA1 with the `SecretKey` configured on the webhook. The signature is sent in the `x-hook-signature` header as `sha1=<base64-encoded-hash>`. Tenklo verifies this signature using the webhook secret configured in the integration settings.
 
 See: [Autotask Secret Key and Payload Verification](https://www.autotask.net/help/developerhelp/Content/APIs/Webhooks/SecretKeyPayloadVerification.htm)
 
-<Tip>Need help getting started? Get help in the [community](https://nango.dev/slack).</Tip>
+<Tip>Need help getting started? Get help in the [community](https://tenklo.dev/slack).</Tip>
 
 ---

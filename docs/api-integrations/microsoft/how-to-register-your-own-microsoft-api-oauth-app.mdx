@@ -1,7 +1,7 @@
 ---
 title: 'How to register your own Microsoft OAuth app'
 sidebarTitle: 'Microsoft Setup'
-description: 'Register an OAuth app with Microsoft and connect it to Nango'
+description: 'Register an OAuth app with Microsoft and connect it to Tenklo'
 ---
 
 This guide shows you how to register your own app with Microsoft to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Microsoft account.
@@ -28,7 +28,7 @@ Microsoft has a unified OAuth system for their various APIs. This provider shoul
     1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as at least an Application Developer.
     2. If you have access to multiple tenants, use the Settings icon in the top menu to switch to the tenant in which you want to register the application.
     3. From the search bar at the top of the Azure portal, search for **App registrations** and select it. Then choose **New registration**. Or from your left navigation tab, navigate to **Applications** > **App registrations** then choose **New registration**.
-    4. Enter a meaningful name for your application, for example "Nango Integration".
+    4. Enter a meaningful name for your application, for example "Tenklo Integration".
     5. Under **Supported account types**, select the appropriate option based on your needs:
        - **Accounts in this organizational directory only** - For single-tenant apps for use only by users in your tenant.
        - **Accounts in any organizational directory** - For multitenant apps that you want users in any Microsoft Entra tenant to be able to use.
@@ -44,7 +44,7 @@ Microsoft has a unified OAuth system for their various APIs. This provider shoul
     1. In the left sidebar, select **Authentication**.
     2. Under **Platform configurations**, select **Add a platform**.
     3. Select **Web** as the platform type.
-    4. Enter `https://api.nango.dev/oauth/callback` as the Redirect URI.
+    4. Enter `https://api.tenklo.dev/oauth/callback` as the Redirect URI.
     5. Under **Implicit grant and hybrid flows**, check the boxes for **Access tokens** and **ID tokens** if your application needs them.
     6. Under **Advanced settings**, set **Allow public client flows** to **No** for web applications.
     7. Click **Configure** to save your changes.
@@ -86,8 +86,8 @@ Microsoft has a unified OAuth system for their various APIs. This provider shoul
     1. From the search bar at the top of the Azure portal, search for **Enterprise applications**, select it, and then choose your app.
     2. On the **Properties** page, set **Visible to users?** to **Yes**.
   </Step>
-  <Step title="Connect your app to Nango">
-    In the Nango UI, go to [Integrations](https://app.nango.dev/dev/integrations), select Microsoft, and enter your **Application (client) ID** as the Client ID and your **Client secret** value as the Client Secret.
+  <Step title="Connect your app to Tenklo">
+    In the Tenklo UI, go to [Integrations](https://app.tenklo.dev/dev/integrations), select Microsoft, and enter your **Application (client) ID** as the Client ID and your **Client secret** value as the Client Secret.
   </Step>
 </Steps>
 

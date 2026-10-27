@@ -6,22 +6,22 @@ description: 'Integrate your application with the ServiceNow API using OAuth 2.0
 
 ## 🚀 Quickstart
 
-Connect to ServiceNow with Nango and see data flow in 2 minutes.
+Connect to ServiceNow with Tenklo and see data flow in 2 minutes.
 
 <Steps>
     <Step id="create-integration" title="Create the integration">
-    In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _ServiceNow_.
+    In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _ServiceNow_.
     </Step>
     <Step id="authorize-servicenow" title="Authorize ServiceNow">
-    Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, enter your instance domain, then log in to ServiceNow. Later, you'll let your users do the same directly from your app.
+    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, enter your instance domain, then log in to ServiceNow. Later, you'll let your users do the same directly from your app.
     </Step>
     <Step id="call-servicenow-api" title="Call the ServiceNow API">
-    Let's make your first request to the ServiceNow Table API (fetch a list of incidents). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+    Let's make your first request to the ServiceNow Table API (fetch a list of incidents). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
     <Tabs>
         <Tab title="cURL">
 
             ```bash
-            curl "https://api.nango.dev/proxy/api/now/table/incident?sysparm_limit=5" \
+            curl "https://api.tenklo.dev/proxy/api/now/table/incident?sysparm_limit=5" \
               -H "Authorization: Bearer <NANGO-API-KEY>" \
               -H "Provider-Config-Key: <INTEGRATION-ID>" \
               -H "Connection-Id: <CONNECTION-ID>"
@@ -31,7 +31,7 @@ Connect to ServiceNow with Nango and see data flow in 2 minutes.
 
         <Tab title="Node">
 
-        Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+        Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
         ```typescript
         import { Nango } from '@nangohq/node';
@@ -51,11 +51,11 @@ Connect to ServiceNow with Nango and see data flow in 2 minutes.
     </Tabs>
     Or fetch credentials with the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
     </Step>
 
-    <Step id="implement-nango" title="Implement Nango in your app">
-        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Nango in your app.
+    <Step id="implement-nango" title="Implement Tenklo in your app">
+        Follow our [Auth implementation guide](/guides/auth/auth-guide) to integrate Tenklo in your app.
 
         To obtain your own production credentials, follow the setup guide linked below.
     </Step>
@@ -66,18 +66,18 @@ Connect to ServiceNow with Nango and see data flow in 2 minutes.
 Nango-maintained guides for common use cases.
 
 - [How to register your own ServiceNow OAuth app](/api-integrations/servicenow/how-to-register-your-own-servicenow-oauth-app)  
-Register an OAuth app with ServiceNow and obtain credentials to connect it to Nango
+Register an OAuth app with ServiceNow and obtain credentials to connect it to Tenklo
 
 - [How do I link my account?](/api-integrations/servicenow/connect)  
-Find your instance domain and connect it to Nango
+Find your instance domain and connect it to Tenklo
 
 Official docs: [ServiceNow REST API Documentation](https://developer.servicenow.com/dev.do#!/reference/api/vancouver/rest/c_TableAPI)
 
 ## API gotchas
 
 - A [ServiceNow Developer Instance](https://developer.servicenow.com/dev.do) is free for testing; production instances require a paid subscription.
-- The OAuth application must be registered as **Create an OAuth API endpoint for external clients** in the Application Registry, with the redirect URL set to `https://api.nango.dev/oauth/callback`.
-- Enter your instance's full domain (e.g. `your-instance.service-now.com`) in the **ServiceNow Domain** field — Nango uses it to build the authorization and token endpoints automatically.
+- The OAuth application must be registered as **Create an OAuth API endpoint for external clients** in the Application Registry, with the redirect URL set to `https://api.tenklo.dev/oauth/callback`.
+- Enter your instance's full domain (e.g. `your-instance.service-now.com`) in the **ServiceNow Domain** field — Tenklo uses it to build the authorization and token endpoints automatically.
 
 <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/api-integrations/servicenow.mdx)</Note>
 

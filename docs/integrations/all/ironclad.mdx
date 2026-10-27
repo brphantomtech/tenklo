@@ -8,17 +8,17 @@ description: 'Access the Ironclad API in 2 minutes 💨'
   <Tab title="🚀 Quickstart">
     <Steps>
       <Step title="Create an integration">
-        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Ironclad_. Nango doesn't provide a test OAuth app for Ironclad yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Nango.
+        In Tenklo ([free signup](https://app.tenklo.dev)), go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _Ironclad_. Tenklo doesn't provide a test OAuth app for Ironclad yet. You’ll need to set up your own by following these [instructions](#🧑%E2%80%8D💻-oauth-app-setup). After that, make sure to add the OAuth client ID, secret, and scopes in the integration settings in Tenklo.
       </Step>
       <Step title="Authorize Ironclad">
-        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Ironclad. Later, you'll let your users do the same directly from your app.
+        Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then log in to Ironclad. Later, you'll let your users do the same directly from your app.
       </Step>
       <Step title="Call the Ironclad API">
-        Let's make your first request to the Ironclad API (fetch a list of all workflows). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        Let's make your first request to the Ironclad API (fetch a list of all workflows). Replace the placeholders below with your [Environment API key](/reference/backend/http-api/api-keys), [integration ID](https://app.tenklo.dev/dev/integrations), and [connection ID](https://app.tenklo.dev/dev/connections):
         <Tabs>
             <Tab title="cURL">
                 ```bash
-                curl "https://api.nango.dev/proxy/public/api/v1/workflows?pageSize=10" \
+                curl "https://api.tenklo.dev/proxy/public/api/v1/workflows?pageSize=10" \
                   -H "Authorization: Bearer <NANGO-API-KEY>" \
                   -H "Provider-Config-Key: <INTEGRATION-ID>" \
                   -H "Connection-Id: <CONNECTION-ID>"
@@ -27,7 +27,7 @@ description: 'Access the Ironclad API in 2 minutes 💨'
 
             <Tab title="Node">
 
-            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+            Install Tenklo's backend SDK with `npm i @nangohq/node`. Then run:
 
             ```typescript
             import { Nango } from '@nangohq/node';
@@ -52,13 +52,13 @@ description: 'Access the Ironclad API in 2 minutes 💨'
         Or fetch credentials dynamically via the [Node SDK](/reference/backend/backend-sdk/node#get-a-connection-with-credentials) or [API](/reference/backend/http-api/connections/get).
 
         <Note>
-        The Ironclad API uses different base URLs depending on your environment. Nango automatically handles the correct base URL based on your environment configuration.
+        The Ironclad API uses different base URLs depending on your environment. Tenklo automatically handles the correct base URL based on your environment configuration.
         </Note>
 
       </Step>
     </Steps>
 
-    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+    ✅ You're connected! Check the [Logs](https://app.tenklo.dev/dev/logs) tab in Tenklo to inspect requests.
 
     <Tip>
     Next step: [Embed the auth flow](/guides/primitives/auth) in your app to let your users connect their Ironclad accounts.
@@ -79,12 +79,12 @@ description: 'Access the Ironclad API in 2 minutes 💨'
       <Step title="Create a new OAuth application">
         1. Click on the **Create new app** button.
         2. A popup will appear - enter the required information and click **"Create app"**.
-        3. After creating the app, the **Client ID** and **Client Secret** will be generated. Save these as you will need them when configuring your integration in Nango.
+        3. After creating the app, the **Client ID** and **Client Secret** will be generated. Save these as you will need them when configuring your integration in Tenklo.
       </Step>
       <Step title="Configure OAuth application details">
         1. After closing the modal, fill out all the necessary information, for:
                 - **Grant Types**: Select **Authorization Code**.
-                - **Redirect URIs**: Enter `https://api.nango.dev/oauth/callback` as the allowed redirect URI.
+                - **Redirect URIs**: Enter `https://api.tenklo.dev/oauth/callback` as the allowed redirect URI.
         2. Click **Save Changes**.
       </Step>
       <Step title="Next">
@@ -121,5 +121,5 @@ description: 'Access the Ironclad API in 2 minutes 💨'
 </Tabs>
 
 <Info>
-    Questions? Join us in the [Slack community](https://nango.dev/slack).
+    Questions? Join us in the [Slack community](https://tenklo.dev/slack).
 </Info>

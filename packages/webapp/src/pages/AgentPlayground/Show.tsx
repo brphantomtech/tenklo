@@ -53,7 +53,7 @@ import type { AgentPlaygroundIntegrationSetup, AgentPlaygroundReplyOutcome, Agen
 const STARTER_PROMPTS: { prompt: string; provider: string; name: string }[] = [
     { prompt: "What's on my Google Calendar today?", provider: 'google-calendar', name: 'Google Calendar' },
     { prompt: 'Summarize my 3 latest emails in Gmail', provider: 'google-mail', name: 'Gmail' },
-    { prompt: "Star Nango's GitHub repo", provider: 'github', name: 'GitHub' },
+    { prompt: "Star Tenklo's GitHub repo", provider: 'github', name: 'GitHub' },
     { prompt: 'Send me "Hello, world!" on Slack', provider: 'slack', name: 'Slack' },
     { prompt: 'What Linear issues are assigned to me?', provider: 'linear', name: 'Linear' },
     { prompt: 'Show my 5 newest HubSpot contacts', provider: 'hubspot', name: 'HubSpot' }
@@ -91,7 +91,7 @@ export const AgentPlayground: React.FC = () => {
     return (
         <DashboardLayout fullWidth className="h-full" title="Agent Playground" titleActions={<div ref={setToolbarSlot} />}>
             <Helmet>
-                <title>Agent Playground - Nango</title>
+                <title>Agent Playground - Tenklo</title>
             </Helmet>
             <Chat key={`${env}-${chatKey}`} env={env} toolbarSlot={toolbarSlot} onNewChat={() => setChatKey((key) => key + 1)} />
         </DashboardLayout>
@@ -616,7 +616,7 @@ const SessionNotice: React.FC<{ created: AgentPlaygroundSessionCreated; replaced
                     constrainHeight={false}
                     headerElement={
                         <a
-                            href="https://nango.dev/docs/guides/agent-sessions"
+                            href="https://tenklo.dev/docs/guides/agent-sessions"
                             target="_blank"
                             rel="noreferrer"
                             className="flex items-center gap-1 text-s text-text-muted hover:text-text-default"
@@ -651,7 +651,7 @@ const EmptyState: React.FC<{ composer: React.ReactNode; onPick: (prompt: string,
         <div className="flex flex-1 flex-col items-center text-center">
             <div className="flex w-full flex-[3] flex-col items-center justify-end gap-12 pb-6">
                 <HeroIllustration />
-                <h2 className="text-heading-medium text-text-strong">Explore how Nango works with an agent</h2>
+                <h2 className="text-heading-medium text-text-strong">Explore how Tenklo works with an agent</h2>
             </div>
             {composer}
             <div className="grid w-full flex-[4] auto-rows-min grid-cols-2 gap-3 pt-6">

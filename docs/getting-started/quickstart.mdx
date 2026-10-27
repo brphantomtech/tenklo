@@ -1,7 +1,7 @@
 ---
 title: 'Quickstart'
 sidebarTitle: '🚀 Quickstart'
-description: 'Authorize an API and run your first Nango function'
+description: 'Authorize an API and run your first Tenklo function'
 ---
 
 ## AI-assisted quickstart
@@ -37,7 +37,7 @@ The steps below show the flow end to end. This quickstart uses the GitHub API as
 
 <Steps>
   <Step id="create-integration" title="Create an integration">
-    [Sign up](https://app.nango.dev/signup) for free. This quickstart uses GitHub (User OAuth), which is pre-created with integration ID `github-getting-started`.
+    [Sign up](https://app.tenklo.dev/signup) for free. This quickstart uses GitHub (User OAuth), which is pre-created with integration ID `github-getting-started`.
 
     If you want to test another API, go to the Integrations tab > Set up new integration > pick an API.
 
@@ -46,14 +46,14 @@ The steps below show the flow end to end. This quickstart uses the GitHub API as
   <Step id="authorize-api" title="Authorize the API">
     Go to the Connections tab > Add Test Connection > pick your integration, and complete the auth flow. For the GitHub example, pick `github-getting-started`.
 
-    Copy the connection ID and your [Nango API key](/reference/backend/http-api/api-keys) from the Environment settings tab > API Keys. For the GitHub example, the integration ID is `github-getting-started`. You will use these values in the next steps.
+    Copy the connection ID and your [Tenklo API key](/reference/backend/http-api/api-keys) from the Environment settings tab > API Keys. For the GitHub example, the integration ID is `github-getting-started`. You will use these values in the next steps.
 
   </Step>
 
   <Step id="enable-function" title="Use an integration function">
     Open the `github-getting-started` integration and select `get-repository` from the Functions tab.
 
-    Nango runs the function with the connected account's credentials without exposing them to your app or agent.
+    Tenklo runs the function with the connected account's credentials without exposing them to your app or agent.
 
     <Tip>
       You can also [build a custom function](/guides/functions/functions-guide#build-locally-with-the-cli) in your codebase, or use the [Functions API](/guides/functions/functions-guide#build-with-the-functions-api) to let an agent turn text-defined behavior into deployed function code.
@@ -90,7 +90,7 @@ The steps below show the flow end to end. This quickstart uses the GitHub API as
       <Tab title="cURL">
       ```bash
       curl --request POST \
-        --url https://api.nango.dev/action/trigger \
+        --url https://api.tenklo.dev/action/trigger \
         --header 'Authorization: Bearer <NANGO-API-KEY>' \
         --header 'Connection-Id: <CONNECTION-ID>' \
         --header 'Provider-Config-Key: github-getting-started' \
@@ -135,4 +135,4 @@ The steps below show the flow end to end. This quickstart uses the GitHub API as
   </Step>
 </Steps>
 
-<Tip>**Questions, problems, feedback?** Please reach out in the [Slack community](https://nango.dev/slack).</Tip>
+<Tip>**Questions, problems, feedback?** Please reach out in the [Slack community](https://tenklo.dev/slack).</Tip>

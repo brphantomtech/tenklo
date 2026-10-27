@@ -187,7 +187,7 @@ describe('OAuth provider', () => {
         expect(discovery['scopes_supported']).not.toContain('openid');
     });
 
-    it('uses OAuth-specific cookie names that cannot shadow the Nango dashboard session', () => {
+    it('uses OAuth-specific cookie names that cannot shadow the Tenklo dashboard session', () => {
         expect(provider.cookieName('session')).toBe('nango_oauth_session');
         expect(provider.cookieName('interaction')).toBe('nango_oauth_interaction');
         expect(provider.cookieName('resume')).toBe('nango_oauth_resume');
