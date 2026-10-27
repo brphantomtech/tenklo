@@ -175,6 +175,13 @@ import type {
 import type { DeleteTeamUser, GetTeam, PatchTeamUser, PutTeam } from './team/api.js';
 import type { GetUser, PatchUser, PutUserPassword } from './user/api.js';
 import type { PostPublicWebhook } from './webhooks/http.api.js';
+import type {
+    GetPublicWhatsAppMedia,
+    GetPublicWhatsAppStatus,
+    PostPublicWhatsAppGroupsSync,
+    PostPublicWhatsAppMedia,
+    PostPublicWhatsAppMessage
+} from './whatsapp/api.js';
 
 export type PublicApiEndpoints =
     | SetMetadata
@@ -226,6 +233,11 @@ export type PublicApiEndpoints =
     | PostPublicAwsSigV4Authorization
     | PostPublicWhatsAppQrAuthorization
     | GetPublicWhatsAppQrAuthorization
+    | PostPublicWhatsAppMessage
+    | PostPublicWhatsAppMedia
+    | GetPublicWhatsAppMedia
+    | PostPublicWhatsAppGroupsSync
+    | GetPublicWhatsAppStatus
     | PostPublicConnection
     | PatchPublicConnection
     | PostPublicSyncStart

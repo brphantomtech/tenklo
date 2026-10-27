@@ -1,7 +1,7 @@
 ---
 title: 'WhatsApp (QR code)'
 sidebarTitle: 'WhatsApp (QR code)'
-description: 'Connect a WhatsApp number by scanning a QR code, like WhatsApp Web'
+description: 'Connect a WhatsApp number by scanning a QR code, like WhatsApp Web, then send and receive messages'
 ---
 
 The `whatsapp-web` integration pairs a regular WhatsApp or WhatsApp Business app number by QR code, the same way WhatsApp Web does. It needs no Meta business account and no message templates.
@@ -19,18 +19,110 @@ Tenklo runs a WhatsApp gateway next to the server. The gateway holds one WhatsAp
 3. Your user scans it from WhatsApp on their phone: _Settings_ → _Linked devices_ → _Link a device_.
 4. The connection is created, with the paired number in its credentials (`session_id`, `phone`, `name`).
 
-Deleting the connection logs the device out of the number.
+You then send messages with the `/whatsapp` API and receive messages and delivery updates as webhooks.
+
+Deleting the connection logs the device out of the number. A session left without a connection (a QR code scanned after its pairing expired, or the connections of a deleted integration) is logged out the next time it reports anything.
 
 ## Quickstart
 
 <Steps>
-    <Step title="Create the integration">
-    In Tenklo, go to [Integrations](https://app.tenklo.dev/dev/integrations) -> _Configure New Integration_ -> _WhatsApp (QR code)_. There is nothing to configure.
+    <Step id="create-integration" title="Create the integration">
+    In Tenklo, go to _Integrations_ -> _Configure New Integration_ -> _WhatsApp (QR code)_. There is nothing to configure.
     </Step>
-    <Step title="Pair a number">
-    Go to [Connections](https://app.tenklo.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, and scan the QR code with the phone of the number to connect.
+    <Step id="pair-number" title="Pair a number">
+    Go to _Connections_ -> _Add Test Connection_ -> _Authorize_, and scan the QR code with the phone of the number to connect.
+    </Step>
+    <Step id="send-message" title="Send a message">
+    ```bash
+    curl -X POST https://api.tenklo.dev/whatsapp/messages \
+      -H 'Authorization: Bearer <ENVIRONMENT-API-KEY>' \
+      -H 'Connection-Id: <CONNECTION-ID>' \
+      -H 'Provider-Config-Key: <INTEGRATION-ID>' \
+      -H 'Content-Type: application/json' \
+      -d '{ "to": { "kind": "contact", "externalId": "5511999990000" }, "content": { "kind": "text", "text": "Hello" } }'
+    ```
     </Step>
 </Steps>
+
+## API
+
+Every endpoint takes an Environment API key (`Authorization: Bearer <ENVIRONMENT-API-KEY>`, with the `environment:whatsapp` scope for a scoped key) and the connection in the `Connection-Id` and `Provider-Config-Key` headers.
+
+The bodies and webhooks use the shapes of the StackChat channel contract (camelCase), so a payload built for its `message.send` command can be sent as is.
+
+| Endpoint | Description |
+| --- | --- |
+| `POST /whatsapp/messages` | Sends a message. Answers `202` with `{ messageId, commandId }`; the outcome arrives in `message.status` webhooks. |
+| `POST /whatsapp/media` | Uploads a file to send: the raw body, with its `Content-Type`, and an optional `?file_name=`. Answers the media reference for the message. |
+| `GET /whatsapp/media?object_key=` | Downloads a file of the connection: one it received, or one uploaded for it. |
+| `POST /whatsapp/groups/sync` | Asks for the groups of the number. They arrive in a `groups.synced` webhook. |
+| `GET /whatsapp/status` | The last status of the number: `status`, `reason`, `account`, `sendRestriction`, `updatedAt`. |
+
+### Send a message
+
+```json
+{
+    "messageId": "0d7a6c1e-5b8f-4a2d-9c3e-1f2a3b4c5d6e",
+    "to": { "kind": "contact", "externalId": "5511999990000" },
+    "content": { "kind": "text", "text": "Hello" }
+}
+```
+
+- `messageId` is optional (a UUID, generated when missing) and comes back in the `message.status` webhooks.
+- `to.kind` is `contact` or `group`. For a contact, `externalId` is the phone number with its country code (digits only) or a JID; for a group, the group JID (`...@g.us`) from `groups.synced`.
+- `content.kind` is `text` (with `text`, up to 65,536 characters) or `image`, `video`, `audio`, `document` (with `media` and an optional `caption` of up to 1,024 characters).
+
+To send a file, upload it first and put the reply in `content.media`:
+
+```bash
+curl -X POST 'https://api.tenklo.dev/whatsapp/media?file_name=invoice.pdf' \
+  -H 'Authorization: Bearer <ENVIRONMENT-API-KEY>' \
+  -H 'Connection-Id: <CONNECTION-ID>' \
+  -H 'Provider-Config-Key: <INTEGRATION-ID>' \
+  -H 'Content-Type: application/pdf' \
+  --data-binary @invoice.pdf
+# {"objectKey":"tenants/.../media/.../...","mimeType":"application/pdf","sizeBytes":48213,"fileName":"invoice.pdf"}
+```
+
+```json
+{
+    "to": { "kind": "contact", "externalId": "5511999990000" },
+    "content": { "kind": "document", "media": { "objectKey": "tenants/.../media/.../...", "mimeType": "application/pdf", "fileName": "invoice.pdf" } }
+}
+```
+
+Messages leave one at a time per number, with a random pause between them and "typing..." before messages to contacts, to look less automated.
+
+## Webhooks
+
+Configure a webhook URL in _Environment Settings_. Each event of the number arrives as a [forwarded webhook](/guides/platform/webhook-forwarding) whose `payload` is the contract event, unchanged:
+
+```json
+{
+    "from": "whatsapp-web",
+    "type": "forward",
+    "providerConfigKey": "<INTEGRATION-ID>",
+    "connectionId": "<CONNECTION-ID>",
+    "payload": {
+        "type": "message.received",
+        "channelId": "<SESSION-ID>",
+        "providerEventId": "received:3EB0C4F1A2B3",
+        "payload": { "providerMessageId": "3EB0C4F1A2B3", "chat": { "type": "contact", "externalId": "5511999990000@s.whatsapp.net" }, "...": "..." }
+    }
+}
+```
+
+| `payload.type` | When |
+| --- | --- |
+| `message.received` | A message in a chat of the number, received or sent from its phone (`fromMe`). Received files are in `payload.media`; download them with `GET /whatsapp/media`. |
+| `message.status` | A sent message is `SENT`, `DELIVERED`, `READ` or `FAILED` (with `errorCode`). |
+| `channel.status` | The number connects, reconnects, disconnects or is banned. |
+| `groups.synced` | The reply to `POST /whatsapp/groups/sync`. |
+| `command.failed` | A group sync could not run, for instance while the number is disconnected. |
+
+Deduplicate on `payload.providerEventId`: an event can arrive twice.
+
+When the number logs out, its session becomes invalid or it is banned, the connection is flagged with an error and an `auth` webhook is sent, as for a failed token refresh. The number has to scan a new QR code: reconnect it with a [reconnect session](/guides/auth/auth-guide#build-reauthorization). The error clears when it connects again.
 
 ## Self-hosting
 
@@ -47,6 +139,7 @@ node packages/whatsapp-gateway/dist/app.js
 | `WHATSAPP_GATEWAY_EVENTS_URL` | | ✓ | The server's event endpoint, e.g. `http://tenklo-server:3003/internal/whatsapp/events`. |
 | `WHATSAPP_SESSION_ENCRYPTION_KEY` | | ✓ | Encrypts the sessions at rest (32+ characters). Changing it requires pairing every number again. |
 | `WHATSAPP_S3_ENDPOINT`, `WHATSAPP_S3_REGION`, `WHATSAPP_S3_ACCESS_KEY`, `WHATSAPP_S3_SECRET_KEY`, `WHATSAPP_S3_BUCKET` | | ✓ | S3-compatible bucket for media. |
+| `WHATSAPP_MEDIA_MAX_BYTES` | | ✓ | Largest file accepted for sending (default 100 MB; the server's `NANGO_SERVER_PUBLIC_BODY_LIMIT` also applies). |
 | `NANGO_DB_*`, `NANGO_REDIS_URL` | ✓ | ✓ | The same database and Redis as the server. |
 
 Keep the gateway on the internal network: only the server needs to reach it.

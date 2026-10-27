@@ -100,6 +100,11 @@ import { postPublicTrigger } from './controllers/sync/postTrigger.js';
 import { putSyncConnectionFrequency } from './controllers/sync/putSyncConnectionFrequency.js';
 import { allPublicV1, requireV1Passthrough } from './controllers/v1/getV1.js';
 import { postWebhook } from './controllers/webhook/environmentUuid/postWebhook.js';
+import { getPublicWhatsAppMedia } from './controllers/whatsapp/getMedia.js';
+import { getPublicWhatsAppStatus } from './controllers/whatsapp/getStatus.js';
+import { postPublicWhatsAppGroupsSync } from './controllers/whatsapp/postGroupsSync.js';
+import { postPublicWhatsAppMedia } from './controllers/whatsapp/postMedia.js';
+import { postPublicWhatsAppMessage } from './controllers/whatsapp/postMessages.js';
 import { envs } from './env.js';
 import { acceptLanguageMiddleware } from './middleware/accept-language.middleware.js';
 import authMiddleware from './middleware/access.middleware.js';
@@ -515,6 +520,15 @@ publicAPI.route('/session/:sessionId/mcp').get(agentSessionAuth, getAgentSession
 // V1 passthrough (deprecated) — scope checks are inline in allPublicV1 after action/model resolution
 publicAPI.use('/v1', jsonContentTypeMiddleware);
 publicAPI.route('/v1/*splat').all(envAuth, requireV1Passthrough, withEnvironmentTarget, allPublicV1);
+
+// WhatsApp (whatsapp-web connections)
+publicAPI.route('/whatsapp/messages').post(envAuth, can('environment:whatsapp'), jsonContentTypeMiddleware, postPublicWhatsAppMessage);
+publicAPI
+    .route('/whatsapp/media')
+    .post(envAuth, can('environment:whatsapp'), bodyParser.raw({ type: () => true, limit: bodyLimit }), postPublicWhatsAppMedia)
+    .get(envAuth, can('environment:whatsapp'), getPublicWhatsAppMedia);
+publicAPI.route('/whatsapp/groups/sync').post(envAuth, can('environment:whatsapp'), postPublicWhatsAppGroupsSync);
+publicAPI.route('/whatsapp/status').get(envAuth, can('environment:whatsapp'), getPublicWhatsAppStatus);
 
 // Proxy
 publicAPI.route('/proxy{/*splat}').all(envAuth, can('environment:proxy'), upload.any(), allPublicProxy);

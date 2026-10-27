@@ -53,7 +53,9 @@ export const API_KEY_SCOPES = [
     // Webhooks
     'environment:webhook_signing_key:rotate',
     // MCP
-    'environment:mcp'
+    'environment:mcp',
+    // WhatsApp
+    'environment:whatsapp'
 ] as const;
 
 export type ConcreteApiKeyScope = (typeof API_KEY_SCOPES)[number];

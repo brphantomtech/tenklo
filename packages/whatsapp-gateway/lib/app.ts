@@ -44,7 +44,14 @@ async function main(): Promise<void> {
     manager.resumeAll();
 
     const isReady = async () => redis.status === 'ready' && (await db.knex.raw('SELECT 1').then(() => true));
-    const server = createServer({ dispatcher, secret: config.SECRET, isReady, logger }).listen(config.PORT, () => {
+    const server = createServer({
+        dispatcher,
+        media: storage,
+        mediaMaxBytes: config.MEDIA_MAX_BYTES,
+        secret: config.SECRET,
+        isReady,
+        logger
+    }).listen(config.PORT, () => {
         logger.info({ port: config.PORT }, 'whatsapp-gateway ready');
     });
 
