@@ -55,7 +55,9 @@ export const PUBLIC_ENVIRONMENT_SCOPES = [
     // Webhooks
     'environment:webhook_signing_key:rotate',
     // MCP
-    'environment:mcp'
+    'environment:mcp',
+    // WhatsApp
+    'environment:whatsapp'
 ] as const satisfies readonly ApiKeyScope[];
 
 // Every concrete `ApiKeyScope` appears above.

@@ -4,12 +4,17 @@ import { Err, Ok } from '@nangohq/utils';
 
 import { envs } from '../env.js';
 
+import type { WhatsAppMessageContent, WhatsAppRecipient } from '@nangohq/types';
 import type { Result } from '@nangohq/utils';
 
 export const WHATSAPP_PROVIDER = 'whatsapp-web';
 
 /** Commands from the StackChat channel contract that the server sends to the whatsapp-gateway. */
-export type GatewayCommand = { type: 'channel.connect'; payload: Record<string, never> } | { type: 'channel.disconnect'; payload: { clearSession: boolean } };
+export type GatewayCommand =
+    | { type: 'channel.connect'; payload: Record<string, never> }
+    | { type: 'channel.disconnect'; payload: { clearSession: boolean } }
+    | { type: 'groups.sync'; payload: Record<string, never> }
+    | { type: 'message.send'; payload: { messageId: string; to: WhatsAppRecipient; content: WhatsAppMessageContent } };
 
 export interface GatewayTarget {
     /** The environment uuid: one tenant per environment. */
@@ -18,6 +23,8 @@ export interface GatewayTarget {
     channelId: string;
     correlationId?: string | undefined;
 }
+
+export class GatewayInvalidCommandError extends Error {}
 
 export function isWhatsAppGatewayEnabled(): boolean {
     return Boolean(envs.WHATSAPP_GATEWAY_URL && envs.WHATSAPP_GATEWAY_SECRET);
@@ -50,6 +57,11 @@ export async function sendGatewayCommand(target: GatewayTarget, command: Gateway
             body: JSON.stringify(body),
             signal: AbortSignal.timeout(10_000)
         });
+        if (res.status === 400) {
+            // The command is outside the contract: the caller's input, not the gateway, is wrong.
+            const reply = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
+            return Err(new GatewayInvalidCommandError(reply?.error?.message ?? 'invalid command'));
+        }
         if (!res.ok) {
             return Err(new Error(`whatsapp_gateway_rejected_command`, { cause: `${res.status} ${await res.text().catch(() => '')}` }));
         }
@@ -73,4 +85,59 @@ export async function logoutWhatsAppSession({
     }
     const sent = await sendGatewayCommand({ tenantId, channelId: sessionId }, { type: 'channel.disconnect', payload: { clearSession: true } });
     return sent.isErr() ? Err(sent.error) : Ok(undefined);
+}
+
+export class GatewayMediaTooLargeError extends Error {}
+
+/** Stores a file in the gateway's media bucket under a key the server picked. */
+export async function putGatewayMedia({ objectKey, body, contentType }: { objectKey: string; body: Buffer; contentType: string }): Promise<Result<void>> {
+    const url = envs.WHATSAPP_GATEWAY_URL;
+    const secret = envs.WHATSAPP_GATEWAY_SECRET;
+    if (!url || !secret) {
+        return Err(new Error('whatsapp_gateway_not_configured'));
+    }
+    try {
+        const res = await fetch(mediaUrl(url, objectKey), {
+            method: 'PUT',
+            headers: { 'content-type': contentType, authorization: `Bearer ${secret}` },
+            body: new Uint8Array(body),
+            signal: AbortSignal.timeout(120_000)
+        });
+        if (res.status === 413) {
+            return Err(new GatewayMediaTooLargeError('media_too_large'));
+        }
+        if (!res.ok) {
+            return Err(new Error('whatsapp_gateway_rejected_media', { cause: `${res.status} ${await res.text().catch(() => '')}` }));
+        }
+        return Ok(undefined);
+    } catch (err) {
+        return Err(new Error('whatsapp_gateway_unreachable', { cause: err }));
+    }
+}
+
+/** Opens a file of the gateway's media bucket. null when it does not exist. */
+export async function openGatewayMedia(objectKey: string): Promise<Result<Response | null>> {
+    const url = envs.WHATSAPP_GATEWAY_URL;
+    const secret = envs.WHATSAPP_GATEWAY_SECRET;
+    if (!url || !secret) {
+        return Err(new Error('whatsapp_gateway_not_configured'));
+    }
+    try {
+        const res = await fetch(mediaUrl(url, objectKey), { headers: { authorization: `Bearer ${secret}` }, signal: AbortSignal.timeout(120_000) });
+        if (res.status === 404) {
+            return Ok(null);
+        }
+        if (!res.ok || !res.body) {
+            return Err(new Error('whatsapp_gateway_rejected_media', { cause: `${res.status}` }));
+        }
+        return Ok(res);
+    } catch (err) {
+        return Err(new Error('whatsapp_gateway_unreachable', { cause: err }));
+    }
+}
+
+function mediaUrl(base: string, objectKey: string): URL {
+    const url = new URL('/v1/media', base);
+    url.searchParams.set('key', objectKey);
+    return url;
 }

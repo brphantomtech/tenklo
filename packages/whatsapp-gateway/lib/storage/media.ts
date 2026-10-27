@@ -12,6 +12,7 @@ export class ObjectNotFoundError extends Error {
 export interface MediaObject {
     stream: Readable;
     contentLength: number | undefined;
+    contentType?: string | undefined;
 }
 
 /** S3-compatible media bucket: outbound media is streamed from it, inbound media is written to it. */
@@ -30,7 +31,7 @@ export class S3Media {
     async openMedia(objectKey: string): Promise<MediaObject> {
         try {
             const res = await this.s3.send(new GetObjectCommand({ Bucket: this.config.S3_BUCKET_MEDIA, Key: objectKey }));
-            return { stream: res.Body as Readable, contentLength: res.ContentLength };
+            return { stream: res.Body as Readable, contentLength: res.ContentLength, contentType: res.ContentType };
         } catch (err) {
             throw isNotFound(err) ? new ObjectNotFoundError(objectKey) : err;
         }

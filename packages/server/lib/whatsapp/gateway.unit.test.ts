@@ -1,7 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { envs } from '../env.js';
-import { isWhatsAppGatewayEnabled, logoutWhatsAppSession, sendGatewayCommand } from './gateway.js';
+import {
+    GatewayInvalidCommandError,
+    GatewayMediaTooLargeError,
+    isWhatsAppGatewayEnabled,
+    logoutWhatsAppSession,
+    openGatewayMedia,
+    putGatewayMedia,
+    sendGatewayCommand
+} from './gateway.js';
 
 const SECRET = 'a-shared-secret-with-more-than-32-chars';
 const TENANT = '7d0c3a52-4f7e-4d55-9b6e-2f7f4c1a9e01';
@@ -44,12 +52,15 @@ describe('whatsapp gateway client', () => {
         });
     });
 
-    it('reports a rejected command', async () => {
-        fetchMock.mockResolvedValue(new Response('bad', { status: 400 }));
+    it('reports a command outside the contract apart from a gateway failure', async () => {
+        fetchMock.mockResolvedValueOnce(Response.json({ error: { code: 'invalid_command', message: 'bad text' } }, { status: 400 }));
+        const invalid = await sendGatewayCommand({ tenantId: TENANT, channelId: SESSION }, { type: 'channel.connect', payload: {} });
+        expect(invalid.isErr() && invalid.error).toBeInstanceOf(GatewayInvalidCommandError);
+        expect(invalid.isErr() && invalid.error.message).toBe('bad text');
 
-        const res = await sendGatewayCommand({ tenantId: TENANT, channelId: SESSION }, { type: 'channel.connect', payload: {} });
-
-        expect(res.isErr()).toBe(true);
+        fetchMock.mockResolvedValueOnce(new Response('down', { status: 503 }));
+        const failed = await sendGatewayCommand({ tenantId: TENANT, channelId: SESSION }, { type: 'channel.connect', payload: {} });
+        expect(failed.isErr() && failed.error).not.toBeInstanceOf(GatewayInvalidCommandError);
     });
 
     it('is disabled without configuration', async () => {
@@ -72,6 +83,39 @@ describe('whatsapp gateway client', () => {
             channelId: SESSION,
             type: 'channel.disconnect',
             payload: { clearSession: true }
+        });
+    });
+
+    describe('media', () => {
+        const KEY = `tenants/${TENANT}/media/${SESSION}/file`;
+
+        it('stores a file under the key the server picked', async () => {
+            fetchMock.mockResolvedValue(Response.json({ objectKey: KEY, sizeBytes: 3 }, { status: 201 }));
+
+            const res = await putGatewayMedia({ objectKey: KEY, body: Buffer.from('abc'), contentType: 'image/png' });
+
+            expect(res.isOk()).toBe(true);
+            const [url, init] = fetchMock.mock.calls[0]!;
+            expect((url as URL).searchParams.get('key')).toBe(KEY);
+            expect(init).toMatchObject({ method: 'PUT', headers: { 'content-type': 'image/png', authorization: `Bearer ${SECRET}` } });
+        });
+
+        it('reports a file above the gateway limit', async () => {
+            fetchMock.mockResolvedValue(new Response(null, { status: 413 }));
+
+            const res = await putGatewayMedia({ objectKey: KEY, body: Buffer.from('abc'), contentType: 'image/png' });
+
+            expect(res.isErr() && res.error).toBeInstanceOf(GatewayMediaTooLargeError);
+        });
+
+        it('opens a file, and answers null for a missing one', async () => {
+            fetchMock.mockResolvedValueOnce(new Response('abc', { status: 200, headers: { 'content-type': 'image/png' } }));
+            const found = await openGatewayMedia(KEY);
+            expect(found.isOk() && (await found.value?.text())).toBe('abc');
+
+            fetchMock.mockResolvedValueOnce(new Response(null, { status: 404 }));
+            const missing = await openGatewayMedia(KEY);
+            expect(missing.isOk() && missing.value).toBeNull();
         });
     });
 });
