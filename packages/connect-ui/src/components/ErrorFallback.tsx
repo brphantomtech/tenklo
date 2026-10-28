@@ -1,19 +1,31 @@
+import { TriangleAlert } from 'lucide-react';
 import { useMount } from 'react-use';
 
 import { APIError } from '@/lib/api';
 import { telemetry } from '@/lib/telemetry';
 import { HeaderButtons } from './HeaderButtons';
 
-const ErrorMsg: React.FC<{ error?: unknown; message?: string }> = ({ error, message }) => {
+function errorMessage(error: unknown, message?: string): string {
     if (message) {
-        return <div className="p-4 text-error text-center">{message}</div>;
+        return message;
     }
-    if (error instanceof APIError) {
-        if (error.details.res.status === 401) {
-            return <div className="p-4 text-error text-center">Your session has expired, please refresh the modal</div>;
-        }
+    if (error instanceof APIError && error.details.res.status === 401) {
+        return 'Your session has expired, please refresh the modal';
     }
-    return <div className="p-4 text-error text-center">An error occurred. Please refresh your page or contact our support.</div>;
+    return 'An error occurred. Please refresh your page or contact our support.';
+}
+
+const ErrorMsg: React.FC<{ error?: unknown; message?: string }> = ({ error, message }) => {
+    return (
+        <div className="flex flex-col items-center gap-4 px-4 text-center animate-rise">
+            <div aria-hidden="true" className="grid size-12 place-items-center rounded-2xl border border-error-border bg-error-soft text-error">
+                <TriangleAlert className="size-5" strokeWidth={1.75} />
+            </div>
+            <p className="max-w-[34ch] text-body text-text-primary" role="alert">
+                {errorMessage(error, message)}
+            </p>
+        </div>
+    );
 };
 
 export const ErrorFallback: React.FC<{ error?: unknown; message?: string }> = ({ error, message }) => {
@@ -23,9 +35,9 @@ export const ErrorFallback: React.FC<{ error?: unknown; message?: string }> = ({
         }
     });
     return (
-        <div className="h-full w-full">
+        <div className="flex h-full w-full flex-1 flex-col">
             <HeaderButtons />
-            <div className="relative h-full flex flex-col justify-center">
+            <div className="relative flex flex-1 flex-col justify-center py-10">
                 <ErrorMsg error={error} message={message} />
             </div>
         </div>
@@ -34,8 +46,8 @@ export const ErrorFallback: React.FC<{ error?: unknown; message?: string }> = ({
 
 export const ErrorFallbackGlobal: React.FC = () => {
     return (
-        <div className="absolute h-screen w-screen overflow-hidden flex flex-col items-center pt-[50px] pb-[50px] bg-dark-800 bg-opacity-60">
-            <div className="relative overflow-hidden bg-background text-text-primary rounded-xl w-[500px] h-full min-h-[500px]">
+        <div className="absolute flex h-screen w-screen items-center justify-center overflow-hidden bg-scrim sm:p-10">
+            <div className="relative flex h-full w-full flex-col overflow-hidden bg-surface px-5 pt-3 pb-6 text-text-primary sm:h-[min(680px,100%)] sm:w-[460px] sm:rounded-[20px] sm:px-7 sm:shadow-dialog">
                 <ErrorFallback />
             </div>
         </div>

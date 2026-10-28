@@ -1,14 +1,14 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { QueryErrorResetBoundary, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { ArrowRight, CircleAlert } from 'lucide-react';
+import { ChevronRight, CircleAlert, LoaderCircle, Plug, Search } from 'lucide-react';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useEffectOnce } from 'react-use';
 
-import NoIntegrationGif from '@/assets/no-integrations.gif';
 import { ErrorFallback } from '@/components/ErrorFallback';
 import { HeaderButtons } from '@/components/HeaderButtons';
+import { IntegrationLogo } from '@/components/IntegrationLogo';
 import { LoadingView } from '@/components/LoadingView';
 import { Button } from '@/components/ui/button';
 import { APIError, getIntegrations, getProvider } from '@/lib/api';
@@ -18,6 +18,9 @@ import { useGlobal } from '@/lib/store';
 import { telemetry } from '@/lib/telemetry';
 
 import type { ApiPublicIntegration, GetPublicProvider } from '@nangohq/types';
+
+/** Below this many integrations the whole list fits at a glance, so no search field. */
+const SEARCH_THRESHOLD = 6;
 
 export const IntegrationsList: React.FC = () => {
     return (
@@ -38,6 +41,7 @@ const Integrations: React.FC = () => {
     const { t } = useI18n();
     const store = useGlobal();
     const { data } = useSuspenseQuery({ queryKey: ['integrations'], queryFn: getIntegrations });
+    const [query, setQuery] = useState('');
 
     const isSingleIntegration = data.data.length === 1 && store.session?.allowed_integrations?.length === 1;
     useEffect(() => {
@@ -71,20 +75,35 @@ const Integrations: React.FC = () => {
         return list;
     }, [data]);
 
+    const filtered = useMemo(() => {
+        const needle = query.trim().toLowerCase();
+        if (!needle) {
+            return integrations;
+        }
+        return integrations.filter(
+            (integration) =>
+                (integration.display_name ?? '').toLowerCase().includes(needle) ||
+                integration.provider.toLowerCase().includes(needle) ||
+                integration.unique_key.toLowerCase().includes(needle)
+        );
+    }, [integrations, query]);
+
     if (data.data.length <= 0) {
         return (
             <>
                 <HeaderButtons />
-                <main className="flex-1 flex flex-col gap-10 justify-center h-full">
-                    <div className="flex flex-col items-center gap-5 w-full text-center">
-                        <img alt="No integrations" className="w-[100px]" src={NoIntegrationGif} />
-                        <h1 className="text-xl font-semibold text-text-primary" id="connect-ui-title">
+                <main className="flex flex-1 flex-col justify-center gap-8 py-6 animate-rise">
+                    <div className="flex w-full flex-col items-center gap-3 text-center">
+                        <div className="mb-2 grid size-16 place-items-center rounded-2xl border border-dashed border-hairline-hover text-text-tertiary">
+                            <Plug aria-hidden="true" className="size-6" strokeWidth={1.5} />
+                        </div>
+                        <h1 className="text-title text-text-primary" id="connect-ui-title">
                             {t('integrationsList.noIntegrations')}
                         </h1>
-                        <p className="text-text-secondary">{t('integrationsList.noIntegrationsDescription')}</p>
+                        <p className="max-w-[36ch] text-body text-text-secondary">{t('integrationsList.noIntegrationsDescription')}</p>
                     </div>
 
-                    <Button className="w-full" title={t('common.close')} onClick={() => triggerClose('click:close')}>
+                    <Button className="w-full" size="lg" title={t('common.close')} variant="secondary" onClick={() => triggerClose('click:close')}>
                         {t('common.close')}
                     </Button>
                 </main>
@@ -96,21 +115,50 @@ const Integrations: React.FC = () => {
         return <LoadingView />;
     }
 
+    const showSearch = integrations.length >= SEARCH_THRESHOLD;
+
     return (
         <>
-            <HeaderButtons className="mb-5" />
-            <main className="flex flex-col gap-7 h-full">
-                <div className="flex flex-col gap-7 text-center">
-                    <h1 className="font-semibold text-xl text-text-primary" id="connect-ui-title">
+            <HeaderButtons step={{ current: 1, total: 3 }} />
+            <main className="flex flex-col gap-5 pt-5">
+                <div className="flex flex-col gap-1.5">
+                    <h1 className="text-title text-text-primary" id="connect-ui-title">
                         {t('integrationsList.title')}
                     </h1>
-                    <p className="text-text-secondary">{t('integrationsList.description')}</p>
+                    <p className="text-body text-text-secondary">{t('integrationsList.description')}</p>
                 </div>
-                <div className="flex flex-col gap-1.5">
-                    {integrations.map((integration) => {
-                        return <Integration key={integration.unique_key} integration={integration} />;
-                    })}
-                </div>
+
+                {showSearch && (
+                    <label className="field relative flex h-10 items-center gap-2 px-3">
+                        <span className="sr-only">{t('integrationsList.searchPlaceholder')}</span>
+                        <Search aria-hidden="true" className="size-4 shrink-0 text-text-tertiary" strokeWidth={1.75} />
+                        <input
+                            autoComplete="off"
+                            className="h-full w-full bg-transparent text-sm text-text-primary outline-none placeholder:text-text-placeholder [&::-webkit-search-cancel-button]:hidden"
+                            placeholder={t('integrationsList.searchPlaceholder')}
+                            type="search"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                        />
+                    </label>
+                )}
+
+                {filtered.length > 0 ? (
+                    <ul className="flex flex-col divide-y divide-hairline overflow-hidden rounded-xl border border-hairline bg-surface shadow-card">
+                        {filtered.map((integration, index) => (
+                            <li key={integration.unique_key} className="animate-rise" style={{ animationDelay: `${Math.min(index, 8) * 30}ms` }}>
+                                <Integration integration={integration} />
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p
+                        aria-live="polite"
+                        className="rounded-xl border border-dashed border-hairline-strong px-4 py-8 text-center text-body-sm text-text-tertiary"
+                    >
+                        {t('integrationsList.noResults', { query: query.trim() })}
+                    </p>
+                )}
             </main>
         </>
     );
@@ -163,23 +211,28 @@ const Integration: React.FC<{ integration: ApiPublicIntegration }> = ({ integrat
 
     return (
         <button
+            aria-busy={loading || undefined}
             aria-label={connectToLabel}
-            className="group w-full text-left flex flex-col gap-3 p-5 bg-elevated hover:bg-subtle focus-default cursor-pointer"
+            className="group flex w-full cursor-pointer flex-col gap-3 px-3.5 py-3 text-left transition-colors hover:bg-ov-1 focus-inset"
             type="button"
             onClick={onClick}
         >
-            <div className=" flex justify-between items-center">
-                <div className="flex gap-3 items-center">
-                    <div className="w-12 h-12 bg-white transition-colors rounded-sm p-1.5">
-                        <img alt={`${integration.display_name} logo`} src={integration.logo} />
-                    </div>
-                    <div className="text-text-primary">{integration.display_name}</div>
-                </div>
-                <ArrowRight className="w-5 h-5 text-text-tertiary group-hover:text-text-primary" />
+            <div className="flex w-full items-center gap-3.5">
+                <IntegrationLogo name={integration.display_name} src={integration.logo} />
+                <span className="min-w-0 flex-1 truncate text-[14.5px] font-medium tracking-[-0.01em] text-text-primary">{integration.display_name}</span>
+                {loading ? (
+                    <LoaderCircle aria-hidden="true" className="size-4 shrink-0 animate-spin text-text-tertiary" />
+                ) : (
+                    <ChevronRight
+                        aria-hidden="true"
+                        className="size-4 shrink-0 text-text-tertiary transition-[translate,color] duration-200 ease-out group-hover:translate-x-0.5 group-hover:text-text-primary"
+                        strokeWidth={1.75}
+                    />
+                )}
             </div>
             {error && (
-                <div className="py-2 px-4 border border-error bg-red-100 text-error text-sm flex items-center rounded-sm gap-2">
-                    <CircleAlert className="w-5 h-5" strokeWidth={1.5} /> {error} Error obtaining the provider.
+                <div className="flex w-full items-center gap-2 rounded-lg border border-error-border bg-error-soft px-3 py-2 text-body-sm text-text-primary">
+                    <CircleAlert aria-hidden="true" className="size-4 shrink-0 text-error" strokeWidth={1.75} /> {error} Error obtaining the provider.
                 </div>
             )}
         </button>

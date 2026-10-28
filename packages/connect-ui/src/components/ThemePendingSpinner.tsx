@@ -19,7 +19,7 @@ export const ThemePendingSpinner: React.FC = () => {
     return (
         // The dialog's own loading view announces the load; a status role here would announce it twice.
         <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <LoaderCircle className="size-8 animate-spin text-gray-500" />
+            <LoaderCircle className="size-8 animate-spin text-text-tertiary" />
         </div>
     );
 };

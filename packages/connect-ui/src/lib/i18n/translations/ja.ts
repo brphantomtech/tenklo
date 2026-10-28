@@ -11,7 +11,9 @@ const ja: Translation = {
         connecting: '接続中...',
         connect: '接続',
         viewGuide: '接続ガイドを見る',
-        needHelp: 'お困りですか？'
+        needHelp: 'お困りですか？',
+        securedBy: '提供元',
+        step: 'ステップ {current} / {total}'
     },
     integrationsList: {
         title: 'インテグレーションを選択',
@@ -19,11 +21,15 @@ const ja: Translation = {
         noIntegrations: 'インテグレーションが見つかりません。',
         noIntegrationsDescription: 'この環境ではインテグレーションが設定されていません。Tenklo ダッシュボードで最初のインテグレーションを追加してください。',
         connectTo: '{provider} に接続',
+        searchPlaceholder: 'インテグレーションを検索',
+        noResults: '「{query}」に一致するインテグレーションはありません。',
         error: '設定の読み込み中にエラーが発生しました'
     },
     go: {
         linkAccount: '{provider} アカウントを連携',
         fieldDocumentation: '{field} のドキュメントを見る',
+        showSecret: '{field} を表示',
+        hideSecret: '{field} を非表示',
         connect: '接続',
         success: '成功しました！',
         successMessage: '{provider} インテグレーションの設定が完了しました。',

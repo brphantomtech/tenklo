@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, Navigate } from '@tanstack/react-router';
-import { Check, ChevronDown, ChevronUp, ExternalLink, Info, TriangleAlert, X } from 'lucide-react';
+import { AppWindow, Check, ChevronDown, Copy, ExternalLink, Info, TriangleAlert } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMount } from 'react-use';
@@ -8,6 +8,7 @@ import * as z from 'zod';
 
 import { AuthError } from '@nangohq/frontend';
 
+import { ConnectionRail } from '@/components/ConnectionRail';
 import { CustomInput, StandaloneInput } from '@/components/CustomInput';
 import { CustomSelect } from '@/components/CustomSelect';
 import { HeaderButtons } from '@/components/HeaderButtons';
@@ -21,6 +22,7 @@ import { useGlobal } from '@/lib/store';
 import { telemetry } from '@/lib/telemetry';
 import { cn, compactErrorDisplay, getAllowedCallbackOrigin, jsonSchemaToZod } from '@/lib/utils';
 
+import type { RailState } from '@/components/ConnectionRail';
 import type { AuthResult } from '@nangohq/frontend';
 import type { AuthModeType, SimplifiedJSONSchema } from '@nangohq/types';
 import type { InputHTMLAttributes } from 'react';
@@ -486,28 +488,48 @@ export const Go: React.FC = () => {
         return <Navigate to="/" />;
     }
 
+    // The flow is list → authorize → done; a single-integration session skips the list.
+    const step = isSingleIntegration ? { current: 1, total: 2 } : { current: 2, total: 3 };
+    const doneStep = { current: step.total, total: step.total };
+
+    const hero = ({ title, state, description, as: Heading = 'h1' }: { title: string; state: RailState; description?: string; as?: 'h1' | 'h2' }) => (
+        <div className="flex flex-col items-center gap-5 text-center animate-rise">
+            <ConnectionRail logo={integration.logo} name={integration.display_name} state={state} />
+            <div className="flex flex-col gap-1.5">
+                <Heading className="text-title text-text-primary" id="connect-ui-title">
+                    {title}
+                </Heading>
+                {description && <p className="mx-auto max-w-[38ch] text-body text-text-secondary">{description}</p>}
+            </div>
+        </div>
+    );
+
+    const docsFooter = docsConnectUrl && (
+        <footer className="pt-6 text-center text-body-sm text-text-tertiary">
+            {t('common.needHelp')}{' '}
+            <Link
+                className="inline-flex items-center gap-1 rounded-sm font-medium text-text-primary underline decoration-hairline-hover underline-offset-4 transition-colors hover:decoration-current focus-default"
+                target="_blank"
+                to={docsConnectUrl}
+                onClick={() => telemetry('click:doc')}
+            >
+                {t('common.viewGuide')}
+                <ExternalLink aria-hidden="true" className="size-3.5 text-text-tertiary" strokeWidth={1.75} />
+            </Link>
+        </footer>
+    );
+
     if (result) {
         return (
             <>
-                <HeaderButtons isAuthLink={isAuthLink} />
-                <main className="flex-1 flex flex-col justify-center gap-10 px-4">
-                    <div className="flex flex-col gap-7 items-center">
-                        <div className="relative w-16 h-16 p-2 rounded-sm border border-subtle bg-white">
-                            <img alt={`${integration.display_name} logo`} src={integration.logo} />
-                            <div className="absolute -bottom-3.5 -right-3.5 w-7 h-7 p-1 rounded-full bg-green-300">
-                                <div className="w-full h-full rounded-full bg-green-600 flex items-center justify-center">
-                                    <Check aria-hidden="true" className="w-3.5 h-3.5 text-white" strokeWidth={3} />
-                                </div>
-                            </div>
-                        </div>
-                        <h2 className="text-xl font-semibold text-text-primary" id="connect-ui-title">
-                            {t('go.success')}
-                        </h2>
-                        <p className="text-center text-text-secondary">
-                            {t('go.successMessage', { provider: provider.display_name })}
-                            {isAuthLink ? ` ${t('go.closeTab')}` : ''}
-                        </p>
-                    </div>
+                <HeaderButtons isAuthLink={isAuthLink} step={doneStep} />
+                <main className="flex flex-1 flex-col justify-center gap-8 py-6">
+                    {hero({
+                        title: t('go.success'),
+                        state: 'connected',
+                        as: 'h2',
+                        description: `${t('go.successMessage', { provider: provider.display_name })}${isAuthLink ? ` ${t('go.closeTab')}` : ''}`
+                    })}
                     {!isAuthLink && (
                         <Button className="w-full" loading={loading} size={'lg'} onClick={() => triggerClose('click:finish')}>
                             {t('common.finish')}
@@ -520,91 +542,61 @@ export const Go: React.FC = () => {
 
     if (connectionFailed) {
         return (
-            <div className="flex-1 flex flex-col justify-center gap-5 data-hasDocs:justify-between" data-hasDocs={!!docsConnectUrl}>
-                <HeaderButtons isAuthLink={isAuthLink} />
-                <main className="flex-1 flex flex-col justify-center items-center gap-10 px-4">
-                    <div className="flex flex-col gap-7 items-center w-full max-w-md">
-                        <div className="relative w-16 h-16 p-2 rounded-sm border border-subtle bg-white">
-                            <img alt={`${integration.display_name} logo`} src={integration.logo} />
-                            <div className="absolute -bottom-3.5 -right-3.5 w-7 h-7 p-1 rounded-full bg-red-300">
-                                <div className="w-full h-full rounded-full bg-red-700 flex items-center justify-center">
-                                    <X aria-hidden="true" className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+            <div className="flex flex-1 flex-col">
+                <HeaderButtons isAuthLink={isAuthLink} step={step} />
+                <main className="flex flex-1 flex-col justify-center gap-6 py-6">
+                    {hero({ title: t('go.connectionFailed'), state: 'failed', as: 'h2', description: t('go.connectionErrorGeneric') })}
+
+                    {error && (
+                        <div className="w-full overflow-hidden rounded-xl border border-hairline bg-elevated">
+                            <button
+                                aria-controls="error-details-panel"
+                                aria-expanded={showErrorDetails}
+                                className="flex w-full cursor-pointer items-center justify-between gap-2 px-4 py-3 text-left text-body-sm font-medium text-text-primary transition-colors hover:bg-ov-1 focus-inset"
+                                type="button"
+                                onClick={() => setShowErrorDetails((v) => !v)}
+                            >
+                                <span>{showErrorDetails ? t('go.hideErrorDetails') : t('go.showErrorDetails')}</span>
+                                <ChevronDown
+                                    aria-hidden="true"
+                                    className={cn('size-4 shrink-0 text-text-tertiary transition-transform duration-200', showErrorDetails && 'rotate-180')}
+                                    strokeWidth={1.75}
+                                />
+                            </button>
+                            {showErrorDetails && (
+                                <div className="border-t border-hairline px-4 py-3" id="error-details-panel">
+                                    <pre className="overflow-x-hidden font-mono text-xs leading-relaxed [overflow-wrap:anywhere] whitespace-pre-wrap text-text-secondary">
+                                        {compactErrorDisplay(error)}
+                                    </pre>
                                 </div>
-                            </div>
+                            )}
                         </div>
-                        <h2 className="text-xl font-semibold text-text-primary" id="connect-ui-title">
-                            {t('go.connectionFailed')}
-                        </h2>
-                        <p className="text-text-secondary text-center">{t('go.connectionErrorGeneric')}</p>
+                    )}
 
-                        {error && (
-                            <div className="w-full rounded-md border border-subtle bg-elevated overflow-hidden">
-                                <button
-                                    aria-controls="error-details-panel"
-                                    aria-expanded={showErrorDetails}
-                                    className="w-full flex items-center justify-between gap-2 px-4 py-3 text-left text-sm font-medium text-text-primary hover:bg-muted/50 transition-colors cursor-pointer"
-                                    type="button"
-                                    onClick={() => setShowErrorDetails((v) => !v)}
-                                >
-                                    <span>{showErrorDetails ? t('go.hideErrorDetails') : t('go.showErrorDetails')}</span>
-                                    {showErrorDetails ? (
-                                        <ChevronUp className="w-4 h-4 shrink-0 text-text-tertiary" />
-                                    ) : (
-                                        <ChevronDown className="w-4 h-4 shrink-0 text-text-tertiary" />
-                                    )}
-                                </button>
-                                {showErrorDetails && (
-                                    <div className="border-t border-subtle px-4 py-3 bg-muted/30" id="error-details-panel">
-                                        <pre className="text-xs font-mono text-red-600 whitespace-pre-wrap break-all overflow-x-hidden">
-                                            {compactErrorDisplay(error)}
-                                        </pre>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        <Button
-                            className="w-full"
-                            loading={loading}
-                            size={'lg'}
-                            onClick={() => {
-                                setConnectionFailed(false);
-                                setError(null);
-                                setShowErrorDetails(false);
-                            }}
-                        >
-                            {t('common.back')}
-                        </Button>
-                    </div>
+                    <Button
+                        className="w-full"
+                        loading={loading}
+                        size={'lg'}
+                        onClick={() => {
+                            setConnectionFailed(false);
+                            setError(null);
+                            setShowErrorDetails(false);
+                        }}
+                    >
+                        {t('common.back')}
+                    </Button>
                 </main>
-                {docsConnectUrl && (
-                    <footer>
-                        <p className="text-text-tertiary text-center">
-                            {t('common.needHelp')}{' '}
-                            <Link className="underline text-text-primary" target="_blank" to={docsConnectUrl} onClick={() => telemetry('click:doc')}>
-                                {t('common.viewGuide')}
-                            </Link>{' '}
-                            <ExternalLink className="inline-block w-3.5 h-3.5 text-text-tertiary" />
-                        </p>
-                    </footer>
-                )}
+                {docsFooter}
             </div>
         );
     }
 
     if (provider.auth_mode === 'WHATSAPP_QR') {
         return (
-            <div className="flex-1 flex flex-col justify-center gap-5">
-                <HeaderButtons backLink={!isSingleIntegration ? '/integrations' : undefined} isAuthLink={isAuthLink} />
-                <main className="flex-1 flex flex-col gap-7 px-4 justify-center">
-                    <div className="flex flex-col gap-7 items-center">
-                        <div className="w-16 h-16 p-2 rounded-sm bg-white border border-subtle">
-                            <img alt={`${integration.display_name} logo`} src={integration.logo} />
-                        </div>
-                        <h1 className="font-semibold text-center text-lg text-text-primary" id="connect-ui-title">
-                            {t('go.linkAccount', { provider: displayName })}
-                        </h1>
-                    </div>
+            <div className="flex flex-1 flex-col">
+                <HeaderButtons backLink={!isSingleIntegration ? '/integrations' : undefined} isAuthLink={isAuthLink} step={step} />
+                <main className="flex flex-1 flex-col justify-center gap-5 py-3">
+                    {hero({ title: t('go.linkAccount', { provider: displayName }), state: 'idle' })}
                     <WhatsAppQr
                         isPreview={isPreview}
                         nango={nango}
@@ -625,32 +617,31 @@ export const Go: React.FC = () => {
     }
 
     return (
-        <div className="flex-1 flex flex-col justify-center gap-5 data-hasDocs:justify-between" data-hasDocs={!!docsConnectUrl}>
+        <div className="flex flex-1 flex-col">
             <HeaderButtons
                 backLink={!isSingleIntegration ? '/integrations' : undefined}
                 isAuthLink={isAuthLink}
+                step={step}
                 onClickBack={() => {
                     setIsDirty(false);
                 }}
             />
-            <main className="flex-1 flex flex-col gap-7 px-4 justify-center">
-                <div className="flex flex-col gap-7 items-center">
-                    <div className="w-16 h-16 p-2 rounded-sm bg-white border border-subtle">
-                        <img alt={`${integration.display_name} logo`} src={integration.logo} />
-                    </div>
-                    <h1 className="font-semibold text-center text-lg text-text-primary" id="connect-ui-title">
-                        {t('go.linkAccount', { provider: displayName })}
-                    </h1>
-                </div>
+            <main className="flex flex-1 flex-col justify-center gap-7 py-6">
+                {hero({ title: t('go.linkAccount', { provider: displayName }), state: loading ? 'connecting' : 'idle' })}
 
                 {/* Only on first connect: the customer puts this in their IAM trust policy. On reconnect the
                     stored external_id is reused server-side, so we hide it to avoid showing a fresh, misleading value. */}
                 {provider.auth_mode === 'AWS_SIGV4' && awsExternalId && !session?.isReconnecting && (
-                    <div className="flex flex-col gap-2 border border-subtle rounded-md p-4 bg-elevated">
-                        <p className="text-sm text-text-secondary">Use this External ID when configuring your IAM trust policy.</p>
-                        <div className="flex gap-2 items-center">
+                    <div className="flex flex-col gap-2.5 rounded-xl border border-hairline bg-elevated p-4">
+                        <p className="text-body-sm text-text-secondary">Use this External ID when configuring your IAM trust policy.</p>
+                        <div className="flex items-center gap-2">
                             <StandaloneInput readOnly className="font-mono text-xs" value={awsExternalId} />
-                            <Button size="sm" type="button" onClick={handleCopyExternalId}>
+                            <Button className="w-20 shrink-0" type="button" variant="secondary" onClick={handleCopyExternalId}>
+                                {externalIdCopied ? (
+                                    <Check aria-hidden="true" className="size-4 text-primary" strokeWidth={2} />
+                                ) : (
+                                    <Copy aria-hidden="true" className="size-4" strokeWidth={1.75} />
+                                )}
                                 {externalIdCopied ? 'Copied' : 'Copy'}
                             </Button>
                         </div>
@@ -660,10 +651,10 @@ export const Go: React.FC = () => {
                 {error && (
                     <p
                         aria-live="assertive"
-                        className="p-4 py-2 rounded-md flex gap-2 text-sm bg-yellow-100 border border-yellow-300 text-yellow-700"
+                        className="flex gap-2.5 rounded-xl border border-warning-border bg-warning-soft px-3.5 py-3 text-body-sm text-warning-fg"
                         role="alert"
                     >
-                        <TriangleAlert className="w-5 h-5" />
+                        <TriangleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" strokeWidth={1.75} />
                         {compactErrorDisplay(error)}
                     </p>
                 )}
@@ -671,18 +662,18 @@ export const Go: React.FC = () => {
                 {!error && shouldAutoTrigger && !form.formState.isValid && (
                     <p
                         aria-live="assertive"
-                        className="p-4 py-2 rounded-md flex gap-2 text-sm bg-yellow-100 border border-yellow-300 text-yellow-700"
+                        className="flex gap-2.5 rounded-xl border border-warning-border bg-warning-soft px-3.5 py-3 text-body-sm text-warning-fg"
                         role="alert"
                     >
-                        <TriangleAlert className="w-5 h-5" />
+                        <TriangleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" strokeWidth={1.75} />
                         {t('go.invalidPreconfigured')}
                     </p>
                 )}
 
                 <Form {...form}>
-                    <form className="flex flex-col gap-7" onSubmit={form.handleSubmit(onSubmit)}>
+                    <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmit)}>
                         {orderedFields.length > 0 && (
-                            <div className={cn('flex flex-col gap-5')}>
+                            <div className={cn('flex flex-col gap-5 empty:hidden')}>
                                 {orderedFields.map(([name]) => {
                                     const [type, key] = name.split('.') as ['credentials' | 'params' | 'assertion_option', string];
 
@@ -696,6 +687,7 @@ export const Go: React.FC = () => {
                                     const source = type === 'credentials' ? {} : preconfiguredParams;
                                     const isPreconfigured = typeof source[key] !== 'undefined';
                                     const isOptional = definition && 'optional' in definition && definition.optional === true;
+                                    const label = labelOverride || definition?.title || base?.title;
 
                                     return (
                                         <FormField
@@ -713,7 +705,6 @@ export const Go: React.FC = () => {
                                                 return (
                                                     <FormItem
                                                         className={cn(
-                                                            'bg-elevated p-5',
                                                             (isPreconfigured &&
                                                                 (provider.auth_mode !== 'OAUTH2' ||
                                                                     source[key] !== '' ||
@@ -728,30 +719,32 @@ export const Go: React.FC = () => {
                                                                 : null
                                                         )}
                                                     >
-                                                        <div className="flex flex-col gap-2">
-                                                            <div className="flex gap-2 items-center">
-                                                                <FormLabel className="text-xs font-semibold text-text-primary">
-                                                                    {labelOverride || definition?.title || base?.title}{' '}
-                                                                    {!isOptional && <span className="text-error">*</span>}
+                                                        <div className="flex flex-col gap-1">
+                                                            <div className="flex items-center gap-1.5">
+                                                                <FormLabel className="text-body-sm font-medium text-text-primary">
+                                                                    {label} {!isOptional && <span className="text-error">*</span>}
                                                                 </FormLabel>
                                                                 {isOptional && (
-                                                                    <span className="bg-elevated rounded-lg px-2 py-0.5 text-xs text-text-muted">optional</span>
+                                                                    <span className="rounded-full bg-ov-2 px-1.5 py-px text-[11px] font-medium text-text-tertiary">
+                                                                        optional
+                                                                    </span>
                                                                 )}
                                                                 {docsConnectUrl && (
                                                                     <Link
                                                                         aria-label={t('go.fieldDocumentation', {
-                                                                            field: labelOverride || definition?.title || base?.title || key
+                                                                            field: label || key
                                                                         })}
+                                                                        className="grid size-5 place-items-center rounded-md text-text-tertiary transition-colors hover:text-text-primary focus-default"
                                                                         target="_blank"
                                                                         to={`${docsConnectUrl}${urlOverride ? '' : `${definition?.doc_section}`}`}
                                                                         onClick={() => telemetry('click:doc_section')}
                                                                     >
-                                                                        <Info className="w-4 h-4 text-text-secondary" />
+                                                                        <Info aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
                                                                     </Link>
                                                                 )}
                                                             </div>
                                                             {!labelOverride && definition?.description && (
-                                                                <FormDescription className="text-text-secondary">{definition.description}</FormDescription>
+                                                                <FormDescription>{definition.description}</FormDescription>
                                                             )}
                                                         </div>
                                                         <FormControl>
@@ -768,6 +761,7 @@ export const Go: React.FC = () => {
                                                             ) : (
                                                                 <CustomInput
                                                                     aria-required={!isOptional}
+                                                                    fieldLabel={label}
                                                                     placeholder={labelOverride ? '' : definition?.example || definition?.title || base?.example}
                                                                     prefix={definition?.prefix}
                                                                     suffix={definition?.suffix}
@@ -788,9 +782,12 @@ export const Go: React.FC = () => {
                         )}
 
                         {shouldAutoTrigger && (
-                            <div className="text-sm text-text-secondary text-center">
-                                {t('go.willConnect', { provider: displayName })}
-                                {provider.auth_mode === 'OAUTH2' && ` ${t('go.popupWarning')}`}
+                            <div className="flex gap-3 rounded-xl border border-hairline bg-elevated p-4 text-body-sm text-text-secondary">
+                                <AppWindow aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-text-tertiary" strokeWidth={1.75} />
+                                <p>
+                                    {t('go.willConnect', { provider: displayName })}
+                                    {provider.auth_mode === 'OAUTH2' && ` ${t('go.popupWarning')}`}
+                                </p>
                             </div>
                         )}
 
@@ -798,6 +795,7 @@ export const Go: React.FC = () => {
                             className="w-full"
                             disabled={!form.formState.isValid || Object.keys(form.formState.errors).length > 0}
                             loading={loading}
+                            size="lg"
                             type="submit"
                         >
                             {error ? t('common.tryAgain') : loading ? t('common.connecting') : t('go.connect')}
@@ -805,17 +803,7 @@ export const Go: React.FC = () => {
                     </form>
                 </Form>
             </main>
-            {docsConnectUrl && (
-                <footer>
-                    <p className="text-text-tertiary text-center">
-                        {t('common.needHelp')}{' '}
-                        <Link className="underline text-text-primary" target="_blank" to={docsConnectUrl} onClick={() => telemetry('click:doc')}>
-                            {t('common.viewGuide')}
-                        </Link>{' '}
-                        <ExternalLink className="inline-block w-3.5 h-3.5 text-text-tertiary" />
-                    </p>
-                </footer>
-            )}
+            {docsFooter}
         </div>
     );
 };

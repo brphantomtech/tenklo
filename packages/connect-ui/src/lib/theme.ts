@@ -63,7 +63,7 @@ function setColors(theme: ConnectUIThemeSettings, appliedTheme: 'light' | 'dark'
     }
 
     root.style.setProperty('--color-primary', primary);
-    root.style.setProperty('--color-on-primary', hexColorIsDark(cssColorToHex(primary)) ? '#ffffff' : '#000000');
+    root.style.setProperty('--color-on-primary', onPrimaryColor(cssColorToHex(primary)));
 }
 
 /**
@@ -100,12 +100,38 @@ function cssColorToHex(cssColor: string): string {
     return cssColor;
 }
 
-// From: https://stackoverflow.com/a/41491220
+const INK = '#0b0b0c';
+const WHITE = '#ffffff';
 
-function hexColorIsDark(bgColor: string) {
-    const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
-    const r = parseInt(color.substring(0, 2), 16); // hexToR
-    const g = parseInt(color.substring(2, 4), 16); // hexToG
-    const b = parseInt(color.substring(4, 6), 16); // hexToB
-    return r * 0.299 + g * 0.587 + b * 0.114 <= 186;
+/**
+ * Text color for a primary fill: whichever of white or Tenklo ink reads with the higher WCAG contrast.
+ * (A luminance threshold put white on the default brand cyan, at 2.5:1.)
+ */
+export function onPrimaryColor(bgColor: string): string {
+    const bg = relativeLuminance(bgColor);
+    if (bg === null) {
+        return WHITE;
+    }
+    const ink = relativeLuminance(INK) ?? 0;
+    const contrastWithWhite = 1.05 / (bg + 0.05);
+    const contrastWithInk = (bg + 0.05) / (ink + 0.05);
+    return contrastWithInk > contrastWithWhite ? INK : WHITE;
+}
+
+function relativeLuminance(hex: string): number | null {
+    let color = hex.charAt(0) === '#' ? hex.substring(1) : hex;
+    if (color.length === 3) {
+        color = color
+            .split('')
+            .map((c) => c + c)
+            .join('');
+    }
+    if (!/^[0-9a-f]{6}/i.test(color)) {
+        return null;
+    }
+    const [r, g, b] = [0, 2, 4].map((offset) => {
+        const channel = parseInt(color.substring(offset, offset + 2), 16) / 255;
+        return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+    }) as [number, number, number];
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
