@@ -4,7 +4,7 @@ import { CommandDispatcher } from './commands/dispatcher.js';
 import { loadConfig } from './env.js';
 import { HttpEventPublisher } from './events/publisher.js';
 import { createCommandRouter } from './handlers/router.js';
-import { createLogger } from './logger.js';
+import { createLogger, silenceSignalSessionDumps } from './logger.js';
 import { migrate } from './postgres/migrate.js';
 import { createServer } from './server.js';
 import { Storage } from './storage/index.js';
@@ -18,6 +18,7 @@ import { SessionManager } from './whatsapp/session-manager.js';
 async function main(): Promise<void> {
     const config = loadConfig();
     const logger = createLogger(config.LOG_LEVEL);
+    silenceSignalSessionDumps(logger);
     logger.info({ instanceId: config.INSTANCE_ID }, 'starting whatsapp-gateway');
 
     const migrated = await migrate({ knex: db.knex });
