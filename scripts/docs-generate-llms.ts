@@ -7,7 +7,7 @@ import yaml from 'js-yaml';
 const docsRoot = 'docs';
 const docsJsonPath = path.join(docsRoot, 'docs.json');
 const providersPath = 'packages/providers/providers.yaml';
-const baseUrl = 'https://tenklo.dev/docs';
+const baseUrl = 'https://docs.tenklo.dev';
 
 interface ResourceLink {
     title: string;

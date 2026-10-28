@@ -8,3 +8,7 @@ config/events/*.json
 managed-manifest.json
 docs/**
 !docs/spec.yaml
+docs-site/.next/
+docs-site/.source/
+docs-site/content/
+docs-site/next-env.d.ts

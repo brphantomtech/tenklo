@@ -134,6 +134,13 @@ services:
             - LOG_LEVEL=info
         networks: [tenklo]
 
+    # The documentation site (docs-site/), published by Nginx Proxy Manager as docs.tenklo.dev. Stateless.
+    tenklo-docs:
+        image: tenklo/docs:${TENKLO_IMAGE_TAG}
+        container_name: tenklo-docs
+        restart: always
+        networks: [npm]
+
 volumes:
     tenklo-db-data:
     tenklo-s3-rustfs-data:

@@ -158,7 +158,7 @@ describe(`POST ${endpoint}`, () => {
         const res = await api.fetch(endpoint, {
             method: 'POST',
             token: seed.apiKey.secret,
-            body: { end_user: { id: endUserId, email: 'a@b.com' }, overrides: { random: { docs_connect: 'https://tenklo.dev/docs' } } }
+            body: { end_user: { id: endUserId, email: 'a@b.com' }, overrides: { random: { docs_connect: 'https://docs.tenklo.dev' } } }
         });
         isError(res.json);
         expect(res.json).toStrictEqual({

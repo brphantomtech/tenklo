@@ -6,7 +6,7 @@
 
 Connect your product & AI agents with 1,000+ APIs. Build, run, and maintain integrations with AI in code, on infrastructure built for scale.
 
-[Website](https://tenklo.dev) · [Docs](https://tenklo.dev/docs/) · [1,000+ APIs](https://tenklo.dev/docs/integrations/overview/) · [Slack Community](https://tenklo.dev/slack)
+[Website](https://tenklo.dev) · [Docs](https://docs.tenklo.dev/) · [1,000+ APIs](https://docs.tenklo.dev/integrations/overview/) · [Slack Community](https://tenklo.dev/slack)
 
 [![GitHub Stars](https://img.shields.io/github/stars/NangoHQ/nango?style=social)](https://github.com/NangoHQ/nango/stargazers)
 [![License](https://img.shields.io/badge/license-Elastic-blue.svg)](https://github.com/NangoHQ/nango/blob/master/LICENSE)
@@ -16,7 +16,7 @@ Connect your product & AI agents with 1,000+ APIs. Build, run, and maintain inte
 
 ## What is Tenklo?
 
-Tenklo is an open-source platform for building product integrations. It supports [**1,000+ APIs**](https://tenklo.dev/docs/integrations/overview) and works with any backend language, AI coding tool, and agent SDK.
+Tenklo is an open-source platform for building product integrations. It supports [**1,000+ APIs**](https://docs.tenklo.dev/integrations/overview) and works with any backend language, AI coding tool, and agent SDK.
 
 You write integration logic as TypeScript functions, or let AI generate them for you, and deploy to Tenklo's production runtime. Tenklo handles auth, execution, scaling, and observability.
 
@@ -32,7 +32,11 @@ Managed OAuth, API keys, and token refresh for 1,000+ APIs. Embed a white-label 
 
 ```typescript
 // Embed auth in your frontend
-nango.openConnectUI({ onEvent: (event) => { /* handle completion */ } });
+nango.openConnectUI({
+    onEvent: (event) => {
+        /* handle completion */
+    }
+});
 ```
 
 ### 2. Proxy
@@ -61,12 +65,12 @@ Use the **AI builder** to generate them from a description of your use case.
 ```typescript
 export default async function run(nango: Nango) {
     const { owner, repo, title, body } = nango.input;
-    
+
     const response = await nango.post({
         endpoint: `/repos/${owner}/${repo}/issues`,
         data: { title, body }
     });
-    
+
     return response.data;
 }
 ```
@@ -75,14 +79,14 @@ export default async function run(nango: Nango) {
 
 Tenklo supports every common integration pattern:
 
-| Use case | Description |
-| --- | --- |
-| [**AI tool calling & MCP**](https://tenklo.dev/docs/getting-started/use-cases/tool-calling) | Give AI agents the ability to act on external APIs |
-| [**Data syncing**](https://tenklo.dev/docs/guides/functions/syncs/sync-functions) | One or two-way sync for RAG pipelines, indexing, and triggers |
-| [**Webhook processing**](https://tenklo.dev/docs/getting-started/use-cases/webhooks-from-external-apis) | Receive and process webhooks from external APIs reliably |
-| [**API unification**](https://tenklo.dev/docs/getting-started/use-cases/unified-apis) | Normalize APIs to your own universal schema |
-| [**Actions**](https://tenklo.dev/docs/guides/functions/action-functions) | Write data and execute operations on behalf of your users |
-| [**Per-customer config**](https://tenklo.dev/docs/getting-started/use-cases/customer-configuration) | Customize integration behavior for each customer |
+| Use case                                                                                                | Description                                                   |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [**AI tool calling & MCP**](https://docs.tenklo.dev/getting-started/use-cases/tool-calling)             | Give AI agents the ability to act on external APIs            |
+| [**Data syncing**](https://docs.tenklo.dev/guides/functions/syncs/sync-functions)                       | One or two-way sync for RAG pipelines, indexing, and triggers |
+| [**Webhook processing**](https://docs.tenklo.dev/getting-started/use-cases/webhooks-from-external-apis) | Receive and process webhooks from external APIs reliably      |
+| [**API unification**](https://docs.tenklo.dev/getting-started/use-cases/unified-apis)                   | Normalize APIs to your own universal schema                   |
+| [**Actions**](https://docs.tenklo.dev/guides/functions/action-functions)                                | Write data and execute operations on behalf of your users     |
+| [**Per-customer config**](https://docs.tenklo.dev/getting-started/use-cases/customer-configuration)     | Customize integration behavior for each customer              |
 
 ## Quickstart
 
@@ -93,7 +97,11 @@ Get up and running in under 5 minutes:
 **2. Authorize the API.** On the Connections tab, create a connection and complete the auth flow. Later, embed this in your product:
 
 ```typescript
-nango.openConnectUI({ onEvent: (event) => { /* handle completion */ } });
+nango.openConnectUI({
+    onEvent: (event) => {
+        /* handle completion */
+    }
+});
 ```
 
 **3. Access the API.** Retrieve credentials and make authenticated requests:
@@ -107,32 +115,32 @@ const connection = await nango.getConnection('<INTEGRATION-ID>', '<CONNECTION-ID
 console.log(connection.credentials);
 ```
 
-Embed the [Auth](https://tenklo.dev/docs/guides/auth/auth-guide) flow in your product, make requests with the [Proxy](https://tenklo.dev/docs/guides/platform/proxy-requests), or build custom integrations with [Functions](https://tenklo.dev/docs/guides/functions/functions-guide).
+Embed the [Auth](https://docs.tenklo.dev/guides/auth/auth-guide) flow in your product, make requests with the [Proxy](https://docs.tenklo.dev/guides/platform/proxy-requests), or build custom integrations with [Functions](https://docs.tenklo.dev/guides/functions/functions-guide).
 
 ## Why Tenklo?
 
 **AI-generated, human-controlled code.**
 Tenklo's AI builder generates TypeScript integration functions from natural language. Unlike black-box solutions, you get readable code you can review, edit, and version control. With full type safety and a built-in testing framework.
 
-**Production-grade infrastructure.** 
+**Production-grade infrastructure.**
 Tenklo processes billions of API requests. The runtime provides per-tenant isolation, elastic scaling, automatic retries, and rate-limit handling. Battle-tested by hundreds of companies in production.
 
 **Auth for 1,000+ APIs, out of the box.**
 OAuth flows, token refresh, credential storage, and multi-tenant support handled for you. Connect to any API without building auth from scratch.
 
-**Open source and self-hostable.** 
-Tenklo is fully open source. Run it on Tenklo Cloud, in your own cloud account with [BYOC](https://tenklo.dev/docs/guides/platform/self-hosting), or self-host it yourself. SOC 2 Type II, HIPAA, and GDPR compliant.
+**Open source and self-hostable.**
+Tenklo is fully open source. Run it on Tenklo Cloud, in your own cloud account with [BYOC](https://docs.tenklo.dev/guides/platform/self-hosting), or self-host it yourself. SOC 2 Type II, HIPAA, and GDPR compliant.
 
-**Fits your workflow.** 
+**Fits your workflow.**
 Fully operable via CLI and API. Compatible with any backend language or framework, AI coding tools (Cursor, Codex, Claude Code), and agent SDKs (MCP, LangChain).
 
 ## Open-source vs. paid
 
-Tenklo is available under the [Elastic License](https://github.com/NangoHQ/nango/blob/master/LICENSE). Tenklo Cloud and [BYOC](https://tenklo.dev/docs/guides/platform/self-hosting) give you access to all features, based on your [plan](https://www.tenklo.dev/pricing). You can also [self-host for free](https://tenklo.dev/docs/guides/platform/free-self-hosting) with a limited feature set.
+Tenklo is available under the [Elastic License](https://github.com/NangoHQ/nango/blob/master/LICENSE). Tenklo Cloud and [BYOC](https://docs.tenklo.dev/guides/platform/self-hosting) give you access to all features, based on your [plan](https://www.tenklo.dev/pricing). You can also [self-host for free](https://docs.tenklo.dev/guides/platform/free-self-hosting) with a limited feature set.
 
 ## Contributing
 
-We welcome contributions — anyone can [add support for a new API](https://tenklo.dev/docs/integrations/contribute-or-request-api).
+We welcome contributions — anyone can [add support for a new API](https://docs.tenklo.dev/integrations/contribute-or-request-api).
 
 Thank you to all contributors ❤️
 

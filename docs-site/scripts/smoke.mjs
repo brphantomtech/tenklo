@@ -2,18 +2,18 @@
 const base = process.argv[2] ?? 'http://localhost:3000';
 
 const checks = [
-    { path: '/docs', status: 307, location: '/docs/getting-started/intro-to-nango' },
-    { path: '/docs/getting-started/intro-to-nango', text: ['Tenklo', 'Tool calling for AI agents'] },
-    { path: '/docs/getting-started/quickstart', text: ['Quickstart', 'fd-step'] },
-    { path: '/docs/api-integrations/whatsapp-web', text: ['WhatsApp (QR code)', 'Pair a number', 'id="pair-number"', 'POST /whatsapp/messages'] },
-    { path: '/docs/api-integrations/telegram', text: ['Telegram'] },
-    { path: '/docs/reference/backend/http-api/connections/get', text: ['Get connection', '/connections/{connectionId}'] },
-    { path: '/docs/updates/changelog', text: ['Changelog'] },
-    { path: '/docs/integrations/all/snowflake', status: 308, location: '/docs/api-integrations/snowflake' },
-    { path: '/docs/api/search?query=whatsapp', text: ['whatsapp'] },
-    { path: '/docs/api/openapi/tenklo', text: ['"openapi"'] },
-    { path: '/docs/images/Tenklo-Light-Mode.svg', text: ['<svg'] },
-    { path: '/docs/does-not-exist', status: 404 }
+    { path: '/', status: 307, location: '/getting-started/intro-to-nango' },
+    { path: '/getting-started/intro-to-nango', text: ['Tenklo', 'Tool calling for AI agents'] },
+    { path: '/getting-started/quickstart', text: ['Quickstart', 'fd-step'] },
+    { path: '/api-integrations/whatsapp-web', text: ['WhatsApp (QR code)', 'Pair a number', 'id="pair-number"', 'POST /whatsapp/messages'] },
+    { path: '/api-integrations/telegram', text: ['Telegram'] },
+    { path: '/reference/backend/http-api/connections/get', text: ['Get connection', '/connections/{connectionId}'] },
+    { path: '/updates/changelog', text: ['Changelog'] },
+    { path: '/integrations/all/snowflake', status: 308, location: '/api-integrations/snowflake' },
+    { path: '/api/search?query=whatsapp', text: ['whatsapp'] },
+    { path: '/api/openapi/tenklo', text: ['"openapi"'] },
+    { path: '/images/Tenklo-Light-Mode.svg', text: ['<svg'] },
+    { path: '/does-not-exist', status: 404 }
 ];
 
 let failed = 0;

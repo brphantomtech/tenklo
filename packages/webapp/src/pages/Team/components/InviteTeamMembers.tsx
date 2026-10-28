@@ -147,7 +147,7 @@ export const InviteTeamMembers = () => {
                 <div className="flex w-full items-center justify-between gap-4">
                     <div className="flex items-center gap-1.5">
                         <Button asChild variant="link-neutral">
-                            <a href="https://tenklo.dev/docs/guides/platform/security#team-and-roles" target="_blank" rel="noopener noreferrer">
+                            <a href="https://docs.tenklo.dev/guides/platform/security#team-and-roles" target="_blank" rel="noopener noreferrer">
                                 Learn more about team access roles.
                                 <ExternalLink />
                             </a>

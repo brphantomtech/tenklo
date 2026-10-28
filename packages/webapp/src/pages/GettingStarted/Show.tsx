@@ -118,25 +118,25 @@ export const GettingStarted: React.FC = () => {
 
                     <div className="flex flex-col gap-5">
                         <DocCard
-                            to="https://tenklo.dev/docs/guides/auth/auth-guide"
+                            to="https://docs.tenklo.dev/guides/auth/auth-guide"
                             icon={CodeXml}
                             title="Embed in your app"
                             description="Let your users authorize 3rd-party APIs seamlessly."
                         />
                         <DocCard
-                            to="https://tenklo.dev/docs/guides/platform/proxy-requests"
+                            to="https://docs.tenklo.dev/guides/platform/proxy-requests"
                             icon={Waypoints}
                             title="Proxy"
                             description="Run authenticated API requests to external APIs."
                         />
                         <DocCard
-                            to="https://tenklo.dev/docs/guides/functions/syncs/sync-functions"
+                            to="https://docs.tenklo.dev/guides/functions/syncs/sync-functions"
                             icon={RefreshCcw}
                             title="Syncs"
                             description="Continously sync data from external APIs."
                         />
                         <DocCard
-                            to="https://tenklo.dev/docs/getting-started/use-cases/webhooks-from-external-apis"
+                            to="https://docs.tenklo.dev/getting-started/use-cases/webhooks-from-external-apis"
                             icon={Webhook}
                             title="Webhooks"
                             description="Listen to webhooks from external APIs."

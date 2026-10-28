@@ -22,7 +22,7 @@ const files = [];
     }
 })(path.join(contentDir, sub));
 
-const remarkPlugins = [remarkGfm, ...mintlifyRemarkPlugins({ contentDir, basePath: '/docs' })];
+const remarkPlugins = [remarkGfm, ...mintlifyRemarkPlugins({ contentDir, basePath: '' })];
 let failed = 0;
 for (const file of files) {
     const value = fs.readFileSync(file, 'utf8').replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, (m) => '\n'.repeat(m.split('\n').length - 1));

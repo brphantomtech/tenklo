@@ -68,9 +68,8 @@ export function resolveIcon(name: string | undefined): LucideIcon | undefined {
 
 export function renderIcon(name: string | undefined, className = 'size-4'): ReactElement | undefined {
     if (name && (name.startsWith('/') || /^https?:/.test(name))) {
-        const src = name.startsWith('/') && !name.startsWith('/docs/') ? `/docs${name}` : name;
         // eslint-disable-next-line @next/next/no-img-element
-        return <img src={src} alt="" className={className} />;
+        return <img src={name} alt="" className={className} />;
     }
     const Icon = resolveIcon(name);
     return Icon ? <Icon className={className} /> : undefined;

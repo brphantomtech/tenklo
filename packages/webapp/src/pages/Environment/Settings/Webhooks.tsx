@@ -84,7 +84,7 @@ export const Webhooks: React.FC = () => {
                 label={
                     <div className="flex gap-1.5">
                         Webhook URLs
-                        <DocsIconLink href="https://tenklo.dev/docs/guides/platform/webhooks-from-nango" label="Webhooks documentation" />
+                        <DocsIconLink href="https://docs.tenklo.dev/guides/platform/webhooks-from-nango" label="Webhooks documentation" />
                     </div>
                 }
             >
@@ -118,7 +118,7 @@ export const Webhooks: React.FC = () => {
                     <p className="text-body-small-regular text-text-secondary">
                         Use this key to verify that webhook payloads are from Tenklo.{' '}
                         <a
-                            href="https://tenklo.dev/docs/guides/platform/webhooks-from-nango#verifying-webhooks-from-nango"
+                            href="https://docs.tenklo.dev/guides/platform/webhooks-from-nango#verifying-webhooks-from-nango"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-text-brand hover:underline"

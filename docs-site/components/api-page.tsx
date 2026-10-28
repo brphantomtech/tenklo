@@ -3,7 +3,7 @@
 import { createOpenAPIPage } from 'fumadocs-openapi/ui';
 import { preload } from 'react-dom';
 
-const documentUrl = (id: string) => `/docs/api/openapi/${encodeURIComponent(id)}`;
+const documentUrl = (id: string) => `/api/openapi/${encodeURIComponent(id)}`;
 
 export const OpenAPIPage = createOpenAPIPage({
     async loadDocument(id) {

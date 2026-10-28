@@ -20,7 +20,7 @@ describe('getProvidersTool', () => {
                 provider: {
                     display_name: 'GitHub',
                     auth_mode: 'OAUTH2',
-                    docs: 'https://tenklo.dev/docs/api-integrations/github'
+                    docs: 'https://docs.tenklo.dev/api-integrations/github'
                 },
                 templates: []
             })
@@ -47,7 +47,7 @@ describe('getProvidersTool', () => {
                 provider: {
                     display_name: 'GitHub',
                     auth_mode: 'OAUTH2',
-                    docs: 'https://tenklo.dev/docs/api-integrations/github'
+                    docs: 'https://docs.tenklo.dev/api-integrations/github'
                 }
             })
         );

@@ -1,6 +1,6 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 
-import { BASE_PATH, SITE_NAME, SITE_URL } from '@/lib/constants';
+import { BASE_PATH, DOCS_URL, SITE_NAME } from '@/lib/constants';
 
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
@@ -8,7 +8,7 @@ import type { ReactNode } from 'react';
 import './global.css';
 
 export const metadata: Metadata = {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(DOCS_URL),
     title: { default: `${SITE_NAME} Docs`, template: `%s | ${SITE_NAME} Docs` },
     description: 'Tenklo documentation: auth, functions, and 1,000+ API integrations.',
     icons: {

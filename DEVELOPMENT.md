@@ -52,4 +52,4 @@ Set `NANGO_SECRET_KEY_DEV` and `NANGO_HOSTPORT` in `.env`, then deploy:
 nango deploy dev
 ```
 
-See the [CLI documentation](https://tenklo.dev/docs/reference/functions/functions-cli) for more information.
+See the [CLI documentation](https://docs.tenklo.dev/reference/functions/functions-cli) for more information.

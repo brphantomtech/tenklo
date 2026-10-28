@@ -145,7 +145,7 @@ export const ConnectUISettings = () => {
                                         Override it per session from the{' '}
                                         <Button asChild variant="link-accent" size="xs">
                                             <a
-                                                href="https://tenklo.dev/docs/reference/frontend/frontend-sdk#connect-using-nango-connect-ui"
+                                                href="https://docs.tenklo.dev/reference/frontend/frontend-sdk#connect-using-nango-connect-ui"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >

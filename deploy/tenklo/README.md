@@ -2,10 +2,10 @@
 
 Pushing to `master` deploys it: `.github/workflows/deploy-tenklo.yml` runs on a self-hosted runner installed on the production host, builds `tenklo/server:<sha>` there and runs `deploy.sh`.
 
-| File                 | What it is                                                                                                     |
-| -------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `docker-compose.yml` | The stack: Postgres, Redis, server, WhatsApp gateway and its S3 (RustFS). No secrets.                          |
-| `deploy.sh`          | Build, write the `.env` from the environment, `docker compose up`, health checks, media bucket, image pruning. |
+| File                 | What it is                                                                                                           |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `docker-compose.yml` | The stack: Postgres, Redis, server, WhatsApp and Telegram gateways, their S3 (RustFS) and the docs site. No secrets. |
+| `deploy.sh`          | Build, write the `.env` from the environment, `docker compose up`, health checks, media bucket, image pruning.       |
 
 ## Configuration
 
@@ -21,7 +21,7 @@ Do not rotate `ENCRYPTION_KEY` or `WHATSAPP_SESSION_ENCRYPTION_KEY` casually: th
 ## Host
 
 - Docker (the snap package: the build context must stay under `/root`, which is why the runner lives in `/root/actions-runner`).
-- Nginx Proxy Manager, whose network the server joins, publishes `api`, `app` and `connect` to the server's ports 3003 and 3009.
+- Nginx Proxy Manager, whose network the server and the docs join, publishes `api`, `app` and `connect` to the server's ports 3003 and 3009, and `docs` to `tenklo-docs:3000`.
 - The GitHub Actions runner as a systemd service, label `tenklo-production`.
 
 ## Manual deploy

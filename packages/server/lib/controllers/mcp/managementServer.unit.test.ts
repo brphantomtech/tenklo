@@ -145,7 +145,7 @@ describe('createManagementMcpServer', () => {
             name: 'github',
             display_name: 'GitHub',
             auth_mode: 'OAUTH2' as const,
-            docs: 'https://tenklo.dev/docs/api-integrations/github',
+            docs: 'https://docs.tenklo.dev/api-integrations/github',
             logo_url: 'https://api.tenklo.dev/images/template-logos/github.svg',
             templates: []
         };

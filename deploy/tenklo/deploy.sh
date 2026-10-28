@@ -36,6 +36,10 @@ DOCKER_BUILDKIT=1 docker build --build-arg git_hash="$SHA" -t "tenklo/base:$SHA"
 docker build --build-arg BASE_IMAGE=tenklo/base --build-arg BASE_IMAGE_HASH="$SHA" -t "tenklo/server:$SHA" -t tenklo/server:latest -f Dockerfile.self_hosted .
 echo "::endgroup::"
 
+echo "::group::Build tenklo/docs:$SHA"
+DOCKER_BUILDKIT=1 docker build -t "tenklo/docs:$SHA" -t tenklo/docs:latest -f docs-site/Dockerfile .
+echo "::endgroup::"
+
 echo "::group::Configure $DEPLOY_DIR"
 mkdir -p "$DEPLOY_DIR"
 cp deploy/tenklo/docker-compose.yml "$DEPLOY_DIR/docker-compose.yml"
@@ -60,10 +64,10 @@ echo "::group::Roll out"
 # The shell's value would win over the .env one, so a stale export can't pin the old image.
 export TENKLO_IMAGE_TAG=$SHA
 docker compose up -d --remove-orphans
-for container in tenklo-server tenklo-whatsapp tenklo-telegram; do
-    running=$(docker inspect --format '{{.Config.Image}}' "$container")
-    if [ "$running" != "tenklo/server:$SHA" ]; then
-        echo "::error::$container runs $running, not tenklo/server:$SHA"
+for container in tenklo-server:server tenklo-whatsapp:server tenklo-telegram:server tenklo-docs:docs; do
+    running=$(docker inspect --format '{{.Config.Image}}' "${container%%:*}")
+    if [ "$running" != "tenklo/${container##*:}:$SHA" ]; then
+        echo "::error::${container%%:*} runs $running, not tenklo/${container##*:}:$SHA"
         exit 1
     fi
 done
@@ -100,7 +104,20 @@ for gateway in whatsapp:3010 telegram:3011; do
         exit 1
     fi
 done
-echo "server and gateways are healthy"
+healthy=false
+for _ in $(seq 1 30); do
+    if [ "$(docker inspect --format '{{.State.Health.Status}}' tenklo-docs)" = healthy ]; then
+        healthy=true
+        break
+    fi
+    sleep 5
+done
+if [ "$healthy" != true ]; then
+    echo "::error::tenklo-docs is not healthy"
+    docker logs --tail 50 tenklo-docs
+    exit 1
+fi
+echo "server, gateways and docs are healthy"
 echo "::endgroup::"
 
 echo "::group::WhatsApp media bucket"
@@ -118,7 +135,7 @@ docker exec tenklo-whatsapp node -e "
 echo "::endgroup::"
 
 echo "::group::Prune old images (keeping $KEEP_IMAGES)"
-for repo in tenklo/server tenklo/base; do
+for repo in tenklo/server tenklo/base tenklo/docs; do
     docker images "$repo" --format '{{.Tag}} {{.CreatedAt}}' | grep -v '^latest ' | sort -k2 -r | awk -v keep="$KEEP_IMAGES" 'NR > keep { print $1 }' |
         while read -r tag; do docker image rm "$repo:$tag" >/dev/null 2>&1 && echo "removed $repo:$tag" || true; done
 done

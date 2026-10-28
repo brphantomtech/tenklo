@@ -45,7 +45,7 @@ export const PlaygroundInputs: React.FC<Props> = ({ env, isSync, inputFields, in
                                 </AlertButtonLink>
                             )}
                             <AlertButtonLink
-                                to="https://tenklo.dev/docs/getting-started/use-cases/customer-configuration"
+                                to="https://docs.tenklo.dev/getting-started/use-cases/customer-configuration"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

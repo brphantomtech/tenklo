@@ -616,7 +616,7 @@ const SessionNotice: React.FC<{ created: AgentPlaygroundSessionCreated; replaced
                     constrainHeight={false}
                     headerElement={
                         <a
-                            href="https://tenklo.dev/docs/guides/agent-sessions"
+                            href="https://docs.tenklo.dev/guides/agent-sessions"
                             target="_blank"
                             rel="noreferrer"
                             className="flex items-center gap-1 text-s text-text-muted hover:text-text-default"

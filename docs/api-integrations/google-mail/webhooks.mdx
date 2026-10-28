@@ -90,7 +90,7 @@ export default createOnEvent({
             data: {
                 labelIds: ['INBOX'],
                 // Replace with your full topic name from the Pub/Sub setup (step 1)
-                // Ideally, you should set the value to be read from the Nango env variables (https://tenklo.dev/docs/reference/functions#environment-variables)
+                // Ideally, you should set the value to be read from the Nango env variables (https://docs.tenklo.dev/reference/functions#environment-variables)
                 topicName: 'projects/<PROJECT_ID>/topics/<TOPIC_ID>',
                 labelFilterBehavior: 'INCLUDE',
             },
@@ -125,7 +125,7 @@ export default createSync({
             data: {
                 labelIds: ['INBOX'],
                 // Replace with your full topic name from the Pub/Sub setup (step 1)
-                // Ideally, you should set the value to be read from the Nango env variables (https://tenklo.dev/docs/reference/functions#environment-variables)
+                // Ideally, you should set the value to be read from the Nango env variables (https://docs.tenklo.dev/reference/functions#environment-variables)
                 topicName: 'projects/<PROJECT_ID>/topics/<TOPIC_ID>',
                 labelFilterBehavior: 'INCLUDE',
             },

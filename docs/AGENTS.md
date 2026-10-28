@@ -26,7 +26,7 @@ mintlify dev
 
 ## Fumadocs site (`docs-site/`)
 
-`docs-site/` is a Fumadocs (Next.js) app that renders this directory as is, served at `https://tenklo.dev/docs`. `docs/` stays the single source: navigation comes from `docs.json` (tabs, groups, `redirects`), API pages from `openapi:` frontmatter and `spec.yaml`, and Mintlify components are mapped in `docs-site/components/mintlify.tsx`.
+`docs-site/` is a Fumadocs (Next.js) app that renders this directory as is, served at `https://docs.tenklo.dev`. `docs/` stays the single source: navigation comes from `docs.json` (tabs, groups, `redirects`), API pages from `openapi:` frontmatter and `spec.yaml`, and Mintlify components are mapped in `docs-site/components/mintlify.tsx`.
 
 - Preview: `cd docs-site && npm ci && npm run dev`, then open `http://localhost:3000/docs`.
 - Check every page compiles: `cd docs-site && npm run check:mdx`.
