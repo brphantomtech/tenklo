@@ -134,7 +134,7 @@ const Integrations: React.FC = () => {
                         <Search aria-hidden="true" className="size-4 shrink-0 text-text-tertiary" strokeWidth={1.75} />
                         <input
                             autoComplete="off"
-                            className="h-full w-full bg-transparent text-sm text-text-primary outline-none placeholder:text-text-tertiary [&::-webkit-search-cancel-button]:hidden"
+                            className="h-full w-full bg-transparent text-sm text-text-primary outline-none placeholder:text-text-placeholder [&::-webkit-search-cancel-button]:hidden"
                             placeholder={t('integrationsList.searchPlaceholder')}
                             type="search"
                             value={query}

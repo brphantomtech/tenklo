@@ -108,6 +108,8 @@
     --color-text-primary: var(--color-gray-900);
     --color-text-secondary: var(--color-gray-700);
     --color-text-tertiary: var(--color-gray-600);
+    /* Lighter than tertiary: an example in an empty field must not read as a value already typed. */
+    --color-text-placeholder: var(--color-gray-400);
 
     /* Hairlines and overlays are ink at low alpha, so they sit on any surface without a second gray. */
     --color-hairline: rgb(11 11 12 / 0.09);
@@ -210,6 +212,7 @@
             --color-text-primary: var(--color-gray-75);
             --color-text-secondary: var(--color-gray-300);
             --color-text-tertiary: var(--color-gray-500);
+            --color-text-placeholder: var(--color-gray-600);
 
             --color-hairline: rgb(255 255 255 / 0.085);
             --color-hairline-strong: rgb(255 255 255 / 0.16);

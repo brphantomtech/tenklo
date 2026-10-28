@@ -28,7 +28,7 @@ function SelectTrigger({
     return (
         <SelectPrimitive.Trigger
             className={cn(
-                "field flex w-fit cursor-pointer items-center justify-between gap-2 px-3 text-sm text-text-primary data-[placeholder]:text-text-tertiary [&_svg:not([class*='text-'])]:text-text-tertiary whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-10 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+                "field flex w-fit cursor-pointer items-center justify-between gap-2 px-3 text-sm text-text-primary data-[placeholder]:text-text-placeholder [&_svg:not([class*='text-'])]:text-text-tertiary whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-10 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 className
             )}
             data-size={size}

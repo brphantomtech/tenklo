@@ -18,7 +18,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const baseWrapperClasses = 'field relative flex h-10 w-full items-center gap-1.5 overflow-hidden px-3 text-sm';
 const baseInputClasses =
-    'h-full w-full rounded-sm border-0 bg-transparent text-sm text-text-primary outline-none placeholder:text-text-tertiary focus-visible:outline-none disabled:cursor-not-allowed disabled:text-text-tertiary file:border-0 file:bg-transparent file:text-sm file:font-medium';
+    'h-full w-full rounded-sm border-0 bg-transparent text-sm text-text-primary outline-none placeholder:text-text-placeholder focus-visible:outline-none disabled:cursor-not-allowed disabled:text-text-tertiary file:border-0 file:bg-transparent file:text-sm file:font-medium';
 const affixClasses = 'shrink-0 rounded-md bg-ov-2 px-1.5 py-0.5 text-body-sm text-text-secondary';
 
 interface BaseInputProps extends InputProps {
