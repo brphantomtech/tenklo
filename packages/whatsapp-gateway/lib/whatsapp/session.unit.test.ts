@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { CHANNEL, TENANT } from '../testing/fakes.js';
 import { loadSessionAuth, sessionPrefix } from './auth-state.js';
 import { SessionCipher } from './session-cipher.js';
+import { importSession } from './session-import.js';
 
 const SECRET = 'uma-chave-de-teste-com-mais-de-32-caracteres';
 
@@ -97,6 +98,49 @@ describe('loadSessionAuth', () => {
         await auth.saveCreds();
         await auth.clear();
         expect([...objects.objects.keys()]).toEqual(['tenants/outro/channels/x/wpp_lib/creds']);
+    });
+
+    it('importa uma sessão pareada em outro worker, com outra senha e outro prefixo', async () => {
+        // A sessão como o worker-wpp-lib do StackChat a deixa: mesma estrutura, outra senha e outros ids.
+        const oldCipher = new SessionCipher('a-senha-do-worker-do-stackchat-com-32-chars');
+        const oldPrefix = sessionPrefix('0192f3a0-0000-7000-8000-000000000001', '0192f3a0-0000-7000-8000-000000000002');
+        const old = new MemoryObjects();
+        const paired = await loadSessionAuth(old, oldCipher, oldPrefix);
+        paired.state.creds.me = { id: '5511988880000:12@s.whatsapp.net', name: 'Ana' };
+        await paired.saveCreds();
+        await paired.state.keys.set({ session: { '5511977770000.0': Buffer.from([1, 2, 3]) } });
+
+        // O que o script de migração envia: cada objeto decifrado, com o caminho relativo ao prefixo.
+        const exported = [...old.objects].map(([key, data]) => ({
+            path: key.slice(oldPrefix.length),
+            json: oldCipher.decrypt(data, key).toString('utf8')
+        }));
+
+        const objects = new MemoryObjects();
+        const imported = await importSession({ storage: objects, cipher, tenantId: TENANT, channelId: CHANNEL, objects: exported });
+        expect(imported).toEqual({ account: { jid: '5511988880000:12@s.whatsapp.net', name: 'Ana' }, objects: 2 });
+
+        const reloaded = await loadSessionAuth(objects, cipher, prefix);
+        expect(reloaded.isRegistered()).toBe(true);
+        expect(Buffer.from(reloaded.state.creds.noiseKey.private)).toEqual(Buffer.from(paired.state.creds.noiseKey.private));
+        const sessions = await reloaded.state.keys.get('session', ['5511977770000.0']);
+        expect(Buffer.from(sessions['5511977770000.0']!)).toEqual(Buffer.from([1, 2, 3]));
+
+        // Nunca sobrescreve uma sessão existente.
+        await expect(importSession({ storage: objects, cipher, tenantId: TENANT, channelId: CHANNEL, objects: exported })).rejects.toMatchObject({
+            code: 'session_exists'
+        });
+    });
+
+    it('recusa na importação uma sessão sem pareamento ou com caminho fora do formato', async () => {
+        const creds = { path: 'creds', json: JSON.stringify({ me: { id: '5511988880000:1@s.whatsapp.net' } }) };
+        const target = { storage: new MemoryObjects(), cipher, tenantId: TENANT, channelId: CHANNEL };
+        await expect(importSession({ ...target, objects: [{ path: 'creds', json: '{}' }] })).rejects.toMatchObject({ code: 'invalid_session' });
+        await expect(importSession({ ...target, objects: [{ path: 'keys/session/x', json: '{}' }] })).rejects.toMatchObject({ code: 'invalid_session' });
+        await expect(importSession({ ...target, objects: [creds, { path: '../../outro/creds', json: '{}' }] })).rejects.toMatchObject({
+            code: 'invalid_session'
+        });
+        expect(target.storage.objects.size).toBe(0);
     });
 
     it('ids com caracteres especiais viram chaves de objeto seguras', async () => {

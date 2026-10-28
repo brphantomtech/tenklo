@@ -180,7 +180,8 @@ import type {
     GetPublicWhatsAppStatus,
     PostPublicWhatsAppGroupsSync,
     PostPublicWhatsAppMedia,
-    PostPublicWhatsAppMessage
+    PostPublicWhatsAppMessage,
+    PostPublicWhatsAppSessionImport
 } from './whatsapp/api.js';
 
 export type PublicApiEndpoints =
@@ -238,6 +239,7 @@ export type PublicApiEndpoints =
     | GetPublicWhatsAppMedia
     | PostPublicWhatsAppGroupsSync
     | GetPublicWhatsAppStatus
+    | PostPublicWhatsAppSessionImport
     | PostPublicConnection
     | PatchPublicConnection
     | PostPublicSyncStart

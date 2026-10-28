@@ -57,6 +57,26 @@ The bodies and webhooks use the shapes of the StackChat channel contract (camelC
 | `GET /whatsapp/media?object_key=` | Downloads a file of the connection: one it received, or one uploaded for it. |
 | `POST /whatsapp/groups/sync` | Asks for the groups of the number. They arrive in a `groups.synced` webhook. |
 | `GET /whatsapp/status` | The last status of the number: `status`, `reason`, `account`, `sendRestriction`, `updatedAt`. |
+| `POST /whatsapp/sessions/import` | Creates a connection from a session paired elsewhere, without a new QR code. Takes only the `Provider-Config-Key` header. |
+
+### Import a paired session
+
+A number already paired with another Baileys-based service moves without scanning a new QR code, provided that service stores its session the way Tenklo does: one object per key, `creds` and `keys/<type>/<encodeURIComponent(id)>`, each the JSON written with Baileys' `BufferJSON.replacer` (StackChat's `worker-wpp-lib` does).
+
+Stop the previous service's session first: two devices on the same session log each other out. Then send its decrypted objects:
+
+```json
+{
+    "connection_id": "optional-id",
+    "tags": { "tenant_id": "..." },
+    "objects": [
+        { "path": "creds", "json": "{\"noiseKey\":...}" },
+        { "path": "keys/session/5511999990000.0", "json": "{...}" }
+    ]
+}
+```
+
+The reply has the new connection (`connection_id`, `session_id`, `phone`, `name`), and the number connects right away. An import never overwrites a connection or a session: an existing `connection_id` answers `409`.
 
 ### Send a message
 
