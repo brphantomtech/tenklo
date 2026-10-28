@@ -99,6 +99,39 @@ export type PostPublicWhatsAppGroupsSync = ApiEndpoint<{
     Error: WhatsAppConnectionError;
 }>;
 
+/** An object of a Baileys session: `creds`, or `keys/<type>/<encodeURIComponent(id)>`, with its BufferJSON text. */
+export interface WhatsAppSessionObject {
+    path: string;
+    json: string;
+}
+
+/**
+ * Creates a connection from a WhatsApp session paired elsewhere (a StackChat worker-wpp-lib session, for instance),
+ * so the number moves without scanning a new QR code. The previous holder of the session must be stopped first:
+ * two devices on the same session log each other out.
+ */
+export type PostPublicWhatsAppSessionImport = ApiEndpoint<{
+    Audit: NoAudit;
+    Method: 'POST';
+    Path: '/whatsapp/sessions/import';
+    Headers: { 'provider-config-key': string };
+    Body: {
+        /** Generated when missing. */
+        connection_id?: string | undefined;
+        tags?: Record<string, string> | undefined;
+        objects: WhatsAppSessionObject[];
+    };
+    Success: { connection_id: string; provider_config_key: string; session_id: string; phone: string | null; name: string | null };
+    Error:
+        | ApiError<'invalid_headers'>
+        | ApiError<'invalid_body'>
+        | ApiError<'unknown_provider_config'>
+        | ApiError<'invalid_connection'>
+        | ApiError<'connection_exists'>
+        | ApiError<'invalid_session'>
+        | ApiError<'whatsapp_gateway_unavailable'>;
+}>;
+
 export type GetPublicWhatsAppStatus = ApiEndpoint<{
     Audit: NoAudit;
     Method: 'GET';

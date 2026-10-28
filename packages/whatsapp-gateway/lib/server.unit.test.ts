@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { createServer } from './server.js';
 import { ObjectNotFoundError } from './storage/index.js';
 import { silentLogger } from './testing/fakes.js';
+import { SessionImportError } from './whatsapp/session-import.js';
 
 import type { SubmitResult } from './commands/dispatcher.js';
 import type { AddressInfo } from 'node:net';
@@ -27,6 +28,14 @@ const media = {
     }
 };
 
+const importSessionMock = vi.fn(({ channelId }: { channelId: string }) => {
+    if (channelId === EXISTING) {
+        return Promise.reject(new SessionImportError('session_exists', 'this channel already has a session'));
+    }
+    return Promise.resolve({ account: { jid: '5511988880000:1@s.whatsapp.net', name: null }, objects: 1 });
+});
+const EXISTING = '33333333-3333-3333-3333-333333333333';
+
 async function withServer(opts: { accepted?: boolean; ready?: boolean }, fn: (base: string, submit: ReturnType<typeof vi.fn>) => Promise<void>) {
     const submit = vi.fn(
         (_raw: unknown): Promise<SubmitResult> =>
@@ -36,6 +45,7 @@ async function withServer(opts: { accepted?: boolean; ready?: boolean }, fn: (ba
         dispatcher: { submit },
         media,
         mediaMaxBytes: 10,
+        sessions: { import: importSessionMock },
         secret: SECRET,
         isReady: () => Promise.resolve(opts.ready ?? true),
         logger: silentLogger
@@ -126,6 +136,44 @@ describe('gateway API', () => {
                 expect((await put(base, KEY, 'more than ten bytes')).status).toBe(413);
                 const missing = KEY.replace('photo.jpg', 'missing.jpg');
                 expect((await fetch(`${base}/v1/media?key=${encodeURIComponent(missing)}`, { headers: auth })).status).toBe(404);
+            });
+        });
+    });
+
+    describe('session import', () => {
+        const TENANT = '11111111-1111-1111-1111-111111111111';
+        const CHANNEL = '22222222-2222-2222-2222-222222222222';
+        const put = (base: string, path: string, body: unknown, auth = `Bearer ${SECRET}`) =>
+            fetch(`${base}/v1/sessions/${path}`, {
+                method: 'PUT',
+                headers: { 'content-type': 'application/json', authorization: auth },
+                body: JSON.stringify(body)
+            });
+        const objects = [{ path: 'creds', json: '{}' }];
+
+        it('imports a session and answers the paired account', async () => {
+            await withServer({}, async (base) => {
+                const res = await put(base, `${TENANT}/${CHANNEL}`, { objects });
+                expect(res.status).toBe(201);
+                expect(await res.json()).toEqual({ account: { jid: '5511988880000:1@s.whatsapp.net', name: null }, objects: 1 });
+                expect(importSessionMock).toHaveBeenLastCalledWith({ tenantId: TENANT, channelId: CHANNEL, objects });
+            });
+        });
+
+        it('requires the secret, valid ids and objects', async () => {
+            await withServer({}, async (base) => {
+                expect((await put(base, `${TENANT}/${CHANNEL}`, { objects }, 'Bearer wrong')).status).toBe(401);
+                expect((await put(base, `${TENANT}/not-a-uuid`, { objects })).status).toBe(400);
+                expect((await put(base, `${TENANT}/${CHANNEL}`, { objects: [] })).status).toBe(400);
+                expect((await put(base, `${TENANT}/${CHANNEL}`, { objects: [{ path: 'creds', json: {} }] })).status).toBe(400);
+            });
+        });
+
+        it('answers 409 when the channel already has a session', async () => {
+            await withServer({}, async (base) => {
+                const res = await put(base, `${TENANT}/${EXISTING}`, { objects });
+                expect(res.status).toBe(409);
+                expect(await res.json()).toMatchObject({ error: { code: 'session_exists' } });
             });
         });
     });

@@ -105,6 +105,7 @@ import { getPublicWhatsAppStatus } from './controllers/whatsapp/getStatus.js';
 import { postPublicWhatsAppGroupsSync } from './controllers/whatsapp/postGroupsSync.js';
 import { postPublicWhatsAppMedia } from './controllers/whatsapp/postMedia.js';
 import { postPublicWhatsAppMessage } from './controllers/whatsapp/postMessages.js';
+import { postPublicWhatsAppSessionImport } from './controllers/whatsapp/postSessionsImport.js';
 import { envs } from './env.js';
 import { acceptLanguageMiddleware } from './middleware/accept-language.middleware.js';
 import authMiddleware from './middleware/access.middleware.js';
@@ -529,6 +530,7 @@ publicAPI
     .get(envAuth, can('environment:whatsapp'), getPublicWhatsAppMedia);
 publicAPI.route('/whatsapp/groups/sync').post(envAuth, can('environment:whatsapp'), postPublicWhatsAppGroupsSync);
 publicAPI.route('/whatsapp/status').get(envAuth, can('environment:whatsapp'), getPublicWhatsAppStatus);
+publicAPI.route('/whatsapp/sessions/import').post(envAuth, can('environment:whatsapp'), jsonContentTypeMiddleware, postPublicWhatsAppSessionImport);
 
 // Proxy
 publicAPI.route('/proxy{/*splat}').all(envAuth, can('environment:proxy'), upload.any(), allPublicProxy);

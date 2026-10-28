@@ -136,6 +136,57 @@ export async function openGatewayMedia(objectKey: string): Promise<Result<Respon
     }
 }
 
+export class GatewaySessionRejectedError extends Error {
+    constructor(
+        readonly code: 'invalid_session' | 'session_exists',
+        message: string
+    ) {
+        super(message);
+    }
+}
+
+/**
+ * Hands the gateway a Baileys session paired elsewhere, as plaintext objects ({ path, json }), for it to store
+ * encrypted under the new session id. Answers the paired account.
+ */
+export async function importGatewaySession({
+    tenantId,
+    sessionId,
+    objects
+}: {
+    tenantId: string;
+    sessionId: string;
+    objects: { path: string; json: string }[];
+}): Promise<Result<{ jid: string; name: string | null }>> {
+    const url = envs.WHATSAPP_GATEWAY_URL;
+    const secret = envs.WHATSAPP_GATEWAY_SECRET;
+    if (!url || !secret) {
+        return Err(new Error('whatsapp_gateway_not_configured'));
+    }
+    try {
+        const res = await fetch(new URL(`/v1/sessions/${tenantId}/${sessionId}`, url), {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json', authorization: `Bearer ${secret}` },
+            body: JSON.stringify({ objects }),
+            signal: AbortSignal.timeout(120_000)
+        });
+        const reply = (await res.json().catch(() => null)) as {
+            account?: { jid: string; name: string | null };
+            error?: { code?: string; message?: string };
+        } | null;
+        if (res.status === 400 || res.status === 409) {
+            const code = reply?.error?.code === 'session_exists' ? 'session_exists' : 'invalid_session';
+            return Err(new GatewaySessionRejectedError(code, reply?.error?.message ?? code));
+        }
+        if (!res.ok || !reply?.account) {
+            return Err(new Error('whatsapp_gateway_rejected_session', { cause: `${res.status}` }));
+        }
+        return Ok(reply.account);
+    } catch (err) {
+        return Err(new Error('whatsapp_gateway_unreachable', { cause: err }));
+    }
+}
+
 function mediaUrl(base: string, objectKey: string): URL {
     const url = new URL('/v1/media', base);
     url.searchParams.set('key', objectKey);

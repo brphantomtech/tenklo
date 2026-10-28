@@ -3,10 +3,12 @@ import { timingSafeEqual } from 'node:crypto';
 import express from 'express';
 
 import { ObjectNotFoundError } from './storage/index.js';
+import { SessionImportError } from './whatsapp/session-import.js';
 
 import type { CommandDispatcher } from './commands/dispatcher.js';
 import type { Logger } from './logger.js';
 import type { Storage } from './storage/index.js';
+import type { ImportedObject, importSession } from './whatsapp/session-import.js';
 import type { Express, NextFunction, Request, Response } from 'express';
 
 /** Where the gateway keeps media: tenants/<tenantId>/<inbox|media>/<channelId>/<name>. The server picks the key. */
@@ -19,12 +21,15 @@ export const MEDIA_KEY = /^tenants\/[0-9a-f-]{36}\/(inbox|media)\/[0-9a-f-]{36}\
  *   message.send). Answers 202 once accepted; the outcome arrives as events.
  * - PUT /v1/media?key=: stores a file in the media bucket (the body, with its content-type).
  * - GET /v1/media?key=: streams a file from the media bucket.
+ * - PUT /v1/sessions/:tenantId/:channelId: imports a Baileys session paired elsewhere ({ objects: [{ path, json }] }).
+ *   Answers 201 with the paired account; the server then connects the channel.
  * - GET /health/live and /health/ready.
  */
 export function createServer({
     dispatcher,
     media,
     mediaMaxBytes,
+    sessions,
     secret,
     isReady,
     logger
@@ -32,6 +37,7 @@ export function createServer({
     dispatcher: Pick<CommandDispatcher, 'submit'>;
     media: Pick<Storage, 'openMedia' | 'putMedia'>;
     mediaMaxBytes: number;
+    sessions: { import: (input: { tenantId: string; channelId: string; objects: ImportedObject[] }) => ReturnType<typeof importSession> };
     secret: string;
     isReady: () => Promise<boolean>;
     logger: Logger;
@@ -98,6 +104,36 @@ export function createServer({
         }
     });
 
+    app.put(
+        '/v1/sessions/:tenantId/:channelId',
+        requireSecret(secret),
+        express.json({ limit: SESSION_IMPORT_MAX_BYTES }),
+        async (req: Request, res: Response) => {
+            const tenantId = req.params['tenantId'];
+            const channelId = req.params['channelId'];
+            if (!tenantId || !channelId || !UUID.test(tenantId) || !UUID.test(channelId)) {
+                res.status(400).json({ error: { code: 'invalid_channel' } });
+                return;
+            }
+            const objects = parseImportedObjects(req.body);
+            if (!objects) {
+                res.status(400).json({ error: { code: 'invalid_session', message: 'expected { objects: [{ path, json }] }' } });
+                return;
+            }
+            try {
+                const imported = await sessions.import({ tenantId, channelId, objects });
+                logger.info({ tenantId, channelId, objects: imported.objects }, 'sessão importada');
+                res.status(201).json(imported);
+            } catch (err) {
+                if (err instanceof SessionImportError) {
+                    res.status(err.code === 'session_exists' ? 409 : 400).json({ error: { code: err.code, message: err.message } });
+                    return;
+                }
+                throw err;
+            }
+        }
+    );
+
     app.use((_req, res) => {
         res.status(404).json({ error: { code: 'not_found' } });
     });
@@ -112,6 +148,20 @@ export function createServer({
     });
 
     return app;
+}
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+/** A session grows with every contact it messaged: a few MB for a busy number. */
+const SESSION_IMPORT_MAX_BYTES = 64 * 1024 * 1024;
+
+function parseImportedObjects(body: unknown): ImportedObject[] | null {
+    const objects = (body as { objects?: unknown } | null)?.objects;
+    if (!Array.isArray(objects) || objects.length === 0) return null;
+    const valid = objects.every(
+        (o: unknown) => typeof o === 'object' && o !== null && typeof (o as ImportedObject).path === 'string' && typeof (o as ImportedObject).json === 'string'
+    );
+    return valid ? (objects as ImportedObject[]).map(({ path, json }) => ({ path, json })) : null;
 }
 
 function mediaKey(req: Request): string | null {

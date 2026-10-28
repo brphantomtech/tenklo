@@ -13,6 +13,7 @@ import { createRedis } from './storage/redis.js';
 import { PostgresSessionObjects } from './storage/sessions.js';
 import { ChannelRegistry } from './whatsapp/channel-registry.js';
 import { SessionCipher } from './whatsapp/session-cipher.js';
+import { importSession } from './whatsapp/session-import.js';
 import { SessionManager } from './whatsapp/session-manager.js';
 
 async function main(): Promise<void> {
@@ -28,12 +29,13 @@ async function main(): Promise<void> {
     const storage = new Storage(new PostgresSessionObjects(db.knex), new S3Media(config));
     const events = new HttpEventPublisher(config.EVENTS_URL, config.SECRET, logger);
     const registry = new ChannelRegistry(redis);
+    const cipher = new SessionCipher(config.SESSION_ENCRYPTION_KEY);
     const manager = new SessionManager({
         config,
         logger,
         redis,
         storage,
-        cipher: new SessionCipher(config.SESSION_ENCRYPTION_KEY),
+        cipher,
         events,
         registry
     });
@@ -49,6 +51,7 @@ async function main(): Promise<void> {
         dispatcher,
         media: storage,
         mediaMaxBytes: config.MEDIA_MAX_BYTES,
+        sessions: { import: (input) => importSession({ storage, cipher, ...input }) },
         secret: config.SECRET,
         isReady,
         logger
