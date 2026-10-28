@@ -191,7 +191,7 @@ function buildReleaseNotes({ manifest, cliffNotes, tagName, imageVersion, appVer
         `- **Docker image:** \`nangohq/nango:${tagName}\``,
         `- **Pin CLI to:** \`${appVersion}\``,
         comparisonUrl ? `- **Compare:** ${comparisonUrl}` : null,
-        '- **Public changelog:** https://tenklo.dev/docs/updates/changelog',
+        '- **Public changelog:** https://docs.tenklo.dev/updates/changelog',
         '',
         '### Changes',
         '',

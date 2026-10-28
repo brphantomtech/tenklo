@@ -142,7 +142,7 @@ Local development is the default path for production integrations. Use it when y
     <Accordion title="For agents">
       Run `nango init nango-integrations` to scaffold the folder. Ask the user for their [Tenklo API key](/reference/backend/http-api/api-keys) from **Environment Settings > API Keys** and write it to the matching `NANGO_SECRET_KEY_<ENV_NAME>` variable in `nango-integrations/.env`. Confirm that `nango-integrations/.gitignore` ignores `.env`.
 
-      For additional context while building, add Tenklo's documentation MCP server (`https://tenklo.dev/docs/mcp`) and install the local builder skill:
+      For additional context while building, add Tenklo's documentation MCP server (`https://docs.tenklo.dev/mcp`) and install the local builder skill:
 
       ```bash
       npx skills add NangoHQ/skills -s building-nango-functions-locally

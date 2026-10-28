@@ -883,7 +883,7 @@ nango.${integration.meta.authMode === 'NONE' ? 'create' : 'auth'}('${integration
                                         Some integrations require extra configuration — see{' '}
                                         <Button asChild variant="link-accent" size="xs">
                                             <a
-                                                href="https://tenklo.dev/docs/guides/auth/customize-connect-ui#handle-apis-requiring-connection-specific-configuration-for-authorization"
+                                                href="https://docs.tenklo.dev/guides/auth/customize-connect-ui#handle-apis-requiring-connection-specific-configuration-for-authorization"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
@@ -1132,7 +1132,7 @@ nango.${integration.meta.authMode === 'NONE' ? 'create' : 'auth'}('${integration
                                     Integration
                                 </Link>{' '}
                                 first to create a Connection. Follow the{' '}
-                                <a href="https://tenklo.dev/docs/guides/auth/auth-guide" className="text-text-link" target="_blank" rel="noreferrer">
+                                <a href="https://docs.tenklo.dev/guides/auth/auth-guide" className="text-text-link" target="_blank" rel="noreferrer">
                                     Authorize an API guide
                                 </a>{' '}
                                 for more instructions.

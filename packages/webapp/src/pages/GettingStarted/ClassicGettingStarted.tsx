@@ -80,7 +80,7 @@ export const ClassicGettingStarted: React.FC = () => {
             <div className="grid grid-cols-2 text-text-strong gap-7">
                 <a
                     className="transition-all block border rounded-lg border-border-muted p-7 group hover:border-border-strong hover:shadow-card focus:shadow-card focus:border-border-selected focus:outline-0"
-                    href="https://tenklo.dev/docs/guides/auth/auth-guide"
+                    href="https://docs.tenklo.dev/guides/auth/auth-guide"
                     target="_blank"
                     rel="noreferrer"
                 >
@@ -105,7 +105,7 @@ export const ClassicGettingStarted: React.FC = () => {
 
                 <a
                     className="transition-all block border rounded-lg border-border-muted p-7 group hover:border-border-strong hover:shadow-card"
-                    href="https://tenklo.dev/docs/guides/functions/syncs/sync-functions"
+                    href="https://docs.tenklo.dev/guides/functions/syncs/sync-functions"
                     target="_blank"
                     rel="noreferrer"
                 >
@@ -130,7 +130,7 @@ export const ClassicGettingStarted: React.FC = () => {
 
                 <a
                     className="transition-all block border rounded-lg border-border-muted p-7 group hover:border-border-strong hover:shadow-card"
-                    href="https://tenklo.dev/docs/guides/functions/action-functions"
+                    href="https://docs.tenklo.dev/guides/functions/action-functions"
                     target="_blank"
                     rel="noreferrer"
                 >
@@ -155,7 +155,7 @@ export const ClassicGettingStarted: React.FC = () => {
 
                 <a
                     className="transition-all block border rounded-lg border-border-muted p-7 group hover:border-border-strong hover:shadow-card"
-                    href="https://tenklo.dev/docs/guides/functions/functions-guide"
+                    href="https://docs.tenklo.dev/guides/functions/functions-guide"
                     target="_blank"
                     rel="noreferrer"
                 >

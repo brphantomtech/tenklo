@@ -36,7 +36,7 @@ function showLoggerLevelWarning() {
             called = true;
             console.log(
                 chalk.yellow(
-                    'Note: In Tenklo Cloud, only logs with level "warn" or "error" will be shown by default. Learn more: https://tenklo.dev/docs/reference/functions/functions-sdk#logging'
+                    'Note: In Tenklo Cloud, only logs with level "warn" or "error" will be shown by default. Learn more: https://docs.tenklo.dev/reference/functions/functions-sdk#logging'
                 )
             );
         }

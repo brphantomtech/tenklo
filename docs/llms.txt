@@ -2,153 +2,153 @@
 
 > Tenklo is the integration layer for AI-built, code-owned product integrations. These files are curated for agents: core docs are listed directly, while provider-specific API pages live in a compact catalog.
 
-Full core-docs context: https://tenklo.dev/docs/llms-full.txt
-API and integration catalog: https://tenklo.dev/docs/api-catalog.txt
+Full core-docs context: https://docs.tenklo.dev/llms-full.txt
+API and integration catalog: https://docs.tenklo.dev/api-catalog.txt
 
 Use provider URLs by replacing `{slug}` with a slug from the API catalog:
-- Main provider page: https://tenklo.dev/docs/integrations/all/{slug}.md or https://tenklo.dev/docs/api-integrations/{slug}.md
-- Connect guide when available: https://tenklo.dev/docs/integrations/all/{slug}/connect.md or https://tenklo.dev/docs/api-integrations/{slug}/connect.md
+- Main provider page: https://docs.tenklo.dev/integrations/all/{slug}.md or https://docs.tenklo.dev/api-integrations/{slug}.md
+- Connect guide when available: https://docs.tenklo.dev/integrations/all/{slug}/connect.md or https://docs.tenklo.dev/api-integrations/{slug}/connect.md
 
 ## Getting started
 
-- [Introduction](https://tenklo.dev/docs/getting-started/intro-to-nango.md): Build product integrations with AI, using code you control and infrastructure built for scale.
-- [Quickstart](https://tenklo.dev/docs/getting-started/quickstart.md): Authorize an API and run your first Tenklo function
-- [Coding agent setup](https://tenklo.dev/docs/getting-started/coding-agent-setup.md): Connect your coding agent to Tenklo
-- [Use cases: Tool calling for AI agents](https://tenklo.dev/docs/getting-started/use-cases/tool-calling.md): Give agents scoped, observable access to external APIs through Tenklo action functions.
-- [Use cases: Sync external API data](https://tenklo.dev/docs/getting-started/use-cases/syncs.md): Keep external API data fresh for your product, RAG pipeline, or change-detection workflow.
-- [Use cases: Run external API operations](https://tenklo.dev/docs/getting-started/use-cases/actions.md): Use Tenklo functions to read, write, and automate external APIs on demand.
-- [Use cases: Process external webhooks](https://tenklo.dev/docs/getting-started/use-cases/webhooks-from-external-apis.md): Receive provider webhooks through Tenklo, then forward or process them with functions.
-- [Use cases: Build a unified API](https://tenklo.dev/docs/getting-started/use-cases/unified-apis.md): Normalize several external APIs behind your own stable product interface.
-- [Use cases: Customize per customer](https://tenklo.dev/docs/getting-started/use-cases/customer-configuration.md): Adapt integration behavior for each customer without forking code.
-- [Use cases: React to connection lifecycle events](https://tenklo.dev/docs/getting-started/use-cases/implement-event-handler.md): Run integration logic when a connection is validated, created, or deleted.
-- [Use cases: Sample app](https://tenklo.dev/docs/getting-started/use-cases/sample-app.md): A practical demonstration of integrating Tenklo in your codebase.
+- [Introduction](https://docs.tenklo.dev/getting-started/intro-to-nango.md): Build product integrations with AI, using code you control and infrastructure built for scale.
+- [Quickstart](https://docs.tenklo.dev/getting-started/quickstart.md): Authorize an API and run your first Tenklo function
+- [Coding agent setup](https://docs.tenklo.dev/getting-started/coding-agent-setup.md): Connect your coding agent to Tenklo
+- [Use cases: Tool calling for AI agents](https://docs.tenklo.dev/getting-started/use-cases/tool-calling.md): Give agents scoped, observable access to external APIs through Tenklo action functions.
+- [Use cases: Sync external API data](https://docs.tenklo.dev/getting-started/use-cases/syncs.md): Keep external API data fresh for your product, RAG pipeline, or change-detection workflow.
+- [Use cases: Run external API operations](https://docs.tenklo.dev/getting-started/use-cases/actions.md): Use Tenklo functions to read, write, and automate external APIs on demand.
+- [Use cases: Process external webhooks](https://docs.tenklo.dev/getting-started/use-cases/webhooks-from-external-apis.md): Receive provider webhooks through Tenklo, then forward or process them with functions.
+- [Use cases: Build a unified API](https://docs.tenklo.dev/getting-started/use-cases/unified-apis.md): Normalize several external APIs behind your own stable product interface.
+- [Use cases: Customize per customer](https://docs.tenklo.dev/getting-started/use-cases/customer-configuration.md): Adapt integration behavior for each customer without forking code.
+- [Use cases: React to connection lifecycle events](https://docs.tenklo.dev/getting-started/use-cases/implement-event-handler.md): Run integration logic when a connection is validated, created, or deleted.
+- [Use cases: Sample app](https://docs.tenklo.dev/getting-started/use-cases/sample-app.md): A practical demonstration of integrating Tenklo in your codebase.
 
 ## Guides
 
-- [Auth: Auth guide](https://tenklo.dev/docs/guides/auth/auth-guide.md): Let your users connect external APIs to your agents & apps.
-- [Auth: Share a connect link](https://tenklo.dev/docs/guides/auth/share-connect-link.md): Generate a short-lived connect link and share it with your end user.
-- [Auth: Connection tags, configuration, and metadata](https://tenklo.dev/docs/guides/auth/connection-tags-configuration-metadata.md): Use tags, connection configuration, and metadata for the right connection-level data.
-- [Auth: Customize Connect UI](https://tenklo.dev/docs/guides/auth/customize-connect-ui.md): Guide to branding Tenklo Connect UI, overriding setup links, or building a headless auth flow with your own UI.
-- [Auth: Token refreshing & validity](https://tenklo.dev/docs/guides/auth/token-refreshing.md): How Tenklo handles OAuth token refresh and what to do when tokens are revoked.
-- [Auth: MCP Auth](https://tenklo.dev/docs/guides/auth/mcp-auth.md): Let your users connect to MCP servers through Tenklo
-- [Agent sessions](https://tenklo.dev/docs/guides/agent-sessions.md): Optimized interface for AI agents to use integrations
-- [Functions: Functions guide](https://tenklo.dev/docs/guides/functions/functions-guide.md): Understand Tenklo Functions and choose the right way to start using them.
-- [Functions: Sync functions: Sync function guide](https://tenklo.dev/docs/guides/functions/syncs/sync-functions.md): Build sync functions that keep external API data fresh and consumable by your app.
-- [Functions: Sync functions: Sync efficiency](https://tenklo.dev/docs/guides/functions/syncs/sync-efficiency.md): Build sync functions that replicate external datasets without wasting API calls, memory, or compute.
-- [Functions: Sync functions: Checkpoints](https://tenklo.dev/docs/guides/functions/syncs/checkpoints.md): Save progress mid-run, resume after failures, and turn full syncs into incremental ones.
-- [Functions: Sync functions: Records cache](https://tenklo.dev/docs/guides/functions/syncs/records-cache.md): How Tenklo stores synced records, detects changes, and lets your app fetch deltas via cursors.
-- [Functions: Sync functions: Deletion detection](https://tenklo.dev/docs/guides/functions/syncs/deletion-detection.md): Surface deletes from the external API — even when the API itself doesn't expose them cleanly.
-- [Functions: Sync functions: Real-time syncs with webhooks](https://tenklo.dev/docs/guides/functions/syncs/realtime-syncs.md): Combine webhooks from external APIs with periodic polling for a reliable, real-time stream of changes.
-- [Functions: Sync functions: Sync partitioning](https://tenklo.dev/docs/guides/functions/syncs/sync-partitioning.md): Spawn multiple independent sync processes inside a single connection — one per mailbox, drive folder, Slack channel, repo, or any other partition.
-- [Functions: Action functions](https://tenklo.dev/docs/guides/functions/action-functions.md): Build Action functions that your app, backend jobs, or agents can call on demand.
-- [Functions: Webhook functions](https://tenklo.dev/docs/guides/functions/webhook-functions.md): Process external API webhooks inside Tenklo functions.
-- [Functions: Event functions](https://tenklo.dev/docs/guides/functions/event-functions.md): Run function logic automatically when Tenklo connection lifecycle events happen.
-- [Functions: Storage](https://tenklo.dev/docs/guides/functions/storage.md): Use connection metadata as the default storage for function parameters and per-customer configuration.
-- [Functions: Function logging](https://tenklo.dev/docs/guides/functions/logging.md): Use function logs for local debugging, cloud observability, and production troubleshooting.
-- [Functions: Rate limits](https://tenklo.dev/docs/guides/functions/rate-limits.md): Guide on how to handle API rate limits from external APIs.
-- [Functions: Data validation](https://tenklo.dev/docs/guides/functions/data-validation.md): How to validate data in your functions and in your app
-- [Functions: Testing integrations](https://tenklo.dev/docs/guides/functions/testing.md): How to test your Tenklo integrations using dry runs, mocks, and snapshots
-- [Functions: CI/CD for Tenklo Functions](https://tenklo.dev/docs/guides/functions/ci-cd.md): How to integrate Tenklo Function deployments into your CI/CD pipeline.
-- [Functions: Unified APIs with functions](https://tenklo.dev/docs/guides/functions/unified-apis.md): Build provider-specific functions behind one stable model and operation surface.
-- [Platform: Observability](https://tenklo.dev/docs/guides/platform/observability.md): How Tenklo helps you with observability for your integrations
-- [Platform: Environments](https://tenklo.dev/docs/guides/platform/environments.md): Organize your integrations & data with environments
-- [Platform: Limits](https://tenklo.dev/docs/guides/platform/limits.md): Overview of resource limits on Tenklo Cloud.
-- [Platform: Security](https://tenklo.dev/docs/guides/platform/security.md): How Tenklo secures your API credentials and customer data.
-- [Platform: Audit trail](https://tenklo.dev/docs/guides/platform/audit-trail.md): Review who changed what in your Tenklo account.
-- [Platform: Proxy requests](https://tenklo.dev/docs/guides/platform/proxy-requests.md): How to use the requests proxy from Tenklo
-- [Platform: Receive webhooks from Tenklo](https://tenklo.dev/docs/guides/platform/webhooks-from-nango.md): Reference for the webhooks Tenklo sends to your app — setup, types, payloads, signature verification, and retries.
-- [Platform: External webhook forwarding](https://tenklo.dev/docs/guides/platform/webhook-forwarding.md): Forward external API webhooks through Tenklo to your app, with connection attribution.
-- [Platform: Common issues](https://tenklo.dev/docs/guides/platform/common-issues.md): Troubleshooting guide for frequent errors and how to fix them.
-- [Platform: Self-Hosting: Self-host Tenklo](https://tenklo.dev/docs/guides/platform/self-hosting/self-hosting.md): Run Tenklo outside our cloud: BYOC or Self-Managed.
-- [Platform: Self-Hosting: BYOC](https://tenklo.dev/docs/guides/platform/self-hosting/byoc.md): Nango-managed, in your cloud.
-- [Platform: Self-Hosting: Self-Managed](https://tenklo.dev/docs/guides/platform/self-hosting/self-managed.md): You deploy, you operate.
-- [Platform: Migrations: Migrate to checkpoints](https://tenklo.dev/docs/guides/platform/migrations/migrate-to-checkpoints.md): Guide to migrate your sync functions from nango.lastSyncDate to the new checkpointing system.
-- [Platform: Migrations: Migrate from end user](https://tenklo.dev/docs/guides/platform/migrations/migrate-from-end-user.md): Guide to migrate away from using end users in connections and connect sessions
-- [Platform: Migrations: Migrate from public key](https://tenklo.dev/docs/guides/platform/migrations/migrate-from-public-key.md): Guide to migrate from using the public key (and HMAC) to a Connect session.
-- [Platform: Migrations: Migrate from Connection MCP to agent sessions](https://tenklo.dev/docs/guides/platform/migrations/migrate-from-connection-mcp.md): Replace the Connection MCP with a scoped agent session
-- [Platform: Migrations: Migrating to Zero YAML](https://tenklo.dev/docs/guides/platform/migrations/migrate-to-zero-yaml.md): Guide on how to migrate to Zero YAML in Tenklo.
-- [Platform: Contributing to Tenklo](https://tenklo.dev/docs/contributing.md): Learn which external contributions Tenklo reviews
+- [Auth: Auth guide](https://docs.tenklo.dev/guides/auth/auth-guide.md): Let your users connect external APIs to your agents & apps.
+- [Auth: Share a connect link](https://docs.tenklo.dev/guides/auth/share-connect-link.md): Generate a short-lived connect link and share it with your end user.
+- [Auth: Connection tags, configuration, and metadata](https://docs.tenklo.dev/guides/auth/connection-tags-configuration-metadata.md): Use tags, connection configuration, and metadata for the right connection-level data.
+- [Auth: Customize Connect UI](https://docs.tenklo.dev/guides/auth/customize-connect-ui.md): Guide to branding Tenklo Connect UI, overriding setup links, or building a headless auth flow with your own UI.
+- [Auth: Token refreshing & validity](https://docs.tenklo.dev/guides/auth/token-refreshing.md): How Tenklo handles OAuth token refresh and what to do when tokens are revoked.
+- [Auth: MCP Auth](https://docs.tenklo.dev/guides/auth/mcp-auth.md): Let your users connect to MCP servers through Tenklo
+- [Agent sessions](https://docs.tenklo.dev/guides/agent-sessions.md): Optimized interface for AI agents to use integrations
+- [Functions: Functions guide](https://docs.tenklo.dev/guides/functions/functions-guide.md): Understand Tenklo Functions and choose the right way to start using them.
+- [Functions: Sync functions: Sync function guide](https://docs.tenklo.dev/guides/functions/syncs/sync-functions.md): Build sync functions that keep external API data fresh and consumable by your app.
+- [Functions: Sync functions: Sync efficiency](https://docs.tenklo.dev/guides/functions/syncs/sync-efficiency.md): Build sync functions that replicate external datasets without wasting API calls, memory, or compute.
+- [Functions: Sync functions: Checkpoints](https://docs.tenklo.dev/guides/functions/syncs/checkpoints.md): Save progress mid-run, resume after failures, and turn full syncs into incremental ones.
+- [Functions: Sync functions: Records cache](https://docs.tenklo.dev/guides/functions/syncs/records-cache.md): How Tenklo stores synced records, detects changes, and lets your app fetch deltas via cursors.
+- [Functions: Sync functions: Deletion detection](https://docs.tenklo.dev/guides/functions/syncs/deletion-detection.md): Surface deletes from the external API — even when the API itself doesn't expose them cleanly.
+- [Functions: Sync functions: Real-time syncs with webhooks](https://docs.tenklo.dev/guides/functions/syncs/realtime-syncs.md): Combine webhooks from external APIs with periodic polling for a reliable, real-time stream of changes.
+- [Functions: Sync functions: Sync partitioning](https://docs.tenklo.dev/guides/functions/syncs/sync-partitioning.md): Spawn multiple independent sync processes inside a single connection — one per mailbox, drive folder, Slack channel, repo, or any other partition.
+- [Functions: Action functions](https://docs.tenklo.dev/guides/functions/action-functions.md): Build Action functions that your app, backend jobs, or agents can call on demand.
+- [Functions: Webhook functions](https://docs.tenklo.dev/guides/functions/webhook-functions.md): Process external API webhooks inside Tenklo functions.
+- [Functions: Event functions](https://docs.tenklo.dev/guides/functions/event-functions.md): Run function logic automatically when Tenklo connection lifecycle events happen.
+- [Functions: Storage](https://docs.tenklo.dev/guides/functions/storage.md): Use connection metadata as the default storage for function parameters and per-customer configuration.
+- [Functions: Function logging](https://docs.tenklo.dev/guides/functions/logging.md): Use function logs for local debugging, cloud observability, and production troubleshooting.
+- [Functions: Rate limits](https://docs.tenklo.dev/guides/functions/rate-limits.md): Guide on how to handle API rate limits from external APIs.
+- [Functions: Data validation](https://docs.tenklo.dev/guides/functions/data-validation.md): How to validate data in your functions and in your app
+- [Functions: Testing integrations](https://docs.tenklo.dev/guides/functions/testing.md): How to test your Tenklo integrations using dry runs, mocks, and snapshots
+- [Functions: CI/CD for Tenklo Functions](https://docs.tenklo.dev/guides/functions/ci-cd.md): How to integrate Tenklo Function deployments into your CI/CD pipeline.
+- [Functions: Unified APIs with functions](https://docs.tenklo.dev/guides/functions/unified-apis.md): Build provider-specific functions behind one stable model and operation surface.
+- [Platform: Observability](https://docs.tenklo.dev/guides/platform/observability.md): How Tenklo helps you with observability for your integrations
+- [Platform: Environments](https://docs.tenklo.dev/guides/platform/environments.md): Organize your integrations & data with environments
+- [Platform: Limits](https://docs.tenklo.dev/guides/platform/limits.md): Overview of resource limits on Tenklo Cloud.
+- [Platform: Security](https://docs.tenklo.dev/guides/platform/security.md): How Tenklo secures your API credentials and customer data.
+- [Platform: Audit trail](https://docs.tenklo.dev/guides/platform/audit-trail.md): Review who changed what in your Tenklo account.
+- [Platform: Proxy requests](https://docs.tenklo.dev/guides/platform/proxy-requests.md): How to use the requests proxy from Tenklo
+- [Platform: Receive webhooks from Tenklo](https://docs.tenklo.dev/guides/platform/webhooks-from-nango.md): Reference for the webhooks Tenklo sends to your app — setup, types, payloads, signature verification, and retries.
+- [Platform: External webhook forwarding](https://docs.tenklo.dev/guides/platform/webhook-forwarding.md): Forward external API webhooks through Tenklo to your app, with connection attribution.
+- [Platform: Common issues](https://docs.tenklo.dev/guides/platform/common-issues.md): Troubleshooting guide for frequent errors and how to fix them.
+- [Platform: Self-Hosting: Self-host Tenklo](https://docs.tenklo.dev/guides/platform/self-hosting/self-hosting.md): Run Tenklo outside our cloud: BYOC or Self-Managed.
+- [Platform: Self-Hosting: BYOC](https://docs.tenklo.dev/guides/platform/self-hosting/byoc.md): Nango-managed, in your cloud.
+- [Platform: Self-Hosting: Self-Managed](https://docs.tenklo.dev/guides/platform/self-hosting/self-managed.md): You deploy, you operate.
+- [Platform: Migrations: Migrate to checkpoints](https://docs.tenklo.dev/guides/platform/migrations/migrate-to-checkpoints.md): Guide to migrate your sync functions from nango.lastSyncDate to the new checkpointing system.
+- [Platform: Migrations: Migrate from end user](https://docs.tenklo.dev/guides/platform/migrations/migrate-from-end-user.md): Guide to migrate away from using end users in connections and connect sessions
+- [Platform: Migrations: Migrate from public key](https://docs.tenklo.dev/guides/platform/migrations/migrate-from-public-key.md): Guide to migrate from using the public key (and HMAC) to a Connect session.
+- [Platform: Migrations: Migrate from Connection MCP to agent sessions](https://docs.tenklo.dev/guides/platform/migrations/migrate-from-connection-mcp.md): Replace the Connection MCP with a scoped agent session
+- [Platform: Migrations: Migrating to Zero YAML](https://docs.tenklo.dev/guides/platform/migrations/migrate-to-zero-yaml.md): Guide on how to migrate to Zero YAML in Tenklo.
+- [Platform: Contributing to Tenklo](https://docs.tenklo.dev/contributing.md): Learn which external contributions Tenklo reviews
 
 ## Reference
 
-- [Frontend: Frontend SDK](https://tenklo.dev/docs/reference/frontend/frontend-sdk.md)
-- [Backend: HTTP API: API keys](https://tenklo.dev/docs/reference/backend/http-api/api-keys.md): Manage Environment and Account API keys with scoped permissions for Tenklo.
-- [Backend: HTTP API: Authentication](https://tenklo.dev/docs/reference/backend/http-api/authentication.md)
-- [Backend: HTTP API: Rate limits](https://tenklo.dev/docs/reference/backend/http-api/rate-limits.md)
-- [Backend: HTTP API: Environments: List environments](https://tenklo.dev/docs/reference/backend/http-api/environments/list.md)
-- [Backend: HTTP API: Environments: Create an environment](https://tenklo.dev/docs/reference/backend/http-api/environments/create.md)
-- [Backend: HTTP API: Environments: Delete an environment](https://tenklo.dev/docs/reference/backend/http-api/environments/delete.md)
-- [Backend: HTTP API: Environments: List environment API keys](https://tenklo.dev/docs/reference/backend/http-api/environments/list-api-keys.md)
-- [Backend: HTTP API: Environments: Get an environment API key](https://tenklo.dev/docs/reference/backend/http-api/environments/get-api-key.md)
-- [Backend: HTTP API: Environments: Create an environment API key](https://tenklo.dev/docs/reference/backend/http-api/environments/create-api-key.md)
-- [Backend: HTTP API: Environments: Update an environment API key](https://tenklo.dev/docs/reference/backend/http-api/environments/update-api-key.md)
-- [Backend: HTTP API: Environments: Delete an environment API key](https://tenklo.dev/docs/reference/backend/http-api/environments/delete-api-key.md)
-- [Backend: HTTP API: Environments: Rotate the webhook signing key](https://tenklo.dev/docs/reference/backend/http-api/environments/rotate-webhook-signing-key.md)
-- [Backend: HTTP API: Integrations: List all integrations](https://tenklo.dev/docs/reference/backend/http-api/integration/list.md)
-- [Backend: HTTP API: Integrations: Get an integration](https://tenklo.dev/docs/reference/backend/http-api/integration/get.md)
-- [Backend: HTTP API: Integrations: Create an integration](https://tenklo.dev/docs/reference/backend/http-api/integration/create.md)
-- [Backend: HTTP API: Integrations: Update an integration](https://tenklo.dev/docs/reference/backend/http-api/integration/update.md)
-- [Backend: HTTP API: Integrations: Delete an integration](https://tenklo.dev/docs/reference/backend/http-api/integration/delete.md)
-- [Backend: HTTP API: Connect: Create a connect session](https://tenklo.dev/docs/reference/backend/http-api/connect/sessions/create.md)
-- [Backend: HTTP API: Connect: Create a reconnect session](https://tenklo.dev/docs/reference/backend/http-api/connect/sessions/reconnect.md)
-- [Backend: HTTP API: Connect: Get a connect session](https://tenklo.dev/docs/reference/backend/http-api/connect/session/get.md)
-- [Backend: HTTP API: Connect: Delete a connect session](https://tenklo.dev/docs/reference/backend/http-api/connect/session/delete.md)
-- [Backend: HTTP API: Connections: Import a connection](https://tenklo.dev/docs/reference/backend/http-api/connections/post.md)
-- [Backend: HTTP API: Connections: List connections](https://tenklo.dev/docs/reference/backend/http-api/connections/list.md)
-- [Backend: HTTP API: Connections: Get connection & credentials](https://tenklo.dev/docs/reference/backend/http-api/connections/get.md)
-- [Backend: HTTP API: Connections: Patch a connection](https://tenklo.dev/docs/reference/backend/http-api/connections/patch.md)
-- [Backend: HTTP API: Connections: Set connection metadata](https://tenklo.dev/docs/reference/backend/http-api/connections/set-metadata.md)
-- [Backend: HTTP API: Connections: Edit connection metadata](https://tenklo.dev/docs/reference/backend/http-api/connections/update-metadata.md)
-- [Backend: HTTP API: Connections: Delete a connection](https://tenklo.dev/docs/reference/backend/http-api/connections/delete.md)
-- [Backend: HTTP API: Functions: List functions](https://tenklo.dev/docs/reference/backend/http-api/functions/list.md)
-- [Backend: HTTP API: Functions: Get a function](https://tenklo.dev/docs/reference/backend/http-api/functions/get.md)
-- [Backend: HTTP API: Functions: Get a function's source code](https://tenklo.dev/docs/reference/backend/http-api/functions/code.md)
-- [Backend: HTTP API: Functions: Delete a function](https://tenklo.dev/docs/reference/backend/http-api/functions/delete.md)
-- [Backend: HTTP API: Functions: Compile a function](https://tenklo.dev/docs/reference/backend/http-api/functions/compile.md)
-- [Backend: HTTP API: Functions: Dry run a function](https://tenklo.dev/docs/reference/backend/http-api/functions/dryruns-create.md)
-- [Backend: HTTP API: Functions: Get dry run results](https://tenklo.dev/docs/reference/backend/http-api/functions/dryruns-get.md)
-- [Backend: HTTP API: Functions: Create a function deployment](https://tenklo.dev/docs/reference/backend/http-api/functions/deployments-create.md)
-- [Backend: HTTP API: Functions: Get a function deployment](https://tenklo.dev/docs/reference/backend/http-api/functions/deployments-get.md)
-- [Backend: HTTP API: Functions: Get integration functions config](https://tenklo.dev/docs/reference/backend/http-api/scripts/config.md)
-- [Backend: HTTP API: Syncs: Get records](https://tenklo.dev/docs/reference/backend/http-api/sync/records-list.md)
-- [Backend: HTTP API: Syncs: Prune records](https://tenklo.dev/docs/reference/backend/http-api/sync/prune-records.md)
-- [Backend: HTTP API: Syncs: Trigger sync(s)](https://tenklo.dev/docs/reference/backend/http-api/sync/trigger.md)
-- [Backend: HTTP API: Syncs: Start sync(s)](https://tenklo.dev/docs/reference/backend/http-api/sync/start.md)
-- [Backend: HTTP API: Syncs: Pause sync(s)](https://tenklo.dev/docs/reference/backend/http-api/sync/pause.md)
-- [Backend: HTTP API: Syncs: Sync status](https://tenklo.dev/docs/reference/backend/http-api/sync/status.md)
-- [Backend: HTTP API: Syncs: Override sync connection frequency](https://tenklo.dev/docs/reference/backend/http-api/sync/update-connection-frequency.md)
-- [Backend: HTTP API: Syncs: Get environment variables](https://tenklo.dev/docs/reference/backend/http-api/sync/environment-variables.md)
-- [Backend: HTTP API: Syncs: Create sync variant](https://tenklo.dev/docs/reference/backend/http-api/sync/create-variant.md)
-- [Backend: HTTP API: Syncs: Delete sync variant](https://tenklo.dev/docs/reference/backend/http-api/sync/delete-variant.md)
-- [Backend: HTTP API: Actions: Trigger an action](https://tenklo.dev/docs/reference/backend/http-api/action/trigger.md)
-- [Backend: HTTP API: Proxy: Proxy - GET requests](https://tenklo.dev/docs/reference/backend/http-api/proxy/get.md)
-- [Backend: HTTP API: Proxy: Proxy - POST requests](https://tenklo.dev/docs/reference/backend/http-api/proxy/post.md)
-- [Backend: HTTP API: Proxy: Proxy - PUT requests](https://tenklo.dev/docs/reference/backend/http-api/proxy/put.md)
-- [Backend: HTTP API: Proxy: Proxy - PATCH requests](https://tenklo.dev/docs/reference/backend/http-api/proxy/patch.md)
-- [Backend: HTTP API: Proxy: Proxy - DELETE requests](https://tenklo.dev/docs/reference/backend/http-api/proxy/delete.md)
-- [Backend: HTTP API: Providers: List all providers](https://tenklo.dev/docs/reference/backend/http-api/providers/list.md)
-- [Backend: HTTP API: Providers: Get a provider](https://tenklo.dev/docs/reference/backend/http-api/providers/get.md)
-- [Backend: HTTP API: Providers: List provider templates](https://tenklo.dev/docs/reference/backend/http-api/providers/templates.md)
-- [Backend: Backend SDK: Node](https://tenklo.dev/docs/reference/backend/backend-sdk/node.md)
-- [Backend: Backend SDK: Python](https://tenklo.dev/docs/reference/backend/backend-sdk/python.md)
-- [Backend: Backend SDK: Java](https://tenklo.dev/docs/reference/backend/backend-sdk/java.md)
-- [Backend: Backend SDK: Ruby](https://tenklo.dev/docs/reference/backend/backend-sdk/ruby.md)
-- [Backend: Backend SDK: Go](https://tenklo.dev/docs/reference/backend/backend-sdk/go.md)
-- [Backend: Backend SDK: Rust](https://tenklo.dev/docs/reference/backend/backend-sdk/rust.md)
-- [Backend: Backend SDK: PHP](https://tenklo.dev/docs/reference/backend/backend-sdk/php.md)
-- [Backend: Management MCP](https://tenklo.dev/docs/reference/backend/management-mcp.md): Manage Tenklo from an MCP client.
-- [Functions: Functions CLI](https://tenklo.dev/docs/reference/functions/functions-cli.md): Full reference of the CLI available to implement, test & deploy Tenklo Functions.
-- [Functions: Functions SDK](https://tenklo.dev/docs/reference/functions/functions-sdk.md): Full reference of the SDK available in Tenklo Functions.
+- [Frontend: Frontend SDK](https://docs.tenklo.dev/reference/frontend/frontend-sdk.md)
+- [Backend: HTTP API: API keys](https://docs.tenklo.dev/reference/backend/http-api/api-keys.md): Manage Environment and Account API keys with scoped permissions for Tenklo.
+- [Backend: HTTP API: Authentication](https://docs.tenklo.dev/reference/backend/http-api/authentication.md)
+- [Backend: HTTP API: Rate limits](https://docs.tenklo.dev/reference/backend/http-api/rate-limits.md)
+- [Backend: HTTP API: Environments: List environments](https://docs.tenklo.dev/reference/backend/http-api/environments/list.md)
+- [Backend: HTTP API: Environments: Create an environment](https://docs.tenklo.dev/reference/backend/http-api/environments/create.md)
+- [Backend: HTTP API: Environments: Delete an environment](https://docs.tenklo.dev/reference/backend/http-api/environments/delete.md)
+- [Backend: HTTP API: Environments: List environment API keys](https://docs.tenklo.dev/reference/backend/http-api/environments/list-api-keys.md)
+- [Backend: HTTP API: Environments: Get an environment API key](https://docs.tenklo.dev/reference/backend/http-api/environments/get-api-key.md)
+- [Backend: HTTP API: Environments: Create an environment API key](https://docs.tenklo.dev/reference/backend/http-api/environments/create-api-key.md)
+- [Backend: HTTP API: Environments: Update an environment API key](https://docs.tenklo.dev/reference/backend/http-api/environments/update-api-key.md)
+- [Backend: HTTP API: Environments: Delete an environment API key](https://docs.tenklo.dev/reference/backend/http-api/environments/delete-api-key.md)
+- [Backend: HTTP API: Environments: Rotate the webhook signing key](https://docs.tenklo.dev/reference/backend/http-api/environments/rotate-webhook-signing-key.md)
+- [Backend: HTTP API: Integrations: List all integrations](https://docs.tenklo.dev/reference/backend/http-api/integration/list.md)
+- [Backend: HTTP API: Integrations: Get an integration](https://docs.tenklo.dev/reference/backend/http-api/integration/get.md)
+- [Backend: HTTP API: Integrations: Create an integration](https://docs.tenklo.dev/reference/backend/http-api/integration/create.md)
+- [Backend: HTTP API: Integrations: Update an integration](https://docs.tenklo.dev/reference/backend/http-api/integration/update.md)
+- [Backend: HTTP API: Integrations: Delete an integration](https://docs.tenklo.dev/reference/backend/http-api/integration/delete.md)
+- [Backend: HTTP API: Connect: Create a connect session](https://docs.tenklo.dev/reference/backend/http-api/connect/sessions/create.md)
+- [Backend: HTTP API: Connect: Create a reconnect session](https://docs.tenklo.dev/reference/backend/http-api/connect/sessions/reconnect.md)
+- [Backend: HTTP API: Connect: Get a connect session](https://docs.tenklo.dev/reference/backend/http-api/connect/session/get.md)
+- [Backend: HTTP API: Connect: Delete a connect session](https://docs.tenklo.dev/reference/backend/http-api/connect/session/delete.md)
+- [Backend: HTTP API: Connections: Import a connection](https://docs.tenklo.dev/reference/backend/http-api/connections/post.md)
+- [Backend: HTTP API: Connections: List connections](https://docs.tenklo.dev/reference/backend/http-api/connections/list.md)
+- [Backend: HTTP API: Connections: Get connection & credentials](https://docs.tenklo.dev/reference/backend/http-api/connections/get.md)
+- [Backend: HTTP API: Connections: Patch a connection](https://docs.tenklo.dev/reference/backend/http-api/connections/patch.md)
+- [Backend: HTTP API: Connections: Set connection metadata](https://docs.tenklo.dev/reference/backend/http-api/connections/set-metadata.md)
+- [Backend: HTTP API: Connections: Edit connection metadata](https://docs.tenklo.dev/reference/backend/http-api/connections/update-metadata.md)
+- [Backend: HTTP API: Connections: Delete a connection](https://docs.tenklo.dev/reference/backend/http-api/connections/delete.md)
+- [Backend: HTTP API: Functions: List functions](https://docs.tenklo.dev/reference/backend/http-api/functions/list.md)
+- [Backend: HTTP API: Functions: Get a function](https://docs.tenklo.dev/reference/backend/http-api/functions/get.md)
+- [Backend: HTTP API: Functions: Get a function's source code](https://docs.tenklo.dev/reference/backend/http-api/functions/code.md)
+- [Backend: HTTP API: Functions: Delete a function](https://docs.tenklo.dev/reference/backend/http-api/functions/delete.md)
+- [Backend: HTTP API: Functions: Compile a function](https://docs.tenklo.dev/reference/backend/http-api/functions/compile.md)
+- [Backend: HTTP API: Functions: Dry run a function](https://docs.tenklo.dev/reference/backend/http-api/functions/dryruns-create.md)
+- [Backend: HTTP API: Functions: Get dry run results](https://docs.tenklo.dev/reference/backend/http-api/functions/dryruns-get.md)
+- [Backend: HTTP API: Functions: Create a function deployment](https://docs.tenklo.dev/reference/backend/http-api/functions/deployments-create.md)
+- [Backend: HTTP API: Functions: Get a function deployment](https://docs.tenklo.dev/reference/backend/http-api/functions/deployments-get.md)
+- [Backend: HTTP API: Functions: Get integration functions config](https://docs.tenklo.dev/reference/backend/http-api/scripts/config.md)
+- [Backend: HTTP API: Syncs: Get records](https://docs.tenklo.dev/reference/backend/http-api/sync/records-list.md)
+- [Backend: HTTP API: Syncs: Prune records](https://docs.tenklo.dev/reference/backend/http-api/sync/prune-records.md)
+- [Backend: HTTP API: Syncs: Trigger sync(s)](https://docs.tenklo.dev/reference/backend/http-api/sync/trigger.md)
+- [Backend: HTTP API: Syncs: Start sync(s)](https://docs.tenklo.dev/reference/backend/http-api/sync/start.md)
+- [Backend: HTTP API: Syncs: Pause sync(s)](https://docs.tenklo.dev/reference/backend/http-api/sync/pause.md)
+- [Backend: HTTP API: Syncs: Sync status](https://docs.tenklo.dev/reference/backend/http-api/sync/status.md)
+- [Backend: HTTP API: Syncs: Override sync connection frequency](https://docs.tenklo.dev/reference/backend/http-api/sync/update-connection-frequency.md)
+- [Backend: HTTP API: Syncs: Get environment variables](https://docs.tenklo.dev/reference/backend/http-api/sync/environment-variables.md)
+- [Backend: HTTP API: Syncs: Create sync variant](https://docs.tenklo.dev/reference/backend/http-api/sync/create-variant.md)
+- [Backend: HTTP API: Syncs: Delete sync variant](https://docs.tenklo.dev/reference/backend/http-api/sync/delete-variant.md)
+- [Backend: HTTP API: Actions: Trigger an action](https://docs.tenklo.dev/reference/backend/http-api/action/trigger.md)
+- [Backend: HTTP API: Proxy: Proxy - GET requests](https://docs.tenklo.dev/reference/backend/http-api/proxy/get.md)
+- [Backend: HTTP API: Proxy: Proxy - POST requests](https://docs.tenklo.dev/reference/backend/http-api/proxy/post.md)
+- [Backend: HTTP API: Proxy: Proxy - PUT requests](https://docs.tenklo.dev/reference/backend/http-api/proxy/put.md)
+- [Backend: HTTP API: Proxy: Proxy - PATCH requests](https://docs.tenklo.dev/reference/backend/http-api/proxy/patch.md)
+- [Backend: HTTP API: Proxy: Proxy - DELETE requests](https://docs.tenklo.dev/reference/backend/http-api/proxy/delete.md)
+- [Backend: HTTP API: Providers: List all providers](https://docs.tenklo.dev/reference/backend/http-api/providers/list.md)
+- [Backend: HTTP API: Providers: Get a provider](https://docs.tenklo.dev/reference/backend/http-api/providers/get.md)
+- [Backend: HTTP API: Providers: List provider templates](https://docs.tenklo.dev/reference/backend/http-api/providers/templates.md)
+- [Backend: Backend SDK: Node](https://docs.tenklo.dev/reference/backend/backend-sdk/node.md)
+- [Backend: Backend SDK: Python](https://docs.tenklo.dev/reference/backend/backend-sdk/python.md)
+- [Backend: Backend SDK: Java](https://docs.tenklo.dev/reference/backend/backend-sdk/java.md)
+- [Backend: Backend SDK: Ruby](https://docs.tenklo.dev/reference/backend/backend-sdk/ruby.md)
+- [Backend: Backend SDK: Go](https://docs.tenklo.dev/reference/backend/backend-sdk/go.md)
+- [Backend: Backend SDK: Rust](https://docs.tenklo.dev/reference/backend/backend-sdk/rust.md)
+- [Backend: Backend SDK: PHP](https://docs.tenklo.dev/reference/backend/backend-sdk/php.md)
+- [Backend: Management MCP](https://docs.tenklo.dev/reference/backend/management-mcp.md): Manage Tenklo from an MCP client.
+- [Functions: Functions CLI](https://docs.tenklo.dev/reference/functions/functions-cli.md): Full reference of the CLI available to implement, test & deploy Tenklo Functions.
+- [Functions: Functions SDK](https://docs.tenklo.dev/reference/functions/functions-sdk.md): Full reference of the SDK available in Tenklo Functions.
 
 ## Overview
 
-- [Explore APIs & integrations](https://tenklo.dev/docs/integrations/overview.md)
-- [API configuration (`providers.yaml`)](https://tenklo.dev/docs/integrations/api-configuration.md)
-- [Contribute or request an API](https://tenklo.dev/docs/integrations/contribute-or-request-api.md): Add support for a new API to Tenklo
+- [Explore APIs & integrations](https://docs.tenklo.dev/integrations/overview.md)
+- [API configuration (`providers.yaml`)](https://docs.tenklo.dev/integrations/api-configuration.md)
+- [Contribute or request an API](https://docs.tenklo.dev/integrations/contribute-or-request-api.md): Add support for a new API to Tenklo
 
 ## APIs and integrations
 
-- [API catalog](https://tenklo.dev/docs/api-catalog.txt): 1074 provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.
+- [API catalog](https://docs.tenklo.dev/api-catalog.txt): 1074 provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.
 - Provider-specific pages are intentionally not expanded here so core Tenklo guides remain easy for agents to find.
 
 ## Resources
@@ -160,5 +160,5 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 
 ## Optional
 
-- [Changelog](https://tenklo.dev/docs/updates/changelog.md): Important developer & product updates, including deprecations & breaking changes.
+- [Changelog](https://docs.tenklo.dev/updates/changelog.md): Important developer & product updates, including deprecations & breaking changes.
 

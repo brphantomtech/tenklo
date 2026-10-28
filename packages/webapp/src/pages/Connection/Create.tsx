@@ -163,7 +163,7 @@ export const ConnectionCreate: React.FC = () => {
                         <h1 className="text-2xl">Embed in your app</h1>
                         <a
                             className="transition-all block border rounded-lg border-border-muted p-7 group hover:border-border-strong focus:border-border-strong focus:outline-0"
-                            href="https://tenklo.dev/docs/guides/auth/auth-guide"
+                            href="https://docs.tenklo.dev/guides/auth/auth-guide"
                             target="_blank"
                             rel="noreferrer"
                         >

@@ -8,7 +8,7 @@ import type { CallToolResult } from '@modelcontextprotocol/client';
 import type { Result } from '@nangohq/utils';
 
 const logger = getLogger('Server.ManagementMcp.DocsClient');
-const docsMcpUrl = new URL('https://tenklo.dev/docs/mcp');
+const docsMcpUrl = new URL('https://docs.tenklo.dev/mcp');
 const docsMcpTimeoutMs = 60_000;
 const docsMcpDirectAccessMessage = `Connect to the Tenklo documentation MCP directly at ${docsMcpUrl.toString()}`;
 

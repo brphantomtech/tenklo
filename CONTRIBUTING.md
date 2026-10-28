@@ -3,7 +3,7 @@
 Thanks for your interest in contributing to Tenklo. We only accept external contributions of two types:
 
 - **Security fixes.** Please don't open a public issue or pull request. Report the vulnerability privately as described in our [security policy](SECURITY.md).
-- **New API support.** Please follow the [new API contribution guide](https://tenklo.dev/docs/integrations/contribute-or-request-api) and we'll take it from there.
+- **New API support.** Please follow the [new API contribution guide](https://docs.tenklo.dev/integrations/contribute-or-request-api) and we'll take it from there.
 
 We don't accept or review external pull requests for anything else, including bug fixes, new features, and improvements to existing features and APIs. We'd still love to hear from you:
 

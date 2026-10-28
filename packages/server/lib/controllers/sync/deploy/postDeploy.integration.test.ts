@@ -85,7 +85,7 @@ describe(`POST ${endpoint}`, () => {
                     {
                         code: 'custom',
                         message:
-                            'The `nango.yaml` configuration file is no longer supported. See the migration guide to Zero YAML: https://tenklo.dev/docs/guides/platform/migrations/migrate-to-zero-yaml',
+                            'The `nango.yaml` configuration file is no longer supported. See the migration guide to Zero YAML: https://docs.tenklo.dev/guides/platform/migrations/migrate-to-zero-yaml',
                         path: ['nangoYamlBody']
                     }
                 ]

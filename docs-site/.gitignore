@@ -1,0 +1,14 @@
+# generated from ../docs by scripts/prepare-content.mjs
+/content/
+/public/images/
+/public/logo/
+/public/favicon-*.svg
+/public/*.txt
+
+# build output
+/.next/
+/.source/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+node_modules/

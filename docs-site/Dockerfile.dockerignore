@@ -1,0 +1,14 @@
+# Used instead of the root .dockerignore when building with -f docs-site/Dockerfile.
+# Only docs/ (the content) and docs-site/ (the app) are sent to the builder.
+*
+!docs/
+!docs-site/
+docs/**/node_modules
+docs-site/node_modules
+docs-site/.next
+docs-site/.source
+docs-site/content
+docs-site/public/images
+docs-site/public/logo
+**/.env
+**/.DS_Store

@@ -432,7 +432,7 @@ export const ConnectionList = () => {
                             <p className="text-text-secondary text-body-medium-regular">
                                 Connections can be created by using{' '}
                                 <Button asChild variant="link-accent">
-                                    <a href="https://tenklo.dev/docs/guides/auth/auth-guide" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://docs.tenklo.dev/guides/auth/auth-guide" target="_blank" rel="noopener noreferrer">
                                         Tenklo Connect
                                         <ExternalLink />
                                     </a>

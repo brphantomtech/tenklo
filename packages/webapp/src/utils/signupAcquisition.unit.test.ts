@@ -62,7 +62,7 @@ describe('signup acquisition', () => {
     });
 
     it('keeps direct signup UTMs without treating Tenklo docs as an external referrer', () => {
-        expect(acquisitionFromInitialInfo({ u: 'https://app.tenklo.dev/signup/?utm_source=docs', r: 'https://tenklo.dev/docs' })).toEqual({
+        expect(acquisitionFromInitialInfo({ u: 'https://app.tenklo.dev/signup/?utm_source=docs', r: 'https://docs.tenklo.dev' })).toEqual({
             acquisition_utm_source: 'docs',
             acquisition_landing_path: '/signup/'
         });

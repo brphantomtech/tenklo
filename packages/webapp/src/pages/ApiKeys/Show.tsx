@@ -245,7 +245,7 @@ export const AccountApiKeysShow: React.FC = () => {
                         </span>
                     </AlertDescription>
                     <AlertActions>
-                        <AlertButtonLink to="https://tenklo.dev/docs/reference/backend/http-api/api-keys" target="_blank" rel="noopener noreferrer">
+                        <AlertButtonLink to="https://docs.tenklo.dev/reference/backend/http-api/api-keys" target="_blank" rel="noopener noreferrer">
                             Learn more
                             <ExternalLink />
                         </AlertButtonLink>

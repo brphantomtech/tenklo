@@ -15,7 +15,7 @@ export const AppHeader: React.FC = () => {
             <Breadcrumbs />
             <div className="flex justify-end gap-2">
                 <IconButton asChild variant="outline" size="md" label="Docs">
-                    <a href="https://tenklo.dev/docs" target="_blank" rel="noreferrer">
+                    <a href="https://docs.tenklo.dev" target="_blank" rel="noreferrer">
                         <BookOpen />
                     </a>
                 </IconButton>

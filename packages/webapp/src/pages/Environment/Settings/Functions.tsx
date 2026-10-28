@@ -81,7 +81,7 @@ export const Functions: React.FC = () => {
                 <div className="inline-flex items-center gap-2">
                     Environment variables
                     <DocsIconLink
-                        href="https://tenklo.dev/docs/reference/functions/functions-sdk#environment-variables"
+                        href="https://docs.tenklo.dev/reference/functions/functions-sdk#environment-variables"
                         label="Environment variables documentation"
                     />
                 </div>

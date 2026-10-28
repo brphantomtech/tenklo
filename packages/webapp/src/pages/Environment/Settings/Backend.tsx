@@ -40,7 +40,7 @@ export const BackendSettings: React.FC = () => {
                             <Link
                                 className="flex gap-2 items-center"
                                 target="_blank"
-                                to="https://tenklo.dev/docs/guides/auth/auth-guide#custom-oauth-callback-url-optional"
+                                to="https://docs.tenklo.dev/guides/auth/auth-guide#custom-oauth-callback-url-optional"
                             >
                                 <ExternalLink strokeWidth={1} size={18} />
                             </Link>
@@ -82,7 +82,7 @@ export const BackendSettings: React.FC = () => {
                             <AlertActions>
                                 <AlertButton asChild>
                                     <a
-                                        href="https://tenklo.dev/docs/guides/auth/auth-guide#custom-oauth-callback-url-optional"
+                                        href="https://docs.tenklo.dev/guides/auth/auth-guide#custom-oauth-callback-url-optional"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

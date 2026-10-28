@@ -51,7 +51,7 @@ export const DeprecatedSettings: React.FC = () => {
                     <div className="flex gap-1.5">
                         Public key
                         <DocsIconLink
-                            href="https://tenklo.dev/docs/guides/platform/migrations/migrate-from-public-key"
+                            href="https://docs.tenklo.dev/guides/platform/migrations/migrate-from-public-key"
                             label="Public key migration documentation"
                         />
                     </div>
@@ -65,7 +65,7 @@ export const DeprecatedSettings: React.FC = () => {
                 label={
                     <div className="flex gap-1.5">
                         HMAC
-                        <DocsIconLink href="https://tenklo.dev/docs/guides/platform/migrations/migrate-from-public-key" label="HMAC migration documentation" />
+                        <DocsIconLink href="https://docs.tenklo.dev/guides/platform/migrations/migrate-from-public-key" label="HMAC migration documentation" />
                     </div>
                 }
             >
