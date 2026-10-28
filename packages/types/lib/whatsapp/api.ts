@@ -37,7 +37,7 @@ export type WhatsAppChannelStatus = 'CONNECTING' | 'QR_PENDING' | 'CONNECTED' | 
 export interface WhatsAppConnectionStatus {
     status: WhatsAppChannelStatus | 'UNKNOWN';
     reason: string | null;
-    account: { externalId: string; phone?: string | undefined; name?: string | undefined } | null;
+    account: { externalId: string; phone?: string | undefined; name?: string | undefined; username?: string | undefined } | null;
     sendRestriction: { active: boolean; until?: string | undefined; enforcementType?: string | undefined } | null;
     updatedAt: string | null;
 }

@@ -42,7 +42,7 @@ export const postPublicWhatsAppMedia = asyncWrapperWithEnvironment<PostPublicWha
 
     const fileName = query.data.file_name;
     const objectKey = outboundMediaKey({ tenantId: environment.uuid, sessionId: resolved.value.sessionId, name: randomUUID() });
-    const stored = await putGatewayMedia({ objectKey, body, contentType: mimeType });
+    const stored = await putGatewayMedia({ objectKey, body, contentType: mimeType, gateway: resolved.value.gateway });
     if (stored.isErr()) {
         if (stored.error instanceof GatewayMediaTooLargeError) {
             res.status(413).send({ error: { code: 'media_too_large', message: 'The file is larger than the WhatsApp gateway accepts' } });

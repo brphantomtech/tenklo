@@ -839,6 +839,10 @@ const ENVS_SHAPE = z.object({
     WHATSAPP_GATEWAY_URL: z.url().optional(),
     // Shared with the gateway: authenticates the commands sent to it and the events it sends back.
     WHATSAPP_GATEWAY_SECRET: z.string().min(32).optional(),
+    // Telegram gateway (packages/telegram-gateway), for the telegram-channel integration. Unset disables it.
+    TELEGRAM_GATEWAY_URL: z.url().optional(),
+    // Shared with the gateway: authenticates the commands and events, and seals the bot tokens sent to it.
+    TELEGRAM_GATEWAY_SECRET: z.string().min(32).optional(),
 
     // Internal service auth (orchestrator / jobs). All optional so a default image is a no-op.
     NANGO_INTERNAL_AUTH_TOKEN: z.string().optional(),

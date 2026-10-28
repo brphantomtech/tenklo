@@ -16822,6 +16822,7 @@ Use these slugs to construct provider-specific docs URLs only when needed.
 | `teamtailor` | Teamtailor | API_KEY | [docs](https://tenklo.dev/docs/integrations/all/teamtailor.md) |  |  | ats |
 | `teamwork` | Teamwork | OAUTH2 | [docs](https://tenklo.dev/docs/integrations/all/teamwork.md) |  |  | productivity, ticketing |
 | `telegram` | Telegram | API_KEY | [docs](https://tenklo.dev/docs/api-integrations/telegram.md) | [connect](https://tenklo.dev/docs/api-integrations/telegram/connect.md) |  | communication |
+| `telegram-channel` | Telegram (messaging channel) | API_KEY | [docs](https://tenklo.dev/docs/api-integrations/telegram-channel.md) |  |  | communication |
 | `tempo` | Tempo | OAUTH2 | [docs](https://tenklo.dev/docs/api-integrations/tempo.md) | [connect](https://tenklo.dev/docs/api-integrations/tempo/connect.md) | [setup](https://tenklo.dev/docs/api-integrations/tempo/how-to-register-your-own-tempo-api-oauth-app.md) | productivity |
 | `tenable` | Tenable | BASIC | [docs](https://tenklo.dev/docs/api-integrations/tenable.md) | [connect](https://tenklo.dev/docs/api-integrations/tenable/connect.md) |  | other |
 | `terraform` | Terraform | API_KEY | [docs](https://tenklo.dev/docs/integrations/all/terraform.md) | [connect](https://tenklo.dev/docs/integrations/all/terraform/connect.md) |  | dev-tools |

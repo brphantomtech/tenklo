@@ -61,7 +61,7 @@ export const postPublicWhatsAppMessage = asyncWrapperWithEnvironment<PostPublicW
     }
 
     const sent = await sendGatewayCommand(
-        { tenantId: environment.uuid, channelId: resolved.value.sessionId },
+        { tenantId: environment.uuid, channelId: resolved.value.sessionId, gateway: resolved.value.gateway },
         { type: 'message.send', payload: { messageId, to, content } }
     );
     if (sent.isErr()) {

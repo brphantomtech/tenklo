@@ -4,13 +4,14 @@ import { accountService, configService, connectionService, getProvider } from '@
 import { Err, Ok, zodErrorToHTTP } from '@nangohq/utils';
 
 import { connectionIdSchema, providerConfigKeySchema } from '../helpers/validation.js';
-import { isWhatsAppGatewayEnabled, WHATSAPP_PROVIDER } from './gateway.js';
+import { GATEWAY_OF_PROVIDER, gatewayConfig } from './gateway.js';
 
+import type { GatewayKind } from './gateway.js';
 import type { Config } from '@nangohq/shared';
 import type { DBConnectionDecrypted, DBEnvironment, DBTeam, Provider } from '@nangohq/types';
 import type { Result } from '@nangohq/utils';
 
-/** A whatsapp-web connection with everything the events and the public API need around it. */
+/** A channel connection (whatsapp-web or telegram-channel) with everything the events and the public API need around it. */
 export interface WhatsAppConnection {
     account: DBTeam;
     environment: DBEnvironment;
@@ -18,6 +19,8 @@ export interface WhatsAppConnection {
     config: Config;
     provider: Provider;
     sessionId: string;
+    /** The gateway that holds its session. */
+    gateway: GatewayKind;
 }
 
 /** An HTTP error the public API answers with. */
@@ -37,7 +40,7 @@ const headersSchema = z.object({
     'connection-id': connectionIdSchema
 });
 
-/** Resolves the connection a public /whatsapp request is about, from its Connection-Id and Provider-Config-Key headers. */
+/** Resolves the connection a public /channels (or /whatsapp) request is about, from its Connection-Id and Provider-Config-Key headers. */
 export async function resolveConnectionFromHeaders({
     headers,
     account,
@@ -47,10 +50,6 @@ export async function resolveConnectionFromHeaders({
     account: DBTeam;
     environment: DBEnvironment;
 }): Promise<Result<WhatsAppConnection, WhatsAppApiError>> {
-    if (!isWhatsAppGatewayEnabled()) {
-        return Err(new WhatsAppApiError(503, 'whatsapp_gateway_unavailable', 'The WhatsApp gateway is not configured on this Tenklo instance'));
-    }
-
     const val = headersSchema.safeParse(headers);
     if (!val.success) {
         return Err(new WhatsAppApiError(400, 'invalid_headers', undefined, zodErrorToHTTP(val.error)));
@@ -66,11 +65,17 @@ export async function resolveConnectionFromHeaders({
 
     const provider = getProvider(config.provider);
     const sessionId: unknown = found.response.connection_config['session_id'];
-    if (config.provider !== WHATSAPP_PROVIDER || !provider || typeof sessionId !== 'string') {
-        return Err(new WhatsAppApiError(400, 'invalid_connection', `The connection is not a ${WHATSAPP_PROVIDER} connection`));
+    const gateway = GATEWAY_OF_PROVIDER[config.provider];
+    if (!gateway || !provider || typeof sessionId !== 'string') {
+        return Err(
+            new WhatsAppApiError(400, 'invalid_connection', `The connection is not a messaging channel (${Object.keys(GATEWAY_OF_PROVIDER).join(', ')})`)
+        );
+    }
+    if (!gatewayConfig(gateway)) {
+        return Err(new WhatsAppApiError(503, 'whatsapp_gateway_unavailable', `The ${gateway} gateway is not configured on this Tenklo instance`));
     }
 
-    return Ok({ account, environment, connection: found.response, config, provider, sessionId });
+    return Ok({ account, environment, connection: found.response, config, provider, sessionId, gateway });
 }
 
 const CACHE_TTL_MS = 30_000;
@@ -117,11 +122,12 @@ async function lookupConnectionBySession({ tenantId, sessionId }: { tenantId: st
 
     const config = await configService.getProviderConfig(connection.provider_config_key, environment.id);
     const provider = config ? getProvider(config.provider) : null;
-    if (!config || !provider || config.provider !== WHATSAPP_PROVIDER) {
+    const gateway = config ? GATEWAY_OF_PROVIDER[config.provider] : undefined;
+    if (!config || !provider || !gateway) {
         return null;
     }
 
-    return { account, environment, connection, config, provider, sessionId };
+    return { account, environment, connection, config, provider, sessionId, gateway };
 }
 
 /** Media of a connection's session live under these prefixes; nothing outside them is served or sent for it. */

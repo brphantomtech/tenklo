@@ -12,6 +12,7 @@ required=(
     TENKLO_API_URL TENKLO_APP_URL TENKLO_CONNECT_URL
     DB_PASSWORD ENCRYPTION_KEY DASHBOARD_USERNAME DASHBOARD_PASSWORD
     WHATSAPP_GATEWAY_SECRET WHATSAPP_SESSION_ENCRYPTION_KEY WHATSAPP_S3_ACCESS_KEY WHATSAPP_S3_SECRET_KEY
+    TELEGRAM_GATEWAY_SECRET
 )
 missing=()
 for name in "${required[@]}"; do
@@ -59,7 +60,7 @@ echo "::group::Roll out"
 # The shell's value would win over the .env one, so a stale export can't pin the old image.
 export TENKLO_IMAGE_TAG=$SHA
 docker compose up -d --remove-orphans
-for container in tenklo-server tenklo-whatsapp; do
+for container in tenklo-server tenklo-whatsapp tenklo-telegram; do
     running=$(docker inspect --format '{{.Config.Image}}' "$container")
     if [ "$running" != "tenklo/server:$SHA" ]; then
         echo "::error::$container runs $running, not tenklo/server:$SHA"
@@ -83,20 +84,23 @@ if [ "$healthy" != true ]; then
     docker logs --tail 50 tenklo-server
     exit 1
 fi
-healthy=false
-for _ in $(seq 1 30); do
-    if docker exec tenklo-whatsapp node -e "fetch('http://localhost:3010/health/ready').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"; then
-        healthy=true
-        break
+for gateway in whatsapp:3010 telegram:3011; do
+    container="tenklo-${gateway%%:*}"
+    healthy=false
+    for _ in $(seq 1 30); do
+        if docker exec "$container" node -e "fetch('http://localhost:${gateway##*:}/health/ready').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"; then
+            healthy=true
+            break
+        fi
+        sleep 2
+    done
+    if [ "$healthy" != true ]; then
+        echo "::error::$container is not ready"
+        docker logs --tail 50 "$container"
+        exit 1
     fi
-    sleep 2
 done
-if [ "$healthy" != true ]; then
-    echo "::error::the whatsapp-gateway is not ready"
-    docker logs --tail 50 tenklo-whatsapp
-    exit 1
-fi
-echo "server and whatsapp-gateway are healthy"
+echo "server and gateways are healthy"
 echo "::endgroup::"
 
 echo "::group::WhatsApp media bucket"

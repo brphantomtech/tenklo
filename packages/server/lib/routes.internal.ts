@@ -7,7 +7,7 @@ import { getSharedCredentialsProvider } from './controllers/sharedCredentials/id
 import { patchSharedCredentialsProvider } from './controllers/sharedCredentials/id/patchSharedCredential.js';
 import { postSharedCredentialsProvider } from './controllers/sharedCredentials/postSharedCredential.js';
 import { getUsersProvider } from './controllers/users/getUsersProvider.js';
-import { postInternalWhatsAppEvent } from './controllers/whatsapp/postInternalEvents.js';
+import { postInternalTelegramEvent, postInternalWhatsAppEvent } from './controllers/whatsapp/postInternalEvents.js';
 import authMiddleware from './middleware/access.middleware.js';
 import { rateLimiterMiddleware } from './middleware/ratelimit.middleware.js';
 
@@ -30,5 +30,6 @@ internalApi.route('/shared-credentials/:id').patch(interalApiAuth, patchSharedCr
 
 internalApi.route('/users').get(interalApiAuth, getUsersProvider);
 
-// Authenticated by WHATSAPP_GATEWAY_SECRET, not the internal API key: the gateway only holds that secret.
+// Authenticated by each gateway's secret (WHATSAPP_ / TELEGRAM_GATEWAY_SECRET), not the internal API key: a gateway only holds its own.
 internalApi.route('/whatsapp/events').post(rateLimiterMiddleware, postInternalWhatsAppEvent);
+internalApi.route('/telegram/events').post(rateLimiterMiddleware, postInternalTelegramEvent);

@@ -57,10 +57,12 @@ services:
             - LOG_LEVEL=info
             - WHATSAPP_GATEWAY_URL=http://tenklo-whatsapp:3010
             - WHATSAPP_GATEWAY_SECRET=${WHATSAPP_GATEWAY_SECRET}
+            - TELEGRAM_GATEWAY_URL=http://tenklo-telegram:3011
+            - TELEGRAM_GATEWAY_SECRET=${TELEGRAM_GATEWAY_SECRET}
         # npm: the Nginx Proxy Manager network, which publishes the api, app and connect hosts.
         networks: [tenklo, npm]
 
-    # S3-compatible storage for the WhatsApp media. Internal only.
+    # S3-compatible storage for the WhatsApp and Telegram media. Internal only.
     tenklo-s3:
         image: rustfs/rustfs:1.0.3
         container_name: tenklo-s3
@@ -100,6 +102,35 @@ services:
             - WHATSAPP_S3_ACCESS_KEY=${WHATSAPP_S3_ACCESS_KEY}
             - WHATSAPP_S3_SECRET_KEY=${WHATSAPP_S3_SECRET_KEY}
             - WHATSAPP_S3_BUCKET=whatsapp-media
+            - LOG_LEVEL=info
+        networks: [tenklo]
+
+    # Runs the bots of the telegram-channel integration. Internal only: the server calls it.
+    tenklo-telegram:
+        image: tenklo/server:${TENKLO_IMAGE_TAG}
+        container_name: tenklo-telegram
+        restart: always
+        command: ['node', 'packages/telegram-gateway/dist/app.js']
+        depends_on:
+            tenklo-db:
+                condition: service_healthy
+            tenklo-s3:
+                condition: service_started
+        environment:
+            - NANGO_DB_USER=tenklo
+            - NANGO_DB_PASSWORD=${DB_PASSWORD}
+            - NANGO_DB_HOST=tenklo-db
+            - NANGO_DB_NAME=tenklo
+            - NANGO_DB_SSL=false
+            - NANGO_REDIS_URL=redis://tenklo-redis:6379
+            - TELEGRAM_GATEWAY_PORT=3011
+            - TELEGRAM_GATEWAY_SECRET=${TELEGRAM_GATEWAY_SECRET}
+            - TELEGRAM_GATEWAY_EVENTS_URL=http://tenklo-server:3003/internal/telegram/events
+            # The media share the WhatsApp gateway's bucket: the keys are per tenant and channel.
+            - TELEGRAM_S3_ENDPOINT=http://tenklo-s3:9000
+            - TELEGRAM_S3_ACCESS_KEY=${WHATSAPP_S3_ACCESS_KEY}
+            - TELEGRAM_S3_SECRET_KEY=${WHATSAPP_S3_SECRET_KEY}
+            - TELEGRAM_S3_BUCKET=whatsapp-media
             - LOG_LEVEL=info
         networks: [tenklo]
 

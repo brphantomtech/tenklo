@@ -9,7 +9,7 @@ import { forwardWebhook } from '@nangohq/webhooks';
 
 import { connectionRefreshFailed, connectionRefreshSuccess } from '../hooks/hooks.js';
 import { findConnectionBySession } from './connections.js';
-import { sendGatewayCommand } from './gateway.js';
+import { GATEWAY_OF_CHANNEL_TYPE, sendGatewayCommand } from './gateway.js';
 import { getPairing, savePairing, updatePairing } from './pairing.js';
 import { saveSessionStatus } from './status.js';
 
@@ -27,6 +27,7 @@ export const gatewayEventSchema = z.looseObject({
     eventId: z.uuid(),
     tenantId: z.uuid(),
     channelId: z.uuid(),
+    channelType: z.string().optional(),
     type: z.string().min(1),
     providerEventId: z.string().min(1),
     payload: z.looseObject({}),
@@ -46,14 +47,14 @@ const qrPayload = z.object({ qr: z.string().min(1), expiresAt: z.string().option
 const statusPayload = z.object({
     status: z.enum(['CONNECTING', 'QR_PENDING', 'CONNECTED', 'RECONNECTING', 'DISCONNECTED', 'BANNED']),
     reason: z.string().optional(),
-    account: z.object({ externalId: z.string(), phone: z.string().optional(), name: z.string().optional() }).optional(),
+    account: z.object({ externalId: z.string(), phone: z.string().optional(), name: z.string().optional(), username: z.string().optional() }).optional(),
     sendRestriction: z.object({ active: z.boolean(), until: z.string().optional(), enforcementType: z.string().optional() }).optional()
 });
 type StatusPayload = z.infer<typeof statusPayload>;
 
 /**
  * Routes an event of the gateway. A session is either pairing (the Connect UI follows it), behind a connection (its
- * events go to the customer's webhooks), or neither: an orphan, logged out so it stops holding a WhatsApp session.
+ * events go to the customer's webhooks), or neither: an orphan, logged out so it stops holding a WhatsApp session or polling a bot.
  */
 export async function handleGatewayEvent(event: GatewayEvent): Promise<void> {
     const stored = await getPairing(event.channelId);
@@ -236,8 +237,9 @@ async function logOutOrphan(event: GatewayEvent): Promise<void> {
     }
 
     logger.info(`Logging out orphan WhatsApp session ${event.channelId}`);
+    const gateway = (event.channelType && GATEWAY_OF_CHANNEL_TYPE[event.channelType]) || 'whatsapp';
     const sent = await sendGatewayCommand(
-        { tenantId: event.tenantId, channelId: event.channelId },
+        { tenantId: event.tenantId, channelId: event.channelId, gateway },
         { type: 'channel.disconnect', payload: { clearSession: true } }
     );
     if (sent.isErr()) {

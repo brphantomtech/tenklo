@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
     connectionRefreshSuccess: vi.fn()
 }));
 vi.mock('./connections.js', () => ({ findConnectionBySession: mocks.findConnectionBySession }));
-vi.mock('./gateway.js', () => ({ sendGatewayCommand: mocks.sendGatewayCommand }));
+vi.mock('./gateway.js', () => ({ sendGatewayCommand: mocks.sendGatewayCommand, GATEWAY_OF_CHANNEL_TYPE: { WHATSAPP_LIB: 'whatsapp', TELEGRAM: 'telegram' } }));
 vi.mock('@nangohq/webhooks', () => ({ forwardWebhook: mocks.forwardWebhook }));
 vi.mock('../hooks/hooks.js', () => ({ connectionRefreshFailed: mocks.connectionRefreshFailed, connectionRefreshSuccess: mocks.connectionRefreshSuccess }));
 vi.mock('@nangohq/database', () => ({ default: { knex: {} } }));
@@ -220,7 +220,18 @@ describe('handleGatewayEvent', () => {
 
             expect(mocks.sendGatewayCommand).toHaveBeenCalledOnce();
             expect(mocks.sendGatewayCommand).toHaveBeenCalledWith(
-                { tenantId: TENANT, channelId: sessionId },
+                { tenantId: TENANT, channelId: sessionId, gateway: 'whatsapp' },
+                { type: 'channel.disconnect', payload: { clearSession: true } }
+            );
+        });
+
+        it("logs a bot out through the telegram gateway, from the event's channel type", async () => {
+            const sessionId = randomUUID();
+
+            await handleGatewayEvent({ ...event(sessionId, 'channel.status', { status: 'CONNECTED' }), channelType: 'TELEGRAM' });
+
+            expect(mocks.sendGatewayCommand).toHaveBeenCalledWith(
+                { tenantId: TENANT, channelId: sessionId, gateway: 'telegram' },
                 { type: 'channel.disconnect', payload: { clearSession: true } }
             );
             expect(mocks.forwardWebhook).not.toHaveBeenCalled();
