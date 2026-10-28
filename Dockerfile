@@ -53,6 +53,7 @@ COPY packages/audit/package.json ./packages/audit/package.json
 COPY packages/hosted-telemetry/package.json ./packages/hosted-telemetry/package.json
 COPY packages/migrations/package.json ./packages/migrations/package.json
 COPY packages/whatsapp-gateway/package.json ./packages/whatsapp-gateway/package.json
+COPY packages/telegram-gateway/package.json ./packages/telegram-gateway/package.json
 COPY package*.json  ./
 
 # Install every dependencies

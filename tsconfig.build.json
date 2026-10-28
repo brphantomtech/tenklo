@@ -129,6 +129,9 @@
         },
         {
             "path": "packages/whatsapp-gateway"
+        },
+        {
+            "path": "packages/telegram-gateway"
         }
     ]
 }
