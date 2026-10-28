@@ -39,7 +39,7 @@ export const getPublicWhatsAppMedia = asyncWrapperWithEnvironment<GetPublicWhats
         return;
     }
 
-    const opened = await openGatewayMedia(objectKey);
+    const opened = await openGatewayMedia(objectKey, resolved.value.gateway);
     if (opened.isErr()) {
         logger.error('failed to read a WhatsApp media', opened.error);
         sendGatewayUnavailable(res);

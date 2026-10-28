@@ -21,7 +21,9 @@ import { sendAuth as sendAuthWebhook } from '@nangohq/webhooks';
 
 import { envs } from '../env.js';
 import { slackService } from '../services/slack.js';
+import { connectTelegramChannel } from '../telegram/channel.js';
 import { getOrchestrator } from '../utils/utils.js';
+import { TELEGRAM_PROVIDER } from '../whatsapp/gateway.js';
 import executeVerificationScript from './connection/credentials-verification-script.js';
 import { postConnectionCreation } from './connection/on/post-connection-creation.js';
 import postConnection from './connection/post-connection.js';
@@ -106,6 +108,14 @@ export const connectionCreated = async (
         await errorNotificationService.auth.clear({ connection_id: connection.id });
     } catch (err) {
         report(new Error('connection_created_clear_auth_error_failed', { cause: err }), { id: connection.id });
+    }
+
+    // A new bot, or a new token for one: the telegram-gateway (re)starts it before the customer hears of the connection.
+    if (providerConfig.provider === TELEGRAM_PROVIDER) {
+        const started = await connectTelegramChannel({ connection, environment });
+        if (started.isErr()) {
+            report(new Error('telegram_channel_connect_failed', { cause: started.error }), { id: connection.id });
+        }
     }
 
     if (options.runPostConnectionScript === true) {

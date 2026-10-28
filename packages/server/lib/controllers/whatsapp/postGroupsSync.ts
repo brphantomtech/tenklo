@@ -24,7 +24,10 @@ export const postPublicWhatsAppGroupsSync = asyncWrapperWithEnvironment<PostPubl
         return;
     }
 
-    const sent = await sendGatewayCommand({ tenantId: environment.uuid, channelId: resolved.value.sessionId }, { type: 'groups.sync', payload: {} });
+    const sent = await sendGatewayCommand(
+        { tenantId: environment.uuid, channelId: resolved.value.sessionId, gateway: resolved.value.gateway },
+        { type: 'groups.sync', payload: {} }
+    );
     if (sent.isErr()) {
         logger.error('failed to ask the gateway for the WhatsApp groups', sent.error);
         sendGatewayUnavailable(res);

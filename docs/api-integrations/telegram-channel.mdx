@@ -1,0 +1,65 @@
+---
+title: 'Telegram (messaging channel)'
+sidebarTitle: 'Telegram (messaging channel)'
+description: 'Connect a Telegram bot as a messaging channel: send messages and receive them as webhooks'
+---
+
+The `telegram-channel` integration runs a Telegram bot for you: Tenklo holds its connection to the Bot API and turns what it receives into webhooks, and you send messages with the same `/channels` API as a [WhatsApp (QR code)](/api-integrations/whatsapp-web) number.
+
+Use the [Telegram](/api-integrations/telegram) integration instead to call the Bot API yourself through the proxy.
+
+<Warning>
+Tenklo reads the bot's updates with `getUpdates` and deletes any webhook set on it. Don't use a bot that something else already reads.
+</Warning>
+
+## Quickstart
+
+<Steps>
+    <Step id="create-integration" title="Create the integration">
+    In Tenklo, go to _Integrations_ -> _Configure New Integration_ -> _Telegram (messaging channel)_. There is nothing to configure.
+    </Step>
+    <Step id="connect-bot" title="Connect a bot">
+    Go to _Connections_ -> _Add Test Connection_ -> _Authorize_, and enter the bot token from [@BotFather](https://t.me/BotFather). Tenklo checks it with `getMe` and starts the bot.
+    </Step>
+    <Step id="send-message" title="Send a message">
+    The bot can only message a chat that wrote to it first. Use the chat id from a `message.received` webhook:
+
+    ```bash
+    curl -X POST https://api.tenklo.dev/channels/messages \
+      -H 'Authorization: Bearer <ENVIRONMENT-API-KEY>' \
+      -H 'Connection-Id: <CONNECTION-ID>' \
+      -H 'Provider-Config-Key: <INTEGRATION-ID>' \
+      -H 'Content-Type: application/json' \
+      -d '{ "to": { "kind": "contact", "externalId": "123456789" }, "content": { "kind": "text", "text": "Hello" } }'
+    ```
+    </Step>
+</Steps>
+
+## API and webhooks
+
+The bot uses the same API and webhooks as a WhatsApp number: see [API](/api-integrations/whatsapp-web#api) and [Webhooks](/api-integrations/whatsapp-web#webhooks). The `/channels/...` paths are the same endpoints as `/whatsapp/...`.
+
+What differs on Telegram:
+
+- `externalId` is the Telegram chat id: a user's id for a contact, the group's (negative) id for a group.
+- `message.status` only reports `SENT` or `FAILED`: the Bot API has no delivery or read receipts.
+- `groups.synced` lists the groups and channels the bot has seen, since the Bot API can't list a bot's chats. It also arrives unprompted when the bot joins or leaves one.
+- A revoked token disconnects the bot with `SESSION_INVALID`: the connection is flagged with an error and an `auth` webhook is sent. Update the token with a [reconnect session](/guides/auth/auth-guide#build-reauthorization).
+
+## Self-hosting
+
+The integration needs the Telegram gateway (`packages/telegram-gateway`), which runs from the same image as the server:
+
+```bash
+node packages/telegram-gateway/dist/app.js
+```
+
+| Variable | Server | Gateway | Description |
+| --- | --- | --- | --- |
+| `TELEGRAM_GATEWAY_URL` | ✓ | | Where the server reaches the gateway, e.g. `http://tenklo-telegram:3011`. |
+| `TELEGRAM_GATEWAY_SECRET` | ✓ | ✓ | Shared secret (32+ characters): authenticates the commands and events, and seals the bot tokens sent to the gateway. |
+| `TELEGRAM_GATEWAY_EVENTS_URL` | | ✓ | The server's event endpoint, e.g. `http://tenklo-server:3003/internal/telegram/events`. |
+| `TELEGRAM_S3_ENDPOINT`, `TELEGRAM_S3_REGION`, `TELEGRAM_S3_ACCESS_KEY`, `TELEGRAM_S3_SECRET_KEY`, `TELEGRAM_S3_BUCKET` | | ✓ | S3-compatible bucket for media (it can be the WhatsApp gateway's). |
+| `NANGO_DB_*`, `NANGO_REDIS_URL` | | ✓ | The same database and Redis as the server. |
+
+Keep the gateway on the internal network: only the server needs to reach it.

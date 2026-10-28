@@ -522,14 +522,16 @@ publicAPI.route('/session/:sessionId/mcp').get(agentSessionAuth, getAgentSession
 publicAPI.use('/v1', jsonContentTypeMiddleware);
 publicAPI.route('/v1/*splat').all(envAuth, requireV1Passthrough, withEnvironmentTarget, allPublicV1);
 
-// WhatsApp (whatsapp-web connections)
-publicAPI.route('/whatsapp/messages').post(envAuth, can('environment:whatsapp'), jsonContentTypeMiddleware, postPublicWhatsAppMessage);
-publicAPI
-    .route('/whatsapp/media')
-    .post(envAuth, can('environment:whatsapp'), bodyParser.raw({ type: () => true, limit: bodyLimit }), postPublicWhatsAppMedia)
-    .get(envAuth, can('environment:whatsapp'), getPublicWhatsAppMedia);
-publicAPI.route('/whatsapp/groups/sync').post(envAuth, can('environment:whatsapp'), postPublicWhatsAppGroupsSync);
-publicAPI.route('/whatsapp/status').get(envAuth, can('environment:whatsapp'), getPublicWhatsAppStatus);
+// Messaging channels (whatsapp-web and telegram-channel connections). /channels is the name for both; /whatsapp stays as an alias.
+for (const base of ['/channels', '/whatsapp']) {
+    publicAPI.route(`${base}/messages`).post(envAuth, can('environment:whatsapp'), jsonContentTypeMiddleware, postPublicWhatsAppMessage);
+    publicAPI
+        .route(`${base}/media`)
+        .post(envAuth, can('environment:whatsapp'), bodyParser.raw({ type: () => true, limit: bodyLimit }), postPublicWhatsAppMedia)
+        .get(envAuth, can('environment:whatsapp'), getPublicWhatsAppMedia);
+    publicAPI.route(`${base}/groups/sync`).post(envAuth, can('environment:whatsapp'), postPublicWhatsAppGroupsSync);
+    publicAPI.route(`${base}/status`).get(envAuth, can('environment:whatsapp'), getPublicWhatsAppStatus);
+}
 publicAPI.route('/whatsapp/sessions/import').post(envAuth, can('environment:whatsapp'), jsonContentTypeMiddleware, postPublicWhatsAppSessionImport);
 
 // Proxy

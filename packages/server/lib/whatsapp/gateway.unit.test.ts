@@ -5,7 +5,7 @@ import {
     GatewayInvalidCommandError,
     GatewayMediaTooLargeError,
     isWhatsAppGatewayEnabled,
-    logoutWhatsAppSession,
+    logoutGatewaySession,
     openGatewayMedia,
     putGatewayMedia,
     sendGatewayCommand
@@ -63,6 +63,25 @@ describe('whatsapp gateway client', () => {
         expect(failed.isErr() && failed.error).not.toBeInstanceOf(GatewayInvalidCommandError);
     });
 
+    it("sends a telegram connection's commands to the telegram gateway, with its own secret", async () => {
+        const original = { url: envs.TELEGRAM_GATEWAY_URL, secret: envs.TELEGRAM_GATEWAY_SECRET };
+        envs.TELEGRAM_GATEWAY_URL = 'http://telegram:3011';
+        envs.TELEGRAM_GATEWAY_SECRET = 'the-telegram-gateway-secret-with-32-chars';
+        try {
+            fetchMock.mockResolvedValue(new Response(null, { status: 202 }));
+
+            const res = await sendGatewayCommand({ tenantId: TENANT, channelId: SESSION, gateway: 'telegram' }, { type: 'groups.sync', payload: {} });
+
+            expect(res.isOk()).toBe(true);
+            const [url, init] = fetchMock.mock.calls[0]!;
+            expect((url as URL).href).toBe('http://telegram:3011/v1/commands');
+            expect(init?.headers).toMatchObject({ authorization: 'Bearer the-telegram-gateway-secret-with-32-chars' });
+        } finally {
+            envs.TELEGRAM_GATEWAY_URL = original.url;
+            envs.TELEGRAM_GATEWAY_SECRET = original.secret;
+        }
+    });
+
     it('is disabled without configuration', async () => {
         envs.WHATSAPP_GATEWAY_URL = undefined;
 
@@ -75,10 +94,10 @@ describe('whatsapp gateway client', () => {
     it('logs out the session of a connection, and does nothing without one', async () => {
         fetchMock.mockResolvedValue(new Response(null, { status: 202 }));
 
-        expect((await logoutWhatsAppSession({ tenantId: TENANT, connectionConfig: {} })).isOk()).toBe(true);
+        expect((await logoutGatewaySession({ tenantId: TENANT, connectionConfig: {}, gateway: 'whatsapp' })).isOk()).toBe(true);
         expect(fetchMock).not.toHaveBeenCalled();
 
-        expect((await logoutWhatsAppSession({ tenantId: TENANT, connectionConfig: { session_id: SESSION } })).isOk()).toBe(true);
+        expect((await logoutGatewaySession({ tenantId: TENANT, connectionConfig: { session_id: SESSION }, gateway: 'whatsapp' })).isOk()).toBe(true);
         expect(JSON.parse(fetchMock.mock.calls[0]![1]?.body as string)).toMatchObject({
             channelId: SESSION,
             type: 'channel.disconnect',
