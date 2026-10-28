@@ -117,6 +117,8 @@ describe('handleGatewayEvent', () => {
             // The connection is created by the next poll; until then the Connect UI keeps waiting.
             expect(toPairingView(stored!).status).toBe('starting');
             expect(toPairingView({ ...stored!, connectionCreated: true }).status).toBe('connected');
+            // Kept for the status API: the connection doesn't exist yet when this CONNECTED arrives.
+            expect(await getSessionStatus(pairing.sessionId)).toMatchObject({ status: 'CONNECTED', account: { phone: '5511999990000' } });
         });
 
         it('fails when the QR expires', async () => {

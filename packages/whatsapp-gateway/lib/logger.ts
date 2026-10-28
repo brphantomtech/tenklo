@@ -17,6 +17,24 @@ export function createLogger(level: string): Logger {
     });
 }
 
+// A libsignal (usada pela Baileys) escreve no console a sessão Signal inteira, com as chaves privadas, ao abrir e
+// fechar sessões ("Closing session: SessionEntry {...}"). Essas mensagens viram uma linha de debug, sem os objetos.
+const SIGNAL_SESSION_DUMP = /^(Closing session|Opening session|Removing old closed session|Session already (closed|open)|Migrating session)/;
+
+export function silenceSignalSessionDumps(logger: Logger): void {
+    for (const method of ['info', 'warn', 'log'] as const) {
+        const original = console[method].bind(console);
+        console[method] = (...args: unknown[]) => {
+            const [first] = args;
+            if (typeof first === 'string' && SIGNAL_SESSION_DUMP.test(first)) {
+                logger.debug({ component: 'libsignal' }, first.replace(/:\s*$/, ''));
+                return;
+            }
+            original(...args);
+        };
+    }
+}
+
 /** Mascara telefones e JIDs: 5511999990000@s.whatsapp.net -> 5511****0000@s.whatsapp.net. */
 export function mask(value: string | undefined | null): string {
     if (!value) return '';

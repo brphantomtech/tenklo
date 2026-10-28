@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { setTimeout as sleep } from 'node:timers/promises';
 
-import { Browsers, downloadMediaMessage, fetchLatestBaileysVersion, isJidBroadcast, isJidNewsletter, makeWASocket } from 'baileys';
+import { Browsers, downloadMediaMessage, fetchLatestBaileysVersion, isJidBroadcast, isJidNewsletter, makeWASocket, proto as waProto } from 'baileys';
 
 import { ChannelLockedError, CommandError } from '../errors.js';
 import { mask } from '../logger.js';
@@ -24,6 +24,10 @@ import type { Me, ParsedRecipient } from './rules.js';
 import type { SessionCipher } from './session-cipher.js';
 import type { AnyMessageContent, ConnectionState, GroupMetadata, proto, WAMessage, WAMessageUpdate, WASocket, WAVersion } from 'baileys';
 import type { Redis } from 'ioredis';
+
+// Lotes de histórico que o aparelho envia e a sessão não baixa: as mensagens antigas, que ninguém consome.
+const { HistorySyncType } = waProto.HistorySync;
+const SKIPPED_HISTORY_SYNCS = new Set<number>([HistorySyncType.FULL, HistorySyncType.RECENT, HistorySyncType.ON_DEMAND]);
 
 export interface SessionDeps {
     config: Config;
@@ -287,7 +291,9 @@ export class ChannelSession {
             // Sem marcar online: o celular continua recebendo as notificações.
             markOnlineOnConnect: false,
             syncFullHistory: false,
-            shouldSyncHistoryMessage: () => false,
+            // Só os lotes pequenos, que trazem os nomes e o mapeamento LID -> telefone; sem eles a Baileys perde os
+            // LIDs e a sessão fica instável. As mensagens antigas chegam como 'append' e não viram message.received.
+            shouldSyncHistoryMessage: ({ syncType }) => syncType == null || !SKIPPED_HISTORY_SYNCS.has(syncType),
             generateHighQualityLinkPreview: false,
             shouldIgnoreJid: (jid) => isJidBroadcast(jid) || isJidNewsletter(jid),
             cachedGroupMetadata: (jid) => Promise.resolve(this.groups.get(jid)),

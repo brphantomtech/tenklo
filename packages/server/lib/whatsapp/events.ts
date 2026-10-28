@@ -63,18 +63,28 @@ export async function handleGatewayEvent(event: GatewayEvent): Promise<void> {
     }
 
     const target = await findConnectionBySession({ tenantId: event.tenantId, sessionId: event.channelId });
-    if (!target) {
-        if (!pairing) {
-            await logOutOrphan(event);
-        }
+    if (!target && !pairing) {
+        await logOutOrphan(event);
         return;
     }
 
-    if (event.type === 'channel.status') {
-        const payload = statusPayload.safeParse(event.payload);
-        if (payload.success) {
-            await onConnectionStatus(target, payload.data, event.occurredAt);
-        }
+    const status = event.type === 'channel.status' ? statusPayload.safeParse(event.payload) : null;
+    if (status?.success) {
+        // Saved while pairing too: the CONNECTED that ends a pairing arrives before its connection exists.
+        await saveSessionStatus(event.channelId, {
+            status: status.data.status,
+            reason: status.data.reason ?? null,
+            account: status.data.account ?? null,
+            sendRestriction: status.data.sendRestriction ?? null,
+            updatedAt: event.occurredAt
+        });
+    }
+    if (!target) {
+        return;
+    }
+
+    if (status?.success) {
+        await onConnectionStatus(target, status.data);
     }
 
     if (FORWARDED_EVENTS.has(event.type)) {
@@ -127,16 +137,8 @@ async function onPairingEvent(pairing: Pairing, event: GatewayEvent): Promise<vo
     }
 }
 
-/** Keeps the status the public API reports, and flags the connection while its number is logged out or banned. */
-async function onConnectionStatus(target: WhatsAppConnection, payload: StatusPayload, occurredAt: string): Promise<void> {
-    await saveSessionStatus(target.sessionId, {
-        status: payload.status,
-        reason: payload.reason ?? null,
-        account: payload.account ?? null,
-        sendRestriction: payload.sendRestriction ?? null,
-        updatedAt: occurredAt
-    });
-
+/** Flags the connection while its number is logged out or banned. */
+async function onConnectionStatus(target: WhatsAppConnection, payload: StatusPayload): Promise<void> {
     const { account, environment, connection, config, provider } = target;
 
     if (payload.status === 'CONNECTED') {
