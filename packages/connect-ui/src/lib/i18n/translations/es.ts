@@ -11,7 +11,9 @@ const es: Translation = {
         connecting: 'Conectando...',
         connect: 'Conectar',
         viewGuide: 'Ver guía de conexión',
-        needHelp: '¿Necesitas ayuda?'
+        needHelp: '¿Necesitas ayuda?',
+        securedBy: 'Protegido por',
+        step: 'Paso {current} de {total}'
     },
     integrationsList: {
         title: 'Seleccionar Integración',
@@ -19,11 +21,15 @@ const es: Translation = {
         noIntegrations: 'No se encontró ninguna integración.',
         noIntegrationsDescription: 'No has configurado ninguna integración en este entorno. Agrega tu primera integración en el panel de Tenklo.',
         connectTo: 'Conectar a {provider}',
+        searchPlaceholder: 'Buscar integraciones',
+        noResults: 'Ninguna integración coincide con «{query}».',
         error: 'Ocurrió un error al cargar la configuración'
     },
     go: {
         linkAccount: 'Vincular cuenta de {provider}',
         fieldDocumentation: 'Ver la documentación de {field}',
+        showSecret: 'Mostrar {field}',
+        hideSecret: 'Ocultar {field}',
         connect: 'Conectar',
         success: '¡Éxito!',
         successMessage: 'Has configurado exitosamente tu integración con {provider}.',

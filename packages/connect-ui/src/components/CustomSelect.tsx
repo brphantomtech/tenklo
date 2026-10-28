@@ -41,7 +41,8 @@ const CustomSelect: React.FC<SelectProps> = ({
                 aria-describedby={ariaDescribedby}
                 aria-invalid={ariaInvalid}
                 aria-required={ariaRequired}
-                className={cn('w-full', error ? 'border-error focus:border-error focus:ring-red-500/20' : '', className)}
+                className={cn('w-full', className)}
+                data-invalid={error ? 'true' : undefined}
                 id={id}
             >
                 <SelectValue placeholder={placeholder} />

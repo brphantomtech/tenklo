@@ -9,7 +9,9 @@ const en = {
         connecting: 'Connecting...',
         connect: 'Connect',
         viewGuide: 'View connection guide',
-        needHelp: 'Need help?'
+        needHelp: 'Need help?',
+        securedBy: 'Secured by',
+        step: 'Step {current} of {total}'
     },
     integrationsList: {
         title: 'Select Integration',
@@ -17,11 +19,15 @@ const en = {
         noIntegrations: 'No integration found.',
         noIntegrationsDescription: "You haven't configured any integration in this environment. Add your first integration in the Tenklo dashboard.",
         connectTo: 'Connect to {provider}',
+        searchPlaceholder: 'Search integrations',
+        noResults: 'No integration matches "{query}".',
         error: 'An error occurred while loading configuration'
     },
     go: {
         linkAccount: 'Link {provider} Account',
         fieldDocumentation: 'View documentation for {field}',
+        showSecret: 'Show {field}',
+        hideSecret: 'Hide {field}',
         connect: 'Connect',
         success: 'Success!',
         successMessage: "You've successfully set up your {provider} integration.",

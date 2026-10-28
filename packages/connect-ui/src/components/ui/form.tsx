@@ -60,7 +60,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 
     return (
         <FormItemContext.Provider value={{ id }}>
-            <div ref={ref} className={cn('space-y-3.5', className)} {...props} />
+            <div ref={ref} className={cn('flex flex-col gap-2', className)} {...props} />
         </FormItemContext.Provider>
     );
 });
@@ -93,7 +93,7 @@ FormControl.displayName = 'FormControl';
 const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(({ className, ...props }, ref) => {
     const { formDescriptionId } = useFormField();
 
-    return <p ref={ref} className={cn('text-sm text-text-muted', className)} id={formDescriptionId} {...props} />;
+    return <p ref={ref} className={cn('text-body-sm text-text-tertiary', className)} id={formDescriptionId} {...props} />;
 });
 FormDescription.displayName = 'FormDescription';
 
@@ -106,7 +106,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
     }
 
     return (
-        <p ref={ref} className={cn('text-xs text-error flex gap-2 items-center pt-2', className)} id={formMessageId} {...props}>
+        <p ref={ref} className={cn('text-body-sm text-error flex gap-1.5 items-center', className)} id={formMessageId} {...props}>
             {body}
         </p>
     );

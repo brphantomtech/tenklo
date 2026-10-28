@@ -1,4 +1,4 @@
-import { Loader } from 'lucide-react';
+import { LoaderCircle } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -103,26 +103,53 @@ export const WhatsAppQr: React.FC<Props> = ({ nango, providerConfigKey, isPrevie
     const qr = isPreview ? PREVIEW_QR : pairing?.status === 'qr' ? pairing.qr : null;
     const linking = !isPreview && pairing?.status === 'connected';
 
+    const steps = [t('whatsapp.step1'), t('whatsapp.step2'), t('whatsapp.step3')];
+
     return (
-        <div className="flex flex-col gap-6 items-center">
-            <div aria-live="polite" className="w-64 h-64 p-3 rounded-md border border-subtle bg-white flex items-center justify-center">
-                {qr && !linking ? (
-                    <QRCodeSVG aria-label={t('whatsapp.title')} className="w-full h-full" level="L" role="img" size={232} value={qr} />
-                ) : (
-                    <div className="flex flex-col items-center gap-3 text-center text-sm text-gray-600">
-                        <Loader aria-hidden="true" className="w-6 h-6 animate-spin" />
-                        {linking ? t('whatsapp.linking') : t('whatsapp.generating')}
+        <div className="flex flex-col items-center gap-5">
+            <div className="flex flex-col items-center gap-3">
+                {/* Viewfinder: the QR sits on a white plate (scanners need it) framed by primary corners. */}
+                <div className="relative p-2">
+                    {[
+                        'top-0 left-0 border-t-2 border-l-2 rounded-tl-xl',
+                        'top-0 right-0 border-t-2 border-r-2 rounded-tr-xl',
+                        'bottom-0 left-0 border-b-2 border-l-2 rounded-bl-xl',
+                        'bottom-0 right-0 border-r-2 border-b-2 rounded-br-xl'
+                    ].map((corner) => (
+                        <span key={corner} aria-hidden="true" className={`absolute size-6 border-primary ${corner}`} />
+                    ))}
+                    <div aria-live="polite" className="logo-plate grid size-[196px] place-items-center rounded-xl bg-white p-3">
+                        {qr && !linking ? (
+                            <QRCodeSVG aria-label={t('whatsapp.title')} className="size-full animate-rise" level="L" role="img" size={172} value={qr} />
+                        ) : (
+                            <div className="flex flex-col items-center gap-3 px-4 text-center text-body-sm text-gray-700">
+                                <LoaderCircle aria-hidden="true" className="size-6 animate-spin text-gray-500" />
+                                {linking ? t('whatsapp.linking') : t('whatsapp.generating')}
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
+                <p className="flex items-center gap-2 text-micro text-text-tertiary">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-primary animate-soft-pulse" />
+                    {t('whatsapp.refreshes')}
+                </p>
             </div>
-            <div className="flex flex-col gap-2 w-full">
-                <p className="font-medium text-text-primary">{t('whatsapp.title')}</p>
-                <ol className="list-decimal pl-5 text-sm text-text-secondary flex flex-col gap-1">
-                    <li>{t('whatsapp.step1')}</li>
-                    <li>{t('whatsapp.step2')}</li>
-                    <li>{t('whatsapp.step3')}</li>
+
+            <div className="flex w-full flex-col gap-3 rounded-xl border border-hairline bg-elevated p-4">
+                <p className="text-body font-medium text-text-primary">{t('whatsapp.title')}</p>
+                <ol className="flex flex-col gap-2.5">
+                    {steps.map((step, index) => (
+                        <li key={index} className="flex items-start gap-2.5 text-body-sm text-text-secondary">
+                            <span
+                                aria-hidden="true"
+                                className="mt-px grid size-5 shrink-0 place-items-center rounded-full bg-ov-3 text-[11px] font-semibold text-text-primary tabular-nums"
+                            >
+                                {index + 1}
+                            </span>
+                            <span>{step}</span>
+                        </li>
+                    ))}
                 </ol>
-                <p className="text-xs text-text-tertiary">{t('whatsapp.refreshes')}</p>
             </div>
         </div>
     );

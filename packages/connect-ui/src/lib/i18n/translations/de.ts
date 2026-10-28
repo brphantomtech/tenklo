@@ -11,7 +11,9 @@ const de: Translation = {
         connecting: 'Verbinde...',
         connect: 'Verbinden',
         viewGuide: 'Schritt für Schritt Anleitung anzeigen',
-        needHelp: 'Benötigen Sie Hilfe?'
+        needHelp: 'Benötigen Sie Hilfe?',
+        securedBy: 'Gesichert durch',
+        step: 'Schritt {current} von {total}'
     },
     integrationsList: {
         title: 'Integration auswählen',
@@ -20,11 +22,15 @@ const de: Translation = {
         noIntegrationsDescription:
             'Sie haben noch keine Integration in dieser Umgebung konfiguriert. Fügen Sie Ihre erste Integration im Nango-Dashboard hinzu.',
         connectTo: 'Mit {provider} verbinden',
+        searchPlaceholder: 'Integrationen suchen',
+        noResults: 'Keine Integration passt zu „{query}“.',
         error: 'Beim Laden der Konfiguration ist ein Fehler aufgetreten'
     },
     go: {
         linkAccount: '{provider}-Konto verknüpfen',
         fieldDocumentation: 'Dokumentation für {field} anzeigen',
+        showSecret: '{field} anzeigen',
+        hideSecret: '{field} verbergen',
         connect: 'Verbinden',
         success: 'Erfolgreich!',
         successMessage: 'Sie haben Ihre {provider}-Integration erfolgreich eingerichtet.',
