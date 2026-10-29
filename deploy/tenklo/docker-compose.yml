@@ -48,10 +48,11 @@ services:
             - NANGO_PUBLIC_CONNECT_URL=${TENKLO_CONNECT_URL}
             - FLAG_SERVE_CONNECT_UI=true
             - NANGO_CONNECT_UI_PORT=3009
-            - FLAG_AUTH_ENABLED=false
+            # Email and password sign-in. Nobody can sign up without an invitation from the team page.
+            - FLAG_AUTH_ENABLED=true
             - AUTH_ALLOW_SIGNUP=false
-            - NANGO_DASHBOARD_USERNAME=${DASHBOARD_USERNAME}
-            - NANGO_DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
+            # Signs the session cookies and password-reset links; without it they fall back to a public default.
+            - NANGO_ADMIN_KEY=${SESSION_SECRET}
             - NANGO_LOGS_ENABLED=false
             - CSP_REPORT_ONLY=true
             - LOG_LEVEL=info
