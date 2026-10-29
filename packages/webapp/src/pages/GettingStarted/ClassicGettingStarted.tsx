@@ -1,82 +1,32 @@
-import { useScript } from '@uidotdev/usehooks';
-import { ChevronRight, LockOpen, Pencil, Play, RefreshCw, Wrench } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ChevronRight, LockOpen, Pencil, RefreshCw, Wrench } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
 import { Button } from '@nangohq/design-system';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { Tag } from '@/components/ui/Tag';
+import { useStore } from '@/store';
 import DashboardLayout from '../../layout/DashboardLayout';
-import { globalEnv } from '../../utils/env';
-import { cn } from '../../utils/utils';
 
-let ytLoaded = false;
 export const ClassicGettingStarted: React.FC = () => {
-    const [hasVideo, setHasVideo] = useState(false);
-
-    useEffect(() => {
-        // The API will call this function when page has finished downloading
-        // @ts-expect-error yes I want this
-        window.onYouTubeIframeAPIReady = () => {
-            ytLoaded = true;
-        };
-    }, []);
-
-    useScript('https://www.youtube.com/iframe_api');
-
-    const triggerVideo = () => {
-        if (hasVideo) {
-            return;
-        }
-        if (!ytLoaded) {
-            // adblock
-            return;
-        }
-
-        setHasVideo(true);
-        try {
-            // @ts-expect-error I don't understand
-
-            new window.YT.Player('player', {
-                height: '100%',
-                width: '100%',
-                videoId: 'oTpWlmnv7dM',
-                playerVars: {
-                    playsinline: 1,
-                    autoplay: 1,
-                    showinfo: 0,
-                    autohide: 1,
-                    rel: 0, // remove recommendation
-                    origin: new URL(globalEnv.publicUrl).origin
-                }
-            });
-        } catch {
-            // do nothing
-        }
-    };
+    const env = useStore((state) => state.env);
 
     return (
         <DashboardLayout className="flex flex-col gap-9">
             <Helmet>
                 <title>Getting Started - Tenklo</title>
             </Helmet>
-            <div
-                className={cn(
-                    'border rounded-lg border-border-muted group hover:border-border-strong hover:shadow-card focus:shadow-card focus:border-border-selected focus:outline-0',
-                    !hasVideo && 'cursor-pointer'
-                )}
-                onClick={!hasVideo ? triggerVideo : undefined}
-            >
-                <div id="player" style={{ aspectRatio: '16 / 9' }} className="rounded-lg relative">
-                    <img src="/images/demo_thumbnail.png" alt="" className="rounded-lg" />
-                    <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center z-10 text-text-strong">
-                        <div className="transition-transform bg-surface-panel p-2 rounded-full shadow-[0_1px_100px_50px_black] group-hover:animate-pulse">
-                            <Play size={50} fill="#000" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h1 className="text-xl font-semibold text-text-strong">Build your first integration from here:</h1>
+            <section className="flex flex-col items-start gap-3 rounded-lg border border-border-muted bg-surface-panel p-7">
+                <h1 className="text-heading-medium text-text-strong">Connect your product to the APIs your customers use</h1>
+                <p className="max-w-2xl text-body-medium-regular text-text-secondary">
+                    Set up an integration, let a customer connect their account through Connect UI, then read and write their data with the Tenklo API. Tenklo
+                    keeps their credentials fresh and tells you when something needs attention.
+                </p>
+                <ButtonLink to={`/${env}/integrations/create`} variant="primary" size="md">
+                    Set up an integration
+                </ButtonLink>
+            </section>
+            <h2 className="text-xl font-semibold text-text-strong">Guides</h2>
             <div className="grid grid-cols-2 text-text-strong gap-7">
                 <a
                     className="transition-all block border rounded-lg border-border-muted p-7 group hover:border-border-strong hover:shadow-card focus:shadow-card focus:border-border-selected focus:outline-0"

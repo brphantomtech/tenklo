@@ -12,9 +12,11 @@ Pushing to `master` deploys it: `.github/workflows/deploy-tenklo.yml` runs on a 
 Set in the GitHub `production` environment (Settings → Environments), never in the repository:
 
 - Variables: `TENKLO_API_URL`, `TENKLO_APP_URL`, `TENKLO_CONNECT_URL`, optionally `NPM_NETWORK` (default `nginx-proxy-manager_default`).
-- Secrets: `DB_PASSWORD`, `ENCRYPTION_KEY`, `DASHBOARD_USERNAME`, `DASHBOARD_PASSWORD`, `WHATSAPP_GATEWAY_SECRET`, `WHATSAPP_SESSION_ENCRYPTION_KEY`, `WHATSAPP_S3_ACCESS_KEY`, `WHATSAPP_S3_SECRET_KEY`, `TELEGRAM_GATEWAY_SECRET`.
+- Secrets: `DB_PASSWORD`, `ENCRYPTION_KEY`, `SESSION_SECRET`, `WHATSAPP_GATEWAY_SECRET`, `WHATSAPP_SESSION_ENCRYPTION_KEY`, `WHATSAPP_S3_ACCESS_KEY`, `WHATSAPP_S3_SECRET_KEY`, `TELEGRAM_GATEWAY_SECRET`.
 
 `deploy.sh` writes them to `/root/tenklo/deploy/.env` (mode 600) on every deploy, so a change takes effect on the next run.
+
+Rotating `SESSION_SECRET` signs everyone out of the dashboard and voids pending password-reset links; nothing else.
 
 Do not rotate `ENCRYPTION_KEY` or `WHATSAPP_SESSION_ENCRYPTION_KEY` casually: the first encrypts the stored credentials, the second the WhatsApp sessions (every number would have to scan its QR code again).
 
