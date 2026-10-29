@@ -12,7 +12,7 @@ Pushing to `master` deploys it: `.github/workflows/deploy-tenklo.yml` runs on a 
 Set in the GitHub `production` environment (Settings → Environments), never in the repository:
 
 - Variables: `TENKLO_API_URL`, `TENKLO_APP_URL`, `TENKLO_CONNECT_URL`, optionally `NPM_NETWORK` (default `nginx-proxy-manager_default`).
-- Secrets: `DB_PASSWORD`, `ENCRYPTION_KEY`, `SESSION_SECRET`, `RESEND_API_KEY` (sending access, for `noreply@email.tenklo.dev`), `WHATSAPP_GATEWAY_SECRET`, `WHATSAPP_SESSION_ENCRYPTION_KEY`, `WHATSAPP_S3_ACCESS_KEY`, `WHATSAPP_S3_SECRET_KEY`, `TELEGRAM_GATEWAY_SECRET`.
+- Secrets: `DB_PASSWORD`, `ENCRYPTION_KEY`, `SESSION_SECRET`, `RESEND_API_KEY` (sending access, for `noreply@tenklo.dev`), `WHATSAPP_GATEWAY_SECRET`, `WHATSAPP_SESSION_ENCRYPTION_KEY`, `WHATSAPP_S3_ACCESS_KEY`, `WHATSAPP_S3_SECRET_KEY`, `TELEGRAM_GATEWAY_SECRET`.
 
 `deploy.sh` writes them to `/root/tenklo/deploy/.env` (mode 600) on every deploy, so a change takes effect on the next run.
 
