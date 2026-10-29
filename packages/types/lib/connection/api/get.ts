@@ -17,12 +17,21 @@ import type { ReplaceInObject } from '../../utils.js';
 import type { ConnectionConfig, DBConnection, DBConnectionDecrypted } from '../db.js';
 import type { Merge } from 'type-fest';
 
+/** An unresolved problem on a connection: an `auth` failure (`token_refresh`, `connection_test`, `override`) or a failing `sync` run. */
+export interface ApiConnectionError {
+    type: string;
+    log_id: string;
+    action: string;
+    /** Name of the failing sync, for `sync` errors. */
+    sync_name: string | null;
+}
+
 export type ApiConnectionSimple = Pick<
     Merge<DBConnection, ApiTimestamps>,
     'id' | 'config_id' | 'connection_id' | 'provider_config_key' | 'created_at' | 'updated_at'
 > & {
     provider: string;
-    errors: { type: string; log_id: string }[];
+    errors: ApiConnectionError[];
     endUser: ApiEndUser | null;
     tags: Tags;
     pausedSyncs: string[];

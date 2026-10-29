@@ -2,7 +2,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { APIError, apiFetch } from '../utils/api';
 
-import type { GetOperation, PostInsights, SearchFilters } from '@nangohq/types';
+import type { GetOperation, PostInsights, SearchFilters, SearchOperations } from '@nangohq/types';
 
 export function useGetOperation(env: string, params: GetOperation['Params']) {
     const { data, error, isLoading, isFetching, refetch } = useQuery<GetOperation['Success'], APIError>({
@@ -83,4 +83,33 @@ export function usePostInsights(env: string, body: PostInsights['Body']) {
         data: data?.data,
         refetch
     };
+}
+
+/** The latest operations of one connection, newest first, for its activity timeline. */
+export function useConnectionActivity(env: string, integration: string, connectionId: string) {
+    return useQuery<SearchOperations['Success'], APIError>({
+        queryKey: ['logs', 'connection-activity', env, integration, connectionId],
+        queryFn: async ({ signal }): Promise<SearchOperations['Success']> => {
+            const res = await apiFetch(`/api/v1/logs/operations?env=${env}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    limit: 25,
+                    states: ['all'],
+                    types: ['all'],
+                    integrations: [integration],
+                    connections: [connectionId]
+                } satisfies SearchOperations['Body']),
+                signal
+            });
+
+            const json = (await res.json()) as SearchOperations['Reply'];
+            if (!res.ok || 'error' in json) {
+                throw new APIError({ res, json });
+            }
+
+            return json;
+        },
+        enabled: Boolean(env && integration && connectionId),
+        refetchInterval: 30000
+    });
 }

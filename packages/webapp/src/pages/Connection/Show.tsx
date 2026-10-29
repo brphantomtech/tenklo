@@ -28,6 +28,7 @@ export function useConnectionContext() {
 }
 
 const tabs = [
+    { label: 'Activity', segment: 'activity' },
     { label: 'Auth', segment: 'auth' },
     { label: 'Syncs', segment: 'syncs' },
     { label: 'Records', segment: 'records' },
@@ -156,5 +157,5 @@ export const ConnectionShow = () => {
 function getActiveTabSegment(pathname: string, basePath: string): string {
     const rest = pathname.slice(basePath.length).replace(/^\//, '');
     const segment = rest.split('/')[0];
-    return segment || 'auth';
+    return segment || 'activity';
 }

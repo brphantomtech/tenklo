@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/Sidebar';
+import { CommandPalette } from '@/features/CommandPalette/CommandPalette';
 import { FunctionPlaygroundDrawer } from '@/features/Playground';
 import { AppHeader } from '@/layout/AppHeader';
 import { cn } from '@/utils/utils';
 import { AppSidebar } from './AppSidebar';
+import { ProductionBanner } from './ProductionBanner';
 import { CENTERED_MAX_WIDTH, SectionHeader } from './SectionHeader';
 
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -31,6 +33,7 @@ const DashboardLayout = React.forwardRef<HTMLDivElement, DashboardLayoutProps>(
             <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset className="max-h-screen overflow-hidden">
+                    <ProductionBanner />
                     <AppHeader />
                     {title != null && <SectionHeader title={title} leading={titleLeading} badge={titleBadge} actions={titleActions} centered={centered} />}
                     <div
@@ -43,6 +46,7 @@ const DashboardLayout = React.forwardRef<HTMLDivElement, DashboardLayoutProps>(
                             {centered ? <div className={cn('mx-auto w-full', CENTERED_MAX_WIDTH)}>{children}</div> : children}
                         </div>
                         <FunctionPlaygroundDrawer />
+                        <CommandPalette />
                     </div>
                 </SidebarInset>
             </SidebarProvider>

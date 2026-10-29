@@ -2,6 +2,7 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import Fuse from 'fuse.js';
 import debounce from 'lodash/debounce';
 import { Search } from 'lucide-react';
+import { useQueryState } from 'nuqs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +14,7 @@ import { Skeleton } from '@/components/ui/Skeleton.js';
 import { useStore } from '@/store';
 import { useProviders } from '../../hooks/useProviders.js';
 import DashboardLayout from '../../layout/DashboardLayout.js';
+import { buildCategories, categoryLabel } from './categories.js';
 import { AuthBadge } from './components/AuthBadge.js';
 
 import type { ApiProviderListItem } from '@nangohq/types';
@@ -46,7 +48,8 @@ export const CreateIntegrationList = () => {
         return new Fuse(initialProviders, {
             keys: [
                 { name: 'displayName', weight: 0.6 },
-                { name: 'name', weight: 0.4 }
+                { name: 'name', weight: 0.4 },
+                { name: 'categories', weight: 0.2 }
             ],
             threshold: 0.3,
             includeScore: true,
@@ -86,6 +89,15 @@ export const CreateIntegrationList = () => {
         [debouncedFilterProviders]
     );
 
+    // Search narrows the categories too, so their counts match what is listed.
+    const [category, setCategory] = useQueryState('category');
+    const searched = providers ?? initialProviders;
+    const categories = useMemo(() => buildCategories(searched ?? []), [searched]);
+    const shown = useMemo(
+        () => (category && searched ? searched.filter((provider) => provider.categories?.includes(category)) : searched),
+        [category, searched]
+    );
+
     const onSelectProvider = (provider: Provider) => {
         navigate(`/${env}/integrations/create/${provider.name}`);
     };
@@ -103,10 +115,35 @@ export const CreateIntegrationList = () => {
                 </InputGroupAddon>
             </InputGroup>
 
-            <ProviderList providers={providers ?? initialProviders} onSelectProvider={onSelectProvider} loading={loadingProviders} />
+            <div className="grid grid-cols-[200px_minmax(0,1fr)] items-start gap-6">
+                <nav aria-label="Categories" className="sticky top-0 flex max-h-[calc(100vh-12rem)] flex-col gap-0.5 overflow-auto">
+                    <CategoryButton label="All" count={searched?.length} active={!category} onClick={() => void setCategory(null)} />
+                    {categories.map(({ slug, label, count }) => (
+                        <CategoryButton key={slug} label={label} count={count} active={category === slug} onClick={() => void setCategory(slug)} />
+                    ))}
+                    {category && !categories.some(({ slug }) => slug === category) && (
+                        <CategoryButton label={categoryLabel(category)} count={0} active onClick={() => void setCategory(category)} />
+                    )}
+                </nav>
+                <ProviderList providers={shown} onSelectProvider={onSelectProvider} loading={loadingProviders} />
+            </div>
         </DashboardLayout>
     );
 };
+
+const CategoryButton = ({ label, count, active, onClick }: { label: string; count: number | undefined; active: boolean; onClick: () => void }) => (
+    <button
+        type="button"
+        aria-pressed={active}
+        onClick={onClick}
+        className={`flex items-center justify-between gap-2 rounded px-2.5 py-1.5 text-left text-body-small-medium transition-colors focus-visible:outline-none focus-visible:shadow-focus-outline-default ${
+            active ? 'bg-surface-panel-inset text-text-strong' : 'text-text-secondary hover:bg-state-hover hover:text-text-strong'
+        }`}
+    >
+        <span className="truncate">{label}</span>
+        {count !== undefined && <span className="font-code text-body-extra-small-medium text-text-muted">{count}</span>}
+    </button>
+);
 
 interface ProviderListProps {
     providers: Provider[] | null;
@@ -199,9 +236,7 @@ const Provider = ({
             <div className="inline-flex gap-1.5 items-center justify-end">
                 <AuthBadge authMode={provider.authMode} />
                 {provider.categories?.map((category) => (
-                    <Badge key={category} case="capitalize">
-                        {category}
-                    </Badge>
+                    <Badge key={category}>{categoryLabel(category)}</Badge>
                 ))}
             </div>
         </div>
