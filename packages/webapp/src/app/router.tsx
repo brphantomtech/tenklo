@@ -16,6 +16,7 @@ import { VerifyEmailByExpiredToken } from '@/pages/Account/VerifyEmailByExpiredT
 import { AgentPlayground } from '@/pages/AgentPlayground/Show';
 import { AccountApiKeysShow } from '@/pages/ApiKeys/Show';
 import { AuditShow } from '@/pages/Audit/Show';
+import { ActivityTab as ConnectionActivityTab } from '@/pages/Connection/components/ActivityTab';
 import { AuthTab as ConnectionAuthTab } from '@/pages/Connection/components/AuthTab';
 import { RecordsTab as ConnectionRecordsTab } from '@/pages/Connection/components/RecordsTab';
 import { SettingsTab as ConnectionSettingsTab } from '@/pages/Connection/components/SettingsTab';
@@ -103,7 +104,7 @@ const RedirectLegacyFunctionPage = () => {
 
 const ConnectionIndexRedirect = () => {
     const location = useLocation();
-    const targetTab = legacyConnectionTabByHash[location.hash.toLowerCase() as keyof typeof legacyConnectionTabByHash] ?? 'auth';
+    const targetTab = legacyConnectionTabByHash[location.hash.toLowerCase() as keyof typeof legacyConnectionTabByHash] ?? 'activity';
 
     return <Navigate to={{ pathname: targetTab, search: location.search }} replace />;
 };
@@ -321,6 +322,11 @@ const routes: RouteObject[] = [
                                         element: <ConnectionIndexRedirect />
                                     },
                                     {
+                                        path: 'activity',
+                                        element: <ConnectionActivityTab />,
+                                        handle: { breadcrumb: 'Activity' } as BreadcrumbHandle
+                                    },
+                                    {
                                         path: 'auth',
                                         element: <ConnectionAuthTab />,
                                         handle: { breadcrumb: 'Auth' } as BreadcrumbHandle
@@ -365,7 +371,7 @@ const routes: RouteObject[] = [
                     {
                         path: 'logs',
                         element: <LogsShow />,
-                        handle: { breadcrumb: 'Logs' } as BreadcrumbHandle
+                        handle: { breadcrumb: 'Activity' } as BreadcrumbHandle
                     },
                     {
                         path: 'activity',
