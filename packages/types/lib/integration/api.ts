@@ -12,6 +12,8 @@ export type ApiPublicIntegration = Merge<
     ApiTimestamps
 > & {
     logo: string;
+    /** The provider's categories (e.g. `crm`, `communication`), most relevant first. */
+    categories: string[];
 } & ApiPublicIntegrationInclude;
 export interface ApiPublicIntegrationInclude {
     webhook_url?: string | null;

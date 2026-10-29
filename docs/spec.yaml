@@ -4684,6 +4684,11 @@ components:
                 logo:
                     type: string
                     description: Absolute path to the logo of this integration (svg)
+                categories:
+                    type: array
+                    items:
+                        type: string
+                    description: The provider's categories, e.g. `crm` or `communication`, most relevant first. Empty when the provider has none.
                 created_at:
                     type: string
                     format: date-time

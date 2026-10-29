@@ -11,6 +11,7 @@ export const integrationFixtures = [
         forward_webhooks: false,
         missing_fields: [],
         logo: 'https://app.tenklo.dev/images/template-logos/github.svg',
+        categories: [],
         created_at: TIMESTAMP,
         updated_at: TIMESTAMP
     },
@@ -21,6 +22,7 @@ export const integrationFixtures = [
         forward_webhooks: false,
         missing_fields: [],
         logo: 'https://app.tenklo.dev/images/template-logos/slack.svg',
+        categories: [],
         created_at: TIMESTAMP,
         updated_at: TIMESTAMP
     }

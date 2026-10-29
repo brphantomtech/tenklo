@@ -75,6 +75,7 @@ describe(`GET ${endpoint}`, () => {
                 unique_key: 'github',
                 display_name: 'GitHub (User OAuth)',
                 logo: 'http://localhost:3003/images/template-logos/github.svg',
+                categories: ['dev-tools', 'support', 'ticketing'],
                 created_at: expect.toBeIsoDate(),
                 updated_at: expect.toBeIsoDate(),
                 forward_webhooks: true,
