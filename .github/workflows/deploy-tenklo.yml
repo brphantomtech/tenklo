@@ -5,7 +5,7 @@ name: '[Tenklo] Deploy production'
 #
 # Configuration lives in the `production` environment:
 #   variables: TENKLO_API_URL, TENKLO_APP_URL, TENKLO_CONNECT_URL (optional: NPM_NETWORK)
-#   secrets:   DB_PASSWORD, ENCRYPTION_KEY, SESSION_SECRET, WHATSAPP_GATEWAY_SECRET,
+#   secrets:   DB_PASSWORD, ENCRYPTION_KEY, SESSION_SECRET, RESEND_API_KEY, WHATSAPP_GATEWAY_SECRET,
 #              WHATSAPP_SESSION_ENCRYPTION_KEY, WHATSAPP_S3_ACCESS_KEY, WHATSAPP_S3_SECRET_KEY, TELEGRAM_GATEWAY_SECRET
 # The environment only accepts deployments from master.
 
@@ -44,6 +44,7 @@ jobs:
                   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
                   ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
                   SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+                  RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
                   WHATSAPP_GATEWAY_SECRET: ${{ secrets.WHATSAPP_GATEWAY_SECRET }}
                   WHATSAPP_SESSION_ENCRYPTION_KEY: ${{ secrets.WHATSAPP_SESSION_ENCRYPTION_KEY }}
                   WHATSAPP_S3_ACCESS_KEY: ${{ secrets.WHATSAPP_S3_ACCESS_KEY }}

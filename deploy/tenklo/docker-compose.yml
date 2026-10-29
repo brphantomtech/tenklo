@@ -53,6 +53,9 @@ services:
             - AUTH_ALLOW_SIGNUP=false
             # Signs the session cookies and password-reset links; without it they fall back to a public default.
             - NANGO_ADMIN_KEY=${SESSION_SECRET}
+            # Sign-up, invitation and password-reset emails, through Resend's SMTP relay. The sender's domain must be verified in Resend.
+            - SMTP_URL=smtps://resend:${RESEND_API_KEY}@smtp.resend.com:465
+            - SMTP_FROM=Tenklo <noreply@email.tenklo.dev>
             - NANGO_LOGS_ENABLED=false
             - CSP_REPORT_ONLY=true
             - LOG_LEVEL=info
