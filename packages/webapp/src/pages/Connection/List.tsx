@@ -1,12 +1,12 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { ExternalLink, PauseCircle, Plus, Search, ShieldAlert, TriangleAlert } from 'lucide-react';
-import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs';
+import { ExternalLink, Plus, Search } from 'lucide-react';
+import { parseAsArrayOf, parseAsString, parseAsStringLiteral, useQueryState } from 'nuqs';
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'react-use';
 
-import { Button, InputGroup, InputGroupAddon, InputGroupInput } from '@nangohq/design-system';
+import { Badge, Button, InputGroup, InputGroupAddon, InputGroupInput } from '@nangohq/design-system';
 
 import { ErrorPageComponent } from '@/components/patterns/ErrorComponent';
 import { IntegrationLogo } from '@/components/patterns/IntegrationLogo';
@@ -15,40 +15,36 @@ import { Avatar } from '@/components/ui/Avatar';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { ComboboxSelect } from '@/components/ui/Combobox';
 import { CopyButton } from '@/components/ui/CopyButton';
+import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { StatusWithIcon } from '@/components/ui/StatusWithIcon';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/Table';
-import { useConnections } from '@/hooks/useConnections';
+import { useConnections, useConnectionsCount } from '@/hooks/useConnections';
 import { useListIntegrations } from '@/hooks/useIntegration';
 import { usePermissions } from '@/hooks/usePermissions';
 import DashboardLayout from '@/layout/DashboardLayout';
 import { useStore } from '@/store';
+import { describeConnectionProblem } from '@/utils/connectionProblems';
 import { getConnectionDisplayName, getEndUserEmail } from '@/utils/endUser';
 import { formatDateToInternationalFormat } from '@/utils/utils';
-import { ConnectionCount } from './components/ConnectionCount';
+import { resolveView, views, withErrorFor } from './views';
 
+import type { StatusFilterValue, View } from './views';
 import type { ComboboxOption } from '@/components/ui/Combobox';
 import type { ApiConnectionSimple, ApiIntegrationList, GetConnections } from '@nangohq/types';
 import type { ColumnDef } from '@tanstack/react-table';
 
 type ConnectionRow = ApiConnectionSimple & { integration?: ApiIntegrationList };
 
-type StatusFilterValue = 'ok' | 'error' | 'auth_error' | 'sync_error' | 'paused';
-const validStatusFilterValues = new Set<string>(['ok', 'error', 'auth_error', 'sync_error', 'paused']);
+/** `ok` and `error` are older links' values, read as the healthy and attention views. */
+const validStatusFilterValues = new Set<string>(['auth_error', 'sync_error', 'paused']);
 
 const statusOptions: ComboboxOption<StatusFilterValue>[] = [
-    { label: 'OK', value: 'ok' },
-    {
-        label: 'Error',
-        value: 'error',
-        children: [
-            { label: 'Auth error', value: 'auth_error' },
-            { label: 'Sync error', value: 'sync_error' }
-        ]
-    },
+    { label: 'Credentials problem', value: 'auth_error' },
+    { label: 'Failing syncs', value: 'sync_error' },
     { label: 'Paused syncs', value: 'paused' }
 ];
 
+const parseView = parseAsStringLiteral(views);
 const parseSearch = parseAsString.withDefault('');
 const parseIntegrations = parseAsArrayOf(parseAsString, ',').withDefault([]);
 const parseStatusFilters = parseAsArrayOf(parseAsString, ',').withDefault([]);
@@ -121,39 +117,24 @@ const columns: ColumnDef<ConnectionRow>[] = [
     },
     {
         accessorKey: 'status',
-        header: '',
-        size: 25,
+        header: 'Status',
+        size: 170,
         cell: ({ row }) => {
             const { errors, pausedSyncs } = row.original;
-            const hasPausedSyncs = pausedSyncs.length > 0;
-            const errorCounts = errors.reduce(
-                (acc, error) => {
-                    if (error.type === 'auth') {
-                        acc.auth += 1;
-                    } else if (error.type === 'sync') {
-                        acc.sync += 1;
-                    }
-                    return acc;
-                },
-                { auth: 0, sync: 0 }
-            );
+            const problem = describeConnectionProblem(errors);
 
             return (
-                <div className="flex gap-1 items-center">
-                    {errorCounts.auth > 0 && (
-                        <StatusWithIcon tooltipContent="Expired credentials" variant="warning">
-                            <ShieldAlert />
-                        </StatusWithIcon>
-                    )}
-                    {errorCounts.sync > 0 && (
-                        <StatusWithIcon tooltipContent="Failed syncs" variant="warning">
-                            <TriangleAlert />
-                        </StatusWithIcon>
-                    )}
-                    {hasPausedSyncs && (
-                        <StatusWithIcon tooltipContent="Paused syncs" variant="neutral">
-                            <PauseCircle />
-                        </StatusWithIcon>
+                <div className="flex flex-col items-start gap-1 min-w-0">
+                    <div className="flex flex-wrap gap-1">
+                        {problem ? <Badge variant={problem.tone}>{problem.label}</Badge> : <Badge variant="success">Connected</Badge>}
+                        {pausedSyncs.length > 0 && (
+                            <Badge variant="secondary">{pausedSyncs.length === 1 ? 'Sync paused' : `${pausedSyncs.length} syncs paused`}</Badge>
+                        )}
+                    </div>
+                    {problem && (
+                        <span className="text-body-small-regular text-text-muted truncate max-w-full" title={problem.cause}>
+                            Fix: {problem.fix.toLowerCase()}
+                        </span>
                     )}
                 </div>
             );
@@ -178,20 +159,17 @@ export const ConnectionList = () => {
         () => (rawStatusFilters ?? []).filter((s): s is StatusFilterValue => validStatusFilterValues.has(s)),
         [rawStatusFilters]
     );
+    const [viewParam, setView] = useQueryState('view', parseView);
+    const { data: countData, loading: countLoading } = useConnectionsCount(env);
+    const counts = countData?.data;
+    const hasLegacyStatus = rawStatusFilters?.some((s) => s === 'ok' || s === 'error') ?? false;
+    const view = resolveView({ viewParam, rawStatusFilters: rawStatusFilters ?? [], counts: countLoading ? null : (counts ?? { withError: 0 }) });
 
     useDebounce(() => setDebouncedSearch(search || ''), 300, [search]);
 
     const { data: listIntegrationData, isLoading: integrationsLoading } = useListIntegrations(env);
 
-    const withError = useMemo(() => {
-        if (selectedStatusFilters.length === 0) return undefined;
-        const hasOk = selectedStatusFilters.includes('ok');
-        const hasErrorFilter = selectedStatusFilters.some((s) => s === 'error' || s === 'auth_error' || s === 'sync_error');
-        const hasPausedFilter = selectedStatusFilters.includes('paused');
-        if (hasOk && !hasErrorFilter && !hasPausedFilter) return false;
-        if (!hasOk && hasErrorFilter && !hasPausedFilter) return true;
-        return undefined;
-    }, [selectedStatusFilters]);
+    const withError = withErrorFor(view, selectedStatusFilters);
 
     const integrationIds = useMemo(() => {
         if (!selectedIntegrations || selectedIntegrations.length === 0) return undefined;
@@ -206,7 +184,7 @@ export const ConnectionList = () => {
         isFetchingNextPage,
         error: connectionsError
     } = useConnections({
-        env,
+        env: view ? env : '',
         search: debouncedSearch,
         integrationIds,
         withError
@@ -226,10 +204,6 @@ export const ConnectionList = () => {
         return connectionsWithIntegrations.filter((conn) =>
             selectedStatusFilters.some((filter) => {
                 switch (filter) {
-                    case 'ok':
-                        return conn.errors.length === 0;
-                    case 'error':
-                        return conn.errors.length > 0;
                     case 'auth_error':
                         return conn.errors.some((e) => e.type === 'auth');
                     case 'sync_error':
@@ -247,12 +221,14 @@ export const ConnectionList = () => {
         }
     }, [displayedConnections.length, selectedStatusFilters.length, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    const hasFiltered = debouncedSearch || (selectedIntegrations && selectedIntegrations.length > 0) || selectedStatusFilters.length > 0;
+    const hasFiltered =
+        debouncedSearch || (selectedIntegrations && selectedIntegrations.length > 0) || selectedStatusFilters.length > 0 || (view !== null && view !== 'all');
 
     const connectionCount = displayedConnections.length;
     const hasConnections = connectionCount > 0;
-    const showEmptyStateNoFilters = !loading && connectionCount === 0 && !hasFiltered;
-    const showEmptyStateWithFilters = !loading && !isFetchingNextPage && connectionCount === 0 && hasFiltered && !hasNextPage;
+    const listLoading = loading || view === null;
+    const showEmptyStateNoFilters = !listLoading && connectionCount === 0 && !hasFiltered;
+    const showEmptyStateWithFilters = !listLoading && !isFetchingNextPage && connectionCount === 0 && hasFiltered && !hasNextPage;
     const coreRowModel = useMemo(() => getCoreRowModel(), []);
     const table = useReactTable({
         data: displayedConnections,
@@ -285,7 +261,7 @@ export const ConnectionList = () => {
             <div className="flex flex-col gap-3">
                 {/* Content */}
                 <div className="flex flex-col gap-3">
-                    {(loading || hasConnections || hasFiltered) && (
+                    {(listLoading || hasConnections || hasFiltered) && (
                         <>
                             {/* Filters */}
                             <div className="flex items-center gap-1.5">
@@ -348,9 +324,26 @@ export const ConnectionList = () => {
                                 </PermissionGate>
                             </div>
 
-                            {/* Connection count */}
-                            <div className="flex items-center justify-end">
-                                <ConnectionCount />
+                            {/* Health views */}
+                            <div className="flex items-center">
+                                {counts ? (
+                                    <SegmentedControl<View>
+                                        aria-label="Connections by health"
+                                        value={view ?? 'all'}
+                                        onChange={(next) => {
+                                            void setView(next);
+                                            // An older link's ok/error filter would otherwise keep overriding the view.
+                                            if (hasLegacyStatus) void setSelectedStatusFilters(selectedStatusFilters);
+                                        }}
+                                        options={[
+                                            { value: 'attention', label: `Needs attention · ${counts.withError}` },
+                                            { value: 'healthy', label: `Healthy · ${counts.total - counts.withError}` },
+                                            { value: 'all', label: `All · ${counts.total}` }
+                                        ]}
+                                    />
+                                ) : (
+                                    <Skeleton className="w-72 h-7" />
+                                )}
                             </div>
 
                             {/* Table */}
@@ -375,7 +368,7 @@ export const ConnectionList = () => {
                                         </TableRow>
                                     ))}
                                 </TableHeader>
-                                {loading && (
+                                {listLoading && (
                                     <TableBody>
                                         {Array.from({ length: 3 }).map((_, rowIndex) => (
                                             <TableRow key={rowIndex} className="h-16">
@@ -393,7 +386,7 @@ export const ConnectionList = () => {
                                         ))}
                                     </TableBody>
                                 )}
-                                {!loading && hasConnections && (
+                                {!listLoading && hasConnections && (
                                     <TableBody>
                                         {table.getRowModel().rows.map((row) => (
                                             <TableRow
@@ -420,8 +413,18 @@ export const ConnectionList = () => {
                             </Table>
 
                             {showEmptyStateWithFilters && (
-                                <div className="flex flex-col gap-5 p-20 items-center justify-center bg-surface-panel rounded">
-                                    <p className="text-text-secondary text-body-medium-regular">No connections found.</p>
+                                <div className="flex flex-col gap-3 p-20 items-center justify-center bg-surface-panel rounded">
+                                    {view === 'attention' && !debouncedSearch && !selectedIntegrations?.length && !selectedStatusFilters.length ? (
+                                        <>
+                                            <h3 className="text-title-body text-text-strong">Nothing needs attention</h3>
+                                            <p className="text-text-secondary text-body-medium-regular">Every connection is running.</p>
+                                            <Button variant="outline" size="md" onClick={() => void setView('all')}>
+                                                See all connections
+                                            </Button>
+                                        </>
+                                    ) : (
+                                        <p className="text-text-secondary text-body-medium-regular">No connections found.</p>
+                                    )}
                                 </div>
                             )}
                         </>

@@ -4,22 +4,13 @@ import { IntegrationLogo } from '@/components/patterns/IntegrationLogo';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useConnections, useConnectionsCount } from '@/hooks/useConnections';
+import { describeConnectionProblem, problemLogUrl } from '@/utils/connectionProblems';
 import { getConnectionDisplayName } from '@/utils/endUser';
-
-import type { ApiConnectionSimple } from '@nangohq/types';
 
 /** How many connections needing attention the home lists before linking to the full list. */
 export const ATTENTION_LIMIT = 5;
 
 const plural = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`;
-
-/** What went wrong with a connection and who can fix it, in words rather than error types. */
-export function describeProblem(connection: Pick<ApiConnectionSimple, 'errors'>): { label: string; hint: string; tone: 'danger' | 'warning' } {
-    if (connection.errors.some((error) => error.type === 'auth')) {
-        return { label: 'Credentials expired or were revoked', hint: 'The customer needs to reconnect', tone: 'danger' };
-    }
-    return { label: 'A sync is failing', hint: 'Open the connection to see the failed runs', tone: 'warning' };
-}
 
 /**
  * Answers "is everything working?" before anything else on the home: a headline with the state of the
@@ -94,7 +85,8 @@ export const HealthSummary: React.FC<{ env: string }> = ({ env }) => {
                         </li>
                     ))}
                 {attention.map((connection) => {
-                    const problem = describeProblem(connection);
+                    const problem = describeConnectionProblem(connection.errors);
+                    const connectionUrl = `/${env}/connections/${encodeURIComponent(connection.provider_config_key)}/${encodeURIComponent(connection.connection_id)}`;
                     const name = getConnectionDisplayName({
                         endUser: connection.endUser,
                         connectionId: connection.connection_id,
@@ -111,15 +103,13 @@ export const HealthSummary: React.FC<{ env: string }> = ({ env }) => {
                                 <span className="truncate text-body-small-regular text-text-muted">{connection.provider_config_key}</span>
                             </div>
                             <div className="flex min-w-0 flex-col items-start gap-1">
-                                <Badge variant={problem.tone}>{problem.label}</Badge>
-                                <span className="text-body-small-regular text-text-muted">{problem.hint}</span>
+                                {problem && <Badge variant={problem.tone}>{problem.label}</Badge>}
+                                {problem && <span className="text-body-small-regular text-text-secondary">{problem.cause}</span>}
+                                {problem && <span className="text-body-small-medium text-text-muted">Fix: {problem.fix.toLowerCase()}</span>}
                             </div>
-                            <ButtonLink
-                                to={`/${env}/connections/${encodeURIComponent(connection.provider_config_key)}/${encodeURIComponent(connection.connection_id)}`}
-                                variant="outline"
-                                size="sm"
-                            >
-                                Open
+                            {/* Your problems open their log; the customer's open the connection, where its reconnect details are. */}
+                            <ButtonLink to={problem?.owner === 'you' ? problemLogUrl(env, problem) : connectionUrl} variant="outline" size="sm">
+                                {problem?.owner === 'you' ? 'View logs' : 'Open'}
                             </ButtonLink>
                         </li>
                     );
@@ -127,7 +117,7 @@ export const HealthSummary: React.FC<{ env: string }> = ({ env }) => {
             </ul>
             {withError > attention.length && !failing.isLoading && (
                 <div>
-                    <ButtonLink to={`/${env}/connections?status=error`} variant="ghost" size="sm">
+                    <ButtonLink to={`/${env}/connections?view=attention`} variant="ghost" size="sm">
                         See all {withError}
                     </ButtonLink>
                 </div>

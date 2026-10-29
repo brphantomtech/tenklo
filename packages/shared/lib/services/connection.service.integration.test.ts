@@ -530,6 +530,37 @@ describe('Connection service integration tests', () => {
             expect(connectionIds).toEqual([notionError.connection_id]);
         });
 
+        it('should say where each error came from and which sync failed', async () => {
+            const env = await createEnvironmentSeed();
+            const config = await createConfigSeed(env, 'notion', 'notion');
+
+            const authError = await createConnectionSeed({ env, provider: 'notion' });
+            await errorNotificationService.auth.create({
+                type: 'auth',
+                action: 'token_refresh',
+                connection_id: authError.id,
+                log_id: 'auth-log',
+                active: true
+            });
+
+            const syncError = await createConnectionSeed({ env, provider: 'notion' });
+            const sync = await createSyncSeeds({ connectionId: syncError.id, environment_id: env.id, nango_config_id: config.id!, sync_name: 'contacts' });
+            await errorNotificationService.sync.create({
+                type: 'sync',
+                action: 'run',
+                connection_id: syncError.id,
+                log_id: 'sync-log',
+                active: true,
+                sync_id: sync.sync.id
+            });
+
+            const dbConnections = await connectionService.listConnections({ environmentId: env.id, withError: true });
+            const errorsById = new Map(dbConnections.map((c) => [c.connection.id, c.active_logs]));
+
+            expect(errorsById.get(authError.id)).toEqual([{ type: 'auth', action: 'token_refresh', log_id: 'auth-log', sync_name: null }]);
+            expect(errorsById.get(syncError.id)).toEqual([{ type: 'sync', action: 'run', log_id: 'sync-log', sync_name: 'contacts' }]);
+        });
+
         it('should filter connections by tags', async () => {
             const env = await createEnvironmentSeed();
 

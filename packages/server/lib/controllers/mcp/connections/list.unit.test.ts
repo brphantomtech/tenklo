@@ -117,7 +117,7 @@ function connectionFixture(): Awaited<ReturnType<typeof connectionService.listCo
     return {
         connection: connectionDataFixture(),
         provider: 'github',
-        active_logs: [{ type: 'auth', log_id: 'log-id' }],
+        active_logs: [{ type: 'auth', log_id: 'log-id', action: 'token_refresh', sync_name: null }],
         end_user: endUserFixture()
     };
 }

@@ -4,6 +4,7 @@ import isDate from 'lodash-es/isDate.js';
 import { endUserToApi } from './endUser.js';
 
 import type {
+    ApiConnectionError,
     ApiConnectionFull,
     ApiConnectionSimple,
     ApiPublicConnection,
@@ -23,7 +24,7 @@ export function connectionSimpleToApi({
 }: {
     data: Omit<DBConnection | DBConnectionAsJSONRow, 'credentials'>;
     provider: string;
-    activeLog: [{ type: string; log_id: string }];
+    activeLog: ApiConnectionError[];
     endUser: DBEndUser | null;
     pausedSyncs: string[];
 }): ApiConnectionSimple {
@@ -80,7 +81,7 @@ export function connectionSimpleToPublicApi({
         connection_id: data.connection_id,
         provider_config_key: data.provider_config_key,
         provider,
-        errors: activeLog,
+        errors: activeLog.map(({ type, log_id }) => ({ type, log_id })),
         end_user: endUser ? endUserToApi(endUser) : null,
         tags: data.tags,
         metadata: data.metadata || null,

@@ -66,6 +66,7 @@ import type { Knex } from '@nangohq/database';
 import type { LogContext, LogContextStateless } from '@nangohq/logs';
 import type {
     AllAuthCredentials,
+    ApiConnectionError,
     ApiKeyCredentials,
     AppCredentials,
     AuthModeType,
@@ -1333,7 +1334,7 @@ export class ConnectionService {
         tags?: Record<string, string> | undefined;
         limit?: number;
         page?: number | undefined;
-    }): Promise<{ connection: DBConnectionAsJSONRow; end_user: DBEndUser | null; active_logs: [{ type: string; log_id: string }]; provider: string }[]> {
+    }): Promise<{ connection: DBConnectionAsJSONRow; end_user: DBEndUser | null; active_logs: ApiConnectionError[]; provider: string }[]> {
         const query = db.readOnly
             // Filter and paginate connections
             .with('filtered_connections', (qb) => {
@@ -1407,13 +1408,21 @@ export class ConnectionService {
             })
             // Aggregate active logs for filtered connections
             .with('active_logs_agg', (qb) => {
-                return qb
-                    .select('connection_id')
-                    .select(db.knex.raw(`json_agg(json_build_object('type', type, 'log_id', log_id)) as active_logs`))
-                    .from(ACTIVE_LOG_TABLE)
-                    .where('active', true)
-                    .whereRaw('connection_id = ANY(ARRAY(SELECT id FROM filtered_connections))')
-                    .groupBy('connection_id');
+                return (
+                    qb
+                        .select(`${ACTIVE_LOG_TABLE}.connection_id`)
+                        .select(
+                            db.knex.raw(
+                                `json_agg(json_build_object('type', ${ACTIVE_LOG_TABLE}.type, 'log_id', ${ACTIVE_LOG_TABLE}.log_id, 'action', ${ACTIVE_LOG_TABLE}.action, 'sync_name', _nango_syncs.name)) as active_logs`
+                            )
+                        )
+                        .from(ACTIVE_LOG_TABLE)
+                        // The sync's name lets the dashboard say which sync is failing.
+                        .leftJoin('_nango_syncs', '_nango_syncs.id', `${ACTIVE_LOG_TABLE}.sync_id`)
+                        .where(`${ACTIVE_LOG_TABLE}.active`, true)
+                        .whereRaw(`${ACTIVE_LOG_TABLE}.connection_id = ANY(ARRAY(SELECT id FROM filtered_connections))`)
+                        .groupBy(`${ACTIVE_LOG_TABLE}.connection_id`)
+                );
             })
             // Join all data together
             .select(

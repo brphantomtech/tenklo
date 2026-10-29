@@ -15,7 +15,8 @@ export function connectionToMcp({
         created: new Date(connection.created_at).toISOString(),
         metadata: connection.metadata,
         tags: connection.tags,
-        errors: active_logs,
+        // The MCP output keeps the public shape: type and log_id only.
+        errors: active_logs.map(({ type, log_id }) => ({ type, log_id })),
         end_user: end_user
             ? {
                   id: end_user.end_user_id,
