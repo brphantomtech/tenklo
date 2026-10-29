@@ -38,7 +38,8 @@ export const SettingsField: React.FC<{
     children: React.ReactNode;
 }> = ({ label, htmlFor, info, align = 'input', children }) => {
     return (
-        <div className={`flex gap-2 ${align === 'center' ? 'items-center' : 'items-start'}`}>
+        // The id lets the setup checklist bring the field into view.
+        <div id={htmlFor ? `setting-${htmlFor}` : undefined} className={`flex gap-2 ${align === 'center' ? 'items-center' : 'items-start'}`}>
             <div className={`flex ${LABEL_COLUMN} shrink-0 items-center gap-1.5 ${align === 'input' ? 'h-8' : ''}`}>
                 <FieldLabel htmlFor={htmlFor}>{label}</FieldLabel>
                 {info}

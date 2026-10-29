@@ -9,6 +9,7 @@ import { AuthSpecificSettings } from './components/AuthSpecificSettings';
 import { DeleteIntegrationButton } from './components/DeleteIntegrationButton';
 import { GeneralSettings } from './components/GeneralSettings';
 import { isOAuthCredentials, SettingsField, SettingsSection, showsCredentialsSection } from './components/SettingsLayout';
+import { SetupChecklist } from './components/SetupChecklist';
 
 import type { ApiEnvironment, GetIntegration } from '@nangohq/types';
 
@@ -29,11 +30,13 @@ export const SettingsTab: React.FC<{ data: GetIntegration['Success']['data']; en
     const [dismissedGuides, setDismissedGuides] = useLocalStorage<Record<string, true>>(LocalStorageKeys.IntegrationSetupGuideDismissed, {});
     const guideDismissed = dismissedGuides?.[guideKey] === true;
     const isSharedCredentials = Boolean(data.integration.shared_credentials_id);
-    const showGuide = Boolean(docs) && showsCredentialsSection(data) && !isSharedCredentials && !guideDismissed;
+    // While setup is incomplete, the checklist carries the guide link instead.
+    const showGuide = Boolean(docs) && showsCredentialsSection(data) && !isSharedCredentials && !guideDismissed && data.integration.missing_fields.length === 0;
     const guideDescription = setupGuideDescription(displayName, data.template.auth_mode);
 
     return (
         <div className="flex w-full flex-col gap-4">
+            <SetupChecklist data={data} environment={environment} />
             {showGuide && (
                 <Alert variant="info" onDismiss={() => setDismissedGuides({ ...dismissedGuides, [guideKey]: true })}>
                     <Info />

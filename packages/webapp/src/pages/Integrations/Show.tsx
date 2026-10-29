@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@nangohq/design-system';
+import { Badge, InputGroup, InputGroupAddon, InputGroupInput } from '@nangohq/design-system';
 
 import { ErrorPageComponent } from '@/components/patterns/ErrorComponent';
 import { IntegrationLogo } from '@/components/patterns/IntegrationLogo';
@@ -188,6 +188,7 @@ export const IntegrationsList = () => {
                                     <div className="flex gap-1.5 items-center">
                                         <IntegrationLogo provider={integration.provider} />
                                         {integration.display_name || integration.meta.displayName}
+                                        {integration.meta.missingFieldsCount > 0 && <Badge variant="warning">Needs setup</Badge>}
                                     </div>
                                 </TableCell>
                                 <TableCell className="text-text-secondary !text-body-small-regular">
