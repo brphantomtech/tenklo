@@ -42,6 +42,7 @@ import { HearAboutUs } from '@/pages/Onboarding/HearAboutUs';
 import { Root } from '@/pages/Root';
 import { TeamBilling } from '@/pages/Team/Billing/Show';
 import { TeamSettingsPage } from '@/pages/Team/Settings';
+import { TeamUsage } from '@/pages/Team/Usage/Show';
 import { Enable2FA } from '@/pages/User/Enable2FA';
 import { UserSettings } from '@/pages/User/Settings';
 import { useStore } from '@/store';
@@ -225,6 +226,11 @@ const routes: RouteObject[] = [
                 path: '/team/billing',
                 element: <TeamBilling />,
                 handle: { breadcrumb: 'Team billing' } as BreadcrumbHandle
+            },
+            {
+                path: '/team/usage',
+                element: <TeamUsage />,
+                handle: { breadcrumb: 'Usage' } as BreadcrumbHandle
             },
             {
                 path: '/team/audit',

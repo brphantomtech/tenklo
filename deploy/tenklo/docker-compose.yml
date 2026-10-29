@@ -56,6 +56,10 @@ services:
             # Sign-up, invitation and password-reset emails, through Resend's SMTP relay. The sender's domain must be verified in Resend.
             - SMTP_URL=smtps://resend:${RESEND_API_KEY}@smtp.resend.com:465
             - SMTP_FROM=Tenklo <noreply@tenklo.dev>
+            # Usage metering: requests, connections and storage per account and day, in the usage_daily table.
+            - NANGO_PUBSUB_TRANSPORT=ledger
+            # The owner's account (account 0): its team can impersonate and exempt accounts from billing.
+            - NANGO_ADMIN_UUID=ff7ef8ec-e19b-4d84-9358-6ad10b117a46
             - NANGO_LOGS_ENABLED=false
             - CSP_REPORT_ONLY=true
             - LOG_LEVEL=info

@@ -86,6 +86,8 @@ export * from './utils/error.js';
 export { getRoutes as getOtlpRoutes } from './otlp/otlp.js';
 
 export { pubsub } from './utils/pubsub.js';
+export * from './services/usage/ledger.js';
+export * from './services/usage/usage.js';
 
 export {
     ErrorSourceEnum,

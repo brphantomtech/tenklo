@@ -206,6 +206,9 @@ export class UsageProcessor {
                     }
                     return this.clickhouse.add([event]);
                 }
+                case 'usage.channel_messages':
+                    // Metered by the self-hosted ledger only.
+                    return Ok(undefined);
                 default:
                     ((_exhaustiveCheck: never) => {
                         throw new Error(`Unhandled event type: ${JSON.stringify(_exhaustiveCheck)}`);

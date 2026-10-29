@@ -1,6 +1,7 @@
 import type { ApiEndpoint, ApiError, ApiTimestamps } from '../api.js';
 import type { AuditPolicy } from '../audit-trail/event.js';
 import type { DBInvitation } from '../invitations/db.js';
+import type { ApiAccountUsage } from '../usage/index.js';
 import type { ApiUser } from '../user/api.js';
 import type { Role } from '../user/db.js';
 import type { DBTeam } from './db.js';
@@ -26,7 +27,7 @@ export interface ApiTeamUser extends ApiUser {
 }
 
 export type ApiInvitation = Merge<Omit<DBInvitation, 'token'>, ApiTimestamps>;
-export type ApiTeam = Merge<Omit<DBTeam, 'has_baa'>, ApiTimestamps>;
+export type ApiTeam = Merge<Omit<DBTeam, 'has_baa' | 'billing_exempt'>, ApiTimestamps>;
 
 export type PutTeam = ApiEndpoint<{
     Audit: AuditPolicy<'team', 'updated', 'account'>;
@@ -62,4 +63,12 @@ export type PatchTeamUser = ApiEndpoint<{
     Success: {
         data: { success: true };
     };
+}>;
+
+export type GetTeamUsage = ApiEndpoint<{
+    Audit: { kind: 'no-audit'; reason: 'non-auditable' };
+    Method: 'GET';
+    Path: '/api/v1/team/usage';
+    Querystring: { env: string; month?: string | undefined };
+    Success: { data: ApiAccountUsage };
 }>;

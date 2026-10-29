@@ -6,4 +6,6 @@ export interface DBTeam extends Timestamps {
     uuid: string;
     found_us: string | null;
     has_baa: boolean;
+    /** Never charged. Usage is still metered. */
+    billing_exempt: boolean;
 }

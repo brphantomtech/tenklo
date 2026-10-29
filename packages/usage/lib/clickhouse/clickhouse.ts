@@ -632,6 +632,7 @@ function toRaw(event: UsageEvent): ClickhouseRawUsageEvent | null {
         }
         case 'usage.records':
         case 'usage.connections':
+        case 'usage.channel_messages':
             // Not ingested into Clickhouse via events
             return null;
     }
