@@ -127,6 +127,7 @@ describe(`POST ${endpoint}`, () => {
                 created_at: expect.toBeIsoDate(),
                 display_name: 'GitHub Quickstart',
                 logo: 'http://localhost:3003/images/template-logos/github.svg',
+                categories: ['dev-tools', 'support', 'ticketing'],
                 provider: 'github',
                 unique_key: 'github-quickstart',
                 updated_at: expect.toBeIsoDate(),
