@@ -40,8 +40,12 @@ export function usePatchEnvironment(env: string) {
 
             return json;
         },
-        onSuccess: async () => {
+        onSuccess: async (_, body) => {
             await queryClient.invalidateQueries({ queryKey: environmentQueryKey(env) });
+            if (body.is_production !== undefined) {
+                // The environment list in meta drives the production banner.
+                await queryClient.invalidateQueries({ queryKey: metaQueryKey });
+            }
         }
     });
 }
