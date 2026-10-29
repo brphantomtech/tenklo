@@ -43,6 +43,7 @@ import {
 import { postForgotPassword } from './controllers/v1/account/postForgotPassword.js';
 import { postLogout } from './controllers/v1/account/postLogout.js';
 import { putResetPassword } from './controllers/v1/account/putResetPassword.js';
+import { putBillingExempt } from './controllers/v1/admin/accounts/putBillingExempt.js';
 import { postImpersonate } from './controllers/v1/admin/impersonate/postImpersonate.js';
 import { postAgentPlaygroundChat } from './controllers/v1/agentPlayground/postChat.js';
 import { getAuditTrail } from './controllers/v1/audit-trail/getAuditTrail.js';
@@ -127,6 +128,7 @@ import { postStripeCollectPayment } from './controllers/v1/stripe/payment_method
 import { postStripeWebhooks } from './controllers/v1/stripe/postWebhooks.js';
 import { getConnectionSyncs } from './controllers/v1/sync/getSyncs.js';
 import { getTeam } from './controllers/v1/team/getTeam.js';
+import { getTeamUsage } from './controllers/v1/team/getTeamUsage.js';
 import { putTeam } from './controllers/v1/team/putTeam.js';
 import { deleteTeamUser } from './controllers/v1/team/users/deleteTeamUser.js';
 import { patchTeamUser } from './controllers/v1/team/users/patchTeamUser.js';
@@ -278,6 +280,7 @@ web.route('/account/mfa/login/verify').post(rateLimiterMiddleware, auditMfaVerif
 
 // Team
 web.route('/team').get(webAuth, getTeam);
+web.route('/team/usage').get(webAuth, getTeamUsage);
 web.route('/team').put(webAuth, auditTeamUpdated, can('account:team:update'), putTeam);
 web.route('/team/users/:id').delete(webAuth, auditMemberRemoved, can('account:team:users:delete'), deleteTeamUser);
 web.route('/team/users/:id').patch(webAuth, auditMemberRoleChanged, can('account:team:users:update'), patchTeamUser);
@@ -432,6 +435,7 @@ if (flagHasUsage) {
 }
 
 web.route('/admin/impersonate').post(webAuth, postImpersonate);
+web.route('/admin/accounts/:accountId/billing-exempt').put(webAuth, putBillingExempt);
 
 // Hosted signin
 if (!isCloud && !isEnterprise) {

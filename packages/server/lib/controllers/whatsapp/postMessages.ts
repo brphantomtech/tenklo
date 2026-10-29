@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 
 import * as z from 'zod';
 
+import { pubsub } from '@nangohq/shared';
 import { getLogger, requireEmptyQuery, zodErrorToHTTP } from '@nangohq/utils';
 
 import { asyncWrapperWithEnvironment } from '../../utils/asyncWrapper.js';
@@ -73,6 +74,22 @@ export const postPublicWhatsAppMessage = asyncWrapperWithEnvironment<PostPublicW
         sendGatewayUnavailable(res);
         return;
     }
+
+    void pubsub.publisher.publish({
+        subject: 'usage',
+        type: 'usage.channel_messages',
+        payload: {
+            value: 1,
+            properties: {
+                accountId: account.id,
+                environmentId: environment.id,
+                environmentName: environment.name,
+                integrationId: resolved.value.config.unique_key,
+                connectionId: resolved.value.connection.connection_id,
+                provider: resolved.value.config.provider
+            }
+        }
+    });
 
     res.status(202).send({ messageId, commandId: sent.value.commandId });
 });

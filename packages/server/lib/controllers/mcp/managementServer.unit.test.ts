@@ -1510,6 +1510,7 @@ function fakeAccount(): DBTeam {
         uuid: 'test-account',
         found_us: null,
         has_baa: false,
+        billing_exempt: false,
         created_at: now,
         updated_at: now
     };

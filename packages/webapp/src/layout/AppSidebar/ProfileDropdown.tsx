@@ -1,4 +1,4 @@
-import { ChevronsUpDown, CreditCard, KeyRound, LogOut, ScrollText, SlidersHorizontal, Sparkle, UserRoundCog, Users } from 'lucide-react';
+import { ChevronsUpDown, CreditCard, Gauge, KeyRound, LogOut, ScrollText, SlidersHorizontal, Sparkle, UserRoundCog, Users } from 'lucide-react';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -73,6 +73,12 @@ export const ProfileDropdown: React.FC = () => {
                 label: 'Billing & usage',
                 icon: CreditCard,
                 href: `/team/billing`
+            });
+        } else {
+            list.push({
+                label: 'Usage',
+                icon: Gauge,
+                href: `/team/usage`
             });
         }
 

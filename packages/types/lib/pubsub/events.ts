@@ -155,6 +155,17 @@ export type UsageWebhookForwardEvent = UsageEventBase<
     }
 >;
 
+/** A message a channel (WhatsApp, Telegram) accepted for sending through the channels API. */
+export type UsageChannelMessagesEvent = UsageEventBase<
+    'usage.channel_messages',
+    {
+        value: number;
+        properties: {
+            provider: string;
+        };
+    }
+>;
+
 export type DataTransferCallsite =
     | 'credential_test_hook'
     | 'credential_verification_hook'
@@ -198,4 +209,5 @@ export type UsageEvent = EnforceUsageEventBase<
     | UsageProxyEvent
     | UsageWebhookForwardEvent
     | UsageDataTransferEvent
+    | UsageChannelMessagesEvent
 >;

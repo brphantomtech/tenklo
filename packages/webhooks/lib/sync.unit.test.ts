@@ -31,6 +31,7 @@ const account: DBTeam = {
     uuid: 'uuid',
     found_us: '',
     has_baa: false,
+    billing_exempt: false,
     created_at: new Date(),
     updated_at: new Date()
 };

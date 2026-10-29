@@ -85,6 +85,7 @@ function gen({
                 return { type, attrs: { ...baseAttributes, model: 'test', syncId: 'test', ...attributes } };
             case 'usage.connections':
             case 'usage.data_transfer':
+            case 'usage.channel_messages':
                 return { type, attrs: { ...baseAttributes, ...attributes } };
             default:
                 throw new Error(`unsupported event type ${type satisfies never}`);
