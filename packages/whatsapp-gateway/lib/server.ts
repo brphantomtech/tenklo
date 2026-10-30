@@ -21,6 +21,7 @@ export const MEDIA_KEY = /^tenants\/[0-9a-f-]{36}\/(inbox|media)\/[0-9a-f-]{36}\
  *   message.send). Answers 202 once accepted; the outcome arrives as events.
  * - PUT /v1/media?key=: stores a file in the media bucket (the body, with its content-type).
  * - GET /v1/media?key=: streams a file from the media bucket.
+ * - POST /v1/media/usage: bytes of media each channel keeps ({ channels: [{ tenantId, channelId }] }), for metering.
  * - PUT /v1/sessions/:tenantId/:channelId: imports a Baileys session paired elsewhere ({ objects: [{ path, json }] }).
  *   Answers 201 with the paired account; the server then connects the channel.
  * - GET /health/live and /health/ready.
@@ -35,7 +36,7 @@ export function createServer({
     logger
 }: {
     dispatcher: Pick<CommandDispatcher, 'submit'>;
-    media: Pick<Storage, 'openMedia' | 'putMedia'>;
+    media: Pick<Storage, 'openMedia' | 'putMedia' | 'mediaUsage'>;
     mediaMaxBytes: number;
     sessions: { import: (input: { tenantId: string; channelId: string; objects: ImportedObject[] }) => ReturnType<typeof importSession> };
     secret: string;
@@ -76,6 +77,18 @@ export function createServer({
         }
         await media.putMedia(key, body, req.header('content-type') || 'application/octet-stream');
         res.status(201).json({ objectKey: key, sizeBytes: body.length });
+    });
+
+    app.post('/v1/media/usage', requireSecret(secret), express.json({ limit: '1mb' }), async (req: Request, res: Response) => {
+        const channels = parseChannels(req.body);
+        if (!channels) {
+            res.status(400).json({
+                error: { code: 'invalid_channels', message: `expected { channels: [{ tenantId, channelId }] }, at most ${MAX_USAGE_CHANNELS}` }
+            });
+            return;
+        }
+        const usage = await Promise.all(channels.map(async (c) => ({ ...c, bytes: await media.mediaUsage(c.tenantId, c.channelId) })));
+        res.status(200).json({ channels: usage });
     });
 
     app.get('/v1/media', requireSecret(secret), async (req: Request, res: Response) => {
@@ -162,6 +175,19 @@ function parseImportedObjects(body: unknown): ImportedObject[] | null {
         (o: unknown) => typeof o === 'object' && o !== null && typeof (o as ImportedObject).path === 'string' && typeof (o as ImportedObject).json === 'string'
     );
     return valid ? (objects as ImportedObject[]).map(({ path, json }) => ({ path, json })) : null;
+}
+
+const MAX_USAGE_CHANNELS = 500;
+const CHANNEL_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+function parseChannels(body: unknown): { tenantId: string; channelId: string }[] | null {
+    const channels = (body as { channels?: unknown } | null)?.channels;
+    if (!Array.isArray(channels) || channels.length > MAX_USAGE_CHANNELS) return null;
+    const valid = channels.every((c: unknown) => {
+        const { tenantId, channelId } = (c ?? {}) as { tenantId?: unknown; channelId?: unknown };
+        return typeof tenantId === 'string' && CHANNEL_UUID.test(tenantId) && typeof channelId === 'string' && CHANNEL_UUID.test(channelId);
+    });
+    return valid ? (channels as { tenantId: string; channelId: string }[]).map(({ tenantId, channelId }) => ({ tenantId, channelId })) : null;
 }
 
 function mediaKey(req: Request): string | null {

@@ -17,7 +17,8 @@ export const USAGE_ROWS: UsageRow[] = [
     { metric: 'requests.channel_messages', label: 'Channel messages', description: 'Messages sent through channels', unit: 'count', kind: 'total' },
     { metric: 'requests.webhook_forwards', label: 'Webhooks forwarded', description: 'Provider webhooks sent to you', unit: 'count', kind: 'total' },
     { metric: 'data_transfer_bytes', label: 'Data transfer', description: 'Data sent to you', unit: 'bytes', kind: 'total' },
-    { metric: 'storage.records_bytes', label: 'Records storage', description: 'Synced records kept', unit: 'bytes', kind: 'average' }
+    { metric: 'storage.records_bytes', label: 'Records storage', description: 'Synced records kept', unit: 'bytes', kind: 'average' },
+    { metric: 'storage.media_bytes', label: 'Media storage', description: 'Files channels received or sent', unit: 'bytes', kind: 'average' }
 ];
 
 const BYTE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB'];

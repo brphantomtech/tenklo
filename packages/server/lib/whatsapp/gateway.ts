@@ -168,6 +168,35 @@ export async function openGatewayMedia(objectKey: string, kind: GatewayKind = 'w
     }
 }
 
+export interface GatewayChannel {
+    tenantId: string;
+    channelId: string;
+}
+
+/** Bytes of media each channel keeps in the gateway's bucket, for metering. */
+export async function getGatewayMediaUsage(kind: GatewayKind, channels: GatewayChannel[]): Promise<Result<(GatewayChannel & { bytes: number })[]>> {
+    const gateway = gatewayConfig(kind);
+    if (!gateway) {
+        return Err(new Error(`${kind}_gateway_not_configured`));
+    }
+    const { url, secret } = gateway;
+    try {
+        const res = await fetch(new URL('/v1/media/usage', url), {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', authorization: `Bearer ${secret}` },
+            body: JSON.stringify({ channels }),
+            signal: AbortSignal.timeout(120_000)
+        });
+        if (!res.ok) {
+            return Err(new Error(`${kind}_gateway_rejected_media_usage`, { cause: `${res.status}` }));
+        }
+        const json = (await res.json()) as { channels: (GatewayChannel & { bytes: number })[] };
+        return Ok(json.channels);
+    } catch (err) {
+        return Err(new Error(`${kind}_gateway_unreachable`, { cause: err }));
+    }
+}
+
 export class GatewaySessionRejectedError extends Error {
     constructor(
         readonly code: 'invalid_session' | 'session_exists',
