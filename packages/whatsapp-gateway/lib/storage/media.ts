@@ -1,4 +1,4 @@
-import { GetObjectCommand, NoSuchKey, PutObjectCommand, S3Client, S3ServiceException } from '@aws-sdk/client-s3';
+import { GetObjectCommand, ListObjectsV2Command, NoSuchKey, PutObjectCommand, S3Client, S3ServiceException } from '@aws-sdk/client-s3';
 
 import type { Config } from '../env.js';
 import type { Readable } from 'node:stream';
@@ -39,6 +39,20 @@ export class S3Media {
 
     async putMedia(objectKey: string, body: Buffer, contentType: string): Promise<void> {
         await this.s3.send(new PutObjectCommand({ Bucket: this.config.S3_BUCKET_MEDIA, Key: objectKey, Body: body, ContentType: contentType }));
+    }
+
+    /** Total size of the objects under a prefix. */
+    async sizeOf(prefix: string): Promise<number> {
+        let bytes = 0;
+        let token: string | undefined;
+        do {
+            const page = await this.s3.send(new ListObjectsV2Command({ Bucket: this.config.S3_BUCKET_MEDIA, Prefix: prefix, ContinuationToken: token }));
+            for (const object of page.Contents ?? []) {
+                bytes += object.Size ?? 0;
+            }
+            token = page.IsTruncated ? page.NextContinuationToken : undefined;
+        } while (token);
+        return bytes;
     }
 
     destroy(): void {

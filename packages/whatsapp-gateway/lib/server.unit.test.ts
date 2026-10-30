@@ -25,7 +25,13 @@ const media = {
             return Promise.reject(new ObjectNotFoundError(key));
         }
         return Promise.resolve({ stream: Readable.from([object.body]), contentLength: object.body.length, contentType: object.contentType });
-    }
+    },
+    mediaUsage: (tenantId: string, channelId: string) =>
+        Promise.resolve(
+            [...bucket.entries()]
+                .filter(([key]) => key.startsWith(`tenants/${tenantId}/media/${channelId}/`) || key.startsWith(`tenants/${tenantId}/inbox/${channelId}/`))
+                .reduce((sum, [, object]) => sum + object.body.length, 0)
+        )
 };
 
 const importSessionMock = vi.fn(({ channelId }: { channelId: string }) => {
@@ -175,6 +181,34 @@ describe('gateway API', () => {
                 expect(res.status).toBe(409);
                 expect(await res.json()).toMatchObject({ error: { code: 'session_exists' } });
             });
+        });
+    });
+
+    it('reports the media each channel keeps, for metering', async () => {
+        await withServer({}, async (base) => {
+            bucket.set(KEY, { body: Buffer.from('12345'), contentType: 'image/jpeg' });
+            const usage = (body: unknown, auth = `Bearer ${SECRET}`) =>
+                fetch(`${base}/v1/media/usage`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json', authorization: auth },
+                    body: JSON.stringify(body)
+                });
+
+            const res = await usage({
+                channels: [
+                    { tenantId: '11111111-1111-1111-1111-111111111111', channelId: '22222222-2222-2222-2222-222222222222' },
+                    { tenantId: '11111111-1111-1111-1111-111111111111', channelId: '44444444-4444-4444-4444-444444444444' }
+                ]
+            });
+            expect(res.status).toBe(200);
+            expect(await res.json()).toEqual({
+                channels: [
+                    { tenantId: '11111111-1111-1111-1111-111111111111', channelId: '22222222-2222-2222-2222-222222222222', bytes: 5 },
+                    { tenantId: '11111111-1111-1111-1111-111111111111', channelId: '44444444-4444-4444-4444-444444444444', bytes: 0 }
+                ]
+            });
+            expect((await usage({ channels: [{ tenantId: 'x', channelId: 'y' }] })).status).toBe(400);
+            expect((await usage({ channels: [] }, 'Bearer wrong')).status).toBe(401);
         });
     });
 });

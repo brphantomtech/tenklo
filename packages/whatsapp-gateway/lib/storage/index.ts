@@ -18,6 +18,15 @@ export class Storage {
         return this.media.putMedia(objectKey, body, contentType);
     }
 
+    /** Bytes of media a channel keeps: what it received (inbox) and what was uploaded to send (media). */
+    async mediaUsage(tenantId: string, channelId: string): Promise<number> {
+        const [inbox, outbound] = await Promise.all([
+            this.media.sizeOf(`tenants/${tenantId}/inbox/${channelId}/`),
+            this.media.sizeOf(`tenants/${tenantId}/media/${channelId}/`)
+        ]);
+        return inbox + outbound;
+    }
+
     getSessionObject(key: string): Promise<Buffer | undefined> {
         return this.sessions.getSessionObject(key);
     }
