@@ -369,7 +369,7 @@ export class ChannelSession {
     private async onClose(error: unknown): Promise<void> {
         if (this.stopping) return;
         const statusCode = (error as { output?: { statusCode?: number } } | undefined)?.output?.statusCode;
-        const decision = classifyDisconnect(statusCode, this.auth?.isRegistered() ?? false);
+        const decision = classifyDisconnect(statusCode, this.auth?.isRegistered() ?? false, this.reconnectAttempt);
         this.log.info({ statusCode, decision }, 'conexão fechada');
 
         if (decision.action === 'restart') {
