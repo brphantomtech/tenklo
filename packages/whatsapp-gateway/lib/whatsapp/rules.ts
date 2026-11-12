@@ -48,8 +48,14 @@ export type DisconnectDecision =
     | { action: 'reconnect' }
     | { action: 'stop'; status: ChannelStatus; reason: ChannelStatusReason; clearSession: boolean };
 
-/** Códigos do DisconnectReason da Baileys. 408 vale tanto para QR expirado quanto para conexão perdida. */
-export function classifyDisconnect(statusCode: number | undefined, registered: boolean): DisconnectDecision {
+/** Reconexões seguidas, sem abrir, que um erro 500 tolera antes de dar a sessão por inválida. */
+export const MAX_STREAM_ERROR_RECONNECTS = 5;
+
+/**
+ * Códigos do DisconnectReason da Baileys. 408 vale tanto para QR expirado quanto para conexão perdida.
+ * `failedReconnects` conta as reconexões seguidas que não chegaram a abrir.
+ */
+export function classifyDisconnect(statusCode: number | undefined, registered: boolean, failedReconnects = 0): DisconnectDecision {
     switch (statusCode) {
         case 401:
             return { action: 'stop', status: 'DISCONNECTED', reason: 'LOGGED_OUT', clearSession: true };
@@ -59,7 +65,12 @@ export function classifyDisconnect(statusCode: number | undefined, registered: b
             // A mesma sessão foi aberta em outro lugar. Não disputa: quem abriu por último fica com ela.
             return { action: 'stop', status: 'DISCONNECTED', reason: 'CONNECTION_REPLACED', clearSession: false };
         case 411:
+            return { action: 'stop', status: 'DISCONNECTED', reason: 'SESSION_INVALID', clearSession: true };
         case 500:
+            // A Baileys dá 500 a qualquer stream:error sem código, como o servidor recusando o ack de um status com
+            // mídia. A sessão continua válida (o celular segue mostrando o aparelho): apagá-la desconectava o canal à
+            // toa. Só desiste se a reconexão falhar seguidas vezes; credencial revogada de verdade volta como 401.
+            if (registered && failedReconnects < MAX_STREAM_ERROR_RECONNECTS) return { action: 'reconnect' };
             return { action: 'stop', status: 'DISCONNECTED', reason: 'SESSION_INVALID', clearSession: true };
         case 515:
             // Normal logo depois do pareamento.

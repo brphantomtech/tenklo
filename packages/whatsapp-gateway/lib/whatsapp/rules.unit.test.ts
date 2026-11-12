@@ -4,6 +4,7 @@ import { mask } from '../logger.js';
 import {
     canSendToGroup,
     classifyDisconnect,
+    MAX_STREAM_ERROR_RECONNECTS,
     pacingDelayMs,
     parseRecipient,
     receiptStatus,
@@ -61,6 +62,16 @@ describe('classifyDisconnect', () => {
     it('408 sem pareamento é QR expirado; pareado é queda de conexão', () => {
         expect(classifyDisconnect(408, false)).toMatchObject({ action: 'stop', reason: 'QR_TIMEOUT', clearSession: true });
         expect(classifyDisconnect(408, true)).toEqual({ action: 'reconnect' });
+    });
+
+    it('stream:error sem código (500) reconecta sem apagar a sessão', () => {
+        expect(classifyDisconnect(500, true)).toEqual({ action: 'reconnect' });
+        expect(classifyDisconnect(500, true, MAX_STREAM_ERROR_RECONNECTS - 1)).toEqual({ action: 'reconnect' });
+    });
+
+    it('500 que se repete nas reconexões, ou antes do pareamento, dá a sessão por inválida', () => {
+        expect(classifyDisconnect(500, true, MAX_STREAM_ERROR_RECONNECTS)).toMatchObject({ action: 'stop', reason: 'SESSION_INVALID', clearSession: true });
+        expect(classifyDisconnect(500, false)).toMatchObject({ action: 'stop', reason: 'SESSION_INVALID', clearSession: true });
     });
 
     it('queda desconhecida em sessão pareada reconecta', () => {
